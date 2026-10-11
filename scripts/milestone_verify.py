@@ -25,7 +25,14 @@ LOCAL_READ = """(() => ({
 def diagnose_local(events, expected):
     """Classify observed fixture failures after the run. Do not direct the policy."""
     fields = {"Origin": "origin", "Destination": "destination", "Departure date (YYYY-MM-DD)": "departure"}
+    selections = {"Adults": "adults", "Cabin": "cabin", "Trip type": "trip_type"}
+    observed = {}
     for event in events:
+        if event["event"] == "observation":
+            observed = {a.get("label"): a.get("value", "") for a in event["page"].get("actions", [])
+                        if a.get("kind") == "fill"}
+            observed.update({a["label"].split(" → ")[0]: a.get("current_value", "")
+                             for a in event["page"].get("actions", []) if a.get("kind") == "select"})
         if event["event"] == "observation" and event.get("step") == 0:
             actions = event["page"].get("actions", [])
             missing = [label for label in fields if not any(a.get("label") == label for a in actions)]
@@ -34,6 +41,18 @@ def diagnose_local(events, expected):
                         "fields": missing, "inference": False}
         if event["event"] == "executed":
             action = event["action"]
+            field = selections.get(action.get("label", "").split(" → ")[0])
+            if (field and action.get("kind") == "select"
+                    and action.get("value", "").casefold() != expected[field].casefold()):
+                return {"step": event["step"], "category": "wrong_decision", "field": field,
+                        "cause": "The selected dropdown value contradicts the fixed requirement.", "inference": False}
+            if action.get("label") == "Search flights":
+                mismatched = [key for label, key in (fields | selections).items()
+                              if observed.get(label, "").strip().casefold() != expected[key].casefold()]
+                if mismatched:
+                    return {"step": event["step"], "category": "wrong_decision", "fields": mismatched,
+                            "cause": "The submitted controls did not satisfy all fixed requirements.",
+                            "inference": False}
             field = fields.get(action.get("label"))
             if field and action.get("kind") == "fill":
                 if str(event.get("text", "")).strip().casefold() != expected[field].casefold():

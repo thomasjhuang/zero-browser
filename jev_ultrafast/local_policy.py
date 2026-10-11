@@ -38,12 +38,6 @@ def local_choose(state, goal, history):
         "SELECT": "Select an observed dropdown option.",
     }
     operations = {key: labels[key] for key in targets}
-    for operation, group in targets.items():
-        offered = [{"index": index, "label": action["label"],
-                    "value": action.get("current_value", action.get("value", "")),
-                    **{k: action[k] for k in ("role", "checked", "selected") if k in action}}
-                   for index, action in group.items()]
-        operations[operation] += " Available targets: " + json.dumps(offered, ensure_ascii=False)
     operations.update({key: value["label"] for key, value in controls.items()})
     operations.update(DONE="All requirements are visibly satisfied.", BLOCKED="No supported operation can progress.")
     request = {
@@ -56,6 +50,12 @@ def local_choose(state, goal, history):
     lines = [f"Title: {state['title']}", f"URL: {state['url']}", "Current observed elements:"]
     for element in elements:
         properties = {k: v for k, v in element.items() if k not in {"index", "label"}}
+        if "options" in properties:
+            properties["current_selection"] = properties.pop("value")
+            properties["available_changes"] = [
+                {"index": option["index"], "replace_current_selection_with": option["value"]}
+                for option in properties.pop("options")
+            ]
         lines.append(f"[{element['index']}] {element['label']} {json.dumps(properties, ensure_ascii=False)}")
     lines.extend(["Visible page text:", request["page"]["text"],
                   "Recent executed actions:", json.dumps(request["recent_actions"], ensure_ascii=False)])

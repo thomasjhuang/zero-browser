@@ -56,7 +56,8 @@ def require_page(page):
 @contextmanager
 def local_page(layout):
     handler = functools.partial(FixtureHandler, directory=str(ROOT / "fixtures"))
-    server = ThreadingHTTPServer(("127.0.0.1", 0), handler)
+    port = json.loads(MANIFEST.read_text())["conditions"]["local_port"]
+    server = ThreadingHTTPServer(("127.0.0.1", port), handler)
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
     try:
@@ -128,13 +129,27 @@ def instrument_browser(browser, journal, step):
     browser.observe, browser.act = observed, acted
 
 
-def run_task(task, url, journal, max_decisions):
+def show_task_tab(browser):
+    """Remove the unused startup tab from this run's isolated browser."""
+    targets = browser.call("Target.getTargets")["targetInfos"]
+    closed = 0
+    for target in targets:
+        if target["type"] == "page" and target["url"] == "about:blank" and target["targetId"] != browser.target:
+            browser.call("Target.closeTarget", targetId=target["targetId"])
+            closed += 1
+    browser.call("Target.activateTarget", targetId=browser.target)
+    return closed
+
+
+def run_task(task, url, journal, max_decisions, *, visible=False):
     from jev_ultrafast.agent import Agent
     from jev_ultrafast.browser import StalePage
     from jev_ultrafast.local_model import get_model, get_model_info
 
     step = [0]
     with Agent(url, task["goal"]) as agent:
+        if visible:
+            journal.write("task_tab_shown", closed_startup_tabs=show_task_tab(agent.browser))
         journal.write("observation", step=0, page=agent.state["page"])
         require_page(agent.state["page"])
         instrument_browser(agent.browser, journal, step)
@@ -171,6 +186,9 @@ def run_task(task, url, journal, max_decisions):
                     agent.state["page"] = agent.browser.observe(screenshot=False)
                 print(f"Decision {number}: {agent.state['status']}", flush=True)
                 if agent.state["status"] in {"done", "blocked"}:
+                    if agent.state["status"] == "blocked" and choice != "BLOCKED":
+                        journal.write("failure", step=number, category="no_progress",
+                                      cause="Three executed actions produced no observed page change.")
                     break
             else:
                 journal.write("failure", step=step[0], category="decision_budget",
@@ -192,8 +210,8 @@ def worker(request_path):
     try:
         if task["kind"] == "local":
             with local_page(task["layout"]) as url:
-                return run_task(task, url, journal, request["max_decisions"])
-        return run_task(task, task["url"], journal, request["max_decisions"])
+                return run_task(task, url, journal, request["max_decisions"], visible=request.get("visible", False))
+        return run_task(task, task["url"], journal, request["max_decisions"], visible=request.get("visible", False))
     except HumanRequired as error:
         events = read_events(journal.path)
         step = max((e.get("step", 0) for e in events), default=0)
@@ -217,7 +235,8 @@ def run(args):
     run_dir.mkdir(parents=True)
     journal_path = run_dir / "events.jsonl"
     request_path = run_dir / "request.json"
-    save_json(request_path, {"task": task, "journal": str(journal_path), "max_decisions": max_decisions})
+    save_json(request_path, {"task": task, "journal": str(journal_path), "max_decisions": max_decisions,
+                             "visible": not args.headless})
     started = time.monotonic()
     stats, error, code = {}, None, 1
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
@@ -229,14 +248,15 @@ def run(args):
     save_json(run_dir / "conditions.json", {"task": args.task, "manifest": manifest, "revision": revision,
                                            "source_sha256": hashes, "pilot": args.pilot,
                                            "headless": args.headless,
-                                           "timeout": timeout, "max_decisions": max_decisions})
+                                           "timeout": timeout, "max_decisions": max_decisions,
+                                           "cancel_after_seconds": 3 if args.pilot else None})
     try:
         with cancellation_signals(), single_run(), isolated_browser(headless=args.headless):
             limit = worker_memory_limit()
             stats["memory_limit_bytes"] = limit
             code = supervise([sys.executable, str(Path(__file__).resolve()), "--worker", str(request_path)],
                              timeout=timeout, memory_limit=limit, stats=stats,
-                             cancel_after=10 if args.pilot else None)
+                             cancel_after=3 if args.pilot else None)
     except KeyboardInterrupt:
         error, code = "cancelled", 130
     except Exception as problem:
@@ -266,7 +286,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--task", choices=list(json.loads(MANIFEST.read_text())["tasks"]), default="local_search")
     parser.add_argument("--pilot", action="store_true",
-                        help="Two decisions, 20-second deadline, cancel after 10 seconds.")
+                        help="Two decisions, 20-second deadline, cancel after 3 seconds.")
     parser.add_argument("--ready", action="store_true", help="Use only after the user confirms readiness for this run.")
     parser.add_argument("--headless", action="store_true")
     parser.add_argument("--report", action="store_true", help="Compare saved runs without inference.")

@@ -36,11 +36,11 @@ Reconciled October 11, 2026, at 13:40 PT. This file owns current state and reser
 The local CLI and Codex MCP connection work on a simple navigation goal.
 Reliable multi-step completion, useful time savings, and a native Codex speed comparison remain unproven.
 The active milestone now tests local task completion. The user reported a visible page, normal responsiveness, and clean closure during the pilot.
-That observation does not establish cancellation during inference or explain the earlier freeze.
+The final cancellation pilot stopped during inference. The user reported normal responsiveness and clean closure. The earlier freeze remains unexplained.
 
 ## In progress
 
-- **16, Improve zero-browser benchmarking:** local completion remains unresolved. The owner awaits user observations from the latest cancellation pilot before longer runs. Preserve its unfinished changes.
+- **16, Improve zero-browser benchmarking:** local completion remains unresolved. Cancellation observations passed. The owner is preparing the measured baseline commit before the next experiment.
 
 ## Completed context work
 
@@ -72,7 +72,7 @@ That observation does not establish cancellation during inference or explain the
 | Local model and adapters | [Shared model](../results/shared-local-model-verification.json), [installation](../results/install-cli-verification.json). Simple completion does not establish general reliability |
 | Runtime safety | [Guard tests](../results/cli-runtime-safety.json). The freeze cause remains unknown |
 | Milestone preparation | [Preparation](../results/milestone-preparation.json). Scripted controls and outcome tests, not model performance |
-| Current local experiments | [Reconciliation snapshot](../results/context-reconciliation.json). Completed records only, with differing source versions. No combined success-rate claim |
+| Current local experiments | [Measured runs](../results/milestone-local-runs.json). Failed tasks, interrupted records, source versions, and cancellation observations |
 | MCP connection | [Codex run](../results/codex-mcp.json). Simple navigation only |
 | Smaller models | [4B](../results/replay/quality-4b-plain.json), [1.7B](../results/replay/quality-1.7B-plain.json), [0.6B](../results/replay/quality-0.6B-plain.json). Synthetic cases only |
 | Scoring and recorder history | [Decision comparison](../results/decision-comparison.json), [filter failure](../results/decision-quality-filter-rerun.json), [recordings](../results/demo-capture-summary.json) |
@@ -103,7 +103,7 @@ Other chats have unfinished changes in the shared checkout. Preserve them and do
 - 2026-10-11. Task 16 recorded failed local runs and stopped inference on cancellation. The milestone remains open. Evidence: `results/milestone-local-runs.json`.
 
 - October 11, task 19: reconciled stale task state, preserved owner reservations, and defined stages 16 → 20 → 21 → 22.
-- Task 16: the user supplied the earlier pilot observations. The latest cancellation observation remains pending. Its owner maintains the final sanitized results.
+- Task 16: the user supplied the earlier pilot observations. The final cancellation observation passed. Its owner maintains the sanitized results in `results/milestone-local-runs.json`.
 - Task 18: the MCP retest stopped at the run lock. The native CLI supplied no browser tool. Neither attempt establishes a speed result.
 
 Earlier implementation details and evidence remain in the numbered task files and Git history.

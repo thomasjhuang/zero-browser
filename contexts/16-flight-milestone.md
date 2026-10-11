@@ -48,13 +48,16 @@ DONE did not establish success. The crowded run reached its external deadline wi
 Earlier runs used random local ports, so their comparisons are exploratory.
 
 The last pilot cancelled during inference. The worker stopped 36 milliseconds after the cancellation request.
-The user still needs to report responsiveness and browser closure for that cancellation test.
+The user reported normal responsiveness and clean browser closure for that cancellation test.
 The runner retains partial records under ignored `artifacts/milestone/`. `--report` reads them without inference.
 
 The milestone remains open. No live flight task passed, and the flight variations remain untested.
-Next: resolve omitted requirements and premature completion, then obtain repeated local and primary successes.
+Next: publish this measured baseline, then test the small-page joint menu in the current STATUS sequence.
 The live flight verifier remains untested. The freeze cause remains unknown.
 
 Use `--pilot --ready` only after user readiness. The pilot permits two decisions and cancels after three seconds.
 The worker deadline is twenty seconds. Browser startup has a separate twenty-second deadline.
-Cleanup adds time after cancellation. Do not start longer runs before the pending user observations.
+Cleanup adds time after cancellation. The user supplied the required observations.
+
+The latest goal-placement experiment also failed and was removed. The independent tests rejected every full local run.
+Delivery checks passed. Publication remains subject to the shared hold in STATUS.

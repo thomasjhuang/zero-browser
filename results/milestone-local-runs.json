@@ -1,0 +1,3348 @@
+{
+  "recorded_at": "2026-10-11T13:39:53.674570-07:00",
+  "stage": "Local pilot and failed multi-step experiments. The flight milestone remains incomplete.",
+  "user_observation": {
+    "scope": "Second bounded local pilot",
+    "response": "Page visible; responsive; closed cleanly"
+  },
+  "browser_tab_experiment": {
+    "closed_startup_tabs": 2,
+    "local_model_loaded": false,
+    "page_tab_count": 1,
+    "task_page_loaded": true,
+    "blank_tabs": 0,
+    "window_state": "normal",
+    "observed_actions": 12,
+    "total_elapsed_ms": 4248
+  },
+  "runs": [
+    {
+      "record_id": "local_search-1791750270517396000",
+      "conditions": {
+        "task": "local_search",
+        "manifest": {
+          "version": 1,
+          "conditions": {
+            "viewport": [
+              1120,
+              780
+            ],
+            "profile": "fresh isolated Chrome profile",
+            "language": "en",
+            "backend": "local pinned Qwen only",
+            "max_decisions": 20,
+            "timeout_seconds": 120,
+            "repeats": "Three consecutive primary passes, then both variations. Local layout cases remain separate."
+          },
+          "boundary": {
+            "allow": [
+              "navigation",
+              "scrolling",
+              "search-field entry",
+              "autocomplete selection",
+              "filters",
+              "search submission"
+            ],
+            "human_required": [
+              "login",
+              "CAPTCHA",
+              "flight selection",
+              "booking",
+              "payment",
+              "messages",
+              "account changes"
+            ]
+          },
+          "tasks": {
+            "sfo_bos": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "sfo_bos_next_day": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 17, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-17",
+                "date_label": "Tue, Nov 17",
+                "result_date": "Tuesday, November 17"
+              }
+            },
+            "sfo_sea": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Seattle on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Seattle"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "local_search": {
+              "kind": "local",
+              "layout": "normal",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_reordered": {
+              "kind": "local",
+              "layout": "reverse",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_crowded": {
+              "kind": "local",
+              "layout": "crowded",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            }
+          }
+        },
+        "revision": "a232d80afd7b46f7ed0bd8459cb85e22615d0f7d",
+        "source_sha256": {
+          "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+          "jev_ultrafast/agent.py": "aaf8b271cb0ee6643fe7beb525328ab80de8568c7ac044d02b9c6721161e7c8b",
+          "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+          "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+          "jev_ultrafast/local_model.py": "c8d56c0886b3830c8085e9ebd0eb205df41d884bdc7a6f146ca9b76496fbb27d",
+          "jev_ultrafast/local_policy.py": "d89327098f3e251d4f8dd645ba61c838ec4aac78193d2d74df69a07dfb9ab623",
+          "jev_ultrafast/model.py": "9c54f1029d8f2f8c24576679b1bc73a58bf51a917208c707fb87d8c690357190",
+          "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+          "jev_ultrafast/snapshot.js": "e50473501c8fb8e70f3b21866d987393e3f2315c639d638bd477d170e81ed78d",
+          "fixtures/milestone_tasks.json": "e50e635cc4228547a1223a6bbb3fb70fe67c1a263745a3ba717b90de7b26ee73",
+          "scripts/milestone.py": "00a6826a8bd1bda7c2e4eeb4146ee84be0612f5c6a3fb58fb832791c1993155a",
+          "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+          "scripts/milestone_verify.py": "8b4633f9638559c27682b6cc86d79068641f5ae9618714f90618098498f7143d",
+          "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+          "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+          "fixtures/milestone.html": "9e79bc87d68b9a099b913defbaa4cc230a2fb424d5c74d61f1212551fff7898b",
+          "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+          "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+        },
+        "pilot": true,
+        "headless": false,
+        "timeout": 20,
+        "max_decisions": 2
+      },
+      "summary": {
+        "outcome_verified": false,
+        "verification": {
+          "passed": false,
+          "checks": {
+            "origin": false,
+            "destination": false,
+            "departure": false,
+            "adults": false,
+            "cabin": false,
+            "trip_type": false,
+            "search_submitted": false,
+            "results_visible": false,
+            "no_flight_selected": true
+          }
+        },
+        "model_done": false,
+        "first_observed_failure": {
+          "event": "failure",
+          "elapsed_ms": 8592,
+          "step": 2,
+          "category": "decision_budget",
+          "cause": "The fixed decision budget ended."
+        },
+        "decision_latency_ms": [
+          2936,
+          2954
+        ],
+        "decision_count": 2,
+        "model_calls_started": 4,
+        "model_calls_finished": 4,
+        "model_call_coverage": "complete",
+        "actions_executed": 2,
+        "execution_outcome_unknown": false,
+        "peak_mlx_bytes": 2938469644,
+        "task": "local_search",
+        "pilot": true,
+        "exit_code": 1,
+        "parent_stop": null,
+        "total_elapsed_ms": 9957,
+        "runtime": {
+          "memory_limit_bytes": 6442450944,
+          "peak_worker_bytes": 3429092160,
+          "memory_samples": 88,
+          "worker_stopped_ms": 9250
+        },
+        "memory_scope": "Sampled worker footprint. Browser memory is excluded.",
+        "successful_run": false
+      },
+      "retrospective_first_failure": null,
+      "median_decision_ms": 2945.0,
+      "first_menu_prompt_tokens": [
+        1062,
+        850
+      ],
+      "synthetic_action_excerpts": [
+        {
+          "step": 1,
+          "operation": "click",
+          "label": "Open Departure date (YYYY-MM-DD)",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 2,
+          "operation": "click",
+          "label": "Open Destination",
+          "text": null,
+          "value": ""
+        }
+      ],
+      "private_events_sha256": "ee6a4f7e520ebed2a3b6a4f2562ed233771a1a233b093cc3ffd3d8bcf38f2bc1"
+    },
+    {
+      "record_id": "local_search-1791750453215839000",
+      "conditions": {
+        "task": "local_search",
+        "manifest": {
+          "version": 1,
+          "conditions": {
+            "viewport": [
+              1120,
+              780
+            ],
+            "profile": "fresh isolated Chrome profile",
+            "language": "en",
+            "backend": "local pinned Qwen only",
+            "max_decisions": 20,
+            "timeout_seconds": 120,
+            "repeats": "Three consecutive primary passes, then both variations. Local layout cases remain separate."
+          },
+          "boundary": {
+            "allow": [
+              "navigation",
+              "scrolling",
+              "search-field entry",
+              "autocomplete selection",
+              "filters",
+              "search submission"
+            ],
+            "human_required": [
+              "login",
+              "CAPTCHA",
+              "flight selection",
+              "booking",
+              "payment",
+              "messages",
+              "account changes"
+            ]
+          },
+          "tasks": {
+            "sfo_bos": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "sfo_bos_next_day": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 17, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-17",
+                "date_label": "Tue, Nov 17",
+                "result_date": "Tuesday, November 17"
+              }
+            },
+            "sfo_sea": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Seattle on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Seattle"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "local_search": {
+              "kind": "local",
+              "layout": "normal",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_reordered": {
+              "kind": "local",
+              "layout": "reverse",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_crowded": {
+              "kind": "local",
+              "layout": "crowded",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            }
+          }
+        },
+        "revision": "a232d80afd7b46f7ed0bd8459cb85e22615d0f7d",
+        "source_sha256": {
+          "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+          "jev_ultrafast/agent.py": "aaf8b271cb0ee6643fe7beb525328ab80de8568c7ac044d02b9c6721161e7c8b",
+          "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+          "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+          "jev_ultrafast/local_model.py": "c8d56c0886b3830c8085e9ebd0eb205df41d884bdc7a6f146ca9b76496fbb27d",
+          "jev_ultrafast/local_policy.py": "d89327098f3e251d4f8dd645ba61c838ec4aac78193d2d74df69a07dfb9ab623",
+          "jev_ultrafast/model.py": "9c54f1029d8f2f8c24576679b1bc73a58bf51a917208c707fb87d8c690357190",
+          "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+          "jev_ultrafast/snapshot.js": "e50473501c8fb8e70f3b21866d987393e3f2315c639d638bd477d170e81ed78d",
+          "fixtures/milestone_tasks.json": "e50e635cc4228547a1223a6bbb3fb70fe67c1a263745a3ba717b90de7b26ee73",
+          "scripts/milestone.py": "bfeff48cecd52e06b1dacce4c5cb4413e2e5be01b964bfbea3c4236607bf2503",
+          "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+          "scripts/milestone_verify.py": "8b4633f9638559c27682b6cc86d79068641f5ae9618714f90618098498f7143d",
+          "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+          "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+          "fixtures/milestone.html": "9e79bc87d68b9a099b913defbaa4cc230a2fb424d5c74d61f1212551fff7898b",
+          "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+          "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+        },
+        "pilot": true,
+        "headless": false,
+        "timeout": 20,
+        "max_decisions": 2
+      },
+      "summary": {
+        "outcome_verified": false,
+        "verification": {
+          "passed": false,
+          "checks": {
+            "origin": false,
+            "destination": false,
+            "departure": false,
+            "adults": false,
+            "cabin": false,
+            "trip_type": false,
+            "search_submitted": false,
+            "results_visible": false,
+            "no_flight_selected": true
+          }
+        },
+        "model_done": false,
+        "first_observed_failure": {
+          "event": "failure",
+          "elapsed_ms": 8379,
+          "step": 2,
+          "category": "decision_budget",
+          "cause": "The fixed decision budget ended."
+        },
+        "decision_latency_ms": [
+          2932,
+          2978
+        ],
+        "decision_count": 2,
+        "model_calls_started": 4,
+        "model_calls_finished": 4,
+        "model_call_coverage": "complete",
+        "actions_executed": 2,
+        "execution_outcome_unknown": false,
+        "peak_mlx_bytes": 2938453260,
+        "task": "local_search",
+        "pilot": true,
+        "exit_code": 1,
+        "parent_stop": null,
+        "total_elapsed_ms": 9656,
+        "runtime": {
+          "memory_limit_bytes": 6442450944,
+          "peak_worker_bytes": 3428354904,
+          "memory_samples": 87,
+          "worker_stopped_ms": 9109
+        },
+        "memory_scope": "Sampled worker footprint. Browser memory is excluded.",
+        "successful_run": false
+      },
+      "retrospective_first_failure": null,
+      "median_decision_ms": 2955.0,
+      "first_menu_prompt_tokens": [
+        1062,
+        850
+      ],
+      "synthetic_action_excerpts": [
+        {
+          "step": 1,
+          "operation": "click",
+          "label": "Open Departure date (YYYY-MM-DD)",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 2,
+          "operation": "click",
+          "label": "Open Destination",
+          "text": null,
+          "value": ""
+        }
+      ],
+      "private_events_sha256": "d58a5b2a67333ebb18e4419164dc3ade3fe9d47ecc236a196fb32ab8027cd7e2"
+    },
+    {
+      "record_id": "local_search-1791750493835958000",
+      "conditions": {
+        "task": "local_search",
+        "manifest": {
+          "version": 1,
+          "conditions": {
+            "viewport": [
+              1120,
+              780
+            ],
+            "profile": "fresh isolated Chrome profile",
+            "language": "en",
+            "backend": "local pinned Qwen only",
+            "max_decisions": 20,
+            "timeout_seconds": 120,
+            "repeats": "Three consecutive primary passes, then both variations. Local layout cases remain separate."
+          },
+          "boundary": {
+            "allow": [
+              "navigation",
+              "scrolling",
+              "search-field entry",
+              "autocomplete selection",
+              "filters",
+              "search submission"
+            ],
+            "human_required": [
+              "login",
+              "CAPTCHA",
+              "flight selection",
+              "booking",
+              "payment",
+              "messages",
+              "account changes"
+            ]
+          },
+          "tasks": {
+            "sfo_bos": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "sfo_bos_next_day": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 17, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-17",
+                "date_label": "Tue, Nov 17",
+                "result_date": "Tuesday, November 17"
+              }
+            },
+            "sfo_sea": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Seattle on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Seattle"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "local_search": {
+              "kind": "local",
+              "layout": "normal",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_reordered": {
+              "kind": "local",
+              "layout": "reverse",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_crowded": {
+              "kind": "local",
+              "layout": "crowded",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            }
+          }
+        },
+        "revision": "a232d80afd7b46f7ed0bd8459cb85e22615d0f7d",
+        "source_sha256": {
+          "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+          "jev_ultrafast/agent.py": "aaf8b271cb0ee6643fe7beb525328ab80de8568c7ac044d02b9c6721161e7c8b",
+          "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+          "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+          "jev_ultrafast/local_model.py": "c8d56c0886b3830c8085e9ebd0eb205df41d884bdc7a6f146ca9b76496fbb27d",
+          "jev_ultrafast/local_policy.py": "d89327098f3e251d4f8dd645ba61c838ec4aac78193d2d74df69a07dfb9ab623",
+          "jev_ultrafast/model.py": "9c54f1029d8f2f8c24576679b1bc73a58bf51a917208c707fb87d8c690357190",
+          "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+          "jev_ultrafast/snapshot.js": "e50473501c8fb8e70f3b21866d987393e3f2315c639d638bd477d170e81ed78d",
+          "fixtures/milestone_tasks.json": "e50e635cc4228547a1223a6bbb3fb70fe67c1a263745a3ba717b90de7b26ee73",
+          "scripts/milestone.py": "bfeff48cecd52e06b1dacce4c5cb4413e2e5be01b964bfbea3c4236607bf2503",
+          "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+          "scripts/milestone_verify.py": "8b4633f9638559c27682b6cc86d79068641f5ae9618714f90618098498f7143d",
+          "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+          "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+          "fixtures/milestone.html": "9e79bc87d68b9a099b913defbaa4cc230a2fb424d5c74d61f1212551fff7898b",
+          "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+          "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+        },
+        "pilot": false,
+        "headless": false,
+        "timeout": 120,
+        "max_decisions": 20
+      },
+      "summary": {
+        "outcome_verified": false,
+        "verification": {
+          "passed": false,
+          "checks": {
+            "origin": false,
+            "destination": false,
+            "departure": false,
+            "adults": false,
+            "cabin": false,
+            "trip_type": false,
+            "search_submitted": false,
+            "results_visible": false,
+            "no_flight_selected": true
+          }
+        },
+        "model_done": false,
+        "first_observed_failure": null,
+        "decision_latency_ms": [
+          3064,
+          2944,
+          3002
+        ],
+        "decision_count": 3,
+        "model_calls_started": 6,
+        "model_calls_finished": 6,
+        "model_call_coverage": "complete",
+        "actions_executed": 3,
+        "execution_outcome_unknown": false,
+        "peak_mlx_bytes": 2938469644,
+        "task": "local_search",
+        "pilot": false,
+        "exit_code": 1,
+        "parent_stop": null,
+        "total_elapsed_ms": 12991,
+        "runtime": {
+          "memory_limit_bytes": 6442450944,
+          "peak_worker_bytes": 3441298264,
+          "memory_samples": 119,
+          "worker_stopped_ms": 12346
+        },
+        "memory_scope": "Sampled worker footprint. Browser memory is excluded.",
+        "successful_run": false
+      },
+      "retrospective_first_failure": {
+        "step": 3,
+        "category": "no_progress",
+        "cause": "Three executed clicks left the observed page fingerprint unchanged.",
+        "inference": false
+      },
+      "median_decision_ms": 3002,
+      "first_menu_prompt_tokens": [
+        1062,
+        850
+      ],
+      "synthetic_action_excerpts": [
+        {
+          "step": 1,
+          "operation": "click",
+          "label": "Open Departure date (YYYY-MM-DD)",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 2,
+          "operation": "click",
+          "label": "Open Destination",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 3,
+          "operation": "click",
+          "label": "Open Destination",
+          "text": null,
+          "value": ""
+        }
+      ],
+      "private_events_sha256": "b35d44f2e444fdf2a01a9a24f1f0c14dcafc6320aab06990140efa92b6bbfd74"
+    },
+    {
+      "record_id": "local_search-1791750530622099000",
+      "conditions": {
+        "task": "local_search",
+        "manifest": {
+          "version": 1,
+          "conditions": {
+            "viewport": [
+              1120,
+              780
+            ],
+            "profile": "fresh isolated Chrome profile",
+            "language": "en",
+            "backend": "local pinned Qwen only",
+            "max_decisions": 20,
+            "timeout_seconds": 120,
+            "repeats": "Three consecutive primary passes, then both variations. Local layout cases remain separate."
+          },
+          "boundary": {
+            "allow": [
+              "navigation",
+              "scrolling",
+              "search-field entry",
+              "autocomplete selection",
+              "filters",
+              "search submission"
+            ],
+            "human_required": [
+              "login",
+              "CAPTCHA",
+              "flight selection",
+              "booking",
+              "payment",
+              "messages",
+              "account changes"
+            ]
+          },
+          "tasks": {
+            "sfo_bos": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "sfo_bos_next_day": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 17, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-17",
+                "date_label": "Tue, Nov 17",
+                "result_date": "Tuesday, November 17"
+              }
+            },
+            "sfo_sea": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Seattle on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Seattle"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "local_search": {
+              "kind": "local",
+              "layout": "normal",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_reordered": {
+              "kind": "local",
+              "layout": "reverse",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_crowded": {
+              "kind": "local",
+              "layout": "crowded",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            }
+          }
+        },
+        "revision": "a232d80afd7b46f7ed0bd8459cb85e22615d0f7d",
+        "source_sha256": {
+          "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+          "jev_ultrafast/agent.py": "aaf8b271cb0ee6643fe7beb525328ab80de8568c7ac044d02b9c6721161e7c8b",
+          "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+          "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+          "jev_ultrafast/local_model.py": "c8d56c0886b3830c8085e9ebd0eb205df41d884bdc7a6f146ca9b76496fbb27d",
+          "jev_ultrafast/local_policy.py": "8371df3b15053d80b079e33ca09ec0fa58482043a10ce597b515732d7850395d",
+          "jev_ultrafast/model.py": "9c54f1029d8f2f8c24576679b1bc73a58bf51a917208c707fb87d8c690357190",
+          "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+          "jev_ultrafast/snapshot.js": "e50473501c8fb8e70f3b21866d987393e3f2315c639d638bd477d170e81ed78d",
+          "fixtures/milestone_tasks.json": "e50e635cc4228547a1223a6bbb3fb70fe67c1a263745a3ba717b90de7b26ee73",
+          "scripts/milestone.py": "bfeff48cecd52e06b1dacce4c5cb4413e2e5be01b964bfbea3c4236607bf2503",
+          "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+          "scripts/milestone_verify.py": "8b4633f9638559c27682b6cc86d79068641f5ae9618714f90618098498f7143d",
+          "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+          "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+          "fixtures/milestone.html": "9e79bc87d68b9a099b913defbaa4cc230a2fb424d5c74d61f1212551fff7898b",
+          "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+          "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+        },
+        "pilot": false,
+        "headless": false,
+        "timeout": 120,
+        "max_decisions": 20
+      },
+      "summary": {
+        "outcome_verified": false,
+        "verification": {
+          "passed": false,
+          "checks": {
+            "origin": false,
+            "destination": false,
+            "departure": false,
+            "adults": false,
+            "cabin": false,
+            "trip_type": false,
+            "search_submitted": false,
+            "results_visible": false,
+            "no_flight_selected": true
+          }
+        },
+        "model_done": false,
+        "first_observed_failure": {
+          "event": "failure",
+          "elapsed_ms": 65117,
+          "step": 20,
+          "category": "decision_budget",
+          "cause": "The fixed decision budget ended."
+        },
+        "decision_latency_ms": [
+          2501,
+          2592,
+          2613,
+          2711,
+          2811,
+          2894,
+          3020,
+          3048,
+          3143,
+          3211,
+          3292,
+          3301,
+          3254,
+          3305,
+          3233,
+          3243,
+          3306,
+          3292,
+          3300,
+          3299
+        ],
+        "decision_count": 20,
+        "model_calls_started": 42,
+        "model_calls_finished": 42,
+        "model_call_coverage": "complete",
+        "actions_executed": 20,
+        "execution_outcome_unknown": false,
+        "peak_mlx_bytes": 2947890444,
+        "task": "local_search",
+        "pilot": false,
+        "exit_code": 1,
+        "parent_stop": null,
+        "total_elapsed_ms": 66436,
+        "runtime": {
+          "memory_limit_bytes": 6442450944,
+          "peak_worker_bytes": 3546942224,
+          "memory_samples": 634,
+          "worker_stopped_ms": 65775
+        },
+        "memory_scope": "Sampled worker footprint. Browser memory is excluded.",
+        "successful_run": false
+      },
+      "retrospective_first_failure": {
+        "step": 5,
+        "category": "wrong_decision",
+        "field": "trip_type",
+        "cause": "The selected dropdown value contradicts the fixed requirement.",
+        "inference": false
+      },
+      "median_decision_ms": 3222.0,
+      "first_menu_prompt_tokens": [
+        756,
+        876
+      ],
+      "synthetic_action_excerpts": [
+        {
+          "step": 1,
+          "operation": "select",
+          "label": "Trip type \u2192 One way",
+          "text": null,
+          "current_value": "Round trip",
+          "value": "One way"
+        },
+        {
+          "step": 2,
+          "operation": "fill",
+          "label": "Departure date (YYYY-MM-DD)",
+          "text": "2026-11-16",
+          "value": ""
+        },
+        {
+          "step": 3,
+          "operation": "select",
+          "label": "Adults \u2192 1",
+          "text": null,
+          "current_value": "2",
+          "value": "1"
+        },
+        {
+          "step": 4,
+          "operation": "select",
+          "label": "Cabin \u2192 Economy",
+          "text": null,
+          "current_value": "Business",
+          "value": "Economy"
+        },
+        {
+          "step": 5,
+          "operation": "select",
+          "label": "Trip type \u2192 Round trip",
+          "text": null,
+          "current_value": "One way",
+          "value": "Round trip"
+        },
+        {
+          "step": 6,
+          "operation": "select",
+          "label": "Trip type \u2192 One way",
+          "text": null,
+          "current_value": "Round trip",
+          "value": "One way"
+        },
+        {
+          "step": 7,
+          "operation": "select",
+          "label": "Trip type \u2192 Round trip",
+          "text": null,
+          "current_value": "One way",
+          "value": "Round trip"
+        },
+        {
+          "step": 8,
+          "operation": "select",
+          "label": "Trip type \u2192 One way",
+          "text": null,
+          "current_value": "Round trip",
+          "value": "One way"
+        },
+        {
+          "step": 9,
+          "operation": "select",
+          "label": "Trip type \u2192 Round trip",
+          "text": null,
+          "current_value": "One way",
+          "value": "Round trip"
+        },
+        {
+          "step": 10,
+          "operation": "select",
+          "label": "Trip type \u2192 One way",
+          "text": null,
+          "current_value": "Round trip",
+          "value": "One way"
+        },
+        {
+          "step": 11,
+          "operation": "select",
+          "label": "Trip type \u2192 Round trip",
+          "text": null,
+          "current_value": "One way",
+          "value": "Round trip"
+        },
+        {
+          "step": 12,
+          "operation": "select",
+          "label": "Trip type \u2192 One way",
+          "text": null,
+          "current_value": "Round trip",
+          "value": "One way"
+        },
+        {
+          "step": 13,
+          "operation": "click",
+          "label": "Open Destination",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 14,
+          "operation": "select",
+          "label": "Trip type \u2192 Round trip",
+          "text": null,
+          "current_value": "One way",
+          "value": "Round trip"
+        },
+        {
+          "step": 15,
+          "operation": "click",
+          "label": "Search flights",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 16,
+          "operation": "fill",
+          "label": "Destination",
+          "text": "Boston",
+          "value": ""
+        },
+        {
+          "step": 17,
+          "operation": "select",
+          "label": "Trip type \u2192 One way",
+          "text": null,
+          "current_value": "Round trip",
+          "value": "One way"
+        },
+        {
+          "step": 18,
+          "operation": "select",
+          "label": "Adults \u2192 2",
+          "text": null,
+          "current_value": "1",
+          "value": "2"
+        },
+        {
+          "step": 19,
+          "operation": "select",
+          "label": "Adults \u2192 1",
+          "text": null,
+          "current_value": "2",
+          "value": "1"
+        },
+        {
+          "step": 20,
+          "operation": "select",
+          "label": "Adults \u2192 2",
+          "text": null,
+          "current_value": "1",
+          "value": "2"
+        }
+      ],
+      "private_events_sha256": "e93e822861b790e06ab0fb31f68c66d71563d9dcad2b4edfb4c5d663e2e9cfb8"
+    },
+    {
+      "record_id": "local_search-1791750630103074000",
+      "conditions": {
+        "task": "local_search",
+        "manifest": {
+          "version": 1,
+          "conditions": {
+            "viewport": [
+              1120,
+              780
+            ],
+            "profile": "fresh isolated Chrome profile",
+            "language": "en",
+            "backend": "local pinned Qwen only",
+            "max_decisions": 20,
+            "timeout_seconds": 120,
+            "repeats": "Three consecutive primary passes, then both variations. Local layout cases remain separate."
+          },
+          "boundary": {
+            "allow": [
+              "navigation",
+              "scrolling",
+              "search-field entry",
+              "autocomplete selection",
+              "filters",
+              "search submission"
+            ],
+            "human_required": [
+              "login",
+              "CAPTCHA",
+              "flight selection",
+              "booking",
+              "payment",
+              "messages",
+              "account changes"
+            ]
+          },
+          "tasks": {
+            "sfo_bos": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "sfo_bos_next_day": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 17, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-17",
+                "date_label": "Tue, Nov 17",
+                "result_date": "Tuesday, November 17"
+              }
+            },
+            "sfo_sea": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Seattle on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Seattle"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "local_search": {
+              "kind": "local",
+              "layout": "normal",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_reordered": {
+              "kind": "local",
+              "layout": "reverse",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_crowded": {
+              "kind": "local",
+              "layout": "crowded",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            }
+          }
+        },
+        "revision": "a232d80afd7b46f7ed0bd8459cb85e22615d0f7d",
+        "source_sha256": {
+          "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+          "jev_ultrafast/agent.py": "aaf8b271cb0ee6643fe7beb525328ab80de8568c7ac044d02b9c6721161e7c8b",
+          "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+          "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+          "jev_ultrafast/local_model.py": "c8d56c0886b3830c8085e9ebd0eb205df41d884bdc7a6f146ca9b76496fbb27d",
+          "jev_ultrafast/local_policy.py": "d3cb13b88e3df0a9241f167945e15bbdaeb39e5d55f209b4cd14dc1b328efb1a",
+          "jev_ultrafast/model.py": "9c54f1029d8f2f8c24576679b1bc73a58bf51a917208c707fb87d8c690357190",
+          "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+          "jev_ultrafast/snapshot.js": "e50473501c8fb8e70f3b21866d987393e3f2315c639d638bd477d170e81ed78d",
+          "fixtures/milestone_tasks.json": "e50e635cc4228547a1223a6bbb3fb70fe67c1a263745a3ba717b90de7b26ee73",
+          "scripts/milestone.py": "bfeff48cecd52e06b1dacce4c5cb4413e2e5be01b964bfbea3c4236607bf2503",
+          "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+          "scripts/milestone_verify.py": "8b4633f9638559c27682b6cc86d79068641f5ae9618714f90618098498f7143d",
+          "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+          "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+          "fixtures/milestone.html": "9e79bc87d68b9a099b913defbaa4cc230a2fb424d5c74d61f1212551fff7898b",
+          "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+          "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+        },
+        "pilot": false,
+        "headless": false,
+        "timeout": 120,
+        "max_decisions": 20
+      },
+      "summary": {
+        "outcome_verified": false,
+        "verification": {
+          "passed": false,
+          "checks": {
+            "origin": false,
+            "destination": false,
+            "departure": false,
+            "adults": false,
+            "cabin": false,
+            "trip_type": false,
+            "search_submitted": false,
+            "results_visible": false,
+            "no_flight_selected": true
+          }
+        },
+        "model_done": false,
+        "first_observed_failure": {
+          "event": "failure",
+          "elapsed_ms": 69872,
+          "step": 20,
+          "category": "decision_budget",
+          "cause": "The fixed decision budget ended."
+        },
+        "decision_latency_ms": [
+          2711,
+          2618,
+          2827,
+          2856,
+          2914,
+          3032,
+          3106,
+          3195,
+          3293,
+          3359,
+          3474,
+          3509,
+          3436,
+          3398,
+          3531,
+          3547,
+          3435,
+          3630,
+          3464,
+          3435
+        ],
+        "decision_count": 20,
+        "model_calls_started": 42,
+        "model_calls_finished": 42,
+        "model_call_coverage": "complete",
+        "actions_executed": 20,
+        "execution_outcome_unknown": false,
+        "peak_mlx_bytes": 2938436868,
+        "task": "local_search",
+        "pilot": false,
+        "exit_code": 1,
+        "parent_stop": null,
+        "total_elapsed_ms": 71407,
+        "runtime": {
+          "memory_limit_bytes": 6442450944,
+          "peak_worker_bytes": 3573812032,
+          "memory_samples": 680,
+          "worker_stopped_ms": 70633
+        },
+        "memory_scope": "Sampled worker footprint. Browser memory is excluded.",
+        "successful_run": false
+      },
+      "retrospective_first_failure": {
+        "step": 5,
+        "category": "wrong_decision",
+        "field": "trip_type",
+        "cause": "The selected dropdown value contradicts the fixed requirement.",
+        "inference": false
+      },
+      "median_decision_ms": 3378.5,
+      "first_menu_prompt_tokens": [
+        799,
+        919
+      ],
+      "synthetic_action_excerpts": [
+        {
+          "step": 1,
+          "operation": "select",
+          "label": "Trip type \u2192 One way",
+          "text": null,
+          "current_value": "Round trip",
+          "value": "One way"
+        },
+        {
+          "step": 2,
+          "operation": "fill",
+          "label": "Departure date (YYYY-MM-DD)",
+          "text": "2026-11-16",
+          "value": ""
+        },
+        {
+          "step": 3,
+          "operation": "select",
+          "label": "Adults \u2192 1",
+          "text": null,
+          "current_value": "2",
+          "value": "1"
+        },
+        {
+          "step": 4,
+          "operation": "select",
+          "label": "Cabin \u2192 Economy",
+          "text": null,
+          "current_value": "Business",
+          "value": "Economy"
+        },
+        {
+          "step": 5,
+          "operation": "select",
+          "label": "Trip type \u2192 Round trip",
+          "text": null,
+          "current_value": "One way",
+          "value": "Round trip"
+        },
+        {
+          "step": 6,
+          "operation": "select",
+          "label": "Trip type \u2192 One way",
+          "text": null,
+          "current_value": "Round trip",
+          "value": "One way"
+        },
+        {
+          "step": 7,
+          "operation": "select",
+          "label": "Trip type \u2192 Round trip",
+          "text": null,
+          "current_value": "One way",
+          "value": "Round trip"
+        },
+        {
+          "step": 8,
+          "operation": "select",
+          "label": "Trip type \u2192 One way",
+          "text": null,
+          "current_value": "Round trip",
+          "value": "One way"
+        },
+        {
+          "step": 9,
+          "operation": "select",
+          "label": "Trip type \u2192 Round trip",
+          "text": null,
+          "current_value": "One way",
+          "value": "Round trip"
+        },
+        {
+          "step": 10,
+          "operation": "select",
+          "label": "Trip type \u2192 One way",
+          "text": null,
+          "current_value": "Round trip",
+          "value": "One way"
+        },
+        {
+          "step": 11,
+          "operation": "select",
+          "label": "Trip type \u2192 Round trip",
+          "text": null,
+          "current_value": "One way",
+          "value": "Round trip"
+        },
+        {
+          "step": 12,
+          "operation": "click",
+          "label": "Search flights",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 13,
+          "operation": "click",
+          "label": "Open Destination",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 14,
+          "operation": "fill",
+          "label": "Destination",
+          "text": "Boston",
+          "value": ""
+        },
+        {
+          "step": 15,
+          "operation": "click",
+          "label": "Search flights",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 16,
+          "operation": "select",
+          "label": "Trip type \u2192 One way",
+          "text": null,
+          "current_value": "Round trip",
+          "value": "One way"
+        },
+        {
+          "step": 17,
+          "operation": "select",
+          "label": "Trip type \u2192 Round trip",
+          "text": null,
+          "current_value": "One way",
+          "value": "Round trip"
+        },
+        {
+          "step": 18,
+          "operation": "select",
+          "label": "Trip type \u2192 One way",
+          "text": null,
+          "current_value": "Round trip",
+          "value": "One way"
+        },
+        {
+          "step": 19,
+          "operation": "click",
+          "label": "Search flights",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 20,
+          "operation": "select",
+          "label": "Trip type \u2192 Round trip",
+          "text": null,
+          "current_value": "One way",
+          "value": "Round trip"
+        }
+      ],
+      "private_events_sha256": "ddc15f13a21c4a023d4574be1769f98de0cf3cf2eeee51efec28853cb9d238fe"
+    },
+    {
+      "record_id": "local_search-1791750711418719000",
+      "conditions": {
+        "task": "local_search",
+        "manifest": {
+          "version": 1,
+          "conditions": {
+            "viewport": [
+              1120,
+              780
+            ],
+            "profile": "fresh isolated Chrome profile",
+            "language": "en",
+            "backend": "local pinned Qwen only",
+            "max_decisions": 20,
+            "timeout_seconds": 120,
+            "repeats": "Three consecutive primary passes, then both variations. Local layout cases remain separate."
+          },
+          "boundary": {
+            "allow": [
+              "navigation",
+              "scrolling",
+              "search-field entry",
+              "autocomplete selection",
+              "filters",
+              "search submission"
+            ],
+            "human_required": [
+              "login",
+              "CAPTCHA",
+              "flight selection",
+              "booking",
+              "payment",
+              "messages",
+              "account changes"
+            ]
+          },
+          "tasks": {
+            "sfo_bos": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "sfo_bos_next_day": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 17, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-17",
+                "date_label": "Tue, Nov 17",
+                "result_date": "Tuesday, November 17"
+              }
+            },
+            "sfo_sea": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Seattle on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Seattle"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "local_search": {
+              "kind": "local",
+              "layout": "normal",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_reordered": {
+              "kind": "local",
+              "layout": "reverse",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_crowded": {
+              "kind": "local",
+              "layout": "crowded",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            }
+          }
+        },
+        "revision": "a232d80afd7b46f7ed0bd8459cb85e22615d0f7d",
+        "source_sha256": {
+          "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+          "jev_ultrafast/agent.py": "aaf8b271cb0ee6643fe7beb525328ab80de8568c7ac044d02b9c6721161e7c8b",
+          "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+          "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+          "jev_ultrafast/local_model.py": "c8d56c0886b3830c8085e9ebd0eb205df41d884bdc7a6f146ca9b76496fbb27d",
+          "jev_ultrafast/local_policy.py": "c5cf07c1f4a3cf11effbef97429bc8c5a8303eb7a1ae1c2d1d429432093800e8",
+          "jev_ultrafast/model.py": "9c54f1029d8f2f8c24576679b1bc73a58bf51a917208c707fb87d8c690357190",
+          "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+          "jev_ultrafast/snapshot.js": "e50473501c8fb8e70f3b21866d987393e3f2315c639d638bd477d170e81ed78d",
+          "fixtures/milestone_tasks.json": "e50e635cc4228547a1223a6bbb3fb70fe67c1a263745a3ba717b90de7b26ee73",
+          "scripts/milestone.py": "bfeff48cecd52e06b1dacce4c5cb4413e2e5be01b964bfbea3c4236607bf2503",
+          "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+          "scripts/milestone_verify.py": "8b4633f9638559c27682b6cc86d79068641f5ae9618714f90618098498f7143d",
+          "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+          "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+          "fixtures/milestone.html": "9e79bc87d68b9a099b913defbaa4cc230a2fb424d5c74d61f1212551fff7898b",
+          "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+          "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+        },
+        "pilot": false,
+        "headless": false,
+        "timeout": 120,
+        "max_decisions": 20
+      },
+      "summary": {
+        "outcome_verified": false,
+        "verification": {
+          "passed": false,
+          "checks": {
+            "origin": false,
+            "destination": false,
+            "departure": false,
+            "adults": false,
+            "cabin": false,
+            "trip_type": false,
+            "search_submitted": false,
+            "results_visible": false,
+            "no_flight_selected": true
+          }
+        },
+        "model_done": true,
+        "first_observed_failure": {
+          "step": 8,
+          "category": "premature_completion",
+          "cause": "DONE preceded independent outcome success."
+        },
+        "decision_latency_ms": [
+          2467,
+          2330,
+          2619,
+          2651,
+          2713,
+          2853,
+          2869,
+          1417
+        ],
+        "decision_count": 8,
+        "model_calls_started": 17,
+        "model_calls_finished": 17,
+        "model_call_coverage": "complete",
+        "actions_executed": 7,
+        "execution_outcome_unknown": false,
+        "peak_mlx_bytes": 2925706488,
+        "task": "local_search",
+        "pilot": false,
+        "exit_code": 1,
+        "parent_stop": null,
+        "total_elapsed_ms": 25494,
+        "runtime": {
+          "memory_limit_bytes": 6442450944,
+          "peak_worker_bytes": 3559623368,
+          "memory_samples": 240,
+          "worker_stopped_ms": 24847
+        },
+        "memory_scope": "Sampled worker footprint. Browser memory is excluded.",
+        "successful_run": false
+      },
+      "retrospective_first_failure": {
+        "step": 5,
+        "category": "wrong_decision",
+        "fields": [
+          "origin",
+          "destination"
+        ],
+        "cause": "The submitted controls did not satisfy all fixed requirements.",
+        "inference": false
+      },
+      "median_decision_ms": 2635.0,
+      "first_menu_prompt_tokens": [
+        735,
+        855
+      ],
+      "synthetic_action_excerpts": [
+        {
+          "step": 1,
+          "operation": "select",
+          "label": "Trip type \u2192 One way",
+          "text": null,
+          "current_value": "Round trip",
+          "value": "One way"
+        },
+        {
+          "step": 2,
+          "operation": "fill",
+          "label": "Departure date (YYYY-MM-DD)",
+          "text": "2026-11-16",
+          "value": ""
+        },
+        {
+          "step": 3,
+          "operation": "select",
+          "label": "Cabin \u2192 Economy",
+          "text": null,
+          "current_value": "Business",
+          "value": "Economy"
+        },
+        {
+          "step": 4,
+          "operation": "select",
+          "label": "Adults \u2192 1",
+          "text": null,
+          "current_value": "2",
+          "value": "1"
+        },
+        {
+          "step": 5,
+          "operation": "click",
+          "label": "Search flights",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 6,
+          "operation": "click",
+          "label": "Open Destination",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 7,
+          "operation": "fill",
+          "label": "Destination",
+          "text": "Boston",
+          "value": ""
+        }
+      ],
+      "private_events_sha256": "f0dceb22aaa8c2f1a45752edd7016dcb3927661a21a64cff22d8dc5500bcb8d6"
+    },
+    {
+      "record_id": "local_search-1791750752760564000",
+      "conditions": {
+        "task": "local_search",
+        "manifest": {
+          "version": 1,
+          "conditions": {
+            "viewport": [
+              1120,
+              780
+            ],
+            "profile": "fresh isolated Chrome profile",
+            "language": "en",
+            "backend": "local pinned Qwen only",
+            "max_decisions": 20,
+            "timeout_seconds": 120,
+            "repeats": "Three consecutive primary passes, then both variations. Local layout cases remain separate."
+          },
+          "boundary": {
+            "allow": [
+              "navigation",
+              "scrolling",
+              "search-field entry",
+              "autocomplete selection",
+              "filters",
+              "search submission"
+            ],
+            "human_required": [
+              "login",
+              "CAPTCHA",
+              "flight selection",
+              "booking",
+              "payment",
+              "messages",
+              "account changes"
+            ]
+          },
+          "tasks": {
+            "sfo_bos": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "sfo_bos_next_day": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 17, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-17",
+                "date_label": "Tue, Nov 17",
+                "result_date": "Tuesday, November 17"
+              }
+            },
+            "sfo_sea": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Seattle on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Seattle"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "local_search": {
+              "kind": "local",
+              "layout": "normal",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_reordered": {
+              "kind": "local",
+              "layout": "reverse",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_crowded": {
+              "kind": "local",
+              "layout": "crowded",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            }
+          }
+        },
+        "revision": "a232d80afd7b46f7ed0bd8459cb85e22615d0f7d",
+        "source_sha256": {
+          "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+          "jev_ultrafast/agent.py": "aaf8b271cb0ee6643fe7beb525328ab80de8568c7ac044d02b9c6721161e7c8b",
+          "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+          "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+          "jev_ultrafast/local_model.py": "c8d56c0886b3830c8085e9ebd0eb205df41d884bdc7a6f146ca9b76496fbb27d",
+          "jev_ultrafast/local_policy.py": "d541711e194bbdad46b3fc7570cdebaa26783a3b636acd77cfb7efb619e0380b",
+          "jev_ultrafast/model.py": "9c54f1029d8f2f8c24576679b1bc73a58bf51a917208c707fb87d8c690357190",
+          "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+          "jev_ultrafast/snapshot.js": "e50473501c8fb8e70f3b21866d987393e3f2315c639d638bd477d170e81ed78d",
+          "fixtures/milestone_tasks.json": "e50e635cc4228547a1223a6bbb3fb70fe67c1a263745a3ba717b90de7b26ee73",
+          "scripts/milestone.py": "bfeff48cecd52e06b1dacce4c5cb4413e2e5be01b964bfbea3c4236607bf2503",
+          "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+          "scripts/milestone_verify.py": "8b4633f9638559c27682b6cc86d79068641f5ae9618714f90618098498f7143d",
+          "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+          "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+          "fixtures/milestone.html": "9e79bc87d68b9a099b913defbaa4cc230a2fb424d5c74d61f1212551fff7898b",
+          "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+          "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+        },
+        "pilot": false,
+        "headless": false,
+        "timeout": 120,
+        "max_decisions": 20
+      },
+      "summary": {
+        "outcome_verified": false,
+        "verification": {
+          "passed": false,
+          "checks": {
+            "origin": false,
+            "destination": false,
+            "departure": false,
+            "adults": false,
+            "cabin": false,
+            "trip_type": false,
+            "search_submitted": false,
+            "results_visible": false,
+            "no_flight_selected": true
+          }
+        },
+        "model_done": true,
+        "first_observed_failure": {
+          "step": 9,
+          "category": "premature_completion",
+          "cause": "DONE preceded independent outcome success."
+        },
+        "decision_latency_ms": [
+          2701,
+          2497,
+          2713,
+          2796,
+          2736,
+          2827,
+          2899,
+          3017,
+          1477
+        ],
+        "decision_count": 9,
+        "model_calls_started": 19,
+        "model_calls_finished": 19,
+        "model_call_coverage": "complete",
+        "actions_executed": 8,
+        "execution_outcome_unknown": false,
+        "peak_mlx_bytes": 2938404108,
+        "task": "local_search",
+        "pilot": false,
+        "exit_code": 1,
+        "parent_stop": null,
+        "total_elapsed_ms": 28901,
+        "runtime": {
+          "memory_limit_bytes": 6442450944,
+          "peak_worker_bytes": 3526970128,
+          "memory_samples": 273,
+          "worker_stopped_ms": 28335
+        },
+        "memory_scope": "Sampled worker footprint. Browser memory is excluded.",
+        "successful_run": false
+      },
+      "retrospective_first_failure": {
+        "step": 5,
+        "category": "wrong_decision",
+        "fields": [
+          "origin",
+          "destination"
+        ],
+        "cause": "The submitted controls did not satisfy all fixed requirements.",
+        "inference": false
+      },
+      "median_decision_ms": 2736,
+      "first_menu_prompt_tokens": [
+        753,
+        873
+      ],
+      "synthetic_action_excerpts": [
+        {
+          "step": 1,
+          "operation": "select",
+          "label": "Trip type \u2192 One way",
+          "text": null,
+          "current_value": "Round trip",
+          "value": "One way"
+        },
+        {
+          "step": 2,
+          "operation": "fill",
+          "label": "Departure date (YYYY-MM-DD)",
+          "text": "2026-11-16",
+          "value": ""
+        },
+        {
+          "step": 3,
+          "operation": "select",
+          "label": "Cabin \u2192 Economy",
+          "text": null,
+          "current_value": "Business",
+          "value": "Economy"
+        },
+        {
+          "step": 4,
+          "operation": "select",
+          "label": "Adults \u2192 1",
+          "text": null,
+          "current_value": "2",
+          "value": "1"
+        },
+        {
+          "step": 5,
+          "operation": "click",
+          "label": "Search flights",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 6,
+          "operation": "click",
+          "label": "Open Destination",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 7,
+          "operation": "fill",
+          "label": "Destination",
+          "text": "Boston",
+          "value": ""
+        },
+        {
+          "step": 8,
+          "operation": "click",
+          "label": "Search flights",
+          "text": null,
+          "value": ""
+        }
+      ],
+      "private_events_sha256": "0bdd60c0b81fff0794f0b291140585fd100066d13993fa11d6d6a64a43123338"
+    },
+    {
+      "record_id": "local_search-1791750827760812000",
+      "conditions": {
+        "task": "local_search",
+        "manifest": {
+          "version": 1,
+          "conditions": {
+            "local_port": 18765,
+            "viewport": [
+              1120,
+              780
+            ],
+            "profile": "fresh isolated Chrome profile",
+            "language": "en",
+            "backend": "local pinned Qwen only",
+            "max_decisions": 20,
+            "timeout_seconds": 120,
+            "repeats": "Three consecutive primary passes, then both variations. Local layout cases remain separate."
+          },
+          "boundary": {
+            "allow": [
+              "navigation",
+              "scrolling",
+              "search-field entry",
+              "autocomplete selection",
+              "filters",
+              "search submission"
+            ],
+            "human_required": [
+              "login",
+              "CAPTCHA",
+              "flight selection",
+              "booking",
+              "payment",
+              "messages",
+              "account changes"
+            ]
+          },
+          "tasks": {
+            "sfo_bos": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "sfo_bos_next_day": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 17, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-17",
+                "date_label": "Tue, Nov 17",
+                "result_date": "Tuesday, November 17"
+              }
+            },
+            "sfo_sea": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Seattle on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Seattle"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "local_search": {
+              "kind": "local",
+              "layout": "normal",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_reordered": {
+              "kind": "local",
+              "layout": "reverse",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_crowded": {
+              "kind": "local",
+              "layout": "crowded",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            }
+          }
+        },
+        "revision": "a232d80afd7b46f7ed0bd8459cb85e22615d0f7d",
+        "source_sha256": {
+          "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+          "jev_ultrafast/agent.py": "aaf8b271cb0ee6643fe7beb525328ab80de8568c7ac044d02b9c6721161e7c8b",
+          "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+          "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+          "jev_ultrafast/local_model.py": "c8d56c0886b3830c8085e9ebd0eb205df41d884bdc7a6f146ca9b76496fbb27d",
+          "jev_ultrafast/local_policy.py": "c5cf07c1f4a3cf11effbef97429bc8c5a8303eb7a1ae1c2d1d429432093800e8",
+          "jev_ultrafast/model.py": "9c54f1029d8f2f8c24576679b1bc73a58bf51a917208c707fb87d8c690357190",
+          "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+          "jev_ultrafast/snapshot.js": "e50473501c8fb8e70f3b21866d987393e3f2315c639d638bd477d170e81ed78d",
+          "fixtures/milestone_tasks.json": "6f606c2c71acd03a078d6bef3281745b87d428e2861a593139e4a56237027f1b",
+          "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+          "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+          "scripts/milestone_verify.py": "d9d46dafef7bbf8aab17e9c0583aa96aa7bb953cc50e6b3487181ead763fb7ce",
+          "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+          "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+          "fixtures/milestone.html": "9e79bc87d68b9a099b913defbaa4cc230a2fb424d5c74d61f1212551fff7898b",
+          "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+          "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+        },
+        "pilot": false,
+        "headless": false,
+        "timeout": 120,
+        "max_decisions": 20,
+        "cancel_after_seconds": null
+      },
+      "summary": {
+        "outcome_verified": false,
+        "verification": {
+          "passed": false,
+          "checks": {
+            "origin": false,
+            "destination": false,
+            "departure": false,
+            "adults": false,
+            "cabin": false,
+            "trip_type": false,
+            "search_submitted": false,
+            "results_visible": false,
+            "no_flight_selected": true
+          }
+        },
+        "model_done": true,
+        "first_observed_failure": {
+          "step": 5,
+          "category": "wrong_decision",
+          "cause": "The agent submitted the search with required fields empty.",
+          "inference": false
+        },
+        "decision_latency_ms": [
+          2432,
+          2318,
+          2697,
+          2678,
+          2732,
+          2863,
+          2890,
+          1410
+        ],
+        "decision_count": 8,
+        "model_calls_started": 17,
+        "model_calls_finished": 17,
+        "model_call_coverage": "complete",
+        "actions_executed": 7,
+        "execution_outcome_unknown": false,
+        "peak_mlx_bytes": 2925706496,
+        "task": "local_search",
+        "pilot": false,
+        "exit_code": 1,
+        "parent_stop": null,
+        "total_elapsed_ms": 25482,
+        "runtime": {
+          "memory_limit_bytes": 6442450944,
+          "peak_worker_bytes": 3561261888,
+          "memory_samples": 239,
+          "worker_stopped_ms": 24827
+        },
+        "memory_scope": "Sampled worker footprint. Browser memory is excluded.",
+        "successful_run": false
+      },
+      "retrospective_first_failure": {
+        "step": 5,
+        "category": "wrong_decision",
+        "fields": [
+          "origin",
+          "destination"
+        ],
+        "cause": "The submitted controls did not satisfy all fixed requirements.",
+        "inference": false
+      },
+      "median_decision_ms": 2687.5,
+      "first_menu_prompt_tokens": [
+        735,
+        855
+      ],
+      "synthetic_action_excerpts": [
+        {
+          "step": 1,
+          "operation": "select",
+          "label": "Trip type \u2192 One way",
+          "text": null,
+          "current_value": "Round trip",
+          "value": "One way"
+        },
+        {
+          "step": 2,
+          "operation": "fill",
+          "label": "Departure date (YYYY-MM-DD)",
+          "text": "2026-11-16",
+          "value": ""
+        },
+        {
+          "step": 3,
+          "operation": "select",
+          "label": "Cabin \u2192 Economy",
+          "text": null,
+          "current_value": "Business",
+          "value": "Economy"
+        },
+        {
+          "step": 4,
+          "operation": "select",
+          "label": "Adults \u2192 1",
+          "text": null,
+          "current_value": "2",
+          "value": "1"
+        },
+        {
+          "step": 5,
+          "operation": "click",
+          "label": "Search flights",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 6,
+          "operation": "click",
+          "label": "Open Destination",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 7,
+          "operation": "fill",
+          "label": "Destination",
+          "text": "Boston",
+          "value": ""
+        }
+      ],
+      "private_events_sha256": "ff86e36628f210b8c0517a2c22008ebedf5a3bf7b95211561025ff0807677ff6"
+    },
+    {
+      "record_id": "local_search_reordered-1791750859676689000",
+      "conditions": {
+        "task": "local_search_reordered",
+        "manifest": {
+          "version": 1,
+          "conditions": {
+            "local_port": 18765,
+            "viewport": [
+              1120,
+              780
+            ],
+            "profile": "fresh isolated Chrome profile",
+            "language": "en",
+            "backend": "local pinned Qwen only",
+            "max_decisions": 20,
+            "timeout_seconds": 120,
+            "repeats": "Three consecutive primary passes, then both variations. Local layout cases remain separate."
+          },
+          "boundary": {
+            "allow": [
+              "navigation",
+              "scrolling",
+              "search-field entry",
+              "autocomplete selection",
+              "filters",
+              "search submission"
+            ],
+            "human_required": [
+              "login",
+              "CAPTCHA",
+              "flight selection",
+              "booking",
+              "payment",
+              "messages",
+              "account changes"
+            ]
+          },
+          "tasks": {
+            "sfo_bos": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "sfo_bos_next_day": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 17, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-17",
+                "date_label": "Tue, Nov 17",
+                "result_date": "Tuesday, November 17"
+              }
+            },
+            "sfo_sea": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Seattle on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Seattle"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "local_search": {
+              "kind": "local",
+              "layout": "normal",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_reordered": {
+              "kind": "local",
+              "layout": "reverse",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_crowded": {
+              "kind": "local",
+              "layout": "crowded",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            }
+          }
+        },
+        "revision": "a232d80afd7b46f7ed0bd8459cb85e22615d0f7d",
+        "source_sha256": {
+          "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+          "jev_ultrafast/agent.py": "aaf8b271cb0ee6643fe7beb525328ab80de8568c7ac044d02b9c6721161e7c8b",
+          "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+          "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+          "jev_ultrafast/local_model.py": "c8d56c0886b3830c8085e9ebd0eb205df41d884bdc7a6f146ca9b76496fbb27d",
+          "jev_ultrafast/local_policy.py": "c5cf07c1f4a3cf11effbef97429bc8c5a8303eb7a1ae1c2d1d429432093800e8",
+          "jev_ultrafast/model.py": "9c54f1029d8f2f8c24576679b1bc73a58bf51a917208c707fb87d8c690357190",
+          "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+          "jev_ultrafast/snapshot.js": "e50473501c8fb8e70f3b21866d987393e3f2315c639d638bd477d170e81ed78d",
+          "fixtures/milestone_tasks.json": "6f606c2c71acd03a078d6bef3281745b87d428e2861a593139e4a56237027f1b",
+          "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+          "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+          "scripts/milestone_verify.py": "d9d46dafef7bbf8aab17e9c0583aa96aa7bb953cc50e6b3487181ead763fb7ce",
+          "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+          "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+          "fixtures/milestone.html": "9e79bc87d68b9a099b913defbaa4cc230a2fb424d5c74d61f1212551fff7898b",
+          "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+          "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+        },
+        "pilot": false,
+        "headless": false,
+        "timeout": 120,
+        "max_decisions": 20,
+        "cancel_after_seconds": null
+      },
+      "summary": {
+        "outcome_verified": false,
+        "verification": {
+          "passed": false,
+          "checks": {
+            "origin": true,
+            "destination": true,
+            "departure": true,
+            "adults": false,
+            "cabin": true,
+            "trip_type": true,
+            "search_submitted": true,
+            "results_visible": true,
+            "no_flight_selected": true
+          }
+        },
+        "model_done": true,
+        "first_observed_failure": {
+          "step": 7,
+          "category": "premature_completion",
+          "cause": "DONE preceded independent outcome success."
+        },
+        "decision_latency_ms": [
+          2343,
+          2405,
+          2507,
+          2496,
+          2637,
+          2772,
+          1450
+        ],
+        "decision_count": 7,
+        "model_calls_started": 16,
+        "model_calls_finished": 16,
+        "model_call_coverage": "complete",
+        "actions_executed": 6,
+        "execution_outcome_unknown": false,
+        "peak_mlx_bytes": 2917154040,
+        "task": "local_search_reordered",
+        "pilot": false,
+        "exit_code": 1,
+        "parent_stop": null,
+        "total_elapsed_ms": 22439,
+        "runtime": {
+          "memory_limit_bytes": 6442450944,
+          "peak_worker_bytes": 3544206096,
+          "memory_samples": 210,
+          "worker_stopped_ms": 21792
+        },
+        "memory_scope": "Sampled worker footprint. Browser memory is excluded.",
+        "successful_run": false
+      },
+      "retrospective_first_failure": {
+        "step": 6,
+        "category": "wrong_decision",
+        "fields": [
+          "adults"
+        ],
+        "cause": "The submitted controls did not satisfy all fixed requirements.",
+        "inference": false
+      },
+      "median_decision_ms": 2496,
+      "first_menu_prompt_tokens": [
+        735,
+        805
+      ],
+      "synthetic_action_excerpts": [
+        {
+          "step": 1,
+          "operation": "fill",
+          "label": "Destination",
+          "text": "Boston",
+          "value": ""
+        },
+        {
+          "step": 2,
+          "operation": "select",
+          "label": "Cabin \u2192 Economy",
+          "text": null,
+          "current_value": "Business",
+          "value": "Economy"
+        },
+        {
+          "step": 3,
+          "operation": "select",
+          "label": "Trip type \u2192 One way",
+          "text": null,
+          "current_value": "Round trip",
+          "value": "One way"
+        },
+        {
+          "step": 4,
+          "operation": "fill",
+          "label": "Departure date (YYYY-MM-DD)",
+          "text": "2026-11-16",
+          "value": ""
+        },
+        {
+          "step": 5,
+          "operation": "fill",
+          "label": "Origin",
+          "text": "San Francisco",
+          "value": ""
+        },
+        {
+          "step": 6,
+          "operation": "click",
+          "label": "Search flights",
+          "text": null,
+          "value": ""
+        }
+      ],
+      "private_events_sha256": "05c94afb1991c8c0727624fe26a1204c001ef7a86deb410caa4d14fb58d2c9a7"
+    },
+    {
+      "record_id": "local_search_crowded-1791750899715743000",
+      "conditions": {
+        "task": "local_search_crowded",
+        "manifest": {
+          "version": 1,
+          "conditions": {
+            "local_port": 18765,
+            "viewport": [
+              1120,
+              780
+            ],
+            "profile": "fresh isolated Chrome profile",
+            "language": "en",
+            "backend": "local pinned Qwen only",
+            "max_decisions": 20,
+            "timeout_seconds": 120,
+            "repeats": "Three consecutive primary passes, then both variations. Local layout cases remain separate."
+          },
+          "boundary": {
+            "allow": [
+              "navigation",
+              "scrolling",
+              "search-field entry",
+              "autocomplete selection",
+              "filters",
+              "search submission"
+            ],
+            "human_required": [
+              "login",
+              "CAPTCHA",
+              "flight selection",
+              "booking",
+              "payment",
+              "messages",
+              "account changes"
+            ]
+          },
+          "tasks": {
+            "sfo_bos": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "sfo_bos_next_day": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 17, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-17",
+                "date_label": "Tue, Nov 17",
+                "result_date": "Tuesday, November 17"
+              }
+            },
+            "sfo_sea": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Seattle on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Seattle"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "local_search": {
+              "kind": "local",
+              "layout": "normal",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_reordered": {
+              "kind": "local",
+              "layout": "reverse",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_crowded": {
+              "kind": "local",
+              "layout": "crowded",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            }
+          }
+        },
+        "revision": "a232d80afd7b46f7ed0bd8459cb85e22615d0f7d",
+        "source_sha256": {
+          "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+          "jev_ultrafast/agent.py": "aaf8b271cb0ee6643fe7beb525328ab80de8568c7ac044d02b9c6721161e7c8b",
+          "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+          "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+          "jev_ultrafast/local_model.py": "c8d56c0886b3830c8085e9ebd0eb205df41d884bdc7a6f146ca9b76496fbb27d",
+          "jev_ultrafast/local_policy.py": "c5cf07c1f4a3cf11effbef97429bc8c5a8303eb7a1ae1c2d1d429432093800e8",
+          "jev_ultrafast/model.py": "9c54f1029d8f2f8c24576679b1bc73a58bf51a917208c707fb87d8c690357190",
+          "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+          "jev_ultrafast/snapshot.js": "e50473501c8fb8e70f3b21866d987393e3f2315c639d638bd477d170e81ed78d",
+          "fixtures/milestone_tasks.json": "6f606c2c71acd03a078d6bef3281745b87d428e2861a593139e4a56237027f1b",
+          "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+          "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+          "scripts/milestone_verify.py": "d9d46dafef7bbf8aab17e9c0583aa96aa7bb953cc50e6b3487181ead763fb7ce",
+          "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+          "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+          "fixtures/milestone.html": "9e79bc87d68b9a099b913defbaa4cc230a2fb424d5c74d61f1212551fff7898b",
+          "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+          "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+        },
+        "pilot": false,
+        "headless": false,
+        "timeout": 120,
+        "max_decisions": 20,
+        "cancel_after_seconds": null
+      },
+      "summary": {
+        "outcome_verified": false,
+        "verification": null,
+        "model_done": false,
+        "first_observed_failure": {
+          "step": 6,
+          "category": "runtime_stop",
+          "cause": "Worker deadline reached. The owned run stopped."
+        },
+        "decision_latency_ms": [
+          10314,
+          10408,
+          10502,
+          41548,
+          41924
+        ],
+        "decision_count": 5,
+        "model_calls_started": 21,
+        "model_calls_finished": 20,
+        "model_call_coverage": "interrupted",
+        "actions_executed": 5,
+        "execution_outcome_unknown": false,
+        "peak_mlx_bytes": 3356458260,
+        "task": "local_search_crowded",
+        "pilot": false,
+        "exit_code": 1,
+        "parent_stop": "Worker deadline reached. The owned run stopped.",
+        "total_elapsed_ms": 120635,
+        "runtime": {
+          "memory_limit_bytes": 6442450944,
+          "peak_worker_bytes": 4003777368,
+          "memory_samples": 1157,
+          "worker_stopped_ms": 120058
+        },
+        "memory_scope": "Sampled worker footprint. Browser memory is excluded.",
+        "successful_run": false
+      },
+      "retrospective_first_failure": null,
+      "median_decision_ms": 10502,
+      "first_menu_prompt_tokens": [
+        3196,
+        3316
+      ],
+      "synthetic_action_excerpts": [
+        {
+          "step": 1,
+          "operation": "select",
+          "label": "Trip type \u2192 One way",
+          "text": null,
+          "current_value": "Round trip",
+          "value": "One way"
+        },
+        {
+          "step": 2,
+          "operation": "select",
+          "label": "Cabin \u2192 Economy",
+          "text": null,
+          "current_value": "Business",
+          "value": "Economy"
+        },
+        {
+          "step": 3,
+          "operation": "select",
+          "label": "Adults \u2192 1",
+          "text": null,
+          "current_value": "2",
+          "value": "1"
+        },
+        {
+          "step": 4,
+          "operation": "click",
+          "label": "Open Departure date (YYYY-MM-DD)",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 5,
+          "operation": "click",
+          "label": "Open Departure date (YYYY-MM-DD)",
+          "text": null,
+          "value": ""
+        }
+      ],
+      "private_events_sha256": "8e75a18a9249dd63cd1194d06383f0e6a91735395e764a277630ab59911142eb"
+    },
+    {
+      "record_id": "local_search-1791751045994129000",
+      "conditions": {
+        "task": "local_search",
+        "manifest": {
+          "version": 1,
+          "conditions": {
+            "local_port": 18765,
+            "viewport": [
+              1120,
+              780
+            ],
+            "profile": "fresh isolated Chrome profile",
+            "language": "en",
+            "backend": "local pinned Qwen only",
+            "max_decisions": 20,
+            "timeout_seconds": 120,
+            "repeats": "Three consecutive primary passes, then both variations. Local layout cases remain separate."
+          },
+          "boundary": {
+            "allow": [
+              "navigation",
+              "scrolling",
+              "search-field entry",
+              "autocomplete selection",
+              "filters",
+              "search submission"
+            ],
+            "human_required": [
+              "login",
+              "CAPTCHA",
+              "flight selection",
+              "booking",
+              "payment",
+              "messages",
+              "account changes"
+            ]
+          },
+          "tasks": {
+            "sfo_bos": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "sfo_bos_next_day": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 17, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-17",
+                "date_label": "Tue, Nov 17",
+                "result_date": "Tuesday, November 17"
+              }
+            },
+            "sfo_sea": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Seattle on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Seattle"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "local_search": {
+              "kind": "local",
+              "layout": "normal",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_reordered": {
+              "kind": "local",
+              "layout": "reverse",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_crowded": {
+              "kind": "local",
+              "layout": "crowded",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            }
+          }
+        },
+        "revision": "9a209f17edf3d2e568900562e66dd665176e05a9",
+        "source_sha256": {
+          "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+          "jev_ultrafast/agent.py": "aaf8b271cb0ee6643fe7beb525328ab80de8568c7ac044d02b9c6721161e7c8b",
+          "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+          "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+          "jev_ultrafast/local_model.py": "c8d56c0886b3830c8085e9ebd0eb205df41d884bdc7a6f146ca9b76496fbb27d",
+          "jev_ultrafast/local_policy.py": "c5cf07c1f4a3cf11effbef97429bc8c5a8303eb7a1ae1c2d1d429432093800e8",
+          "jev_ultrafast/model.py": "9c54f1029d8f2f8c24576679b1bc73a58bf51a917208c707fb87d8c690357190",
+          "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+          "jev_ultrafast/snapshot.js": "e50473501c8fb8e70f3b21866d987393e3f2315c639d638bd477d170e81ed78d",
+          "fixtures/milestone_tasks.json": "6f606c2c71acd03a078d6bef3281745b87d428e2861a593139e4a56237027f1b",
+          "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+          "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+          "scripts/milestone_verify.py": "dfb0dea1e66de6fa4e73d7e936cd79a111e8af320e535d4be8fc36427d61899a",
+          "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+          "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+          "fixtures/milestone.html": "9e79bc87d68b9a099b913defbaa4cc230a2fb424d5c74d61f1212551fff7898b",
+          "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+          "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+        },
+        "pilot": true,
+        "headless": false,
+        "timeout": 20,
+        "max_decisions": 2,
+        "cancel_after_seconds": 3
+      },
+      "summary": {
+        "outcome_verified": false,
+        "verification": null,
+        "model_done": false,
+        "first_observed_failure": {
+          "step": 1,
+          "category": "interrupted",
+          "cause": "cancelled"
+        },
+        "decision_latency_ms": [],
+        "decision_count": 0,
+        "model_calls_started": 1,
+        "model_calls_finished": 0,
+        "model_call_coverage": "interrupted",
+        "actions_executed": 0,
+        "execution_outcome_unknown": false,
+        "peak_mlx_bytes": null,
+        "task": "local_search",
+        "pilot": true,
+        "exit_code": 130,
+        "parent_stop": "cancelled",
+        "total_elapsed_ms": 3767,
+        "runtime": {
+          "memory_limit_bytes": 6442450944,
+          "peak_worker_bytes": 3277998912,
+          "memory_samples": 29,
+          "cancel_requested_ms": 3011,
+          "worker_stopped_ms": 3047
+        },
+        "memory_scope": "Sampled worker footprint. Browser memory is excluded.",
+        "successful_run": false
+      },
+      "retrospective_first_failure": null,
+      "median_decision_ms": null,
+      "first_menu_prompt_tokens": [],
+      "synthetic_action_excerpts": [],
+      "private_events_sha256": "6f56d70f792bae42737347bd8b8c0477e644d878cad6c95d6b6ffb6ef5b7f9b7"
+    },
+    {
+      "record_id": "local_search-1791751137231650000",
+      "conditions": {
+        "task": "local_search",
+        "manifest": {
+          "version": 1,
+          "conditions": {
+            "local_port": 18765,
+            "viewport": [
+              1120,
+              780
+            ],
+            "profile": "fresh isolated Chrome profile",
+            "language": "en",
+            "backend": "local pinned Qwen only",
+            "max_decisions": 20,
+            "timeout_seconds": 120,
+            "repeats": "Three consecutive primary passes, then both variations. Local layout cases remain separate."
+          },
+          "boundary": {
+            "allow": [
+              "navigation",
+              "scrolling",
+              "search-field entry",
+              "autocomplete selection",
+              "filters",
+              "search submission"
+            ],
+            "human_required": [
+              "login",
+              "CAPTCHA",
+              "flight selection",
+              "booking",
+              "payment",
+              "messages",
+              "account changes"
+            ]
+          },
+          "tasks": {
+            "sfo_bos": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "sfo_bos_next_day": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Boston on November 17, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Boston"
+                ],
+                "date": "2026-11-17",
+                "date_label": "Tue, Nov 17",
+                "result_date": "Tuesday, November 17"
+              }
+            },
+            "sfo_sea": {
+              "url": "https://www.google.com/travel/flights?hl=en",
+              "kind": "flights",
+              "goal": "Find one-way flights from San Francisco to Seattle on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin_labels": [
+                  "San Francisco"
+                ],
+                "destination_labels": [
+                  "Seattle"
+                ],
+                "date": "2026-11-16",
+                "date_label": "Mon, Nov 16",
+                "result_date": "Monday, November 16"
+              }
+            },
+            "local_search": {
+              "kind": "local",
+              "layout": "normal",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_reordered": {
+              "kind": "local",
+              "layout": "reverse",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            },
+            "local_search_crowded": {
+              "kind": "local",
+              "layout": "crowded",
+              "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+              "expected": {
+                "origin": "San Francisco",
+                "destination": "Boston",
+                "departure": "2026-11-16",
+                "adults": "1",
+                "cabin": "Economy",
+                "trip_type": "One way"
+              }
+            }
+          }
+        },
+        "revision": "86f94bca608bb6b418e0fb113ed5cc110095855e",
+        "source_sha256": {
+          "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+          "jev_ultrafast/agent.py": "aaf8b271cb0ee6643fe7beb525328ab80de8568c7ac044d02b9c6721161e7c8b",
+          "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+          "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+          "jev_ultrafast/local_model.py": "c8d56c0886b3830c8085e9ebd0eb205df41d884bdc7a6f146ca9b76496fbb27d",
+          "jev_ultrafast/local_policy.py": "38f3b73302973b865b4867919fac5c8e7c62a2c1284feb1ebb449820eb568ea1",
+          "jev_ultrafast/model.py": "9c54f1029d8f2f8c24576679b1bc73a58bf51a917208c707fb87d8c690357190",
+          "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+          "jev_ultrafast/snapshot.js": "e50473501c8fb8e70f3b21866d987393e3f2315c639d638bd477d170e81ed78d",
+          "fixtures/milestone_tasks.json": "6f606c2c71acd03a078d6bef3281745b87d428e2861a593139e4a56237027f1b",
+          "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+          "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+          "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+          "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+          "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+          "fixtures/milestone.html": "9e79bc87d68b9a099b913defbaa4cc230a2fb424d5c74d61f1212551fff7898b",
+          "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+          "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+        },
+        "pilot": false,
+        "headless": false,
+        "timeout": 120,
+        "max_decisions": 20,
+        "cancel_after_seconds": null
+      },
+      "summary": {
+        "outcome_verified": false,
+        "verification": {
+          "passed": false,
+          "checks": {
+            "origin": false,
+            "destination": false,
+            "departure": false,
+            "adults": false,
+            "cabin": false,
+            "trip_type": false,
+            "search_submitted": false,
+            "results_visible": false,
+            "no_flight_selected": true
+          }
+        },
+        "model_done": false,
+        "first_observed_failure": {
+          "event": "failure",
+          "elapsed_ms": 16905,
+          "step": 5,
+          "category": "no_progress",
+          "cause": "Three executed actions produced no observed page change."
+        },
+        "decision_latency_ms": [
+          2642,
+          2589,
+          2728,
+          2879,
+          2835
+        ],
+        "decision_count": 5,
+        "model_calls_started": 10,
+        "model_calls_finished": 10,
+        "model_call_coverage": "complete",
+        "actions_executed": 5,
+        "execution_outcome_unknown": false,
+        "peak_mlx_bytes": 2900393216,
+        "task": "local_search",
+        "pilot": false,
+        "exit_code": 1,
+        "parent_stop": null,
+        "total_elapsed_ms": 18057,
+        "runtime": {
+          "memory_limit_bytes": 6442450944,
+          "peak_worker_bytes": 3503803176,
+          "memory_samples": 168,
+          "worker_stopped_ms": 17374
+        },
+        "memory_scope": "Sampled worker footprint. Browser memory is excluded.",
+        "successful_run": false
+      },
+      "retrospective_first_failure": null,
+      "median_decision_ms": 2728,
+      "first_menu_prompt_tokens": [
+        735,
+        855
+      ],
+      "synthetic_action_excerpts": [
+        {
+          "step": 1,
+          "operation": "select",
+          "label": "Trip type \u2192 One way",
+          "text": null,
+          "current_value": "Round trip",
+          "value": "One way"
+        },
+        {
+          "step": 2,
+          "operation": "select",
+          "label": "Cabin \u2192 Economy",
+          "text": null,
+          "current_value": "Business",
+          "value": "Economy"
+        },
+        {
+          "step": 3,
+          "operation": "click",
+          "label": "Open Departure date (YYYY-MM-DD)",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 4,
+          "operation": "click",
+          "label": "Open Departure date (YYYY-MM-DD)",
+          "text": null,
+          "value": ""
+        },
+        {
+          "step": 5,
+          "operation": "click",
+          "label": "Open Departure date (YYYY-MM-DD)",
+          "text": null,
+          "value": ""
+        }
+      ],
+      "private_events_sha256": "0d0a43fe104825cfcfae2b17f72007cb38f7f4ee37d333952e6f1e49037ce631"
+    }
+  ],
+  "comparison_limits": [
+    "Early local runs used random ports. Their starting URLs were not identical. These are exploratory comparisons.",
+    "Later runs fix the local port in the manifest. Changed source hashes reset success counts.",
+    "Each run uses a fresh browser profile. Only one benchmark runs at a time.",
+    "The memory measurement excludes the browser.",
+    "The first two pilots finished before their cancellation timers. They do not test cancellation during inference."
+  ],
+  "retained_changes": [
+    "Show the task tab and close unused startup tabs in the isolated benchmark browser.",
+    "Remove duplicate operation-menu targets.",
+    "Distinguish current dropdown selections from available changes.",
+    "Fix the local starting address and preserve earlier failures in the diagnosis.",
+    "Move pilot cancellation earlier so the two-decision budget does not usually finish first."
+  ],
+  "discarded_experiments": [
+    "Extra dropdown instructions repeated the same wrong selection.",
+    "Explicit empty-field flags still skipped the origin and reported premature completion.",
+    "Moving the user goal after the general rules stopped after three actions without observed progress."
+  ],
+  "completion": {
+    "live_flight_runs": 0,
+    "primary_consecutive_successes": 0,
+    "flight_variations_tested": false,
+    "local_full_runs": 9,
+    "local_full_successes": 0
+  },
+  "unresolved": [
+    "The normal local task skips the origin and reports DONE too early.",
+    "The reversed local task submits two adults instead of one.",
+    "The live flight verifier remains untested.",
+    "Unfamiliar action labels can evade the heuristic human-action boundary.",
+    "The reported computer freeze has no established cause.",
+    "Crowded-page decisions reached about 42 seconds and the run stopped at its external deadline."
+  ],
+  "delivery_checks": {
+    "lint": "All checks passed",
+    "pytest": "118 passed in 4.62s",
+    "raw_record_diagnosis_replay": "Three saved failures reproduced the expected first failed step without inference."
+  },
+  "gitnexus": {
+    "calls": [
+      "context",
+      "impact",
+      "detect_changes"
+    ],
+    "limits": [
+      "The MCP retained an old index despite local refreshes. Direct source inspection and runtime tests remain necessary.",
+      "Process traversal omits flows and callees.",
+      "Cross-language field inference omits the JavaScript done property."
+    ],
+    "index_refreshed": true
+  },
+  "cancellation_observation": {
+    "response": "Responsive; browser closed cleanly",
+    "worker_stop_after_request_ms": 36,
+    "total_run_ms": 3767
+  },
+  "final_source_sha256": {
+    "jev_ultrafast/local_policy.py": "c5cf07c1f4a3cf11effbef97429bc8c5a8303eb7a1ae1c2d1d429432093800e8",
+    "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+    "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+    "fixtures/milestone_tasks.json": "6f606c2c71acd03a078d6bef3281745b87d428e2861a593139e4a56237027f1b"
+  }
+}

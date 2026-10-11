@@ -32,11 +32,13 @@ The CLI stops on recognizable human-verification text and three consecutive deci
 A separate worker enforces a deadline and monitors its memory footprint. The CLI permits one run at a time.
 Prompt and cache limits reduce inference work. These safeguards do not establish live speed or prevent every system freeze.
 [Safety evidence](results/cli-runtime-safety.json) records model-free tests and a local challenge stop.
-Qwen inference after these changes remains untested.
+Bounded local inference now has [measured results](results/milestone-local-runs.json). The multi-step tasks still fail.
 
 The [flight milestone](contexts/16-flight-milestone.md) defines fixed goals and separate outcome tests.
 Its [preparation evidence](results/milestone-preparation.json) covers model-free stops and scripted local browser checks.
-The model pilot awaits user readiness. These checks do not establish flight-search success.
+The pilot showed a visible page, a responsive computer, and clean browser closure, according to the user.
+The normal and reversed local tasks failed their outcome tests. The crowded task reached its external deadline.
+The user also reported normal responsiveness and clean closure during cancellation. No live flight-search success is established.
 
 The CLI reads the final page independently. Supplied expectations determine `outcome_verified`.
 Without expectations, a DONE choice remains unverified. Failed expectations return a nonzero exit code.
