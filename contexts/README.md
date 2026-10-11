@@ -35,6 +35,7 @@ does not move the end-to-end demo forward.
 | 9 | 10-trim-jev-scaffolding | P0 phase 1 at 0:00, phase 2 at the end | 40 + 15 min | D | phase 2 waits on 01, 02 |
 | 10 | 08-hygiene-and-readme | P3 | 20 min | anyone | nothing |
 | 11 | 09-fix-filter-miss | P3 | 20 min | anyone | nothing |
+| 12 | 11-install-and-cli | P1 | 60 min | Codex | local CLI |
 
 ## Lanes (four parallel workers)
 

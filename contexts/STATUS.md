@@ -12,7 +12,7 @@ Plan and ranked tasks are in `README.md` here.
 
 ## In progress
 
-(none)
+- 11-install-and-cli (Codex): pinned model setup, local CLI, and installation checks.
 
 ## Open, in priority order
 
@@ -55,6 +55,11 @@ memory target is untested. The browser guard check passed only in an isolated he
 default profile lacked remote debugging. Jev's per-step timeout can be exceeded by a slow local call.
 
 ## Coordination
+
+- Task 11 owns `install.sh`, `zero-browser`, `jev_ultrafast/cli.py`, `local_policy.py`, and setup tests.
+  It adds local dispatch to `model.py` and a read-only lock option to the downloader.
+  It preserves task 00 files and the separate temporary single-task pilot.
+  Tasks 01, 02, and 10 must reuse or reconcile the local CLI adapter before changing these interfaces.
 
 - Two agents work this repo. Codex sessions previously used branch plus PR plus self-merge and kept
   contexts local. As of 12:25 PT the rules in `AGENT-RULES.md` and `AGENTS.md` apply to everyone. Commit to
