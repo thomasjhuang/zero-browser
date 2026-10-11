@@ -5,10 +5,10 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: IDLE, prepared handoff to the root coordination chat, Define agent success targets.** Thomas authorized one visible Google Flights attempt through the existing guarded general local Qwen runner. The root chat is the sole launcher after it acknowledges this handoff. Task16 must not start a browser or model.
-> The one-off goal is round-trip SFO to JFK, November 12–16, 2026, one adult, Economy. Limits: 90-second worker deadline and 20 decisions. Stop before flight selection, booking, payment, login, human verification, or uncertain execution.
-> The prepared ignored launcher uses unchanged runtime source from `0323fae`. It preserves the single-run lock, memory guard, visible isolated browser, cancellation, and durable events. The compactor confirmed idle and holds all work until root END.
-> This exception permits one attempt. It does not establish the old full-flight milestone prerequisites or extend the demonstrated bounded coordinator path. The legacy one-way outcome test does not assess the complete round-trip request. Assess saved observations independently. No replacement is authorized.
+> **Current run state: IDLE, task16 evidence delivery.** The root coordination chat completed the one authorized visible Google Flights attempt. The general local Qwen runner stopped at 20 decisions before destination selection or date entry. Total time, including startup and cleanup, was 39.50 seconds. Evidence: `results/flights-demo-once.json`.
+> The page returned no matching locations for the supplied full airport name. The model then changed to multiple-airport mode and failed to recover. The provider cause remains unknown. No flight options or prices were observed.
+> The existing guarded runtime stayed unchanged. This failed run does not measure the demonstrated bounded coordinator path. The old one-way verifier is not applicable to the complete round-trip request. Independent saved observations establish failure.
+> No further browser run, inference experiment, comparison, or optimization is authorized. Source editing and the compactor remain outside this delivery. The root execution slot is released.
 >
 > **Current scope:** task 16, with supporting notes in task 13. Tasks 18–22 remain cut from the active plan.
 > This context update does not reopen task 19. Do not create new task numbers.
@@ -36,7 +36,7 @@ The final cancellation pilot stopped during inference. The user reported normal 
 
 ## Open follow-up
 
-- **16, Improve zero-browser benchmarking:** bounded-worker proof delivered: three identical suites passed 27/27 requested outcomes and 6/6 safe stops. One live Wikipedia field task passed. Full local flight completion remains unresolved; no live flight run started. The shared-interface field comparison passed all ten original outcomes and both supplemental outcomes. The five-pair comparison set excludes the original pair with indexing overlap. Its median delegated time reduction is 1.90 seconds. Native desktop CUA speed remains unproven. One additional workflow attempt passed in 29.90 seconds, without invoking recovery. Next proposal: a controlled disappearing-target case to test recovery end to end. No further run is authorized.
+- **16, Improve zero-browser benchmarking:** bounded-worker proof delivered: three identical suites passed 27/27 requested outcomes and 6/6 safe stops. One live Wikipedia field task passed. Full local flight completion remains unresolved. The one-off general-agent live Flights attempt failed before destination selection and date entry. The shared-interface field comparison passed all ten original outcomes and both supplemental outcomes. The five-pair comparison set excludes the original pair with indexing overlap. Its median delegated time reduction is 1.90 seconds. Native desktop CUA speed remains unproven. One additional workflow attempt passed in 29.90 seconds, without invoking recovery. One separately authorized sequential native workflow passed in 33.05 seconds, with product-comparison limits. Live flight recovery and general efficiency remain unproven. No further run is authorized.
 
 ## Completed context work
 
@@ -74,6 +74,7 @@ Existing task numbers identify work. They do not override this ownership table.
 | Milestone preparation | [Preparation](../results/milestone-preparation.json). Scripted controls and outcome tests, not model performance |
 | Controlled coordinator comparison | [Five-pair evidence](../results/paired-browser-five-pairs-v3.json), [summary](../results/paired-browser-comparison.json). One field task, shared custom executor; pair 4 latency flagged. No native-CUA or billing claim |
 | Bounded worker | [Repeat summary](../results/bounded-worker-summary.json), [live assessment](../results/bounded-worker-live-assessment.json). Fixed field contracts only; no general reliability or savings claim |
+| Live Flights attempt | [Independent failure assessment](../results/flights-demo-once.json). General local runner, no matching airport selection or dates, decision budget stop |
 | Current local experiments | [Measured runs](../results/milestone-local-runs.json). Failed tasks, interrupted records, source versions, and cancellation observations |
 | MCP connection | [Codex run](../results/codex-mcp.json). Simple navigation only |
 | Smaller models | [4B](../results/replay/quality-4b-plain.json), [1.7B](../results/replay/quality-1.7B-plain.json), [0.6B](../results/replay/quality-0.6B-plain.json). Synthetic cases only |
@@ -84,7 +85,7 @@ Existing task numbers identify work. They do not override this ownership table.
 DONE can precede completion. The loop stops unchanged actions but does not detect all repeated state cycles.
 The MCP interface tests text and URL fragments rather than every task requirement.
 Each MCP goal starts a fresh browser and model worker. Login state is not preserved.
-The native Codex CLI attempt exposed no browser tools. No valid native speed baseline exists.
+The earlier native Codex CLI attempt exposed no browser tools. A later desktop baseline passed in 33.05 seconds. Its browser state, context, and tools differ from the system run, so general speed superiority remains unproven.
 The crowded local task still fails and exceeds its speed target. Unfamiliar live controls and other machines remain untested. Scores are uncalibrated.
 The inherited demo retains hosted paths. The local worker must not use them.
 

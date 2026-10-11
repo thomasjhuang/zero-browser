@@ -2,7 +2,7 @@
 
 Priority P0. Owner Codex milestone chat.
 
-Current scope: prepare one separately authorized visible Google Flights attempt through the existing guarded general local Qwen runner. Root coordination is the sole launcher after acknowledgment. Task16 prepares evidence and assesses saved observations. No repository runtime implementation changed. The previous measured results remain intact. This is not the demonstrated bounded coordinator path or proof of full-flight readiness.
+Current scope: the one separately authorized visible Google Flights attempt is complete and failed. Task16 assesses saved evidence and delivers records only. The root chat was the sole launcher. No runtime source changed, and no replacement or further experiment is authorized. This general autonomous Qwen run does not measure the successful bounded coordinator workflow.
 
 ## Why
 
@@ -455,3 +455,22 @@ The runner stops for human verification, forbidden search actions, uncertain exe
 Preparation syntax passed without importing the model or browser. The compactor confirmed idle. Task16 remains idle and transfers only the single execution slot to root upon acknowledgment. Source editing remains frozen.
 
 Handoff delivery checks passed: lint and 159 tests in 4.72 seconds. Only the existing task and status records are committed. Launcher, request, and private records remain ignored. No demo started during preparation.
+
+
+### One-off Google Flights result
+
+The root coordination chat launched exactly one attempt at `074db4c0708fa8ba49f8b3023ad52d5948ba9c79`. Evidence: `results/flights-demo-once.json`. The general autonomous local Qwen runner failed before selecting JFK or entering either date. No Codex coordinator operated inside this run. This does not test one-call delegation, the successful Wikipedia hybrid workflow, or unintegrated optimization proposals.
+
+Step1 chose the correct destination field and entered the supplied full airport name. The page then showed “No matching locations found.” That feedback persisted. The trace does not establish why the provider returned no match or whether a shorter query would work. Step2 selected “Destination, Select multiple airports” despite the single-destination request. The editable field and no-match feedback were present in the model input. The subsequent decisions did not recover. The model waited thirteen times, entered the identical query again, reopened the field, and scrolled twice.
+
+One stale decision at step3 stopped before input. Two layers logged that single rejection. No uncertain mutation remained, and the model never chose DONE. The twentieth decision exhausted the fixed budget. This was not a 90-second timeout or a false completion.
+
+Independent requirement assessment found no selected JFK destination, no departure or return date, no verified year, and no flight results. The initial origin showed San Francisco without an exact SFO identifier. Initial Round trip and Economy controls were visible, but the final view did not expose the form. The passenger control showed one passenger without an adult breakdown. The final page text was blank after scrolling. No result options, prices, carriers, times, or stops are reported. The unchanged one-way verifier remains explicitly NOT_APPLICABLE to the full round-trip request.
+
+Total startup-through-cleanup time was 39,497.65 ms. Browser startup took 580.25 ms. The worker and its process cleanup took 38,530.49 ms. Browser cleanup took 365.60 ms. Twenty decisions used 23 local model calls: 21 menu scoring calls and two field-text calls. One physical model load took 1,901.81 ms. Nineteen executed operations comprise six browser mutations and thirteen waits. Median decision time was 1,306.5 ms. Peak sampled worker memory was 3,759,278,816 bytes. Browser and parent memory are excluded. Field-text token totals were not recorded. Parent engineering chat usage is not attributable to a benchmark coordinator.
+
+All nineteen recorded source hashes remained unchanged before and after the attempt and during assessment. The existing cancellation, memory, single-run, action-boundary, and decision-limit guards stayed in place. Private events, conditions, launcher, and request are preserved with hashes in the public assessment. The browser context returned through owned cleanup. No new user responsiveness report was requested. The earlier computer freeze remains unexplained.
+
+Runtime is idle. No replacement, comparison, or optimization follows this attempt. The demonstrated problem is failure to respond effectively to observed no-match feedback. Resolve that behavior before presenting a complete flight-search demonstration. This record does not authorize that future work.
+
+Final delivery checks passed: lint and 159 tests in 4.92 seconds. Public evidence passed the private-path and credential scan. Earlier comparison results and all nineteen runtime source hashes remain unchanged.

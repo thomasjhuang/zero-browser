@@ -1,0 +1,1425 @@
+{
+  "scope": "One authorized visible Google Flights attempt using the guarded general autonomous local Qwen runner. No in-run Codex coordinator or demonstrated bounded delegation path.",
+  "revision": "074db4c0708fa8ba49f8b3023ad52d5948ba9c79",
+  "attempts": 1,
+  "replacement_runs": 0,
+  "goal": "Find round-trip flights from San Francisco International Airport (SFO) to John F. Kennedy International Airport (JFK). Depart November 12, 2026, and return November 16, 2026. Use one adult and Economy. Stop when matching flight options are visible. Do not select a flight, book, pay, log in, or change an account. Stop for human verification or uncertain execution.",
+  "outcome": "failed",
+  "assessment_method": "Independent inspection of ordered saved controls, page text, decisions, and executed actions. Model DONE and legacy one-way verifier are not completion evidence.",
+  "requirements": {
+    "round_trip": {
+      "status": "not_confirmed_at_finish",
+      "evidence": "Initial control showed Round trip. Final observation did not expose the search form."
+    },
+    "origin_exact_sfo": {
+      "status": "unverified",
+      "evidence": "Initial origin field showed San Francisco. No exact airport identifier or selection was recorded."
+    },
+    "destination_exact_jfk": {
+      "status": "failed",
+      "evidence": "The field contained the query, but no matching location or selected destination appeared."
+    },
+    "departure_2026_11_12": {
+      "status": "failed",
+      "evidence": "Initial departure was empty. No date field entry or calendar selection occurred."
+    },
+    "return_2026_11_16": {
+      "status": "failed",
+      "evidence": "Initial return was empty. No date field entry or calendar selection occurred."
+    },
+    "date_year": {
+      "status": "unverified",
+      "evidence": "No chosen date or results encoded the requested year."
+    },
+    "one_adult": {
+      "status": "unverified",
+      "evidence": "Initial control showed 1 passenger. No adult breakdown was observed."
+    },
+    "economy": {
+      "status": "not_confirmed_at_finish",
+      "evidence": "Initial control showed Economy. Final observation did not expose the search form."
+    },
+    "flight_results_visible": {
+      "status": "failed",
+      "evidence": "No observed result page or flight option appeared. URL remained the initial Flights page."
+    },
+    "no_booking_or_forbidden_execution": {
+      "status": "passed",
+      "evidence": "Executed operations were two field entries, two search-dialog clicks, two scrolls, and thirteen waits."
+    },
+    "no_uncertain_execution": {
+      "status": "passed",
+      "evidence": "No unresolved mutation remains. One stale decision stopped before input."
+    }
+  },
+  "observed_flight_options": [],
+  "option_fields_status": "Unavailable: no matching flight options were observed. No prices, carriers, times, or stops are invented.",
+  "first_unsuccessful_substep": {
+    "step": 1,
+    "category": "query_no_match",
+    "action": "Filled the observed destination field",
+    "text": "John F. Kennedy International Airport (JFK)",
+    "observed_result": "No matching locations found",
+    "cause_limit": "The supplied name reached the field, but the page returned no match. The trace does not establish why or whether a shorter query would succeed. This is not proven text corruption or a missing editable control."
+  },
+  "first_wrong_decision": {
+    "step": 2,
+    "category": "wrong_decision",
+    "action": "Destination, Select multiple airports",
+    "evidence": "The request named one destination. The model saw the no-match feedback and the editable query field, but selected multiple-airport mode.",
+    "limit": "The trace establishes an unnecessary mode change and subsequent failure to recover. It does not prove that this click alone caused the final failure."
+  },
+  "later_failure": "The model repeated thirteen waits, re-entered the identical query at step10, reopened the field at step13, and scrolled twice. No airport suggestion was selected and no dates were entered.",
+  "first_guard_rejection": {
+    "step": 3,
+    "category": "stale_decision",
+    "known_non_execution": true,
+    "logged_records": 2,
+    "distinct_rejections": 1,
+    "cause": "Page changed since this decision. Observe again.",
+    "cause_limit": "The exact changed marker component is not identified."
+  },
+  "terminal_stop": {
+    "step": 20,
+    "category": "decision_budget",
+    "worker_timeout_reached": false,
+    "model_done": false,
+    "unresolved_execution": false
+  },
+  "counts": {
+    "decisions": 20,
+    "executed_operations": 19,
+    "browser_mutations": 6,
+    "wait_operations": 13,
+    "local_model_calls": 23,
+    "decision_menu_calls": 21,
+    "field_text_calls": 2,
+    "model_loads": 1,
+    "in_run_coordinator_calls": 0
+  },
+  "timing": {
+    "total_including_startup_and_cleanup_ms": 39497.650583,
+    "browser_startup_ms": 580.250792,
+    "worker_and_worker_cleanup_ms": 38530.485292,
+    "browser_cleanup_ms": 365.596833,
+    "decision_median_ms": 1306.5,
+    "decision_total_ms": 28336,
+    "local_call_total_ms": 29768,
+    "model_load_ms": 1901.8079577945173,
+    "limits": "Decision and model-call intervals overlap. Do not add them. Worker interval includes its process cleanup. Browser startup and cleanup are separate. Decision event elapsed_ms uses an agent-relative origin; ordered records and explicit latencies establish the action sequence."
+  },
+  "memory": {
+    "peak_worker_bytes": 3759278816,
+    "worker_limit_bytes": 6442450944,
+    "peak_mlx_bytes": 3222945040,
+    "scope": "Sampled worker only. Browser and parent memory excluded."
+  },
+  "tokens": {
+    "decision_menu_prompt_tokens": 18978,
+    "field_text_prompt_and_output_tokens": null,
+    "status": "Field-text token counts were not recorded. No exact total token or cost claim."
+  },
+  "runtime": {
+    "worker_deadline_seconds": 90,
+    "decision_budget": 20,
+    "exit_code": 1,
+    "parent_stop": null,
+    "cleanup": "Existing owned-browser context returned. No replacement run.",
+    "source_unchanged": true,
+    "source_hash_count": 19
+  },
+  "source_sha256": {
+    "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+    "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+    "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+    "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+    "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+    "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+    "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+    "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+    "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+    "jev_ultrafast/structured_policy.py": "008742becc08c3551caaee02dd37515f775f80ad338d534dc44176b68d6ea8a8",
+    "jev_ultrafast/workflow_worker.py": "d63cedf767c62bb18f61659d0e2343eb986a1a17c44d25105a3e423115326e11",
+    "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+    "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+    "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+    "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+    "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+    "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+    "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+    "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+  },
+  "launcher_sha256": "ac24db89b214141606e8492680fde067645404d8f45cb21e143fbdd0ace1c71a",
+  "request_sha256": "9bcf9d2294a1bc105c9c6245e349ae418ff2e51050820558fbb7305370676430",
+  "private_evidence_sha256": {
+    "events.jsonl": "5872e0e17e59b8654b57e34394ad708dcab3c32cbfafe582ea15ad880afc43ce",
+    "summary.json": "f41e33ddd058a57ca10d409cd998bc762fb7603fd5e775d628a0876c466a4ab8",
+    "conditions.json": "f38321d73e4bca4ae1a85f573d78ddf592e72177baaa5324fc46d41cee5ead3c",
+    "attempt-started.json": "05f0b9aa98396ae6236a72398516407e53557687c337f015da6f16181b363163"
+  },
+  "observations": [
+    {
+      "step": 0,
+      "journal_elapsed_ms": 2235,
+      "url": "https://www.google.com/travel/flights?hl=en",
+      "text": "Skip to main content\nAccessibility feedback\nExplore\nFlights\nHotels\nVacation rentals\nSign in\nFlights\n1\nExplore\nFlexible? Discover the best flight deals with AI\nDescribe your ideal trip, and let Google Flights find the best deals for you\nExplore deals with AI\nFind and book cheap flights worldwide and track prices\nFind cheap flights from United States to anywhere\nSan Francisco\nChicago\nDallas\nAtlanta",
+      "controls": [
+        {
+          "id": "e1",
+          "kind": "click",
+          "label": "Main menu",
+          "value": ""
+        },
+        {
+          "id": "e2",
+          "kind": "click",
+          "label": "Google",
+          "value": ""
+        },
+        {
+          "id": "e3",
+          "kind": "click",
+          "label": "Skip to main content",
+          "value": ""
+        },
+        {
+          "id": "e4",
+          "kind": "click",
+          "label": "Accessibility feedback",
+          "value": ""
+        },
+        {
+          "id": "e5",
+          "kind": "click",
+          "label": "Explore",
+          "value": ""
+        },
+        {
+          "id": "e6",
+          "kind": "click",
+          "label": "Flights",
+          "value": ""
+        },
+        {
+          "id": "e7",
+          "kind": "click",
+          "label": "Hotels",
+          "value": ""
+        },
+        {
+          "id": "e8",
+          "kind": "click",
+          "label": "Vacation rentals",
+          "value": ""
+        },
+        {
+          "id": "e9",
+          "kind": "click",
+          "label": "Change appearance",
+          "value": ""
+        },
+        {
+          "id": "e10",
+          "kind": "click",
+          "label": "Google apps",
+          "value": ""
+        },
+        {
+          "id": "e11",
+          "kind": "click",
+          "label": "Sign in",
+          "value": ""
+        },
+        {
+          "id": "e12",
+          "kind": "click",
+          "label": "Change ticket type. Round trip",
+          "value": "Round trip"
+        },
+        {
+          "id": "e13",
+          "kind": "click",
+          "label": "1 passenger, change number of passengers.",
+          "value": ""
+        },
+        {
+          "id": "e14",
+          "kind": "click",
+          "label": "Change seating class. Economy",
+          "value": "Economy"
+        },
+        {
+          "id": "e15",
+          "kind": "fill",
+          "label": "Where from?",
+          "value": "San Francisco"
+        },
+        {
+          "id": "e16",
+          "kind": "click",
+          "label": "Open Where from?",
+          "value": "San Francisco"
+        },
+        {
+          "id": "e17",
+          "kind": "fill",
+          "label": "Where to? ",
+          "value": ""
+        },
+        {
+          "id": "e18",
+          "kind": "click",
+          "label": "Open Where to? ",
+          "value": ""
+        },
+        {
+          "id": "e19",
+          "kind": "fill",
+          "label": "Departure",
+          "value": ""
+        },
+        {
+          "id": "e20",
+          "kind": "click",
+          "label": "Open Departure",
+          "value": ""
+        },
+        {
+          "id": "e21",
+          "kind": "fill",
+          "label": "Return",
+          "value": ""
+        },
+        {
+          "id": "e22",
+          "kind": "click",
+          "label": "Open Return",
+          "value": ""
+        },
+        {
+          "id": "e23",
+          "kind": "click",
+          "label": "Explore destinations",
+          "value": ""
+        },
+        {
+          "id": "e24",
+          "kind": "click",
+          "label": "Explore deals with AI",
+          "value": ""
+        },
+        {
+          "id": "e25",
+          "kind": "click",
+          "label": "Learn more about this section",
+          "value": ""
+        },
+        {
+          "id": "e26",
+          "kind": "click",
+          "label": "San Francisco",
+          "value": ""
+        },
+        {
+          "id": "e27",
+          "kind": "click",
+          "label": "Chicago",
+          "value": ""
+        },
+        {
+          "id": "e28",
+          "kind": "click",
+          "label": "Dallas",
+          "value": ""
+        },
+        {
+          "id": "e29",
+          "kind": "click",
+          "label": "Atlanta",
+          "value": ""
+        },
+        {
+          "id": "scroll_down",
+          "kind": "scroll",
+          "label": "Scroll down",
+          "value": null
+        },
+        {
+          "id": "wait",
+          "kind": "wait",
+          "label": "Wait for the page to update",
+          "value": null
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "journal_elapsed_ms": 11939,
+      "url": "https://www.google.com/travel/flights?hl=en",
+      "text": "No matching locations found",
+      "controls": [
+        {
+          "id": "e1",
+          "kind": "fill",
+          "label": "Where else?",
+          "value": "John F. Kennedy International Airport (JFK)"
+        },
+        {
+          "id": "e2",
+          "kind": "click",
+          "label": "Open Where else?",
+          "value": "John F. Kennedy International Airport (JFK)"
+        },
+        {
+          "id": "e3",
+          "kind": "click",
+          "label": "Destination, Select multiple airports",
+          "value": ""
+        },
+        {
+          "id": "scroll_down",
+          "kind": "scroll",
+          "label": "Scroll down",
+          "value": null
+        },
+        {
+          "id": "wait",
+          "kind": "wait",
+          "label": "Wait for the page to update",
+          "value": null
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "journal_elapsed_ms": 12962,
+      "url": "https://www.google.com/travel/flights?hl=en",
+      "text": "No matching locations found",
+      "controls": [
+        {
+          "id": "e1",
+          "kind": "fill",
+          "label": "Where else?",
+          "value": "John F. Kennedy International Airport (JFK)"
+        },
+        {
+          "id": "e2",
+          "kind": "click",
+          "label": "Open Where else?",
+          "value": "John F. Kennedy International Airport (JFK)"
+        },
+        {
+          "id": "e3",
+          "kind": "click",
+          "label": "Done",
+          "value": ""
+        },
+        {
+          "id": "scroll_down",
+          "kind": "scroll",
+          "label": "Scroll down",
+          "value": null
+        },
+        {
+          "id": "wait",
+          "kind": "wait",
+          "label": "Wait for the page to update",
+          "value": null
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "journal_elapsed_ms": 23813,
+      "url": "https://www.google.com/travel/flights?hl=en",
+      "text": "No matching locations found",
+      "controls": [
+        {
+          "id": "e1",
+          "kind": "fill",
+          "label": "Where else?",
+          "value": "John F. Kennedy International Airport (JFK)"
+        },
+        {
+          "id": "e2",
+          "kind": "click",
+          "label": "Open Where else?",
+          "value": "John F. Kennedy International Airport (JFK)"
+        },
+        {
+          "id": "e3",
+          "kind": "click",
+          "label": "Done",
+          "value": ""
+        },
+        {
+          "id": "scroll_down",
+          "kind": "scroll",
+          "label": "Scroll down",
+          "value": null
+        },
+        {
+          "id": "wait",
+          "kind": "wait",
+          "label": "Wait for the page to update",
+          "value": null
+        }
+      ]
+    },
+    {
+      "step": 18,
+      "journal_elapsed_ms": 35595,
+      "url": "https://www.google.com/travel/flights?hl=en",
+      "text": "No matching locations found",
+      "controls": [
+        {
+          "id": "e1",
+          "kind": "fill",
+          "label": "Where else?",
+          "value": "John F. Kennedy International Airport (JFK)"
+        },
+        {
+          "id": "e2",
+          "kind": "click",
+          "label": "Open Where else?",
+          "value": "John F. Kennedy International Airport (JFK)"
+        },
+        {
+          "id": "e3",
+          "kind": "click",
+          "label": "Done",
+          "value": ""
+        },
+        {
+          "id": "scroll_down",
+          "kind": "scroll",
+          "label": "Scroll down",
+          "value": null
+        },
+        {
+          "id": "wait",
+          "kind": "wait",
+          "label": "Wait for the page to update",
+          "value": null
+        }
+      ]
+    },
+    {
+      "step": 19,
+      "journal_elapsed_ms": 37037,
+      "url": "https://www.google.com/travel/flights?hl=en",
+      "text": "",
+      "controls": [
+        {
+          "id": "scroll_down",
+          "kind": "scroll",
+          "label": "Scroll down",
+          "value": null
+        },
+        {
+          "id": "scroll_up",
+          "kind": "scroll",
+          "label": "Scroll up",
+          "value": null
+        },
+        {
+          "id": "wait",
+          "kind": "wait",
+          "label": "Wait for the page to update",
+          "value": null
+        }
+      ]
+    },
+    {
+      "step": 20,
+      "journal_elapsed_ms": 38248,
+      "url": "https://www.google.com/travel/flights?hl=en",
+      "text": "",
+      "controls": [
+        {
+          "id": "scroll_down",
+          "kind": "scroll",
+          "label": "Scroll down",
+          "value": null
+        },
+        {
+          "id": "scroll_up",
+          "kind": "scroll",
+          "label": "Scroll up",
+          "value": null
+        },
+        {
+          "id": "wait",
+          "kind": "wait",
+          "label": "Wait for the page to update",
+          "value": null
+        }
+      ]
+    },
+    {
+      "step": 20,
+      "journal_elapsed_ms": 38250,
+      "url": "https://www.google.com/travel/flights?hl=en",
+      "text": "",
+      "controls": [
+        {
+          "id": "scroll_down",
+          "kind": "scroll",
+          "label": "Scroll down",
+          "value": null
+        },
+        {
+          "id": "scroll_up",
+          "kind": "scroll",
+          "label": "Scroll up",
+          "value": null
+        },
+        {
+          "id": "wait",
+          "kind": "wait",
+          "label": "Wait for the page to update",
+          "value": null
+        }
+      ]
+    }
+  ],
+  "executed_operations": [
+    {
+      "event": "executed",
+      "elapsed_ms": 11724,
+      "step": 1,
+      "action": {
+        "node": 16,
+        "role": "combobox",
+        "label": "Where to? ",
+        "rect": {
+          "x": 370,
+          "y": 434.90625,
+          "w": 282,
+          "h": 56
+        },
+        "expanded": "false",
+        "empty": "true",
+        "placeholder": "Where to?",
+        "kind": "fill",
+        "value": "",
+        "id": "e17"
+      },
+      "text": "John F. Kennedy International Airport (JFK)"
+    },
+    {
+      "event": "executed",
+      "elapsed_ms": 12932,
+      "step": 2,
+      "action": {
+        "node": 30,
+        "role": "button",
+        "label": "Destination, Select multiple airports",
+        "rect": {
+          "x": 766,
+          "y": 438.90625,
+          "w": 48,
+          "h": 48
+        },
+        "context": "Select multiple airports No matching locations found",
+        "kind": "click",
+        "value": "",
+        "id": "e3"
+      },
+      "text": null
+    },
+    {
+      "event": "executed",
+      "elapsed_ms": 15107,
+      "step": 4,
+      "action": {
+        "id": "wait",
+        "kind": "wait",
+        "label": "Wait for the page to update"
+      },
+      "text": null
+    },
+    {
+      "event": "executed",
+      "elapsed_ms": 16279,
+      "step": 5,
+      "action": {
+        "id": "wait",
+        "kind": "wait",
+        "label": "Wait for the page to update"
+      },
+      "text": null
+    },
+    {
+      "event": "executed",
+      "elapsed_ms": 17495,
+      "step": 6,
+      "action": {
+        "id": "wait",
+        "kind": "wait",
+        "label": "Wait for the page to update"
+      },
+      "text": null
+    },
+    {
+      "event": "executed",
+      "elapsed_ms": 18836,
+      "step": 7,
+      "action": {
+        "id": "wait",
+        "kind": "wait",
+        "label": "Wait for the page to update"
+      },
+      "text": null
+    },
+    {
+      "event": "executed",
+      "elapsed_ms": 20202,
+      "step": 8,
+      "action": {
+        "id": "wait",
+        "kind": "wait",
+        "label": "Wait for the page to update"
+      },
+      "text": null
+    },
+    {
+      "event": "executed",
+      "elapsed_ms": 21548,
+      "step": 9,
+      "action": {
+        "id": "wait",
+        "kind": "wait",
+        "label": "Wait for the page to update"
+      },
+      "text": null
+    },
+    {
+      "event": "executed",
+      "elapsed_ms": 23605,
+      "step": 10,
+      "action": {
+        "node": 27,
+        "role": "combobox",
+        "label": "Where else?",
+        "rect": {
+          "x": 430,
+          "y": 438.90625,
+          "w": 336,
+          "h": 48
+        },
+        "context": "Done No matching locations found",
+        "expanded": "true",
+        "empty": "false",
+        "kind": "fill",
+        "value": "John F. Kennedy International Airport (JFK)",
+        "id": "e1"
+      },
+      "text": "John F. Kennedy International Airport (JFK)"
+    },
+    {
+      "event": "executed",
+      "elapsed_ms": 25253,
+      "step": 11,
+      "action": {
+        "id": "wait",
+        "kind": "wait",
+        "label": "Wait for the page to update"
+      },
+      "text": null
+    },
+    {
+      "event": "executed",
+      "elapsed_ms": 26754,
+      "step": 12,
+      "action": {
+        "id": "wait",
+        "kind": "wait",
+        "label": "Wait for the page to update"
+      },
+      "text": null
+    },
+    {
+      "event": "executed",
+      "elapsed_ms": 28141,
+      "step": 13,
+      "action": {
+        "node": 27,
+        "role": "combobox",
+        "label": "Open Where else?",
+        "rect": {
+          "x": 430,
+          "y": 438.90625,
+          "w": 336,
+          "h": 48
+        },
+        "context": "Done No matching locations found",
+        "expanded": "true",
+        "kind": "click",
+        "value": "John F. Kennedy International Airport (JFK)",
+        "id": "e2"
+      },
+      "text": null
+    },
+    {
+      "event": "executed",
+      "elapsed_ms": 29635,
+      "step": 14,
+      "action": {
+        "id": "wait",
+        "kind": "wait",
+        "label": "Wait for the page to update"
+      },
+      "text": null
+    },
+    {
+      "event": "executed",
+      "elapsed_ms": 31123,
+      "step": 15,
+      "action": {
+        "id": "wait",
+        "kind": "wait",
+        "label": "Wait for the page to update"
+      },
+      "text": null
+    },
+    {
+      "event": "executed",
+      "elapsed_ms": 32608,
+      "step": 16,
+      "action": {
+        "id": "wait",
+        "kind": "wait",
+        "label": "Wait for the page to update"
+      },
+      "text": null
+    },
+    {
+      "event": "executed",
+      "elapsed_ms": 34090,
+      "step": 17,
+      "action": {
+        "id": "wait",
+        "kind": "wait",
+        "label": "Wait for the page to update"
+      },
+      "text": null
+    },
+    {
+      "event": "executed",
+      "elapsed_ms": 35592,
+      "step": 18,
+      "action": {
+        "id": "wait",
+        "kind": "wait",
+        "label": "Wait for the page to update"
+      },
+      "text": null
+    },
+    {
+      "event": "executed",
+      "elapsed_ms": 36981,
+      "step": 19,
+      "action": {
+        "id": "scroll_down",
+        "kind": "scroll",
+        "label": "Scroll down",
+        "delta": 560
+      },
+      "text": null
+    },
+    {
+      "event": "executed",
+      "elapsed_ms": 38194,
+      "step": 20,
+      "action": {
+        "id": "scroll_down",
+        "kind": "scroll",
+        "label": "Scroll down",
+        "delta": 560
+      },
+      "text": null
+    }
+  ],
+  "decision_summary": [
+    {
+      "step": 1,
+      "operation": "TYPE_TEXT",
+      "choice": "e17",
+      "latency_ms": 4679,
+      "path": "two-stage"
+    },
+    {
+      "step": 2,
+      "operation": "CLICK",
+      "choice": "e3",
+      "latency_ms": 972,
+      "path": "joint"
+    },
+    {
+      "step": 3,
+      "operation": "WAIT",
+      "choice": "wait",
+      "latency_ms": 1018,
+      "path": "joint"
+    },
+    {
+      "step": 4,
+      "operation": "WAIT",
+      "choice": "wait",
+      "latency_ms": 1012,
+      "path": "joint"
+    },
+    {
+      "step": 5,
+      "operation": "WAIT",
+      "choice": "wait",
+      "latency_ms": 1061,
+      "path": "joint"
+    },
+    {
+      "step": 6,
+      "operation": "WAIT",
+      "choice": "wait",
+      "latency_ms": 1103,
+      "path": "joint"
+    },
+    {
+      "step": 7,
+      "operation": "WAIT",
+      "choice": "wait",
+      "latency_ms": 1235,
+      "path": "joint"
+    },
+    {
+      "step": 8,
+      "operation": "WAIT",
+      "choice": "wait",
+      "latency_ms": 1254,
+      "path": "joint"
+    },
+    {
+      "step": 9,
+      "operation": "WAIT",
+      "choice": "wait",
+      "latency_ms": 1236,
+      "path": "joint"
+    },
+    {
+      "step": 10,
+      "operation": "TYPE_TEXT",
+      "choice": "e1",
+      "latency_ms": 1284,
+      "path": "joint"
+    },
+    {
+      "step": 11,
+      "operation": "WAIT",
+      "choice": "wait",
+      "latency_ms": 1329,
+      "path": "joint"
+    },
+    {
+      "step": 12,
+      "operation": "WAIT",
+      "choice": "wait",
+      "latency_ms": 1384,
+      "path": "joint"
+    },
+    {
+      "step": 13,
+      "operation": "CLICK",
+      "choice": "e2",
+      "latency_ms": 1376,
+      "path": "joint"
+    },
+    {
+      "step": 14,
+      "operation": "WAIT",
+      "choice": "wait",
+      "latency_ms": 1362,
+      "path": "joint"
+    },
+    {
+      "step": 15,
+      "operation": "WAIT",
+      "choice": "wait",
+      "latency_ms": 1374,
+      "path": "joint"
+    },
+    {
+      "step": 16,
+      "operation": "WAIT",
+      "choice": "wait",
+      "latency_ms": 1376,
+      "path": "joint"
+    },
+    {
+      "step": 17,
+      "operation": "WAIT",
+      "choice": "wait",
+      "latency_ms": 1370,
+      "path": "joint"
+    },
+    {
+      "step": 18,
+      "operation": "WAIT",
+      "choice": "wait",
+      "latency_ms": 1389,
+      "path": "joint"
+    },
+    {
+      "step": 19,
+      "operation": "SCROLL_DOWN",
+      "choice": "scroll_down",
+      "latency_ms": 1380,
+      "path": "joint"
+    },
+    {
+      "step": 20,
+      "operation": "SCROLL_DOWN",
+      "choice": "scroll_down",
+      "latency_ms": 1142,
+      "path": "joint"
+    }
+  ],
+  "local_call_records": [
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 8707,
+      "kind": "decision_menu",
+      "call": 1,
+      "step": 1,
+      "latency_ms": 2454,
+      "prompt_tokens": 1517,
+      "peak_mlx_bytes": 2986474752,
+      "candidate_order": [
+        "CLICK",
+        "TYPE_TEXT",
+        "SCROLL_DOWN",
+        "WAIT",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 10931,
+      "kind": "decision_menu",
+      "call": 2,
+      "step": 1,
+      "latency_ms": 2224,
+      "prompt_tokens": 1719,
+      "peak_mlx_bytes": 3222945040,
+      "candidate_order": [
+        "15",
+        "16",
+        "17",
+        "18"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 11633,
+      "kind": "field_text",
+      "call": 3,
+      "step": 1,
+      "latency_ms": 691
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 12913,
+      "kind": "decision_menu",
+      "call": 4,
+      "step": 2,
+      "latency_ms": 972,
+      "prompt_tokens": 670,
+      "peak_mlx_bytes": 2856353064,
+      "candidate_order": [
+        "e1",
+        "e2",
+        "e3",
+        "scroll_down",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 13982,
+      "kind": "decision_menu",
+      "call": 5,
+      "step": 3,
+      "latency_ms": 1018,
+      "prompt_tokens": 691,
+      "peak_mlx_bytes": 2856353064,
+      "candidate_order": [
+        "e1",
+        "e2",
+        "e3",
+        "scroll_down",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 14999,
+      "kind": "decision_menu",
+      "call": 6,
+      "step": 4,
+      "latency_ms": 1012,
+      "prompt_tokens": 693,
+      "peak_mlx_bytes": 2856353064,
+      "candidate_order": [
+        "e1",
+        "e2",
+        "e3",
+        "scroll_down",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 16172,
+      "kind": "decision_menu",
+      "call": 7,
+      "step": 5,
+      "latency_ms": 1061,
+      "prompt_tokens": 721,
+      "peak_mlx_bytes": 2856353064,
+      "candidate_order": [
+        "e1",
+        "e2",
+        "e3",
+        "scroll_down",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 17387,
+      "kind": "decision_menu",
+      "call": 8,
+      "step": 6,
+      "latency_ms": 1103,
+      "prompt_tokens": 749,
+      "peak_mlx_bytes": 2865331484,
+      "candidate_order": [
+        "e1",
+        "e2",
+        "e3",
+        "scroll_down",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 18733,
+      "kind": "decision_menu",
+      "call": 9,
+      "step": 7,
+      "latency_ms": 1235,
+      "prompt_tokens": 777,
+      "peak_mlx_bytes": 2900409604,
+      "candidate_order": [
+        "e1",
+        "e2",
+        "e3",
+        "scroll_down",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 20094,
+      "kind": "decision_menu",
+      "call": 10,
+      "step": 8,
+      "latency_ms": 1253,
+      "prompt_tokens": 805,
+      "peak_mlx_bytes": 2900393220,
+      "candidate_order": [
+        "e1",
+        "e2",
+        "e3",
+        "scroll_down",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 21444,
+      "kind": "decision_menu",
+      "call": 11,
+      "step": 9,
+      "latency_ms": 1236,
+      "prompt_tokens": 833,
+      "peak_mlx_bytes": 2900393220,
+      "candidate_order": [
+        "e1",
+        "e2",
+        "e3",
+        "scroll_down",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 22842,
+      "kind": "decision_menu",
+      "call": 12,
+      "step": 10,
+      "latency_ms": 1283,
+      "prompt_tokens": 861,
+      "peak_mlx_bytes": 2900393220,
+      "candidate_order": [
+        "e1",
+        "e2",
+        "e3",
+        "scroll_down",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 23591,
+      "kind": "field_text",
+      "call": 13,
+      "step": 10,
+      "latency_ms": 745
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 25145,
+      "kind": "decision_menu",
+      "call": 14,
+      "step": 11,
+      "latency_ms": 1329,
+      "prompt_tokens": 892,
+      "peak_mlx_bytes": 2900393220,
+      "candidate_order": [
+        "e1",
+        "e2",
+        "e3",
+        "scroll_down",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 26646,
+      "kind": "decision_menu",
+      "call": 15,
+      "step": 12,
+      "latency_ms": 1383,
+      "prompt_tokens": 920,
+      "peak_mlx_bytes": 2900393220,
+      "candidate_order": [
+        "e1",
+        "e2",
+        "e3",
+        "scroll_down",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 28137,
+      "kind": "decision_menu",
+      "call": 16,
+      "step": 13,
+      "latency_ms": 1376,
+      "prompt_tokens": 914,
+      "peak_mlx_bytes": 2900393220,
+      "candidate_order": [
+        "e1",
+        "e2",
+        "e3",
+        "scroll_down",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 29527,
+      "kind": "decision_menu",
+      "call": 17,
+      "step": 14,
+      "latency_ms": 1362,
+      "prompt_tokens": 912,
+      "peak_mlx_bytes": 2900393220,
+      "candidate_order": [
+        "e1",
+        "e2",
+        "e3",
+        "scroll_down",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 31015,
+      "kind": "decision_menu",
+      "call": 18,
+      "step": 15,
+      "latency_ms": 1374,
+      "prompt_tokens": 912,
+      "peak_mlx_bytes": 2900393220,
+      "candidate_order": [
+        "e1",
+        "e2",
+        "e3",
+        "scroll_down",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 32503,
+      "kind": "decision_menu",
+      "call": 19,
+      "step": 16,
+      "latency_ms": 1376,
+      "prompt_tokens": 912,
+      "peak_mlx_bytes": 2900393220,
+      "candidate_order": [
+        "e1",
+        "e2",
+        "e3",
+        "scroll_down",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 33982,
+      "kind": "decision_menu",
+      "call": 20,
+      "step": 17,
+      "latency_ms": 1370,
+      "prompt_tokens": 912,
+      "peak_mlx_bytes": 2900393220,
+      "candidate_order": [
+        "e1",
+        "e2",
+        "e3",
+        "scroll_down",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 35485,
+      "kind": "decision_menu",
+      "call": 21,
+      "step": 18,
+      "latency_ms": 1389,
+      "prompt_tokens": 912,
+      "peak_mlx_bytes": 2900393220,
+      "candidate_order": [
+        "e1",
+        "e2",
+        "e3",
+        "scroll_down",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 36977,
+      "kind": "decision_menu",
+      "call": 22,
+      "step": 19,
+      "latency_ms": 1380,
+      "prompt_tokens": 912,
+      "peak_mlx_bytes": 2900393220,
+      "candidate_order": [
+        "e1",
+        "e2",
+        "e3",
+        "scroll_down",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    {
+      "event": "model_call_finished",
+      "elapsed_ms": 38180,
+      "kind": "decision_menu",
+      "call": 23,
+      "step": 20,
+      "latency_ms": 1142,
+      "prompt_tokens": 744,
+      "peak_mlx_bytes": 2869394720,
+      "candidate_order": [
+        "scroll_down",
+        "scroll_up",
+        "wait",
+        "DONE",
+        "BLOCKED"
+      ]
+    }
+  ],
+  "legacy_verifier": {
+    "applicability": "NOT_APPLICABLE to complete round-trip outcome",
+    "raw_result": {
+      "passed": false,
+      "checks": {
+        "search_page": false,
+        "origin": false,
+        "destination": false,
+        "departure": false,
+        "year": false,
+        "trip_type": false,
+        "adults": false,
+        "cabin": false,
+        "results_visible": false,
+        "result_dates": false
+      },
+      "visible_result_count": 0,
+      "limitations": "Unknown control labels fail closed. Live adapter validation is pending."
+    }
+  },
+  "remaining_limits": [
+    "This failed general-agent run does not measure the successful Wikipedia hybrid workflow or one-call Codex delegation.",
+    "No screenshot, compactor, or context-pool integration was tested.",
+    "No live flight-search completion is established.",
+    "The earlier computer freeze has no established cause.",
+    "No new responsiveness report was requested."
+  ],
+  "recommendation": "Address observed no-match feedback and ineffective recovery before presenting a complete flight-search demonstration. No implementation or additional run is authorized by this record."
+}
