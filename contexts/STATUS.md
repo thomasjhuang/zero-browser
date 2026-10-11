@@ -26,9 +26,13 @@
 > Then three consecutive local_search passes, then the two layout variations, then live Flights.
 > Record every rerun in `contexts/16-flight-milestone.md` Result with the first failed step and cause.
 > Set `ZB_RECORD_PATH=artifacts/replay/<run>.jsonl` on runs so prompts can be replayed offline.
+>
+> **Test scope:** keep existing tests. Defer broad unit-test expansion until the flight demonstration works.
+> Add tests only for critical safeguards or repeatable bugs. Keep required delivery checks and prioritize actual browser outcomes.
+> See [the working rules](AGENT-RULES.md#while-working).
 
 
-Reconciled October 11, 2026, at 13:40 PT. This file owns current state and reservations.
+Reconciled October 11, 2026. This file owns current state and reservations.
 [README.md](README.md) gives the engineering sequence. Task files preserve implementation history.
 
 ## Where we are
@@ -40,11 +44,11 @@ The final cancellation pilot stopped during inference. The user reported normal 
 
 ## In progress
 
-- **16, Improve zero-browser benchmarking:** local completion remains unresolved. Cancellation observations passed. The owner is preparing the measured baseline commit before the next experiment.
+- **16, Improve zero-browser benchmarking:** local completion remains unresolved. Cancellation observations passed. Baseline commit `9a3e60e` is on origin/main. The owner controls subsequent experiments.
 
 ## Completed context work
 
-- **19:** task state and the engineering sequence are reconciled. The isolated documentation candidate passed lint and all 118 tests. Publication remains pending.
+- **19:** task state and the engineering sequence are reconciled. The isolated documentation candidate passed lint and all 118 tests. Coordination commit `86f94bc` published that context work.
 
 ## Next, in order
 
@@ -94,11 +98,13 @@ Task 18's retest encountered the single-run lock. Schedule inference rather than
 Keep raw records in ignored `artifacts/`. Publish only sanitized evidence in `results/`.
 Do not erase the recorder or decision baseline tools during cleanup.
 
-The final task 18 evidence commit `a232d80` is local. Automatic approval review rejected its push under the prior README publication rule.
-This cleanup does not lift that hold or grant authority to publish unrelated changes.
+The task 18 evidence commit `a232d80` and task 16 baseline `9a3e60e` are on origin/main.
+The user authorized publication of the remaining evidence and this test-policy clarification. Active runtime edits remain outside this publication.
 Other chats have unfinished changes in the shared checkout. Preserve them and do not stage them with this cleanup.
 
 ## Log
+
+- October 11: the user requested publication and explicit limits on test expansion. Preserve existing tests and prioritize the flight demonstration.
 
 - 2026-10-11. Task 16 recorded failed local runs and stopped inference on cancellation. The milestone remains open. Evidence: `results/milestone-local-runs.json`.
 

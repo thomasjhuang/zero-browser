@@ -61,3 +61,10 @@ Cleanup adds time after cancellation. The user supplied the required observation
 
 The latest goal-placement experiment also failed and was removed. The independent tests rejected every full local run.
 Delivery checks passed. Publication remains subject to the shared hold in STATUS.
+
+### Test scope and publication follow-up
+
+The user requested publication of pending evidence and an explicit limit on test expansion.
+Keep existing tests. Add tests only for critical safeguards or repeatable bugs until the flight demonstration works.
+Follow [the working rules](AGENT-RULES.md#while-working). A passing unit suite does not establish browser completion.
+This follow-up changes context and evidence only. Preserve the owner's unfinished runtime and test edits.

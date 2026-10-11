@@ -1,0 +1,86 @@
+{
+  "passed": false,
+  "goal": "Open Casa Flora.",
+  "codex_version": "codex-cli 0.162.0-alpha.17.2",
+  "source_sha256": {
+    "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+    "jev_ultrafast/agent.py": "aaf8b271cb0ee6643fe7beb525328ab80de8568c7ac044d02b9c6721161e7c8b",
+    "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+    "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+    "jev_ultrafast/local_model.py": "c8d56c0886b3830c8085e9ebd0eb205df41d884bdc7a6f146ca9b76496fbb27d",
+    "jev_ultrafast/local_policy.py": "8371df3b15053d80b079e33ca09ec0fa58482043a10ce597b515732d7850395d",
+    "jev_ultrafast/model.py": "9c54f1029d8f2f8c24576679b1bc73a58bf51a917208c707fb87d8c690357190",
+    "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+    "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+    "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+    "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+    "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+    "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8",
+    "jev_ultrafast/static/fixture.html": "e48e7d7b6225b215060692e0a28c3d0b59e465e4b94c1bc510d5f37ff0b8bfbe"
+  },
+  "codex_exit_code": 0,
+  "codex_elapsed_ms": 8529,
+  "native_browser_tools_disabled": true,
+  "disabled_features": [
+    "shell_tool",
+    "shell_snapshot",
+    "apps",
+    "plugins",
+    "multi_agent",
+    "hooks",
+    "browser_use",
+    "browser_use_external",
+    "browser_use_full_cdp_access",
+    "computer_use",
+    "view_image",
+    "image_generation",
+    "skill_search",
+    "skill_mcp_dependency_install",
+    "workspace_dependencies",
+    "sleep_tool",
+    "goals"
+  ],
+  "mcp_calls": [
+    {
+      "id": "item_1",
+      "type": "mcp_tool_call",
+      "server": "zero_browser",
+      "tool": "run_browser_goal",
+      "arguments": {
+        "goal": "Open Casa Flora.",
+        "url": "http://127.0.0.1:61560/fixture.html?scenario=travel",
+        "expect_url": "#casa-flora",
+        "expect_text": [
+          "Casa Flora"
+        ],
+        "max_decisions": 4,
+        "timeout_seconds": 20
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"exit_code\": 1,\n  \"error\": \"Another zero-browser CLI run is active. Stop it before starting another.\",\n  \"runtime\": {\n    \"peak_worker_bytes\": 0,\n    \"memory_samples\": 0\n  },\n  \"total_elapsed_ms\": 1,\n  \"memory_scope\": \"Sampled inference worker footprint. Browser and MCP memory are excluded.\",\n  \"successful_run\": false\n}"
+          }
+        ],
+        "structured_content": null
+      },
+      "error": null,
+      "status": "completed"
+    }
+  ],
+  "other_item_types": [
+    "agent_message",
+    "error",
+    "mcp_tool_call"
+  ],
+  "usage": [
+    {
+      "input_tokens": 25944,
+      "cached_input_tokens": 16128,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 147,
+      "reasoning_output_tokens": 0
+    }
+  ]
+}

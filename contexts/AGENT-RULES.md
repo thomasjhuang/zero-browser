@@ -17,6 +17,8 @@ project state. Chat history, memory, and your own assumptions are not.
 ## While working
 
 - Prioritize end-to-end experiments. Follow [Experimental validation](../AGENTS.md#experimental-validation) for new unit tests.
+- Until the flight demonstration works, defer broad unit-test expansion. Keep existing tests and required delivery checks.
+  Add only small, deterministic tests for critical safeguards or repeatable bugs. Passing unit tests does not establish flight completion.
 - Stay inside the task's file ownership listed in `contexts/README.md`. If you must touch a file another
   lane owns, write a note in STATUS.md under Coordination and keep the change minimal.
 - Respect the timebox. At its end, record completed and incomplete work. Follow publication holds and the delivery procedure.

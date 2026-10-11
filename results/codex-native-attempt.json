@@ -1,0 +1,30 @@
+{
+  "goal": "Open Casa Flora.",
+  "mode": "Native Codex browser capability attempt",
+  "elapsed_ms": 7451,
+  "exit_code": 0,
+  "error": null,
+  "independent_outcome_verified": false,
+  "items": [
+    {
+      "id": "item_0",
+      "type": "error",
+      "message": "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in <redacted-user-config-path>."
+    },
+    {
+      "id": "item_1",
+      "type": "agent_message",
+      "text": "Native browser tools are unavailable, so I stopped. I could not open Casa Flora or verify the final URL and page title."
+    }
+  ],
+  "features_enabled": [
+    "browser_use",
+    "browser_use_external",
+    "browser_use_full_cdp_access",
+    "computer_use"
+  ],
+  "external_mcp_servers_configured": false,
+  "redactions": [
+    "Removed the private machine path from the diagnostic message."
+  ]
+}
