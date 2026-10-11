@@ -1,21 +1,20 @@
 # Project status
 
-Updated 2026-10-11 12:25 PT. This is the single shared state file. Edit it on every claim, finish, or block.
+Updated 2026-10-11 12:30 PT. This is the single shared state file. Edit it on every claim, finish, or block.
 Keep it short. Evidence lives in `results/` and is linked, never restated beyond one number.
 
 ## Where we are
 
 Jev Ultrafast scaffolding imported. Local Qwen3-4B 4-bit scorer works offline on synthetic decisions.
 The agent loop still calls TypeSafe for decisions and OpenRouter for field text. No local end-to-end browser
-run exists. No work on tasks 00 through 10 has started. Plan and ranked tasks are in `README.md` here.
+run exists. Task 00 is in progress. Plan and ranked tasks are in `README.md` here.
 
 ## In progress
 
-(none)
+- 00-shared-local-model — Codex, Lane A. Claimed at 12:30 PT. Timebox: 20 minutes from 12:26 PT.
 
 ## Open, in priority order
 
-- 00-shared-local-model (P0, Lane A, do first)
 - 10-trim-jev-scaffolding phase 1 (P0, Lane D, do first)
 - 01-local-choose-adapter (P0, Lane A, after 00)
 - 02-local-type-text (P0, Lane B, after 00)
@@ -62,6 +61,7 @@ default profile lacked remote debugging. Jev's per-step timeout can be exceeded 
 
 ## Log
 
+- 2026-10-11 12:30 PT. Codex claimed task 00. Main matched origin before the claim.
 - 2026-10-11. Added aggregate evidence for two human recordings. The second save completed without errors.
   The save fix is on main. Raw recordings remain private.
 

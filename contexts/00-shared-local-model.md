@@ -25,3 +25,7 @@ Both the chooser and the text helper need the same Qwen weights loaded once per 
 ## Don't
 
 - Don't change prompt text or scoring math. This is a move.
+
+## Result
+
+Codex claimed task 00 at 2026-10-11 12:30 PT. Implementation and task tests are pending.
