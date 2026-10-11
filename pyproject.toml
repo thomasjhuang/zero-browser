@@ -5,7 +5,11 @@ description = "A browser agent that chooses instead of generating."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.12"
-dependencies = ["browser-harness==0.1.13", "httpx[http2]>=0.28,<1"]
+dependencies = [
+    "browser-harness==0.1.13",
+    "httpx[http2]>=0.28,<1",
+    "mcp>=1.26,<2",
+]
 
 [project.optional-dependencies]
 local = ["mlx-lm>=0.28,<1", "huggingface-hub>=0.36,<3"]

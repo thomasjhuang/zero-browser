@@ -35,6 +35,7 @@ Plan and ranked tasks are in `README.md` here.
 
 | Work | Outcome | Evidence |
 | --- | --- | --- |
+| 18 Codex browser MCP | Codex called the local server with native browser tools disabled. The local fixture goal passed independent outcome tests | [Evidence](../results/codex-mcp.json) |
 | 15 CLI runtime safety | Model-free guards passed. Local challenge stopped before Qwen loaded. Live inference remains untested | [Evidence](../results/cli-runtime-safety.json) |
 | 11 Installer and local CLI | Setup and simple fixture goal passed. Multi-step goals failed | [Evidence](../results/install-cli-verification.json) |
 | 00 Shared local model | One cached model supports scoring and generation. Smoke: 12/12 | [Smoke](../results/shared-local-model-smoke.json), [tests and reuse](../results/shared-local-model-verification.json) |
@@ -71,6 +72,10 @@ default profile lacked remote debugging. Jev's per-step timeout can be exceeded 
 
 ## Coordination
 
+- Task 18 owns `scripts/mcp_server.py`, `scripts/codex_mcp_smoke.py`, MCP dependencies, and `results/codex-mcp.json`.
+  The user requests an immediate test. Run one bounded local fixture goal through Codex with native browser tools disabled.
+  Preserve task 16 files and the existing runtime guards. The single-run lock prevents concurrent inference.
+
 - Task 17 changes instructions only. It prioritizes end-to-end experiments and permits new unit tests only for safeguards or repeatable bugs.
   Existing delivery checks and the task 16 readiness requirement remain in effect.
 
@@ -94,6 +99,8 @@ default profile lacked remote debugging. Jev's per-step timeout can be exceeded 
 - `scripts/decision_baselines.py` and the recorder are Codex's. Nobody deletes them in task 10.
 
 ## Log
+
+- 2026-10-11. Task 18 completed the Codex-to-MCP fixture experiment and registered `zero_browser` in Codex. Evidence: `results/codex-mcp.json`.
 
 - Task 17 updated the experiment and unit-test policy. No unit tests were added. Delivery checks passed. Publication remains pending.
 

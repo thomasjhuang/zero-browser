@@ -29,6 +29,23 @@ These changes lack a new Qwen run. Live speed and crash prevention remain unveri
 Installation and browser outcome evidence lives in `results/install-cli-verification.json`.
 The simple fixture goal passes. Multi-step destination and filter goals remain incomplete.
 
+## Local MCP server
+
+Codex can delegate browser goals to the local Qwen pipeline through `run_browser_goal`.
+The server uses stdio and starts an isolated browser for each goal. The model loads for each goal.
+It preserves the CLI memory, deadline, and single-run limits. It returns final-page assertions and sampled inference memory.
+
+```bash
+codex mcp add zero_browser -- "$PWD/.venv/bin/python" "$PWD/scripts/mcp_server.py"
+```
+
+Start a new Codex session after registration. Ask it to use `zero_browser.run_browser_goal` for browser work.
+The registration does not disable other browser tools globally.
+Run the fixed integration experiment with `.venv/bin/python scripts/codex_mcp_smoke.py`.
+This experiment disables native browser tools and permits only the browser MCP tool for that invocation.
+The first local fixture experiment passed. See [the record](../results/codex-mcp.json).
+Field entry, multi-step goals, and Claude integration remain untested through MCP.
+
 ## Local scorer setup
 
 
