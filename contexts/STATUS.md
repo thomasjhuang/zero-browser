@@ -23,6 +23,12 @@
 > 4. DONE confirmation. DONE stops the run only when it wins on two consecutive decisions, the second
 >    taken after a fresh observation. Generic, no site knowledge. Rerun.
 >
+> **Landed 13:58 (Claude):** `snapshot.js` now emits `context` (nearby group text, 80 chars) on every element and
+> `empty`, `required`, `placeholder` on editable fields; `action_space()` passes them through, so the element list
+> in the observation already shows them. **Task 16, one line:** add `context`, `empty`, `required` to the
+> target-stage candidate description in `local_policy.py` (it currently picks only label/value/role/checked/
+> selected/expanded) so stage 2 sees them too. Do it with the joint-menu change.
+>
 > Then three consecutive local_search passes, then the two layout variations, then live Flights.
 > Record every rerun in `contexts/16-flight-milestone.md` Result with the first failed step and cause.
 > Set `ZB_RECORD_PATH=artifacts/replay/<run>.jsonl` on runs so prompts can be replayed offline.
@@ -42,7 +48,7 @@ Reliable multi-step completion, useful time savings, and a native Codex speed co
 The active milestone now tests local task completion. The user reported a visible page, normal responsiveness, and clean closure during the pilot.
 The final cancellation pilot stopped during inference. The user reported normal responsiveness and clean closure. The earlier freeze remains unexplained.
 
-## In progress
+## Open
 
 - **16, Improve zero-browser benchmarking:** local completion remains unresolved. Cancellation observations passed. Baseline commit `9a3e60e` is on origin/main. The owner controls subsequent experiments.
 
@@ -87,7 +93,7 @@ DONE can precede completion. The loop stops unchanged actions but does not detec
 The MCP interface tests text and URL fragments rather than every task requirement.
 Each MCP goal starts a fresh browser and model worker. Login state is not preserved.
 The native Codex CLI attempt exposed no browser tools. No valid native speed baseline exists.
-Crowded pages, unfamiliar live controls, and other machines need separate evidence. Scores are uncalibrated.
+The crowded local task still fails and exceeds its speed target. Unfamiliar live controls and other machines remain untested. Scores are uncalibrated.
 The inherited demo retains hosted paths. The local worker must not use them.
 
 ## Coordination and publication
@@ -103,6 +109,8 @@ The user authorized publication of the remaining evidence and this test-policy c
 Other chats have unfinished changes in the shared checkout. Preserve them and do not stage them with this cleanup.
 
 ## Log
+
+- October 11, task 16: implemented the requested joint menu, scoped cache reuse, and DONE confirmation. The local gate failed. Evidence: `results/milestone-followup.json` and `results/milestone-cache-parity.json`.
 
 - October 11: the user requested publication and explicit limits on test expansion. Preserve existing tests and prioritize the flight demonstration.
 

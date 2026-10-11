@@ -21,6 +21,17 @@
         n.nodeType===1 && n.getAttribute('aria-hidden')!=='true' ? name(n,seen) : '').join(' ').trim()) ||
       e.getAttribute('title') || e.getAttribute('placeholder') || '';
   };
+  // Short text of the nearest small ancestor group, so "Add" under "Adults" differs from "Add" under "Children".
+  const context = (e,own) => {
+    let p=e.parentElement;
+    for (let depth=0; p && p!==document.body && depth<5; depth++, p=p.parentElement) {
+      if (p.textContent.length>400) break;
+      const t=(p.innerText||'').replace(/\s+/g,' ').trim();
+      if (t && t!==own && t.length>own.length) return t.slice(0,80);
+    }
+    const ids=(e.getAttribute('aria-describedby')||'').split(/\s+/).filter(Boolean);
+    return ids.map(id=>document.getElementById(id)?.innerText||'').join(' ').replace(/\s+/g,' ').trim().slice(0,80);
+  };
   const roles=['button','link','checkbox','radio','switch','tab','menuitem','menuitemradio',
     'option','gridcell','combobox','textbox','searchbox','spinbutton'];
   const selector='a[href],button,input,textarea,select,summary,[contenteditable="true"],'+
@@ -58,8 +69,11 @@
     const r=e.getBoundingClientRect(), x=r.x+r.width/2, y=r.y+r.height/2, rname=role(e);
     if (!rname || r.width<=0 || r.height<=0 || x<0 || y<0 || x>=innerWidth || y>=innerHeight) continue;
     if (rname==='gridcell' && e.querySelector('button,[role="button"]')) continue;
-    const base={node:identity(e),role:rname,label:name(e)||rname,
+    const own=name(e);
+    const base={node:identity(e),role:rname,label:own||rname,
       rect:{x:r.x,y:r.y,w:r.width,h:r.height}};
+    const ctx=context(e,own);
+    if (ctx) base.context=ctx;
     for (const key of ['checked','selected','expanded']) {
       const value=e.getAttribute('aria-'+key);
       if (value!==null) base[key]=value;
@@ -75,7 +89,14 @@
           (rname==='combobox' && ['INPUT','TEXTAREA'].includes(e.tagName)));
       const value='value' in e ? String(e.value) :
         e.isContentEditable || rname==='combobox' ? e.innerText.trim() : '';
-      actions.push({...base,kind:editable?'fill':'click',value});
+      const flags={};
+      if (editable) {
+        flags.empty=String(value.trim()==='');
+        if (e.required || e.getAttribute('aria-required')==='true') flags.required='true';
+        const placeholder=e.getAttribute('placeholder');
+        if (placeholder) flags.placeholder=placeholder.slice(0,60);
+      }
+      actions.push({...base,...flags,kind:editable?'fill':'click',value});
       if (editable) actions.push({...base,kind:'click',value,label:'Open '+base.label});
     }
   }
@@ -93,7 +114,7 @@
   const page_key=cache.pageKey(), guards={};
   for (const a of actions) if (!(a.node in guards)) guards[a.node]=cache.guard(cache.nodes.get(a.node));
   // Compare meaning and identity. Geometry is always resolved and hit-tested just before input.
-  const semantics=actions.map(({rect,...action})=>action);
+  const semantics=actions.map(({rect,context,...action})=>action);  // context is nearby text; not identity
   const marker=[performance.timeOrigin,location.href,scrollX,scrollY,innerWidth,innerHeight,
     document.title,text,semantics,page_key[6]];
   const omitted_actions=Math.max(0,actions.length-250);
