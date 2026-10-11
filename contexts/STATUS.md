@@ -5,9 +5,10 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: IDLE, Codex task 16.** The system workflow passed in 29.90 seconds. Recovery did not run. The first native comparison had two overlapping attempts and remains invalid for timing. Thomas then authorized one new sequential attempt with the coordination chat as sole launcher. It passed in 33.05 seconds. Evidence: `results/native-desktop-sequential.json`. This is one product comparison, not a general speed or cost result.
-> Task 16 retains the runtime reservation through evidence delivery. All benchmark work ended. All owned benchmark tabs closed. Cleanup is separate from measurement. No further run is authorized.
-> The next owner is Codex, **Improve zero-browser benchmarking**. Claude must not start browser runs, replay, cache probes, or model loads.
+> **Current run state: IDLE, prepared handoff to the root coordination chat, Define agent success targets.** Thomas authorized one visible Google Flights attempt through the existing guarded general local Qwen runner. The root chat is the sole launcher after it acknowledges this handoff. Task16 must not start a browser or model.
+> The one-off goal is round-trip SFO to JFK, November 12–16, 2026, one adult, Economy. Limits: 90-second worker deadline and 20 decisions. Stop before flight selection, booking, payment, login, human verification, or uncertain execution.
+> The prepared ignored launcher uses unchanged runtime source from `0323fae`. It preserves the single-run lock, memory guard, visible isolated browser, cancellation, and durable events. The compactor confirmed idle and holds all work until root END.
+> This exception permits one attempt. It does not establish the old full-flight milestone prerequisites or extend the demonstrated bounded coordinator path. The legacy one-way outcome test does not assess the complete round-trip request. Assess saved observations independently. No replacement is authorized.
 >
 > **Current scope:** task 16, with supporting notes in task 13. Tasks 18–22 remain cut from the active plan.
 > This context update does not reopen task 19. Do not create new task numbers.

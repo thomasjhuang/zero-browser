@@ -2,7 +2,7 @@
 
 Priority P0. Owner Codex milestone chat.
 
-Current scope: bounded delegation and one-action recovery are implemented. The authorized additional workflow attempt passed. Recovery did not run in that attempt, so its live effectiveness remains unproven. The earlier failed result is unchanged. Runtime is idle, and no further trial is authorized. One sequential native comparison is recorded. General reliability, efficiency, and the original flight milestone remain unresolved. Latest Result entries and STATUS govern current work.
+Current scope: prepare one separately authorized visible Google Flights attempt through the existing guarded general local Qwen runner. Root coordination is the sole launcher after acknowledgment. Task16 prepares evidence and assesses saved observations. No repository runtime implementation changed. The previous measured results remain intact. This is not the demonstrated bounded coordinator path or proof of full-flight readiness.
 
 ## Why
 
@@ -432,3 +432,26 @@ The successful system reference took 29,904.535 ms and used 133,272 coordinator 
 The recommendation is to demonstrate the current Wikipedia workflow with its observed route and source evidence. Present feasibility, not general speed or live recovery effectiveness. No further experiment or implementation is included. No new user responsiveness observation is needed.
 
 All three native benchmark tabs closed after their measured verdicts. The sequential close operation took 1,668.3 ms, outside benchmark timing. Its cleanup turn used 238,427 tokens, recorded separately. Lint and 159 tests passed in 4.65 seconds. Earlier system evidence remains unchanged. Public evidence passed the private-path and credential scan.
+
+
+### One-off Google Flights demo handoff
+
+Thomas authorized one visible live attempt through the existing local system. The request is round-trip SFO to JFK, November 12–16, 2026, one adult, Economy. This explicit one-off authorization replaces the old local-readiness sequence for this attempt only. No local-flight success claim follows. Sol comparison is deferred.
+
+Task16 prepared ignored `artifacts/flights-demo-once/launch.py`, `request.json`, and `prepared.json`. The launcher calls the existing milestone worker under cancellation, single-run, isolated-browser, memory, and external-deadline guards. It does not change the policy, browser, model, or executor. The limit is 90 seconds for the worker and 20 decisions. Existing browser startup can add up to 20 seconds. Cleanup is separate. An exclusive attempt marker prevents a second launch, including after a failure or interruption.
+
+Only the root coordination chat, Define agent success targets, can execute this command after acknowledging the idle handoff:
+
+```sh
+ZB_RECORD_PATH=artifacts/replay/flights-demo-once.jsonl uv run --offline --frozen --extra local python artifacts/flights-demo-once/launch.py > artifacts/flights-demo-once/console.log 2>&1
+```
+
+Frozen runtime source is `0323faea501b5128e815ed4d32b39746e76cfb02`. Launcher SHA-256: `ac24db89b214141606e8492680fde067645404d8f45cb21e143fbdd0ace1c71a`. Request SHA-256: `9bcf9d2294a1bc105c9c6245e349ae418ff2e51050820558fbb7305370676430`. The prepared record contains each runtime source hash. The launcher compares them before any browser startup and after cleanup. Conditions also record the actual launch commit. No measured runtime file can change until END.
+
+The legacy one-way verifier remains unchanged and is explicitly NOT_APPLICABLE to the complete round-trip outcome. Preserve its raw result. Independently assess saved observations for round-trip mode, exact SFO/JFK airports, both dates and year, one adult, Economy, and visible results. Report up to three observed options with currency, price basis, carrier, times, and stops. Mark missing facts unavailable. Do not infer a booking quote or success from DONE.
+
+The runner stops for human verification, forbidden search actions, uncertain execution, repeated stale decisions, memory pressure, or exhausted budgets. The first event failure and any unresolved mutation remain in the saved records. Runtime summaries separate full elapsed time, browser startup, worker/supervisor duration, and browser cleanup. The worker interval includes its process cleanup. No replacement run is authorized.
+
+Preparation syntax passed without importing the model or browser. The compactor confirmed idle. Task16 remains idle and transfers only the single execution slot to root upon acknowledgment. Source editing remains frozen.
+
+Handoff delivery checks passed: lint and 159 tests in 4.72 seconds. Only the existing task and status records are committed. Launcher, request, and private records remain ignored. No demo started during preparation.
