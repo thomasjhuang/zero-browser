@@ -1,6 +1,8 @@
 # 16 Flight demonstration milestone
 
-Priority P0. Owner Codex milestone chat. First stage: model-free preparation.
+Priority P0. Owner Codex milestone chat.
+
+Current scope: the bounded-worker proof and authorized shared-interface coordinator comparison are delivered. Runtime is idle. Native desktop CUA comparison, multi-step efficiency, and the original flight milestone remain open. The original plan below is historical; the latest Result entries and STATUS banner control current work. The browser worker remains local. The comparison used explicitly authorized Codex CLI coordinators through the existing login, with no hosted model client added to the repository.
 
 ## Why
 
@@ -294,7 +296,7 @@ New frozen runner hash: 848807b1c1a5ec4fa394457c098685c89c066ba773e1632c6fcbe5b5
 
 
 Series 2 at c769e6b stopped through the supervisor cancellation handler after the context coordinator requested a review hold. Evidence remains unchanged in results/paired-browser-five-pairs-v2.json.
-Two direct attempts failed on StalePage before browser mutation. The direct wrapper marked that pre-execution rejection uncertain; the local worker could observe again internally. This recovery difference invalidates a fair completion-rate comparison. Two delegated attempts passed. The fifth attempt was interrupted during the stop and recorded an operation-permitted error; its exact cause is not yet established. Five later trials are explicitly not run.
+Two direct attempts failed on StalePage before browser mutation. The direct wrapper marked that pre-execution rejection uncertain; the local worker could observe again internally. This recovery difference invalidates a fair completion-rate comparison. Two delegated attempts passed. The fifth attempt was interrupted during the stop and recorded an operation-not-permitted error; its exact cause is not yet established. Five later trials are explicitly not run.
 The accounting records reconcile for completed turns. Runtime source hashes remained unchanged through each attempted trial. No efficiency claim follows from this incomplete unequal-recovery series.
 The task is holding runtime source unchanged while the comparison reviewer checks the recovery contract. The run slot is idle.
 
@@ -302,3 +304,23 @@ The task is holding runtime source unchanged while the comparison reviewer check
 The independent comparison review confirmed the StalePage asymmetry. The direct wrapper now removes its pending mutation only for a known rejection before input, records that rejection, and permits a fresh observation and decision. Both paths stop after three rejected decisions. Other exceptions remain uncertain and cannot be replayed.
 A small deterministic regression test distinguishes StalePage from a connection failure after possible dispatch. A process check found no owned coordinator, MCP, or isolated-browser processes left after cancellation.
 The runner now accepts `--stop-file artifacts/paired-series-v3.stop` to stop after an active trial without interrupting it. The next frozen series uses `results/paired-browser-five-pairs-v3.json` and the same ten-trial order. Prior series remain unchanged and invalid for an efficiency comparison.
+
+
+### Controlled comparison result
+
+Frozen runtime commit: `9d506df820b9c579c7b7f559da51803a5a3debe8`. All ten planned trials completed with independently correct field values and unchanged URLs: direct 5/5, delegated 5/5. Every trial kept measured source unchanged. Per-response usage IDs are unique and reconcile with turn totals.
+Evidence: `results/paired-browser-five-pairs-v3.json` and `results/paired-browser-comparison.json`. Earlier failed/incomplete series remain separate and unchanged.
+One measurement error is disclosed: a 3.7-second GitNexus index refresh overlapped pair 4's direct trial and ended at 21:43:05 UTC. Pair 4 remains in the table but is excluded from primary timing conclusions. Automatic approval review rejected a proposed supplemental pair as beyond the authorized five-pair scope. No supplemental run occurred.
+Across the four pairs without that known overlap, median delegated-minus-direct cold-start-to-verdict time was -2,061.30 ms, range -2,776.34 to -404.14 ms. The coordinator-dispatch-only median difference was -2,032.94 ms. Cleanup is separate.
+The median coordinator total-token difference for those four pairs was -42,637.5 tokens, including cached input. Median uncached-input difference was -4,951 tokens. All-five descriptive medians were -1,904.54 ms and -43,063 total coordinator tokens. These are token accounting, not dollar billing.
+Direct trials needed seven coordinator responses each, including recovery from one known pre-input page change. Delegated trials needed five coordinator responses and one local Qwen call each. The shared guarded executor and live-page changes explain the extra exchanges; this is not a native desktop CUA benchmark.
+The median measured local wrapper was 4,168.03 ms. Per-component medians: imports 828.86 ms, model acquisition 1,291.69 ms, prompt preparation 10.22 ms, generation 2,152 ms, result handling 0.50 ms. Component medians need not sum to the median total. No speed optimization was applied.
+The maximum sampled MCP worker footprint was 3,411,528,464 bytes for delegation and 63,865,360 bytes for direct execution. Browser and coordinator-client memory are excluded from those peaks.
+This is exploratory evidence for one supplied-value field task. It does not prove multi-step workflow efficiency, native browser-tool superiority, general reliability, or that Qwen is needed instead of a deterministic helper. Provider cache state, OS file caching, live content, and network timing were uncontrolled and are disclosed.
+No new responsiveness observation is required. The run slot is idle. A deterministic-helper comparison and a meaningful multi-step task remain the next product decisions.
+
+Independent read-only audits passed accounting and outcomes: 60 unique response IDs across ten sessions, exact usage reconciliation, all 36 source hashes unchanged, all initial fields empty, and sequential starts after prior cleanup. The reviewers confirmed that pair 4, not pair 2, contains the indexing overlap.
+All-five coordinator totals: direct 609,188 tokens versus delegated 395,227 (35.12% fewer). Uncached input: 105,781 versus 78,236; cached input: 502,400 versus 316,288; output: 1,007 versus 703. Qwen added 4,954 prompt tokens and 130 retokenized response tokens, recorded separately. These counts do not establish dollar charges.
+The four-pair timing subset has direct/delegated coordinator totals of 485,027 and 317,883. The full summary includes all per-run splits and signed paired differences, including the flagged original pair.
+
+Final delivery checks: lint passed and 135 tests passed in 4.55 seconds. GitNexus impact/context and final comparison analysis covered the changed decision and benchmark flows. The index has truncated flows and an unresolved cross-language link; it is supplementary evidence. Published records passed the private-path and credential scan.

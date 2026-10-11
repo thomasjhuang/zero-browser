@@ -1,0 +1,2124 @@
+{
+  "goal": "On the starting Wikipedia page, enter Ada Lovelace in Search Wikipedia. Stop before submission.",
+  "order": [
+    "direct",
+    "delegated",
+    "delegated",
+    "direct",
+    "direct",
+    "delegated",
+    "delegated",
+    "direct",
+    "direct",
+    "delegated"
+  ],
+  "model": "gpt-6-astra",
+  "reasoning_effort": "high",
+  "instructions_sha256": "7c2c3df44925623a8c9c9f226593b5c5934ca0bde322f8a1bf20da501f1e98bc",
+  "source_sha256": {
+    "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+    "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+    "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+    "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+    "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+    "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+    "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+    "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+    "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+    "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+    "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+    "scripts/paired_browser_benchmark.py": "c1f3a020c89a633729642deb5451c9c5e61f8aaa32dcc6f7a6d90a143e58876a",
+    "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+    "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+    "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+    "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+    "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+    "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+    "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+    "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+    "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+    "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+    "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+    "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+    "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+    "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+    "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+    "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+    "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+    "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+    "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+    "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+    "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+    "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+    "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+    "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+  },
+  "revision": "9d506df820b9c579c7b7f559da51803a5a3debe8",
+  "scope": "Direct Codex versus local delegation over a shared observed-action MCP interface. Not the desktop native CUA tool stack. One real-site field task.",
+  "conditions": {
+    "browser": "fresh isolated Chrome, 1120x780, visible",
+    "coordinator": "fresh session, identical tools and instructions; mode differs",
+    "local_model": "fresh process per trial; no cache or weight download",
+    "tool_documentation": "Same schemas in both arms disclose both path behaviors",
+    "prompt_cache": "Provider caching is not controlled; report actual cached-input counters",
+    "timer": "Cold browser startup and coordinator dispatch through final verdict receipt",
+    "memory": "Sampled MCP browser/model process; excludes Chrome and coordinator client"
+  },
+  "runs": [
+    {
+      "run": "1-direct",
+      "method": "direct",
+      "error": null,
+      "exit_code": 0,
+      "passed": true,
+      "assessment": {
+        "passed": true,
+        "checks": {
+          "unique_field": true,
+          "exact_value": true,
+          "url_unchanged": true,
+          "execution_resolved": true
+        },
+        "observed": {
+          "value": "Ada Lovelace",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "url": "https://www.wikipedia.org/"
+      },
+      "verdict": "Verified: \u201cAda Lovelace\u201d is in Search Wikipedia. No submission; URL unchanged.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1647015898639916,
+      "verdict_received_monotonic_ns": 1647036040391583,
+      "pre_coordinator_startup_ms": 275.264209,
+      "coordinator_dispatch_to_verdict_ms": 19866.487458,
+      "goal_dispatch_to_verdict_ms": 20141.751667,
+      "cleanup_ms": 1232.156,
+      "runtime": {
+        "peak_worker_bytes": 63619600,
+        "memory_samples": 199,
+        "worker_stopped_ms": 20714
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 122372,
+          "cached_input_tokens": 104320,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 190,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_031c618c40a21dc4016acc0255b4b0819b811aa36f2d381e0d",
+          "turn_id": "01a12ce9-1897-75b0-a41d-afbc45b15474",
+          "timestamp": "2026-10-11T21:40:40.263Z",
+          "usage": {
+            "input_tokens": 12886,
+            "cached_input_tokens": 3456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 30,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 12916
+          }
+        },
+        {
+          "response_id": "resp_031c618c40a21dc4016acc025899f0819bbeec5e57be1f55c3",
+          "turn_id": "01a12ce9-1897-75b0-a41d-afbc45b15474",
+          "timestamp": "2026-10-11T21:40:43.265Z",
+          "usage": {
+            "input_tokens": 13302,
+            "cached_input_tokens": 12672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13324
+          }
+        },
+        {
+          "response_id": "resp_031c618c40a21dc4016acc025c0528819b93b8b7ad05f8bdb3",
+          "turn_id": "01a12ce9-1897-75b0-a41d-afbc45b15474",
+          "timestamp": "2026-10-11T21:40:47.050Z",
+          "usage": {
+            "input_tokens": 17285,
+            "cached_input_tokens": 13184,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 35,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17320
+          }
+        },
+        {
+          "response_id": "resp_031c618c40a21dc4016acc025f8440819b97fa5baa842162f9",
+          "turn_id": "01a12ce9-1897-75b0-a41d-afbc45b15474",
+          "timestamp": "2026-10-11T21:40:49.683Z",
+          "usage": {
+            "input_tokens": 17397,
+            "cached_input_tokens": 17152,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17419
+          }
+        },
+        {
+          "response_id": "resp_031c618c40a21dc4016acc0262111c819bbadd78f43129ca84",
+          "turn_id": "01a12ce9-1897-75b0-a41d-afbc45b15474",
+          "timestamp": "2026-10-11T21:40:51.538Z",
+          "usage": {
+            "input_tokens": 20375,
+            "cached_input_tokens": 17280,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 35,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 20410
+          }
+        },
+        {
+          "response_id": "resp_031c618c40a21dc4016acc0263f68c819ba1cf1e94bef9cbff",
+          "turn_id": "01a12ce9-1897-75b0-a41d-afbc45b15474",
+          "timestamp": "2026-10-11T21:40:53.346Z",
+          "usage": {
+            "input_tokens": 20476,
+            "cached_input_tokens": 20224,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 20499
+          }
+        },
+        {
+          "response_id": "resp_031c618c40a21dc4016acc02661b8c819bb1a171368d6c53ce",
+          "turn_id": "01a12ce9-1897-75b0-a41d-afbc45b15474",
+          "timestamp": "2026-10-11T21:40:55.679Z",
+          "usage": {
+            "input_tokens": 20651,
+            "cached_input_tokens": 20352,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 20674
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 122372,
+        "cached_input_tokens": 104320,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 190,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 122562
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [],
+      "tools": [
+        "observe",
+        "act",
+        "observe",
+        "act",
+        "assess"
+      ],
+      "private_events_sha256": "1108de42231b9116a651f83f716e840d71264fe5fe3f67758a99495ec9ba2c80",
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "c1f3a020c89a633729642deb5451c9c5e61f8aaa32dcc6f7a6d90a143e58876a",
+        "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    },
+    {
+      "run": "2-delegated",
+      "method": "delegated",
+      "error": null,
+      "exit_code": 0,
+      "passed": true,
+      "assessment": {
+        "passed": true,
+        "checks": {
+          "unique_field": true,
+          "exact_value": true,
+          "url_unchanged": true,
+          "execution_resolved": true
+        },
+        "observed": {
+          "value": "Ada Lovelace",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "url": "https://www.wikipedia.org/"
+      },
+      "verdict": "Verified: Search Wikipedia contains \u201cAda Lovelace\u201d. The URL is unchanged. No search was submitted.\n\nASD-STE100 guidance was unavailable.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1647037278785625,
+      "verdict_received_monotonic_ns": 1647055202481916,
+      "pre_coordinator_startup_ms": 217.171791,
+      "coordinator_dispatch_to_verdict_ms": 17706.5245,
+      "goal_dispatch_to_verdict_ms": 17923.696291,
+      "cleanup_ms": 1349.9755,
+      "runtime": {
+        "peak_worker_bytes": 3410873104,
+        "memory_samples": 178,
+        "worker_stopped_ms": 18669
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 78594,
+          "cached_input_tokens": 63744,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 142,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_0d938a8f39c68fd5016acc026ab78487d0bd6916272e8d05c9",
+          "turn_id": "01a12ce9-6bb3-7b91-a539-16f6f7cc0867",
+          "timestamp": "2026-10-11T21:41:00.713Z",
+          "usage": {
+            "input_tokens": 12884,
+            "cached_input_tokens": 3456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 29,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 12913
+          }
+        },
+        {
+          "response_id": "resp_0d938a8f39c68fd5016acc026cfca487d08571378cc7a63548",
+          "turn_id": "01a12ce9-6bb3-7b91-a539-16f6f7cc0867",
+          "timestamp": "2026-10-11T21:41:02.697Z",
+          "usage": {
+            "input_tokens": 13299,
+            "cached_input_tokens": 12672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13321
+          }
+        },
+        {
+          "response_id": "resp_0d938a8f39c68fd5016acc026f57bc87d084bc97c80837d688",
+          "turn_id": "01a12ce9-6bb3-7b91-a539-16f6f7cc0867",
+          "timestamp": "2026-10-11T21:41:05.805Z",
+          "usage": {
+            "input_tokens": 17278,
+            "cached_input_tokens": 13184,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 34,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17312
+          }
+        },
+        {
+          "response_id": "resp_0d938a8f39c68fd5016acc02764a1087d0800277e6d289df10",
+          "turn_id": "01a12ce9-6bb3-7b91-a539-16f6f7cc0867",
+          "timestamp": "2026-10-11T21:41:11.641Z",
+          "usage": {
+            "input_tokens": 17479,
+            "cached_input_tokens": 17152,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17502
+          }
+        },
+        {
+          "response_id": "resp_0d938a8f39c68fd5016acc0277efa087d08d331c3d46b56f76",
+          "turn_id": "01a12ce9-6bb3-7b91-a539-16f6f7cc0867",
+          "timestamp": "2026-10-11T21:41:14.806Z",
+          "usage": {
+            "input_tokens": 17654,
+            "cached_input_tokens": 17280,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 34,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17688
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 78594,
+        "cached_input_tokens": 63744,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 142,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 78736
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 12283,
+          "monotonic_ns": 1647050313760916,
+          "wrapper_ms": 4168.026333,
+          "timing": {
+            "imports_ms": 618.813,
+            "model_acquisition_ms": 1424.602,
+            "prompt_preparation_ms": 10.215,
+            "generation_ms": 2114,
+            "structured_call_total_ms": 4167.908,
+            "result_handling_ms": 0.278
+          },
+          "usage": {
+            "prompt_tokens": 1008,
+            "completion_tokens": 26
+          }
+        }
+      ],
+      "tools": [
+        "observe",
+        "delegate",
+        "assess"
+      ],
+      "private_events_sha256": "c834ea62fd216371b25b8151b9ef09ba649b9d1fd8a2f96e15c44f0073a0299e",
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "c1f3a020c89a633729642deb5451c9c5e61f8aaa32dcc6f7a6d90a143e58876a",
+        "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    },
+    {
+      "run": "3-delegated",
+      "method": "delegated",
+      "error": null,
+      "exit_code": 0,
+      "passed": true,
+      "assessment": {
+        "passed": true,
+        "checks": {
+          "unique_field": true,
+          "exact_value": true,
+          "url_unchanged": true,
+          "execution_resolved": true
+        },
+        "observed": {
+          "value": "Ada Lovelace",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "url": "https://www.wikipedia.org/"
+      },
+      "verdict": "Verified: \u201cSearch Wikipedia\u201d contains \u201cAda Lovelace\u201d. The URL is unchanged. Nothing was submitted.\n\nASD-STE100 guidance was unavailable.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1647056564748125,
+      "verdict_received_monotonic_ns": 1647071688534458,
+      "pre_coordinator_startup_ms": 272.666,
+      "coordinator_dispatch_to_verdict_ms": 14851.120333,
+      "goal_dispatch_to_verdict_ms": 15123.786333,
+      "cleanup_ms": 1461.134708,
+      "runtime": {
+        "peak_worker_bytes": 3411528464,
+        "memory_samples": 153,
+        "worker_stopped_ms": 15936
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 79512,
+          "cached_input_tokens": 64384,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 144,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_0d06eb77f022de13016acc027e86f48198a93fcce214e1bcf0",
+          "turn_id": "01a12ce9-b870-7822-b938-40dc4e77f4f8",
+          "timestamp": "2026-10-11T21:41:20.104Z",
+          "usage": {
+            "input_tokens": 12888,
+            "cached_input_tokens": 3456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 30,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 12918
+          }
+        },
+        {
+          "response_id": "resp_0d06eb77f022de13016acc028094d88198975a4e044276b5b7",
+          "turn_id": "01a12ce9-b870-7822-b938-40dc4e77f4f8",
+          "timestamp": "2026-10-11T21:41:21.641Z",
+          "usage": {
+            "input_tokens": 13304,
+            "cached_input_tokens": 12672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13326
+          }
+        },
+        {
+          "response_id": "resp_0d06eb77f022de13016acc028238648198896eec36af798e1c",
+          "turn_id": "01a12ce9-b870-7822-b938-40dc4e77f4f8",
+          "timestamp": "2026-10-11T21:41:23.683Z",
+          "usage": {
+            "input_tokens": 17581,
+            "cached_input_tokens": 13184,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 34,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17615
+          }
+        },
+        {
+          "response_id": "resp_0d06eb77f022de13016acc02881e2c8198b00ab15a7e76098e",
+          "turn_id": "01a12ce9-b870-7822-b938-40dc4e77f4f8",
+          "timestamp": "2026-10-11T21:41:29.152Z",
+          "usage": {
+            "input_tokens": 17782,
+            "cached_input_tokens": 17408,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17805
+          }
+        },
+        {
+          "response_id": "resp_0d06eb77f022de13016acc02896e048198bbdeadf3486c2829",
+          "turn_id": "01a12ce9-b870-7822-b938-40dc4e77f4f8",
+          "timestamp": "2026-10-11T21:41:31.323Z",
+          "usage": {
+            "input_tokens": 17957,
+            "cached_input_tokens": 17664,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 35,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17992
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 79512,
+        "cached_input_tokens": 64384,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 144,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 79656
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 10336,
+          "monotonic_ns": 1647068072292375,
+          "wrapper_ms": 4001.628834,
+          "timing": {
+            "imports_ms": 871.888,
+            "model_acquisition_ms": 967.863,
+            "prompt_preparation_ms": 8.875,
+            "generation_ms": 2152,
+            "structured_call_total_ms": 4001.481,
+            "result_handling_ms": 0.855
+          },
+          "usage": {
+            "prompt_tokens": 1008,
+            "completion_tokens": 26
+          }
+        }
+      ],
+      "tools": [
+        "observe",
+        "delegate",
+        "assess"
+      ],
+      "private_events_sha256": "bcf06c4c1eb2b2981ab25af420e1b43129476b2f44bc9d63c2c2634720c00d64",
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "c1f3a020c89a633729642deb5451c9c5e61f8aaa32dcc6f7a6d90a143e58876a",
+        "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    },
+    {
+      "run": "4-direct",
+      "method": "direct",
+      "error": null,
+      "exit_code": 0,
+      "passed": true,
+      "assessment": {
+        "passed": true,
+        "checks": {
+          "unique_field": true,
+          "exact_value": true,
+          "url_unchanged": true,
+          "execution_resolved": true
+        },
+        "observed": {
+          "value": "Ada Lovelace",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "url": "https://www.wikipedia.org/"
+      },
+      "verdict": "Verified: Search Wikipedia contains \u201cAda Lovelace\u201d. The URL is unchanged. Nothing was submitted.\n\nASD-STE100 guidance was unavailable.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1647073160094958,
+      "verdict_received_monotonic_ns": 1647091060223541,
+      "pre_coordinator_startup_ms": 172.673417,
+      "coordinator_dispatch_to_verdict_ms": 17727.455166,
+      "goal_dispatch_to_verdict_ms": 17900.128583,
+      "cleanup_ms": 1530.812959,
+      "runtime": {
+        "peak_worker_bytes": 62964240,
+        "memory_samples": 181,
+        "worker_stopped_ms": 18875
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 121668,
+          "cached_input_tokens": 99840,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 200,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_0831c2b9290048ab016acc028f1fb881989e828c12dd097399",
+          "turn_id": "01a12ce9-f8a4-75c3-b704-81341bbcd872",
+          "timestamp": "2026-10-11T21:41:36.760Z",
+          "usage": {
+            "input_tokens": 12886,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 30,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 12916
+          }
+        },
+        {
+          "response_id": "resp_0831c2b9290048ab016acc029107c88198b427875dea70a85d",
+          "turn_id": "01a12ce9-f8a4-75c3-b704-81341bbcd872",
+          "timestamp": "2026-10-11T21:41:38.381Z",
+          "usage": {
+            "input_tokens": 13302,
+            "cached_input_tokens": 12672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13324
+          }
+        },
+        {
+          "response_id": "resp_0831c2b9290048ab016acc02937914819899a16a8200518867",
+          "turn_id": "01a12ce9-f8a4-75c3-b704-81341bbcd872",
+          "timestamp": "2026-10-11T21:41:40.902Z",
+          "usage": {
+            "input_tokens": 16810,
+            "cached_input_tokens": 13184,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 35,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 16845
+          }
+        },
+        {
+          "response_id": "resp_0831c2b9290048ab016acc0295695481989630a93a44e1864a",
+          "turn_id": "01a12ce9-f8a4-75c3-b704-81341bbcd872",
+          "timestamp": "2026-10-11T21:41:43.327Z",
+          "usage": {
+            "input_tokens": 16922,
+            "cached_input_tokens": 16640,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 16944
+          }
+        },
+        {
+          "response_id": "resp_0831c2b9290048ab016acc0297b4b08198a99aa0f2cd1d223a",
+          "turn_id": "01a12ce9-f8a4-75c3-b704-81341bbcd872",
+          "timestamp": "2026-10-11T21:41:45.831Z",
+          "usage": {
+            "input_tokens": 20457,
+            "cached_input_tokens": 16768,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 35,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 20492
+          }
+        },
+        {
+          "response_id": "resp_0831c2b9290048ab016acc029a1e448198b283631133de5a0f",
+          "turn_id": "01a12ce9-f8a4-75c3-b704-81341bbcd872",
+          "timestamp": "2026-10-11T21:41:48.056Z",
+          "usage": {
+            "input_tokens": 20558,
+            "cached_input_tokens": 20224,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 20581
+          }
+        },
+        {
+          "response_id": "resp_0831c2b9290048ab016acc029c77b48198a984222de3167208",
+          "turn_id": "01a12ce9-f8a4-75c3-b704-81341bbcd872",
+          "timestamp": "2026-10-11T21:41:50.723Z",
+          "usage": {
+            "input_tokens": 20733,
+            "cached_input_tokens": 20352,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 33,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 20766
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 121668,
+        "cached_input_tokens": 99840,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 200,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 121868
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [],
+      "tools": [
+        "observe",
+        "act",
+        "observe",
+        "act",
+        "assess"
+      ],
+      "private_events_sha256": "11c0402407c7525400b64a0918223d4c3b033d52352f8d2e01edc42ceec33148",
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "c1f3a020c89a633729642deb5451c9c5e61f8aaa32dcc6f7a6d90a143e58876a",
+        "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    },
+    {
+      "run": "5-direct",
+      "method": "direct",
+      "error": null,
+      "exit_code": 0,
+      "passed": true,
+      "assessment": {
+        "passed": true,
+        "checks": {
+          "unique_field": true,
+          "exact_value": true,
+          "url_unchanged": true,
+          "execution_resolved": true
+        },
+        "observed": {
+          "value": "Ada Lovelace",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "url": "https://www.wikipedia.org/"
+      },
+      "verdict": "Verified: Search Wikipedia contains \u201cAda Lovelace\u201d. The URL is unchanged. Nothing was submitted.\n\nASD-STE100 guidance was unavailable.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1647092597207041,
+      "verdict_received_monotonic_ns": 1647111583144916,
+      "pre_coordinator_startup_ms": 167.990875,
+      "coordinator_dispatch_to_verdict_ms": 18817.947,
+      "goal_dispatch_to_verdict_ms": 18985.937875,
+      "cleanup_ms": 1237.920709,
+      "runtime": {
+        "peak_worker_bytes": 63668752,
+        "memory_samples": 189,
+        "worker_stopped_ms": 19658
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 117612,
+          "cached_input_tokens": 80768,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 195,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_0edab6514ee725aa016acc02a29050819abee92d9ca9fed046",
+          "turn_id": "01a12cea-43d5-7473-8de6-600b71d28876",
+          "timestamp": "2026-10-11T21:41:57.073Z",
+          "usage": {
+            "input_tokens": 12886,
+            "cached_input_tokens": 3456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 25,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 12911
+          }
+        },
+        {
+          "response_id": "resp_0edab6514ee725aa016acc02a55898819ab22ee82c290f8f02",
+          "turn_id": "01a12cea-43d5-7473-8de6-600b71d28876",
+          "timestamp": "2026-10-11T21:41:58.570Z",
+          "usage": {
+            "input_tokens": 13297,
+            "cached_input_tokens": 12672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13319
+          }
+        },
+        {
+          "response_id": "resp_0edab6514ee725aa016acc02a76038819a98b7d7fc51bfb308",
+          "turn_id": "01a12cea-43d5-7473-8de6-600b71d28876",
+          "timestamp": "2026-10-11T21:42:01.155Z",
+          "usage": {
+            "input_tokens": 16334,
+            "cached_input_tokens": 13056,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 35,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 16369
+          }
+        },
+        {
+          "response_id": "resp_0edab6514ee725aa016acc02a95f98819aa4425a82be4611e3",
+          "turn_id": "01a12cea-43d5-7473-8de6-600b71d28876",
+          "timestamp": "2026-10-11T21:42:02.521Z",
+          "usage": {
+            "input_tokens": 16446,
+            "cached_input_tokens": 16128,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 16468
+          }
+        },
+        {
+          "response_id": "resp_0edab6514ee725aa016acc02aad12c819a8f2057e63294407d",
+          "turn_id": "01a12cea-43d5-7473-8de6-600b71d28876",
+          "timestamp": "2026-10-11T21:42:04.335Z",
+          "usage": {
+            "input_tokens": 19424,
+            "cached_input_tokens": 16256,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 35,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 19459
+          }
+        },
+        {
+          "response_id": "resp_0edab6514ee725aa016acc02acb978819aac0776bd0fd44ddd",
+          "turn_id": "01a12cea-43d5-7473-8de6-600b71d28876",
+          "timestamp": "2026-10-11T21:42:08.518Z",
+          "usage": {
+            "input_tokens": 19525,
+            "cached_input_tokens": 19200,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 19548
+          }
+        },
+        {
+          "response_id": "resp_0edab6514ee725aa016acc02b0f810819aac4a4797a5c5faa7",
+          "turn_id": "01a12cea-43d5-7473-8de6-600b71d28876",
+          "timestamp": "2026-10-11T21:42:11.222Z",
+          "usage": {
+            "input_tokens": 19700,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 33,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 19733
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 117612,
+        "cached_input_tokens": 80768,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 195,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 117807
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [],
+      "tools": [
+        "observe",
+        "act",
+        "observe",
+        "act",
+        "assess"
+      ],
+      "private_events_sha256": "cf919424afb57cae429abd544971e51c1e19f726db727f53ee8680a28ac1817e",
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "c1f3a020c89a633729642deb5451c9c5e61f8aaa32dcc6f7a6d90a143e58876a",
+        "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    },
+    {
+      "run": "6-delegated",
+      "method": "delegated",
+      "error": null,
+      "exit_code": 0,
+      "passed": true,
+      "assessment": {
+        "passed": true,
+        "checks": {
+          "unique_field": true,
+          "exact_value": true,
+          "url_unchanged": true,
+          "execution_resolved": true
+        },
+        "observed": {
+          "value": "Ada Lovelace",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "url": "https://www.wikipedia.org/"
+      },
+      "verdict": "Verified: \u201cSearch Wikipedia\u201d contains \u201cAda Lovelace.\u201d The URL is unchanged. No search was submitted.\n\nASD-STE100 guidance was unavailable.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1647112828491416,
+      "verdict_received_monotonic_ns": 1647131410284791,
+      "pre_coordinator_startup_ms": 221.233,
+      "coordinator_dispatch_to_verdict_ms": 18360.560375,
+      "goal_dispatch_to_verdict_ms": 18581.793375,
+      "cleanup_ms": 1126.476834,
+      "runtime": {
+        "peak_worker_bytes": 3362327264,
+        "memory_samples": 183,
+        "worker_stopped_ms": 19068
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 79613,
+          "cached_input_tokens": 60928,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 151,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_02f08efd963a134e016acc02b67ad08199911a2beaa32c8445",
+          "turn_id": "01a12cea-9306-7fc0-8732-f382f380d927",
+          "timestamp": "2026-10-11T21:42:16.334Z",
+          "usage": {
+            "input_tokens": 12890,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 36,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 12926
+          }
+        },
+        {
+          "response_id": "resp_02f08efd963a134e016acc02b88c288199af38d0a6695d9848",
+          "turn_id": "01a12cea-9306-7fc0-8732-f382f380d927",
+          "timestamp": "2026-10-11T21:42:19.589Z",
+          "usage": {
+            "input_tokens": 13313,
+            "cached_input_tokens": 12672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13335
+          }
+        },
+        {
+          "response_id": "resp_02f08efd963a134e016acc02bc5968819991a435b12653da4b",
+          "turn_id": "01a12cea-9306-7fc0-8732-f382f380d927",
+          "timestamp": "2026-10-11T21:42:21.975Z",
+          "usage": {
+            "input_tokens": 17611,
+            "cached_input_tokens": 13184,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 34,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17645
+          }
+        },
+        {
+          "response_id": "resp_02f08efd963a134e016acc02c301d88199a4c0bb076173e8ea",
+          "turn_id": "01a12cea-9306-7fc0-8732-f382f380d927",
+          "timestamp": "2026-10-11T21:42:29.256Z",
+          "usage": {
+            "input_tokens": 17812,
+            "cached_input_tokens": 17408,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17835
+          }
+        },
+        {
+          "response_id": "resp_02f08efd963a134e016acc02c585648199b740ff435fabaebb",
+          "turn_id": "01a12cea-9306-7fc0-8732-f382f380d927",
+          "timestamp": "2026-10-11T21:42:31.049Z",
+          "usage": {
+            "input_tokens": 17987,
+            "cached_input_tokens": 17664,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 36,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 18023
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 79613,
+        "cached_input_tokens": 60928,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 151,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 79764
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 13292,
+          "monotonic_ns": 1647126924261291,
+          "wrapper_ms": 4557.320875,
+          "timing": {
+            "imports_ms": 866.263,
+            "model_acquisition_ms": 1534.481,
+            "prompt_preparation_ms": 11.254,
+            "generation_ms": 2145,
+            "structured_call_total_ms": 4557.21,
+            "result_handling_ms": 0.212
+          },
+          "usage": {
+            "prompt_tokens": 965,
+            "completion_tokens": 26
+          }
+        }
+      ],
+      "tools": [
+        "observe",
+        "delegate",
+        "assess"
+      ],
+      "private_events_sha256": "f8fe1c303c1ba3288a95e25ea716bb25130ac06a43e96b61afa406c066d3f73b",
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "c1f3a020c89a633729642deb5451c9c5e61f8aaa32dcc6f7a6d90a143e58876a",
+        "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    },
+    {
+      "run": "7-delegated",
+      "method": "delegated",
+      "error": null,
+      "exit_code": 0,
+      "passed": true,
+      "assessment": {
+        "passed": true,
+        "checks": {
+          "unique_field": true,
+          "exact_value": true,
+          "url_unchanged": true,
+          "execution_resolved": true
+        },
+        "observed": {
+          "value": "Ada Lovelace",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "url": "https://www.wikipedia.org/"
+      },
+      "verdict": "Verified: Search Wikipedia contains \u201cAda Lovelace.\u201d The URL is unchanged. No submission was made.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1647132551921500,
+      "verdict_received_monotonic_ns": 1647149446103416,
+      "pre_coordinator_startup_ms": 389.064833,
+      "coordinator_dispatch_to_verdict_ms": 16505.117083,
+      "goal_dispatch_to_verdict_ms": 16894.181916,
+      "cleanup_ms": 1078.687125,
+      "runtime": {
+        "peak_worker_bytes": 3361491656,
+        "memory_samples": 166,
+        "worker_stopped_ms": 17217
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 77215,
+          "cached_input_tokens": 62848,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 129,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_05f8ec7c2b9a1580016acc02ca90208199bdc37c7e50973df0",
+          "turn_id": "01a12cea-e198-7a23-9b84-b5f4d313a3e9",
+          "timestamp": "2026-10-11T21:42:36.292Z",
+          "usage": {
+            "input_tokens": 12888,
+            "cached_input_tokens": 3456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 25,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 12913
+          }
+        },
+        {
+          "response_id": "resp_05f8ec7c2b9a1580016acc02cc8a70819992264b089c030b03",
+          "turn_id": "01a12cea-e198-7a23-9b84-b5f4d313a3e9",
+          "timestamp": "2026-10-11T21:42:37.842Z",
+          "usage": {
+            "input_tokens": 13299,
+            "cached_input_tokens": 12672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13321
+          }
+        },
+        {
+          "response_id": "resp_05f8ec7c2b9a1580016acc02ce8c0881999a9b14639248ad6e",
+          "turn_id": "01a12cea-e198-7a23-9b84-b5f4d313a3e9",
+          "timestamp": "2026-10-11T21:42:41.499Z",
+          "usage": {
+            "input_tokens": 16817,
+            "cached_input_tokens": 13184,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 34,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 16851
+          }
+        },
+        {
+          "response_id": "resp_05f8ec7c2b9a1580016acc02d5c4808199a7f350c481f035a8",
+          "turn_id": "01a12cea-e198-7a23-9b84-b5f4d313a3e9",
+          "timestamp": "2026-10-11T21:42:47.305Z",
+          "usage": {
+            "input_tokens": 17018,
+            "cached_input_tokens": 16640,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17041
+          }
+        },
+        {
+          "response_id": "resp_05f8ec7c2b9a1580016acc02d786ac8199a201f43a19259cba",
+          "turn_id": "01a12cea-e198-7a23-9b84-b5f4d313a3e9",
+          "timestamp": "2026-10-11T21:42:49.089Z",
+          "usage": {
+            "input_tokens": 17193,
+            "cached_input_tokens": 16896,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 25,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17218
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 77215,
+        "cached_input_tokens": 62848,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 129,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 77344
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 12098,
+          "monotonic_ns": 1647145911096416,
+          "wrapper_ms": 3999.847333,
+          "timing": {
+            "imports_ms": 781.79,
+            "model_acquisition_ms": 1053.143,
+            "prompt_preparation_ms": 10.175,
+            "generation_ms": 2154,
+            "structured_call_total_ms": 3999.753,
+            "result_handling_ms": 0.645
+          },
+          "usage": {
+            "prompt_tokens": 965,
+            "completion_tokens": 26
+          }
+        }
+      ],
+      "tools": [
+        "observe",
+        "delegate",
+        "assess"
+      ],
+      "private_events_sha256": "140a977d1016ec2bbed2befc495c4a1104b7eae999d39a42c2a6a899fad9a3b8",
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "c1f3a020c89a633729642deb5451c9c5e61f8aaa32dcc6f7a6d90a143e58876a",
+        "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    },
+    {
+      "run": "8-direct",
+      "method": "direct",
+      "error": null,
+      "exit_code": 0,
+      "passed": true,
+      "assessment": {
+        "passed": true,
+        "checks": {
+          "unique_field": true,
+          "exact_value": true,
+          "url_unchanged": true,
+          "execution_resolved": true
+        },
+        "observed": {
+          "value": "Ada Lovelace",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "url": "https://www.wikipedia.org/"
+      },
+      "verdict": "Verified: Search Wikipedia contains \u201cAda Lovelace\u201d. The URL is unchanged. Nothing was submitted.\n\nASD-STE100 guidance was unavailable.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1647150535279208,
+      "verdict_received_monotonic_ns": 1647168635035375,
+      "pre_coordinator_startup_ms": 174.020125,
+      "coordinator_dispatch_to_verdict_ms": 17925.736042,
+      "goal_dispatch_to_verdict_ms": 18099.756167,
+      "cleanup_ms": 1172.179458,
+      "runtime": {
+        "peak_worker_bytes": 63701496,
+        "memory_samples": 180,
+        "worker_stopped_ms": 18714
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 123961,
+          "cached_input_tokens": 113152,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 200,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_03ad0fc7a68d8469016acc02dc5fd887d0bd53af3118dd800f",
+          "turn_id": "01a12ceb-270a-73b0-b062-6864515eae43",
+          "timestamp": "2026-10-11T21:42:54.404Z",
+          "usage": {
+            "input_tokens": 12888,
+            "cached_input_tokens": 11264,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 30,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 12918
+          }
+        },
+        {
+          "response_id": "resp_03ad0fc7a68d8469016acc02deafa087d0a828099bbffebfdd",
+          "turn_id": "01a12ceb-270a-73b0-b062-6864515eae43",
+          "timestamp": "2026-10-11T21:42:56.306Z",
+          "usage": {
+            "input_tokens": 13304,
+            "cached_input_tokens": 12672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13326
+          }
+        },
+        {
+          "response_id": "resp_03ad0fc7a68d8469016acc02e0fdb487d084de49b0ea884ce9",
+          "turn_id": "01a12ceb-270a-73b0-b062-6864515eae43",
+          "timestamp": "2026-10-11T21:42:59.014Z",
+          "usage": {
+            "input_tokens": 17602,
+            "cached_input_tokens": 13184,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 35,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17637
+          }
+        },
+        {
+          "response_id": "resp_03ad0fc7a68d8469016acc02e3488c87d0bd4d0e16b3bdeda9",
+          "turn_id": "01a12ceb-270a-73b0-b062-6864515eae43",
+          "timestamp": "2026-10-11T21:43:01.601Z",
+          "usage": {
+            "input_tokens": 17714,
+            "cached_input_tokens": 17408,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17736
+          }
+        },
+        {
+          "response_id": "resp_03ad0fc7a68d8469016acc02e5e48487d0a21610479ef43a22",
+          "turn_id": "01a12ceb-270a-73b0-b062-6864515eae43",
+          "timestamp": "2026-10-11T21:43:03.642Z",
+          "usage": {
+            "input_tokens": 20692,
+            "cached_input_tokens": 17536,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 35,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 20727
+          }
+        },
+        {
+          "response_id": "resp_03ad0fc7a68d8469016acc02e809c887d08b44845115be5260",
+          "turn_id": "01a12ceb-270a-73b0-b062-6864515eae43",
+          "timestamp": "2026-10-11T21:43:05.941Z",
+          "usage": {
+            "input_tokens": 20793,
+            "cached_input_tokens": 20480,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 20816
+          }
+        },
+        {
+          "response_id": "resp_03ad0fc7a68d8469016acc02ea5c9487d088d30a1f24eb1a64",
+          "turn_id": "01a12ceb-270a-73b0-b062-6864515eae43",
+          "timestamp": "2026-10-11T21:43:08.236Z",
+          "usage": {
+            "input_tokens": 20968,
+            "cached_input_tokens": 20608,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 33,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 21001
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 123961,
+        "cached_input_tokens": 113152,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 200,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 124161
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [],
+      "tools": [
+        "observe",
+        "act",
+        "observe",
+        "act",
+        "assess"
+      ],
+      "private_events_sha256": "7ad32e53ba55f5c78e4de35382be791b998c92372d05a9125cb0b1f9fe543d08",
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "c1f3a020c89a633729642deb5451c9c5e61f8aaa32dcc6f7a6d90a143e58876a",
+        "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    },
+    {
+      "run": "9-direct",
+      "method": "direct",
+      "error": null,
+      "exit_code": 0,
+      "passed": true,
+      "assessment": {
+        "passed": true,
+        "checks": {
+          "unique_field": true,
+          "exact_value": true,
+          "url_unchanged": true,
+          "execution_resolved": true
+        },
+        "observed": {
+          "value": "Ada Lovelace",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "url": "https://www.wikipedia.org/"
+      },
+      "verdict": "Verified: Search Wikipedia contains \u201cAda Lovelace\u201d. The URL is unchanged. Nothing was submitted.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1647169813728041,
+      "verdict_received_monotonic_ns": 1647187228148750,
+      "pre_coordinator_startup_ms": 174.263209,
+      "coordinator_dispatch_to_verdict_ms": 17240.1575,
+      "goal_dispatch_to_verdict_ms": 17414.420709,
+      "cleanup_ms": 1244.113083,
+      "runtime": {
+        "peak_worker_bytes": 63865360,
+        "memory_samples": 174,
+        "worker_stopped_ms": 18099
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 122568,
+          "cached_input_tokens": 104320,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 222,
+          "reasoning_output_tokens": 34
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_0d7da880600629e3016acc02ef5d148198bf361d2f7c1332c4",
+          "turn_id": "01a12ceb-71e0-7eb1-ac56-c74109d4c403",
+          "timestamp": "2026-10-11T21:43:13.900Z",
+          "usage": {
+            "input_tokens": 12886,
+            "cached_input_tokens": 3456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 61,
+            "reasoning_output_tokens": 34,
+            "total_tokens": 12947
+          }
+        },
+        {
+          "response_id": "resp_0d7da880600629e3016acc02f23fc08198b91e372c9da3358a",
+          "turn_id": "01a12ceb-71e0-7eb1-ac56-c74109d4c403",
+          "timestamp": "2026-10-11T21:43:15.395Z",
+          "usage": {
+            "input_tokens": 13333,
+            "cached_input_tokens": 12672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13355
+          }
+        },
+        {
+          "response_id": "resp_0d7da880600629e3016acc02f4005c8198a296daf64967f4e6",
+          "turn_id": "01a12ceb-71e0-7eb1-ac56-c74109d4c403",
+          "timestamp": "2026-10-11T21:43:18.675Z",
+          "usage": {
+            "input_tokens": 17318,
+            "cached_input_tokens": 13184,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 35,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17353
+          }
+        },
+        {
+          "response_id": "resp_0d7da880600629e3016acc02f705788198ae97bfb1b281b36d",
+          "turn_id": "01a12ceb-71e0-7eb1-ac56-c74109d4c403",
+          "timestamp": "2026-10-11T21:43:20.296Z",
+          "usage": {
+            "input_tokens": 17430,
+            "cached_input_tokens": 17152,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17452
+          }
+        },
+        {
+          "response_id": "resp_0d7da880600629e3016acc02f88c188198a7a4deb7c410f731",
+          "turn_id": "01a12ceb-71e0-7eb1-ac56-c74109d4c403",
+          "timestamp": "2026-10-11T21:43:21.909Z",
+          "usage": {
+            "input_tokens": 20408,
+            "cached_input_tokens": 17280,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 35,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 20443
+          }
+        },
+        {
+          "response_id": "resp_0d7da880600629e3016acc02fa3204819896271267be100691",
+          "turn_id": "01a12ceb-71e0-7eb1-ac56-c74109d4c403",
+          "timestamp": "2026-10-11T21:43:23.495Z",
+          "usage": {
+            "input_tokens": 20509,
+            "cached_input_tokens": 20224,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 20532
+          }
+        },
+        {
+          "response_id": "resp_0d7da880600629e3016acc02fbccb8819889716cfedbff0eb0",
+          "turn_id": "01a12ceb-71e0-7eb1-ac56-c74109d4c403",
+          "timestamp": "2026-10-11T21:43:26.835Z",
+          "usage": {
+            "input_tokens": 20684,
+            "cached_input_tokens": 20352,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 24,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 20708
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 122568,
+        "cached_input_tokens": 104320,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 222,
+        "reasoning_output_tokens": 34,
+        "total_tokens": 122790
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [],
+      "tools": [
+        "observe",
+        "act",
+        "observe",
+        "act",
+        "assess"
+      ],
+      "private_events_sha256": "eb5becfdc81cd5794ff1cee6f6388e449e575caec1fb879ebdf02b284930b73c",
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "c1f3a020c89a633729642deb5451c9c5e61f8aaa32dcc6f7a6d90a143e58876a",
+        "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    },
+    {
+      "run": "10-delegated",
+      "method": "delegated",
+      "error": null,
+      "exit_code": 0,
+      "passed": true,
+      "assessment": {
+        "passed": true,
+        "checks": {
+          "unique_field": true,
+          "exact_value": true,
+          "url_unchanged": true,
+          "execution_resolved": true
+        },
+        "observed": {
+          "value": "Ada Lovelace",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "url": "https://www.wikipedia.org/"
+      },
+      "verdict": "Verified: \u201cSearch Wikipedia\u201d contains \u201cAda Lovelace.\u201d The URL is unchanged. No search was submitted.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1647188478953583,
+      "verdict_received_monotonic_ns": 1647203988836541,
+      "pre_coordinator_startup_ms": 175.646792,
+      "coordinator_dispatch_to_verdict_ms": 15334.236166,
+      "goal_dispatch_to_verdict_ms": 15509.882958,
+      "cleanup_ms": 1322.107667,
+      "runtime": {
+        "peak_worker_bytes": 3410807544,
+        "memory_samples": 156,
+        "worker_stopped_ms": 16274
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 79590,
+          "cached_input_tokens": 64384,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 137,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_0a72e7591ad41645016acc0301f1288199a046152ab469230a",
+          "turn_id": "01a12ceb-ba65-76c3-82b1-a81989fb999b",
+          "timestamp": "2026-10-11T21:43:31.642Z",
+          "usage": {
+            "input_tokens": 12884,
+            "cached_input_tokens": 3456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 31,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 12915
+          }
+        },
+        {
+          "response_id": "resp_0a72e7591ad41645016acc0303fbe48199bfc9e81eb4b2eb40",
+          "turn_id": "01a12ceb-ba65-76c3-82b1-a81989fb999b",
+          "timestamp": "2026-10-11T21:43:34.245Z",
+          "usage": {
+            "input_tokens": 13302,
+            "cached_input_tokens": 12672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13324
+          }
+        },
+        {
+          "response_id": "resp_0a72e7591ad41645016acc0306f5ec81998ac299e56a6a5ca8",
+          "turn_id": "01a12ceb-ba65-76c3-82b1-a81989fb999b",
+          "timestamp": "2026-10-11T21:43:36.226Z",
+          "usage": {
+            "input_tokens": 17609,
+            "cached_input_tokens": 13184,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 34,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17643
+          }
+        },
+        {
+          "response_id": "resp_0a72e7591ad41645016acc030d06ec81998a8eadff6c272f0a",
+          "turn_id": "01a12ceb-ba65-76c3-82b1-a81989fb999b",
+          "timestamp": "2026-10-11T21:43:42.036Z",
+          "usage": {
+            "input_tokens": 17810,
+            "cached_input_tokens": 17408,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17833
+          }
+        },
+        {
+          "response_id": "resp_0a72e7591ad41645016acc030e4e288199b589c5ceefc63b87",
+          "turn_id": "01a12ceb-ba65-76c3-82b1-a81989fb999b",
+          "timestamp": "2026-10-11T21:43:43.613Z",
+          "usage": {
+            "input_tokens": 17985,
+            "cached_input_tokens": 17664,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 27,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 18012
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 79590,
+        "cached_input_tokens": 64384,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 137,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 79727
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 11706,
+          "monotonic_ns": 1647200951044833,
+          "wrapper_ms": 4313.428584,
+          "timing": {
+            "imports_ms": 828.857,
+            "model_acquisition_ms": 1291.693,
+            "prompt_preparation_ms": 12.252,
+            "generation_ms": 2180,
+            "structured_call_total_ms": 4313.302,
+            "result_handling_ms": 0.5
+          },
+          "usage": {
+            "prompt_tokens": 1008,
+            "completion_tokens": 26
+          }
+        }
+      ],
+      "tools": [
+        "observe",
+        "delegate",
+        "assess"
+      ],
+      "private_events_sha256": "e10fd7934ca52cdfbb6eb7e033b079df970dc648634022b38637a61da2d62471",
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "c1f3a020c89a633729642deb5451c9c5e61f8aaa32dcc6f7a6d90a143e58876a",
+        "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    }
+  ]
+}

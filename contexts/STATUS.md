@@ -5,7 +5,7 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: IDLE / REVIEW HOLD, Codex task 16.** Series 2 stopped to assess unequal recovery of pre-execution page-change rejections. Two direct failures, two delegated passes, and one interrupted attempt are preserved; five later trials did not run. No inference or browser experiment is active.
+> **Current run state: IDLE, Codex task 16.** Series 3 finished all ten attempts: five direct and five delegated passes. Pair 4 timing is flagged for background indexing; primary timing analysis uses the other four pairs. Prior failed/incomplete series remain preserved. No supplemental trials are authorized.
 > The coordinator released the hold after publishing `5799c81`. Task 16 owns the next run.
 > The next owner is Codex, **Improve zero-browser benchmarking**. Claude must not start browser runs, replay, cache probes, or model loads.
 >
@@ -18,7 +18,7 @@
 > Return success/failure/uncertainty with observed evidence, actions, unresolved execution, timing, calls, and memory.
 > Test supplied field entry, dropdown selection, and autocomplete with reordered, distracting, ambiguous, and missing controls.
 > Pause caching, screenshots, desktop control, and long-task planning. The existing Codex chat delegated one live field task; multi-subtask integration remains untested.
-> No new task numbers or parallel runtime agents. Sequential Codex sessions are authorized only as benchmark subjects, with no implementation work. The accounting agent is read-only and has finished. A valid direct/delegated comparison and savings remain untested.
+> No new task numbers or parallel runtime agents. Sequential Codex sessions are authorized only as benchmark subjects, with no implementation work. The accounting agent is read-only and has finished. A controlled shared-interface comparison is recorded. Native desktop CUA speed and dollar savings remain unproven.
 >
 > **Test scope:** preserve existing tests and required delivery checks. Defer broad unit-test expansion until the flight demonstration works.
 > Add only small, deterministic tests for critical safeguards or repeatable bugs.
@@ -33,9 +33,9 @@ Reliable multi-step completion, useful time savings, and a native Codex speed co
 The active milestone now tests local task completion. The user reported a visible page, normal responsiveness, and clean closure during the pilot.
 The final cancellation pilot stopped during inference. The user reported normal responsiveness and clean closure. The earlier freeze remains unexplained.
 
-## In progress
+## Open follow-up
 
-- **16, Improve zero-browser benchmarking:** bounded-worker proof delivered: three identical suites passed 27/27 requested outcomes and 6/6 safe stops. One live Wikipedia field task passed. Full local flight completion remains unresolved; no live flight run started. Next: a valid direct/delegated field comparison, then unseen cases and a deterministic-helper baseline.
+- **16, Improve zero-browser benchmarking:** bounded-worker proof delivered: three identical suites passed 27/27 requested outcomes and 6/6 safe stops. One live Wikipedia field task passed. Full local flight completion remains unresolved; no live flight run started. The shared-interface field comparison passed 10/10 outcomes; four pairs have no known indexing overlap. Native desktop CUA speed remains unproven. Next: a deterministic-helper baseline and a useful multi-step task.
 
 ## Completed context work
 
@@ -70,6 +70,7 @@ Existing task numbers identify work. They do not override this ownership table.
 | Local model and adapters | [Shared model](../results/shared-local-model-verification.json), [installation](../results/install-cli-verification.json). Simple completion does not establish general reliability |
 | Runtime safety | [Guard tests](../results/cli-runtime-safety.json). The freeze cause remains unknown |
 | Milestone preparation | [Preparation](../results/milestone-preparation.json). Scripted controls and outcome tests, not model performance |
+| Controlled coordinator comparison | [Five-pair evidence](../results/paired-browser-five-pairs-v3.json), [summary](../results/paired-browser-comparison.json). One field task, shared custom executor; pair 4 latency flagged. No native-CUA or billing claim |
 | Bounded worker | [Repeat summary](../results/bounded-worker-summary.json), [live assessment](../results/bounded-worker-live-assessment.json). Fixed field contracts only; no general reliability or savings claim |
 | Current local experiments | [Measured runs](../results/milestone-local-runs.json). Failed tasks, interrupted records, source versions, and cancellation observations |
 | MCP connection | [Codex run](../results/codex-mcp.json). Simple navigation only |
@@ -103,6 +104,8 @@ If another agent has uncommitted edits, preserve them. Use an isolated publicati
 Do not alter the shared Git index while another owner prepares a commit.
 
 ## Log
+
+- October 11, 14:45 PT: task 16 finished ten shared-interface trials, all outcomes passed. Four pairs support the limited timing summary; pair 4 retains its indexing caveat. Exact usage and independent audits are in results/paired-browser-comparison.json. Runtime is idle.
 
 - October 11, 14:02 PT: task 16 integrated the observation handoff and corrected field descriptions. Both fixed local reruns failed. Evidence: `results/milestone-followup.json`. Slot idle.
 
