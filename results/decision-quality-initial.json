@@ -1,0 +1,1720 @@
+{
+  "status": "completed",
+  "timestamp_utc": "2026-10-11T18:40:29.297259+00:00",
+  "model_id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+  "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "python": "3.14.2",
+  "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+  "dependencies": {
+    "mlx": "0.32.3",
+    "mlx-lm": "0.32.0",
+    "huggingface-hub": "2.2.0",
+    "transformers": "5.19.0",
+    "tokenizers": "0.23.3",
+    "numpy": "2.5.4"
+  },
+  "measurements": [
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "done",
+        "operation": "DONE",
+        "target": null,
+        "description": "Stop because the goal is satisfied"
+      },
+      "scores": {
+        "toggle_stock": 1.2256082433659277e-11,
+        "toggle_sale": 1.1399914215740048e-12,
+        "sort": 1.8795284339317986e-12,
+        "done": 1.0
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "toggle_stock",
+        "toggle_sale",
+        "sort",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 27.875,
+        "B": 25.5,
+        "C": 26.0,
+        "D": 53.0
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 164,
+      "inference_ms": 464.70095799304545,
+      "peak_mlx_bytes": 2679963480,
+      "mlx_cache_bytes": 459847872,
+      "case": "completed_filter",
+      "rotation": 0,
+      "repetition": 0,
+      "expected_action": "done",
+      "correct": true,
+      "phase": "cold_first_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "done",
+        "operation": "DONE",
+        "target": null,
+        "description": "Stop because the goal is satisfied"
+      },
+      "scores": {
+        "toggle_sale": 4.193792394521084e-13,
+        "sort": 3.098819161342914e-12,
+        "done": 1.0,
+        "toggle_stock": 6.224152443445874e-11
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "toggle_sale",
+        "sort",
+        "done",
+        "toggle_stock"
+      ],
+      "raw_label_logits": {
+        "A": 21.75,
+        "B": 23.75,
+        "C": 50.25,
+        "D": 26.75
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 164,
+      "inference_ms": 306.3600000459701,
+      "peak_mlx_bytes": 2679963480,
+      "mlx_cache_bytes": 459847872,
+      "case": "completed_filter",
+      "rotation": 1,
+      "repetition": 0,
+      "expected_action": "done",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "done",
+        "operation": "DONE",
+        "target": null,
+        "description": "Stop because the goal is satisfied"
+      },
+      "scores": {
+        "sort": 7.287723078003641e-14,
+        "done": 1.0,
+        "toggle_stock": 5.7893538053799265e-12,
+        "toggle_sale": 3.098819161342914e-12
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "sort",
+        "done",
+        "toggle_stock",
+        "toggle_sale"
+      ],
+      "raw_label_logits": {
+        "A": 20.25,
+        "B": 50.5,
+        "C": 24.625,
+        "D": 24.0
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 164,
+      "inference_ms": 303.0495001003146,
+      "peak_mlx_bytes": 2679963480,
+      "mlx_cache_bytes": 459847872,
+      "case": "completed_filter",
+      "rotation": 2,
+      "repetition": 0,
+      "expected_action": "done",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "done",
+        "operation": "DONE",
+        "target": null,
+        "description": "Stop because the goal is satisfied"
+      },
+      "scores": {
+        "done": 1.0,
+        "toggle_stock": 1.1032564861679361e-09,
+        "toggle_sale": 1.691900647360356e-10,
+        "sort": 2.4133657312158663e-12
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "toggle_stock",
+        "toggle_sale",
+        "sort"
+      ],
+      "raw_label_logits": {
+        "A": 50.5,
+        "B": 29.875,
+        "C": 28.0,
+        "D": 23.75
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 164,
+      "inference_ms": 304.1083749849349,
+      "peak_mlx_bytes": 2679963480,
+      "mlx_cache_bytes": 459847872,
+      "case": "completed_filter",
+      "rotation": 3,
+      "repetition": 0,
+      "expected_action": "done",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "fill_query",
+        "operation": "TYPE_TEXT",
+        "target": "1",
+        "description": "Replace the Search query"
+      },
+      "scores": {
+        "fill_query": 0.9999998807907104,
+        "fill_author": 2.1724404219991555e-10,
+        "search": 8.76424905982276e-08,
+        "done": 8.59216808812846e-10
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "fill_query",
+        "fill_author",
+        "search",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 46.75,
+        "B": 24.5,
+        "C": 30.5,
+        "D": 25.875
+      },
+      "valid_label_mass_in_full_vocabulary": 0.9999999403953552,
+      "prompt_tokens": 160,
+      "inference_ms": 348.79266703501344,
+      "peak_mlx_bytes": 2669838168,
+      "mlx_cache_bytes": 848279744,
+      "case": "wrong_filled_query",
+      "rotation": 0,
+      "repetition": 0,
+      "expected_action": "fill_query",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "fill_query",
+        "operation": "TYPE_TEXT",
+        "target": "1",
+        "description": "Replace the Search query"
+      },
+      "scores": {
+        "fill_author": 2.681002257221357e-14,
+        "search": 3.978968196594046e-12,
+        "done": 9.545033166635797e-12,
+        "fill_query": 1.0
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "fill_author",
+        "search",
+        "done",
+        "fill_query"
+      ],
+      "raw_label_logits": {
+        "A": 20.0,
+        "B": 25.0,
+        "C": 25.875,
+        "D": 51.25
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 251.1705420911312,
+      "peak_mlx_bytes": 2669838168,
+      "mlx_cache_bytes": 848279744,
+      "case": "wrong_filled_query",
+      "rotation": 1,
+      "repetition": 0,
+      "expected_action": "fill_query",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "fill_query",
+        "operation": "TYPE_TEXT",
+        "target": "1",
+        "description": "Replace the Search query"
+      },
+      "scores": {
+        "search": 3.9278648955587414e-07,
+        "done": 1.081592888169114e-11,
+        "fill_query": 0.9999996423721313,
+        "fill_author": 3.3982672231758215e-09
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "search",
+        "done",
+        "fill_query",
+        "fill_author"
+      ],
+      "raw_label_logits": {
+        "A": 34.25,
+        "B": 23.75,
+        "C": 49.0,
+        "D": 29.5
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 256.1424160376191,
+      "peak_mlx_bytes": 2669838168,
+      "mlx_cache_bytes": 848279744,
+      "case": "wrong_filled_query",
+      "rotation": 2,
+      "repetition": 0,
+      "expected_action": "fill_query",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "fill_query",
+        "operation": "TYPE_TEXT",
+        "target": "1",
+        "description": "Replace the Search query"
+      },
+      "scores": {
+        "done": 6.101936989542922e-13,
+        "fill_query": 1.0,
+        "fill_author": 7.194136397714601e-09,
+        "search": 8.152019503882002e-09
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "fill_query",
+        "fill_author",
+        "search"
+      ],
+      "raw_label_logits": {
+        "A": 17.625,
+        "B": 45.75,
+        "C": 27.0,
+        "D": 27.125
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 250.5635831039399,
+      "peak_mlx_bytes": 2669838168,
+      "mlx_cache_bytes": 848279744,
+      "case": "wrong_filled_query",
+      "rotation": 3,
+      "repetition": 0,
+      "expected_action": "fill_query",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "search",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Click Search"
+      },
+      "scores": {
+        "fill_destination": 1.18611280797154e-08,
+        "fill_guests": 6.224152443445874e-11,
+        "search": 1.0,
+        "done": 1.605227839540646e-09
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "fill_destination",
+        "fill_guests",
+        "search",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 29.0,
+        "B": 23.75,
+        "C": 47.25,
+        "D": 27.0
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 163,
+      "inference_ms": 306.02658400312066,
+      "peak_mlx_bytes": 2712993632,
+      "mlx_cache_bytes": 924563648,
+      "case": "filled_form_search",
+      "rotation": 0,
+      "repetition": 0,
+      "expected_action": "search",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "search",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Click Search"
+      },
+      "scores": {
+        "fill_guests": 1.9171722542843384e-10,
+        "search": 0.9999994039535522,
+        "done": 6.475945610873168e-07,
+        "fill_destination": 5.21140963716249e-10
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "fill_guests",
+        "search",
+        "done",
+        "fill_destination"
+      ],
+      "raw_label_logits": {
+        "A": 23.875,
+        "B": 46.25,
+        "C": 32.0,
+        "D": 24.875
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 163,
+      "inference_ms": 301.7417921219021,
+      "peak_mlx_bytes": 2705555288,
+      "mlx_cache_bytes": 924563648,
+      "case": "filled_form_search",
+      "rotation": 1,
+      "repetition": 0,
+      "expected_action": "search",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "search",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Click Search"
+      },
+      "scores": {
+        "search": 0.9999998807907104,
+        "done": 1.6373765276966878e-07,
+        "fill_destination": 9.237454356991748e-09,
+        "fill_guests": 7.99195917777773e-11
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "search",
+        "done",
+        "fill_destination",
+        "fill_guests"
+      ],
+      "raw_label_logits": {
+        "A": 45.25,
+        "B": 29.625,
+        "C": 26.75,
+        "D": 22.0
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 163,
+      "inference_ms": 302.72016604430974,
+      "peak_mlx_bytes": 2705555288,
+      "mlx_cache_bytes": 924563648,
+      "case": "filled_form_search",
+      "rotation": 2,
+      "repetition": 0,
+      "expected_action": "search",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "search",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Click Search"
+      },
+      "scores": {
+        "done": 1.7603429114387836e-06,
+        "fill_destination": 1.1253499110353005e-07,
+        "fill_guests": 4.13992928827156e-08,
+        "search": 0.9999980926513672
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "fill_destination",
+        "fill_guests",
+        "search"
+      ],
+      "raw_label_logits": {
+        "A": 35.75,
+        "B": 33.0,
+        "C": 32.0,
+        "D": 49.0
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 163,
+      "inference_ms": 305.89970806613564,
+      "peak_mlx_bytes": 2705555288,
+      "mlx_cache_bytes": 924563648,
+      "case": "filled_form_search",
+      "rotation": 3,
+      "repetition": 0,
+      "expected_action": "search",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "official_macos",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Python downloads for macOS at python.org"
+      },
+      "scores": {
+        "windows": 3.7010111230036113e-13,
+        "third_party": 4.2777895808976396e-11,
+        "official_macos": 1.0,
+        "done": 2.789469488728713e-10
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "windows",
+        "third_party",
+        "official_macos",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 20.625,
+        "B": 25.375,
+        "C": 49.25,
+        "D": 27.25
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 189,
+      "inference_ms": 303.90525003895164,
+      "peak_mlx_bytes": 2724741044,
+      "mlx_cache_bytes": 1413001584,
+      "case": "official_matching_result",
+      "rotation": 0,
+      "repetition": 0,
+      "expected_action": "official_macos",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "official_macos",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Python downloads for macOS at python.org"
+      },
+      "scores": {
+        "third_party": 2.4133657312158663e-12,
+        "official_macos": 1.0,
+        "done": 1.18611280797154e-08,
+        "windows": 4.508758817689529e-12
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "third_party",
+        "official_macos",
+        "done",
+        "windows"
+      ],
+      "raw_label_logits": {
+        "A": 21.25,
+        "B": 48.0,
+        "C": 29.75,
+        "D": 21.875
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 189,
+      "inference_ms": 307.36245797015727,
+      "peak_mlx_bytes": 2724741044,
+      "mlx_cache_bytes": 1413001584,
+      "case": "official_matching_result",
+      "rotation": 1,
+      "repetition": 0,
+      "expected_action": "official_macos",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "official_macos",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Python downloads for macOS at python.org"
+      },
+      "scores": {
+        "official_macos": 1.0,
+        "done": 1.1628242119199328e-10,
+        "windows": 5.905308464448922e-10,
+        "third_party": 5.1090902342121325e-12
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "official_macos",
+        "done",
+        "windows",
+        "third_party"
+      ],
+      "raw_label_logits": {
+        "A": 49.25,
+        "B": 26.375,
+        "C": 28.0,
+        "D": 23.25
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 189,
+      "inference_ms": 305.0989171024412,
+      "peak_mlx_bytes": 2724741044,
+      "mlx_cache_bytes": 1413001584,
+      "case": "official_matching_result",
+      "rotation": 2,
+      "repetition": 0,
+      "expected_action": "official_macos",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "official_macos",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Python downloads for macOS at python.org"
+      },
+      "scores": {
+        "done": 1.1176099142548666e-14,
+        "windows": 8.423467652562966e-12,
+        "third_party": 4.139937104241653e-08,
+        "official_macos": 1.0
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "windows",
+        "third_party",
+        "official_macos"
+      ],
+      "raw_label_logits": {
+        "A": 18.625,
+        "B": 25.25,
+        "C": 33.75,
+        "D": 50.75
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 189,
+      "inference_ms": 307.5231248512864,
+      "peak_mlx_bytes": 2724741044,
+      "mlx_cache_bytes": 1413001584,
+      "case": "official_matching_result",
+      "rotation": 3,
+      "repetition": 0,
+      "expected_action": "official_macos",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "wait",
+        "operation": "WAIT",
+        "target": null,
+        "description": "Wait for the pending request"
+      },
+      "scores": {
+        "cancel": 6.101936989542922e-13,
+        "clear": 1.0060395442060277e-12,
+        "wait": 1.0,
+        "done": 4.847367646165779e-11
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "cancel",
+        "clear",
+        "wait",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 21.875,
+        "B": 22.375,
+        "C": 50.0,
+        "D": 26.25
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 307.95533303171396,
+      "peak_mlx_bytes": 2684633020,
+      "mlx_cache_bytes": 1765290352,
+      "case": "loading_wait",
+      "rotation": 0,
+      "repetition": 0,
+      "expected_action": "wait",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "wait",
+        "operation": "WAIT",
+        "target": null,
+        "description": "Wait for the pending request"
+      },
+      "scores": {
+        "clear": 2.365977659830095e-14,
+        "wait": 1.0,
+        "done": 7.433688213598355e-12,
+        "cancel": 1.2917821109667549e-12
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "clear",
+        "wait",
+        "done",
+        "cancel"
+      ],
+      "raw_label_logits": {
+        "A": 21.375,
+        "B": 52.75,
+        "C": 27.125,
+        "D": 25.375
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 303.5554999951273,
+      "peak_mlx_bytes": 2684633020,
+      "mlx_cache_bytes": 1765290352,
+      "case": "loading_wait",
+      "rotation": 1,
+      "repetition": 0,
+      "expected_action": "wait",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "wait",
+        "operation": "WAIT",
+        "target": null,
+        "description": "Wait for the pending request"
+      },
+      "scores": {
+        "wait": 1.0,
+        "done": 4.944448850352501e-09,
+        "cancel": 8.592169198351485e-10,
+        "clear": 5.7893538053799265e-12
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "wait",
+        "done",
+        "cancel",
+        "clear"
+      ],
+      "raw_label_logits": {
+        "A": 50.0,
+        "B": 30.875,
+        "C": 29.125,
+        "D": 24.125
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 315.32337493263185,
+      "peak_mlx_bytes": 2684633020,
+      "mlx_cache_bytes": 1765290352,
+      "case": "loading_wait",
+      "rotation": 2,
+      "repetition": 0,
+      "expected_action": "wait",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "wait",
+        "operation": "WAIT",
+        "target": null,
+        "description": "Wait for the pending request"
+      },
+      "scores": {
+        "done": 4.752199068286389e-13,
+        "cancel": 1.1032564861679361e-09,
+        "clear": 7.052883971292445e-11,
+        "wait": 1.0
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "cancel",
+        "clear",
+        "wait"
+      ],
+      "raw_label_logits": {
+        "A": 21.375,
+        "B": 29.125,
+        "C": 26.375,
+        "D": 49.75
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 309.6825839020312,
+      "peak_mlx_bytes": 2684633020,
+      "mlx_cache_bytes": 1765290352,
+      "case": "loading_wait",
+      "rotation": 3,
+      "repetition": 0,
+      "expected_action": "wait",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "blocked",
+        "operation": "BLOCKED",
+        "target": null,
+        "description": "Stop because no supported operation can satisfy the goal"
+      },
+      "scores": {
+        "help": 2.1297835457040337e-12,
+        "about": 1.2256082433659277e-11,
+        "blocked": 1.0,
+        "done": 5.905308464448922e-10
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "help",
+        "about",
+        "blocked",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 21.625,
+        "B": 23.375,
+        "C": 48.5,
+        "D": 27.25
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 173,
+      "inference_ms": 306.97458307258785,
+      "peak_mlx_bytes": 2710372292,
+      "mlx_cache_bytes": 2245816688,
+      "case": "unsupported_upload",
+      "rotation": 0,
+      "repetition": 0,
+      "expected_action": "blocked",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "blocked",
+        "operation": "BLOCKED",
+        "target": null,
+        "description": "Stop because no supported operation can satisfy the goal"
+      },
+      "scores": {
+        "about": 3.978967762913177e-12,
+        "blocked": 0.9999998807907104,
+        "done": 1.3440408785925229e-08,
+        "help": 1.444980597398171e-07
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "about",
+        "blocked",
+        "done",
+        "help"
+      ],
+      "raw_label_logits": {
+        "A": 20.25,
+        "B": 46.5,
+        "C": 28.375,
+        "D": 30.75
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 173,
+      "inference_ms": 300.89349998161197,
+      "peak_mlx_bytes": 2710372292,
+      "mlx_cache_bytes": 2245816688,
+      "case": "unsupported_upload",
+      "rotation": 1,
+      "repetition": 0,
+      "expected_action": "blocked",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "blocked",
+        "operation": "BLOCKED",
+        "target": null,
+        "description": "Stop because no supported operation can satisfy the goal"
+      },
+      "scores": {
+        "blocked": 0.9999995231628418,
+        "done": 3.927864327124553e-07,
+        "help": 6.825599996318488e-08,
+        "about": 7.991956402220168e-11
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "blocked",
+        "done",
+        "help",
+        "about"
+      ],
+      "raw_label_logits": {
+        "A": 47.75,
+        "B": 33.0,
+        "C": 31.25,
+        "D": 24.5
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 173,
+      "inference_ms": 298.7761669792235,
+      "peak_mlx_bytes": 2710372292,
+      "mlx_cache_bytes": 2245816688,
+      "case": "unsupported_upload",
+      "rotation": 2,
+      "repetition": 0,
+      "expected_action": "blocked",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "blocked",
+        "operation": "BLOCKED",
+        "target": null,
+        "description": "Stop because no supported operation can satisfy the goal"
+      },
+      "scores": {
+        "done": 7.835052051596847e-13,
+        "help": 6.023577014957482e-08,
+        "about": 5.905307909337409e-10,
+        "blocked": 0.9999998807907104
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "help",
+        "about",
+        "blocked"
+      ],
+      "raw_label_logits": {
+        "A": 19.625,
+        "B": 30.875,
+        "C": 26.25,
+        "D": 47.5
+      },
+      "valid_label_mass_in_full_vocabulary": 0.9999999403953552,
+      "prompt_tokens": 173,
+      "inference_ms": 302.18141595833004,
+      "peak_mlx_bytes": 2710372292,
+      "mlx_cache_bytes": 2245816688,
+      "case": "unsupported_upload",
+      "rotation": 3,
+      "repetition": 0,
+      "expected_action": "blocked",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "economy",
+        "operation": "SELECT",
+        "target": "1:2",
+        "description": "Select Economy"
+      },
+      "scores": {
+        "business": 2.4133657312158663e-12,
+        "economy": 1.0,
+        "premium": 2.1724406995549117e-10,
+        "done": 4.847367646165779e-11
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "business",
+        "economy",
+        "premium",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 21.5,
+        "B": 48.25,
+        "C": 26.0,
+        "D": 24.5
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 169,
+      "inference_ms": 303.1559579540044,
+      "peak_mlx_bytes": 2693988284,
+      "mlx_cache_bytes": 2653122928,
+      "case": "native_select",
+      "rotation": 0,
+      "repetition": 0,
+      "expected_action": "economy",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "economy",
+        "operation": "SELECT",
+        "target": "1:2",
+        "description": "Select Economy"
+      },
+      "scores": {
+        "economy": 1.0,
+        "premium": 6.560210707995395e-12,
+        "done": 4.05865202557365e-10,
+        "business": 7.835053135799019e-13
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "economy",
+        "premium",
+        "done",
+        "business"
+      ],
+      "raw_label_logits": {
+        "A": 52.25,
+        "B": 26.5,
+        "C": 30.625,
+        "D": 24.375
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 169,
+      "inference_ms": 302.32837493531406,
+      "peak_mlx_bytes": 2693988284,
+      "mlx_cache_bytes": 2653122928,
+      "case": "native_select",
+      "rotation": 1,
+      "repetition": 0,
+      "expected_action": "economy",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "economy",
+        "operation": "SELECT",
+        "target": "1:2",
+        "description": "Select Economy"
+      },
+      "scores": {
+        "premium": 1.1399914215740048e-12,
+        "done": 7.835053135799019e-13,
+        "business": 2.5946099435625314e-11,
+        "economy": 1.0
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "premium",
+        "done",
+        "business",
+        "economy"
+      ],
+      "raw_label_logits": {
+        "A": 24.0,
+        "B": 23.625,
+        "C": 27.125,
+        "D": 51.5
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 169,
+      "inference_ms": 301.53162498027086,
+      "peak_mlx_bytes": 2693988284,
+      "mlx_cache_bytes": 2653122928,
+      "case": "native_select",
+      "rotation": 2,
+      "repetition": 0,
+      "expected_action": "economy",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "economy",
+        "operation": "SELECT",
+        "target": "1:2",
+        "description": "Select Economy"
+      },
+      "scores": {
+        "done": 1.9810092151753556e-13,
+        "business": 4.05865202557365e-10,
+        "economy": 1.0,
+        "premium": 1.3176516822088757e-10
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "business",
+        "economy",
+        "premium"
+      ],
+      "raw_label_logits": {
+        "A": 17.5,
+        "B": 25.125,
+        "C": 46.75,
+        "D": 24.0
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 169,
+      "inference_ms": 302.87362495437264,
+      "peak_mlx_bytes": 2693988284,
+      "mlx_cache_bytes": 2653122928,
+      "case": "native_select",
+      "rotation": 3,
+      "repetition": 0,
+      "expected_action": "economy",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "stock": 0.9996238946914673,
+        "checkout": 3.53442010236904e-05,
+        "advertisement": 5.42020779903396e-06,
+        "done": 0.00033533651730977
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "stock",
+        "checkout",
+        "advertisement",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 40.75,
+        "B": 30.5,
+        "C": 28.625,
+        "D": 32.75
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 172,
+      "inference_ms": 301.8349159974605,
+      "peak_mlx_bytes": 2711404468,
+      "mlx_cache_bytes": 2731946352,
+      "case": "misleading_page_text",
+      "rotation": 0,
+      "repetition": 0,
+      "expected_action": "stock",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "checkout": 4.006052404292859e-05,
+        "advertisement": 4.222347342874855e-06,
+        "done": 7.484293018933386e-05,
+        "stock": 0.9998809099197388
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "checkout",
+        "advertisement",
+        "done",
+        "stock"
+      ],
+      "raw_label_logits": {
+        "A": 31.375,
+        "B": 29.125,
+        "C": 32.0,
+        "D": 41.5
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 172,
+      "inference_ms": 301.3121250551194,
+      "peak_mlx_bytes": 2709602228,
+      "mlx_cache_bytes": 2731946352,
+      "case": "misleading_page_text",
+      "rotation": 1,
+      "repetition": 0,
+      "expected_action": "stock",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "advertisement": 2.1443114746944048e-05,
+        "done": 9.421448226021312e-07,
+        "stock": 0.9998927116394043,
+        "checkout": 8.480915130348876e-05
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "advertisement",
+        "done",
+        "stock",
+        "checkout"
+      ],
+      "raw_label_logits": {
+        "A": 30.5,
+        "B": 27.375,
+        "C": 41.25,
+        "D": 31.875
+      },
+      "valid_label_mass_in_full_vocabulary": 0.9999999403953552,
+      "prompt_tokens": 172,
+      "inference_ms": 313.61337495036423,
+      "peak_mlx_bytes": 2709602228,
+      "mlx_cache_bytes": 2731946352,
+      "case": "misleading_page_text",
+      "rotation": 2,
+      "repetition": 0,
+      "expected_action": "stock",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "done": 5.215503406930111e-08,
+        "stock": 0.9811351895332336,
+        "checkout": 0.017970120534300804,
+        "advertisement": 0.000894679396878928
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "stock",
+        "checkout",
+        "advertisement"
+      ],
+      "raw_label_logits": {
+        "A": 22.75,
+        "B": 39.5,
+        "C": 35.5,
+        "D": 32.5
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0000001192092896,
+      "prompt_tokens": 172,
+      "inference_ms": 299.368083011359,
+      "peak_mlx_bytes": 2709602228,
+      "mlx_cache_bytes": 2731946352,
+      "case": "misleading_page_text",
+      "rotation": 3,
+      "repetition": 0,
+      "expected_action": "stock",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "toggle_sale",
+        "operation": "CLICK",
+        "target": "2",
+        "description": "Toggle On sale"
+      },
+      "scores": {
+        "toggle_stock": 0.04741668328642845,
+        "toggle_sale": 0.9523894190788269,
+        "sort": 1.3761844286364067e-07,
+        "done": 0.0001937811030074954
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "toggle_stock",
+        "toggle_sale",
+        "sort",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 40.5,
+        "B": 43.5,
+        "C": 27.75,
+        "D": 35.0
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 255.85400010459125,
+      "peak_mlx_bytes": 2669838168,
+      "mlx_cache_bytes": 2731946452,
+      "case": "remove_restrictive_filter",
+      "rotation": 0,
+      "repetition": 0,
+      "expected_action": "toggle_stock",
+      "correct": false,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "toggle_stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "toggle_sale": 1.7257812956472662e-08,
+        "sort": 2.289734200855431e-11,
+        "done": 1.0677026693883818e-06,
+        "toggle_stock": 0.999998927116394
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "toggle_sale",
+        "sort",
+        "done",
+        "toggle_stock"
+      ],
+      "raw_label_logits": {
+        "A": 30.125,
+        "B": 23.5,
+        "C": 34.25,
+        "D": 48.0
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 250.04108296707273,
+      "peak_mlx_bytes": 2669838168,
+      "mlx_cache_bytes": 2731946452,
+      "case": "remove_restrictive_filter",
+      "rotation": 1,
+      "repetition": 0,
+      "expected_action": "toggle_stock",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "toggle_stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "sort": 1.0261790028831541e-10,
+        "done": 1.0467295474825278e-08,
+        "toggle_stock": 0.9999898672103882,
+        "toggle_sale": 1.0129998372576665e-05
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "sort",
+        "done",
+        "toggle_stock",
+        "toggle_sale"
+      ],
+      "raw_label_logits": {
+        "A": 22.75,
+        "B": 27.375,
+        "C": 45.75,
+        "D": 34.25
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 250.0129579566419,
+      "peak_mlx_bytes": 2669838168,
+      "mlx_cache_bytes": 2731946452,
+      "case": "remove_restrictive_filter",
+      "rotation": 2,
+      "repetition": 0,
+      "expected_action": "toggle_stock",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "toggle_stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "done": 9.545032299274059e-12,
+        "toggle_stock": 0.9999998807907104,
+        "toggle_sale": 1.1253519005549606e-07,
+        "sort": 4.058651470462138e-10
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "toggle_stock",
+        "toggle_sale",
+        "sort"
+      ],
+      "raw_label_logits": {
+        "A": 21.625,
+        "B": 47.0,
+        "C": 31.0,
+        "D": 25.375
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 250.70320907980204,
+      "peak_mlx_bytes": 2669838168,
+      "mlx_cache_bytes": 2731946452,
+      "case": "remove_restrictive_filter",
+      "rotation": 3,
+      "repetition": 0,
+      "expected_action": "toggle_stock",
+      "correct": true,
+      "phase": "warm_forward"
+    }
+  ],
+  "notes": [
+    "Scores are uncalibrated restricted-label softmax scores, not guaranteed confidence estimates.",
+    "These synthetic cases do not establish browser-task reliability.",
+    "Cold means first forward pass in this process after model loading; disk/OS caches are not cleared.",
+    "Warm runs still prefill the full prompt; no KV cache or prefix reuse.",
+    "Latency excludes tokenization; load time is separate. Peak MLX excludes other applications and OS memory.",
+    "Candidate rotations move each action across all four labels and positions; they are a limited bias check."
+  ],
+  "hardware": {
+    "device_name": "Apple M4 Pro",
+    "max_recommended_working_set_size": 19069665280,
+    "memory_size": 25769803776,
+    "architecture": "applegpu_g16s",
+    "max_buffer_length": 14302248960,
+    "resource_limit": 499000
+  },
+  "disk": {
+    "total_bytes": 494384795648,
+    "free_bytes_before_run": 57077780480
+  },
+  "model_load_ms": 1430.2510421257466,
+  "model_active_mlx_bytes": 2264693768,
+  "model_load_peak_mlx_bytes": 2264693768,
+  "weight_bytes": 2263022417,
+  "snapshot_bytes": 2278970666,
+  "forward_passes": 36,
+  "correct_unique_prompts": 35,
+  "unique_prompts": 36,
+  "cold_first_forward_ms": 464.70095799304545,
+  "warm_median_ms": 302.87362495437264,
+  "warm_min_ms": 250.0129579566419,
+  "warm_max_ms": 348.79266703501344,
+  "peak_mlx_bytes": 2724741044,
+  "prompt_tokens_min": 160,
+  "prompt_tokens_max": 189,
+  "rotation_checks": {
+    "completed_filter": {
+      "all_rotations_correct": true,
+      "selected_actions": [
+        "done",
+        "done",
+        "done",
+        "done"
+      ]
+    },
+    "wrong_filled_query": {
+      "all_rotations_correct": true,
+      "selected_actions": [
+        "fill_query",
+        "fill_query",
+        "fill_query",
+        "fill_query"
+      ]
+    },
+    "filled_form_search": {
+      "all_rotations_correct": true,
+      "selected_actions": [
+        "search",
+        "search",
+        "search",
+        "search"
+      ]
+    },
+    "official_matching_result": {
+      "all_rotations_correct": true,
+      "selected_actions": [
+        "official_macos",
+        "official_macos",
+        "official_macos",
+        "official_macos"
+      ]
+    },
+    "loading_wait": {
+      "all_rotations_correct": true,
+      "selected_actions": [
+        "wait",
+        "wait",
+        "wait",
+        "wait"
+      ]
+    },
+    "unsupported_upload": {
+      "all_rotations_correct": true,
+      "selected_actions": [
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked"
+      ]
+    },
+    "native_select": {
+      "all_rotations_correct": true,
+      "selected_actions": [
+        "economy",
+        "economy",
+        "economy",
+        "economy"
+      ]
+    },
+    "misleading_page_text": {
+      "all_rotations_correct": true,
+      "selected_actions": [
+        "stock",
+        "stock",
+        "stock",
+        "stock"
+      ]
+    },
+    "remove_restrictive_filter": {
+      "all_rotations_correct": false,
+      "selected_actions": [
+        "toggle_sale",
+        "toggle_stock",
+        "toggle_stock",
+        "toggle_stock"
+      ]
+    }
+  }
+}

@@ -151,6 +151,8 @@ activemq-data/
 
 # Environments
 .env
+.env.*
+!.env.example
 .envrc
 .venv
 env/
@@ -205,6 +207,14 @@ cython_debug/
 # Temporary file for partial code execution
 tempCodeRunnerFile.py
 
+# Local model weights and analysis caches
+.gitnexus/
+.venv-local/
+.hf-cache/
+models/
+*.safetensors
+*.gguf
+
 # Ruff stuff:
 .ruff_cache/
 
@@ -218,3 +228,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# Private baseline traces and session measurements
+artifacts/baselines/
+
+# Local project context
+contexts/
