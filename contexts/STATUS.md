@@ -13,6 +13,8 @@ Plan and ranked tasks are in `README.md` here.
 
 ## In progress
 
+- 15-cli-runtime-safety (Codex). Emergency safeguards after the user reported a freeze.
+
 - 12-benchmark-loop (Astra). Owns bench.py, run_cli.py, bench_tasks.json, results/bench/, verify.py.
 - 13-latency-and-field-text (Sol). Owns local_policy.py, local_model.py, questions.py, browser timeout.
 
@@ -62,6 +64,10 @@ memory target is untested. The browser guard check passed only in an isolated he
 default profile lacked remote debugging. Jev's per-step timeout can be exceeded by a slow local call.
 
 ## Coordination
+
+- Task 15 adds safety guards to task 12's `run_cli.py` and task 13's `local_model.py`.
+  The user reported a computer freeze. Changes cover limits and shutdown, not benchmark or prompt optimization.
+  No Qwen or live browser benchmark runs occur during this repair. Preserve these guards in tasks 12 and 13.
 
 - Task 11 owns `install.sh`, `zero-browser`, `scripts/run_cli.py`, `jev_ultrafast/local_policy.py`, and setup tests.
   It adds local dispatch to `model.py` and a read-only lock option to the downloader.

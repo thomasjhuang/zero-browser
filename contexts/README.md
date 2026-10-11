@@ -28,6 +28,7 @@ The fixture-first plan is retired. The loop is now: fix, rerun the same live tas
 
 | Rank | Task | Priority | Timebox | Owner | Notes |
 |---|---|---|---|---|---|
+| 0 | 15-cli-runtime-safety | P0 | 60 min | Codex | Emergency prompt, memory, shutdown, and CAPTCHA guards |
 | 1 | 12-benchmark-loop | P0 | 60 min | Astra | Fixed task, backend switch, per-step records, repeat runs |
 | 2 | 13-latency-and-field-text | P0 | 75 min | Sol | Under 1s per decision, plain field values, browser timeout |
 | 3 | iterate on the next bench failure | P0 | rest of day | both | One fix per rerun |
