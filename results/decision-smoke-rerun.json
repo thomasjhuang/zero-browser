@@ -1,0 +1,2194 @@
+{
+  "status": "completed",
+  "timestamp_utc": "2026-10-11T18:32:45.875260+00:00",
+  "model_id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+  "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "python": "3.14.2",
+  "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+  "dependencies": {
+    "mlx": "0.32.3",
+    "mlx-lm": "0.32.0",
+    "huggingface-hub": "2.2.0",
+    "transformers": "5.19.0",
+    "tokenizers": "0.23.3",
+    "numpy": "2.5.4"
+  },
+  "measurements": [
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "fill_destination",
+        "operation": "TYPE_TEXT",
+        "target": "2",
+        "description": "Fill the Where to? field"
+      },
+      "scores": {
+        "fill_origin": 7.287723078003641e-14,
+        "fill_destination": 1.0,
+        "search": 3.398268333398846e-09,
+        "done": 8.152019503882002e-09
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "fill_origin",
+        "fill_destination",
+        "search",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 17.25,
+        "B": 47.5,
+        "C": 28.0,
+        "D": 28.875
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 175,
+      "inference_ms": 375.61500002630055,
+      "peak_mlx_bytes": 2713616268,
+      "mlx_cache_bytes": 484884384,
+      "case": "empty_field",
+      "rotation": 0,
+      "repetition": 0,
+      "expected_action": "fill_destination",
+      "correct": true,
+      "phase": "cold_first_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "fill_destination",
+        "operation": "TYPE_TEXT",
+        "target": "2",
+        "description": "Fill the Where to? field"
+      },
+      "scores": {
+        "fill_origin": 7.287723078003641e-14,
+        "fill_destination": 1.0,
+        "search": 3.398268333398846e-09,
+        "done": 8.152019503882002e-09
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "fill_origin",
+        "fill_destination",
+        "search",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 17.25,
+        "B": 47.5,
+        "C": 28.0,
+        "D": 28.875
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 175,
+      "inference_ms": 306.3039998523891,
+      "peak_mlx_bytes": 2713616268,
+      "mlx_cache_bytes": 484884384,
+      "case": "empty_field",
+      "rotation": 0,
+      "repetition": 1,
+      "expected_action": "fill_destination",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "fill_destination",
+        "operation": "TYPE_TEXT",
+        "target": "2",
+        "description": "Fill the Where to? field"
+      },
+      "scores": {
+        "fill_origin": 7.287723078003641e-14,
+        "fill_destination": 1.0,
+        "search": 3.398268333398846e-09,
+        "done": 8.152019503882002e-09
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "fill_origin",
+        "fill_destination",
+        "search",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 17.25,
+        "B": 47.5,
+        "C": 28.0,
+        "D": 28.875
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 175,
+      "inference_ms": 306.2175421509892,
+      "peak_mlx_bytes": 2713616268,
+      "mlx_cache_bytes": 484884384,
+      "case": "empty_field",
+      "rotation": 0,
+      "repetition": 2,
+      "expected_action": "fill_destination",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "fill_destination",
+        "operation": "TYPE_TEXT",
+        "target": "2",
+        "description": "Fill the Where to? field"
+      },
+      "scores": {
+        "fill_origin": 7.287723078003641e-14,
+        "fill_destination": 1.0,
+        "search": 3.398268333398846e-09,
+        "done": 8.152019503882002e-09
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "fill_origin",
+        "fill_destination",
+        "search",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 17.25,
+        "B": 47.5,
+        "C": 28.0,
+        "D": 28.875
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 175,
+      "inference_ms": 305.8345830067992,
+      "peak_mlx_bytes": 2713616268,
+      "mlx_cache_bytes": 484884384,
+      "case": "empty_field",
+      "rotation": 0,
+      "repetition": 3,
+      "expected_action": "fill_destination",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "fill_destination",
+        "operation": "TYPE_TEXT",
+        "target": "2",
+        "description": "Fill the Where to? field"
+      },
+      "scores": {
+        "fill_destination": 1.0,
+        "search": 1.02618941122401e-10,
+        "done": 4.139937104241653e-08,
+        "fill_origin": 7.99195987166712e-11
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "fill_destination",
+        "search",
+        "done",
+        "fill_origin"
+      ],
+      "raw_label_logits": {
+        "A": 49.0,
+        "B": 26.0,
+        "C": 32.0,
+        "D": 25.75
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 175,
+      "inference_ms": 306.14229082129896,
+      "peak_mlx_bytes": 2713616268,
+      "mlx_cache_bytes": 484884384,
+      "case": "empty_field",
+      "rotation": 1,
+      "repetition": 0,
+      "expected_action": "fill_destination",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "fill_destination",
+        "operation": "TYPE_TEXT",
+        "target": "2",
+        "description": "Fill the Where to? field"
+      },
+      "scores": {
+        "fill_destination": 1.0,
+        "search": 1.02618941122401e-10,
+        "done": 4.139937104241653e-08,
+        "fill_origin": 7.99195987166712e-11
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "fill_destination",
+        "search",
+        "done",
+        "fill_origin"
+      ],
+      "raw_label_logits": {
+        "A": 49.0,
+        "B": 26.0,
+        "C": 32.0,
+        "D": 25.75
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 175,
+      "inference_ms": 303.7404171191156,
+      "peak_mlx_bytes": 2713616268,
+      "mlx_cache_bytes": 484884384,
+      "case": "empty_field",
+      "rotation": 1,
+      "repetition": 1,
+      "expected_action": "fill_destination",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "fill_destination",
+        "operation": "TYPE_TEXT",
+        "target": "2",
+        "description": "Fill the Where to? field"
+      },
+      "scores": {
+        "fill_destination": 1.0,
+        "search": 1.02618941122401e-10,
+        "done": 4.139937104241653e-08,
+        "fill_origin": 7.99195987166712e-11
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "fill_destination",
+        "search",
+        "done",
+        "fill_origin"
+      ],
+      "raw_label_logits": {
+        "A": 49.0,
+        "B": 26.0,
+        "C": 32.0,
+        "D": 25.75
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 175,
+      "inference_ms": 306.715875165537,
+      "peak_mlx_bytes": 2713616268,
+      "mlx_cache_bytes": 484884384,
+      "case": "empty_field",
+      "rotation": 1,
+      "repetition": 2,
+      "expected_action": "fill_destination",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "fill_destination",
+        "operation": "TYPE_TEXT",
+        "target": "2",
+        "description": "Fill the Where to? field"
+      },
+      "scores": {
+        "fill_destination": 1.0,
+        "search": 1.02618941122401e-10,
+        "done": 4.139937104241653e-08,
+        "fill_origin": 7.99195987166712e-11
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "fill_destination",
+        "search",
+        "done",
+        "fill_origin"
+      ],
+      "raw_label_logits": {
+        "A": 49.0,
+        "B": 26.0,
+        "C": 32.0,
+        "D": 25.75
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 175,
+      "inference_ms": 314.9141250178218,
+      "peak_mlx_bytes": 2713616268,
+      "mlx_cache_bytes": 484884384,
+      "case": "empty_field",
+      "rotation": 1,
+      "repetition": 3,
+      "expected_action": "fill_destination",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "fill_destination",
+        "operation": "TYPE_TEXT",
+        "target": "2",
+        "description": "Fill the Where to? field"
+      },
+      "scores": {
+        "search": 9.931201105928267e-08,
+        "done": 2.461696124722579e-10,
+        "fill_origin": 1.955569572942295e-08,
+        "fill_destination": 0.9999998807907104
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "search",
+        "done",
+        "fill_origin",
+        "fill_destination"
+      ],
+      "raw_label_logits": {
+        "A": 30.625,
+        "B": 24.625,
+        "C": 29.0,
+        "D": 46.75
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 175,
+      "inference_ms": 314.3338328227401,
+      "peak_mlx_bytes": 2713616268,
+      "mlx_cache_bytes": 484884384,
+      "case": "empty_field",
+      "rotation": 2,
+      "repetition": 0,
+      "expected_action": "fill_destination",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "fill_destination",
+        "operation": "TYPE_TEXT",
+        "target": "2",
+        "description": "Fill the Where to? field"
+      },
+      "scores": {
+        "search": 9.931201105928267e-08,
+        "done": 2.461696124722579e-10,
+        "fill_origin": 1.955569572942295e-08,
+        "fill_destination": 0.9999998807907104
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "search",
+        "done",
+        "fill_origin",
+        "fill_destination"
+      ],
+      "raw_label_logits": {
+        "A": 30.625,
+        "B": 24.625,
+        "C": 29.0,
+        "D": 46.75
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 175,
+      "inference_ms": 310.2877498604357,
+      "peak_mlx_bytes": 2713616268,
+      "mlx_cache_bytes": 484884384,
+      "case": "empty_field",
+      "rotation": 2,
+      "repetition": 1,
+      "expected_action": "fill_destination",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "fill_destination",
+        "operation": "TYPE_TEXT",
+        "target": "2",
+        "description": "Fill the Where to? field"
+      },
+      "scores": {
+        "search": 9.931201105928267e-08,
+        "done": 2.461696124722579e-10,
+        "fill_origin": 1.955569572942295e-08,
+        "fill_destination": 0.9999998807907104
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "search",
+        "done",
+        "fill_origin",
+        "fill_destination"
+      ],
+      "raw_label_logits": {
+        "A": 30.625,
+        "B": 24.625,
+        "C": 29.0,
+        "D": 46.75
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 175,
+      "inference_ms": 309.06820809468627,
+      "peak_mlx_bytes": 2713616268,
+      "mlx_cache_bytes": 484884384,
+      "case": "empty_field",
+      "rotation": 2,
+      "repetition": 2,
+      "expected_action": "fill_destination",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "fill_destination",
+        "operation": "TYPE_TEXT",
+        "target": "2",
+        "description": "Fill the Where to? field"
+      },
+      "scores": {
+        "search": 9.931201105928267e-08,
+        "done": 2.461696124722579e-10,
+        "fill_origin": 1.955569572942295e-08,
+        "fill_destination": 0.9999998807907104
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "search",
+        "done",
+        "fill_origin",
+        "fill_destination"
+      ],
+      "raw_label_logits": {
+        "A": 30.625,
+        "B": 24.625,
+        "C": 29.0,
+        "D": 46.75
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 175,
+      "inference_ms": 308.24925005435944,
+      "peak_mlx_bytes": 2713616268,
+      "mlx_cache_bytes": 484884384,
+      "case": "empty_field",
+      "rotation": 2,
+      "repetition": 3,
+      "expected_action": "fill_destination",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "fill_destination",
+        "operation": "TYPE_TEXT",
+        "target": "2",
+        "description": "Fill the Where to? field"
+      },
+      "scores": {
+        "done": 1.2664170859449757e-14,
+        "fill_origin": 6.560210707995395e-12,
+        "fill_destination": 1.0,
+        "search": 5.211412967831563e-10
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "fill_origin",
+        "fill_destination",
+        "search"
+      ],
+      "raw_label_logits": {
+        "A": 16.75,
+        "B": 23.0,
+        "C": 48.75,
+        "D": 27.375
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 175,
+      "inference_ms": 300.1800000201911,
+      "peak_mlx_bytes": 2713616268,
+      "mlx_cache_bytes": 484884384,
+      "case": "empty_field",
+      "rotation": 3,
+      "repetition": 0,
+      "expected_action": "fill_destination",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "fill_destination",
+        "operation": "TYPE_TEXT",
+        "target": "2",
+        "description": "Fill the Where to? field"
+      },
+      "scores": {
+        "done": 1.2664170859449757e-14,
+        "fill_origin": 6.560210707995395e-12,
+        "fill_destination": 1.0,
+        "search": 5.211412967831563e-10
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "fill_origin",
+        "fill_destination",
+        "search"
+      ],
+      "raw_label_logits": {
+        "A": 16.75,
+        "B": 23.0,
+        "C": 48.75,
+        "D": 27.375
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 175,
+      "inference_ms": 299.7258750256151,
+      "peak_mlx_bytes": 2713616268,
+      "mlx_cache_bytes": 484884384,
+      "case": "empty_field",
+      "rotation": 3,
+      "repetition": 1,
+      "expected_action": "fill_destination",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "fill_destination",
+        "operation": "TYPE_TEXT",
+        "target": "2",
+        "description": "Fill the Where to? field"
+      },
+      "scores": {
+        "done": 1.2664170859449757e-14,
+        "fill_origin": 6.560210707995395e-12,
+        "fill_destination": 1.0,
+        "search": 5.211412967831563e-10
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "fill_origin",
+        "fill_destination",
+        "search"
+      ],
+      "raw_label_logits": {
+        "A": 16.75,
+        "B": 23.0,
+        "C": 48.75,
+        "D": 27.375
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 175,
+      "inference_ms": 300.10779085569084,
+      "peak_mlx_bytes": 2713616268,
+      "mlx_cache_bytes": 484884384,
+      "case": "empty_field",
+      "rotation": 3,
+      "repetition": 2,
+      "expected_action": "fill_destination",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "fill_destination",
+        "operation": "TYPE_TEXT",
+        "target": "2",
+        "description": "Fill the Where to? field"
+      },
+      "scores": {
+        "done": 1.2664170859449757e-14,
+        "fill_origin": 6.560210707995395e-12,
+        "fill_destination": 1.0,
+        "search": 5.211412967831563e-10
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "fill_origin",
+        "fill_destination",
+        "search"
+      ],
+      "raw_label_logits": {
+        "A": 16.75,
+        "B": 23.0,
+        "C": 48.75,
+        "D": 27.375
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 175,
+      "inference_ms": 298.71900007128716,
+      "peak_mlx_bytes": 2713616268,
+      "mlx_cache_bytes": 484884384,
+      "case": "empty_field",
+      "rotation": 3,
+      "repetition": 3,
+      "expected_action": "fill_destination",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "nonstop",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Check Nonstop"
+      },
+      "scores": {
+        "sort": 1.6586790534817153e-12,
+        "nearby": 4.847367646165779e-11,
+        "nonstop": 1.0,
+        "done": 1.7257830720041056e-08
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "sort",
+        "nearby",
+        "nonstop",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 21.625,
+        "B": 25.0,
+        "C": 48.75,
+        "D": 30.875
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 299.50654110871255,
+      "peak_mlx_bytes": 2685714308,
+      "mlx_cache_bytes": 923221920,
+      "case": "unchecked_filter",
+      "rotation": 0,
+      "repetition": 0,
+      "expected_action": "nonstop",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "nonstop",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Check Nonstop"
+      },
+      "scores": {
+        "sort": 1.6586790534817153e-12,
+        "nearby": 4.847367646165779e-11,
+        "nonstop": 1.0,
+        "done": 1.7257830720041056e-08
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "sort",
+        "nearby",
+        "nonstop",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 21.625,
+        "B": 25.0,
+        "C": 48.75,
+        "D": 30.875
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 299.10454084165394,
+      "peak_mlx_bytes": 2685714308,
+      "mlx_cache_bytes": 923221920,
+      "case": "unchecked_filter",
+      "rotation": 0,
+      "repetition": 1,
+      "expected_action": "nonstop",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "nonstop",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Check Nonstop"
+      },
+      "scores": {
+        "sort": 1.6586790534817153e-12,
+        "nearby": 4.847367646165779e-11,
+        "nonstop": 1.0,
+        "done": 1.7257830720041056e-08
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "sort",
+        "nearby",
+        "nonstop",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 21.625,
+        "B": 25.0,
+        "C": 48.75,
+        "D": 30.875
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 297.894666204229,
+      "peak_mlx_bytes": 2685714308,
+      "mlx_cache_bytes": 923221920,
+      "case": "unchecked_filter",
+      "rotation": 0,
+      "repetition": 2,
+      "expected_action": "nonstop",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "nonstop",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Check Nonstop"
+      },
+      "scores": {
+        "sort": 1.6586790534817153e-12,
+        "nearby": 4.847367646165779e-11,
+        "nonstop": 1.0,
+        "done": 1.7257830720041056e-08
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "sort",
+        "nearby",
+        "nonstop",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 21.625,
+        "B": 25.0,
+        "C": 48.75,
+        "D": 30.875
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 298.0243330821395,
+      "peak_mlx_bytes": 2685714308,
+      "mlx_cache_bytes": 923221920,
+      "case": "unchecked_filter",
+      "rotation": 0,
+      "repetition": 3,
+      "expected_action": "nonstop",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "nonstop",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Check Nonstop"
+      },
+      "scores": {
+        "nearby": 1.4637800520300726e-12,
+        "nonstop": 1.0,
+        "done": 5.315784790127509e-08,
+        "sort": 1.0815932351138091e-11
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "nearby",
+        "nonstop",
+        "done",
+        "sort"
+      ],
+      "raw_label_logits": {
+        "A": 20.5,
+        "B": 47.75,
+        "C": 31.0,
+        "D": 22.5
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 298.20779198780656,
+      "peak_mlx_bytes": 2685714308,
+      "mlx_cache_bytes": 923221920,
+      "case": "unchecked_filter",
+      "rotation": 1,
+      "repetition": 0,
+      "expected_action": "nonstop",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "nonstop",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Check Nonstop"
+      },
+      "scores": {
+        "nearby": 1.4637800520300726e-12,
+        "nonstop": 1.0,
+        "done": 5.315784790127509e-08,
+        "sort": 1.0815932351138091e-11
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "nearby",
+        "nonstop",
+        "done",
+        "sort"
+      ],
+      "raw_label_logits": {
+        "A": 20.5,
+        "B": 47.75,
+        "C": 31.0,
+        "D": 22.5
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 312.48300010338426,
+      "peak_mlx_bytes": 2685714308,
+      "mlx_cache_bytes": 923221920,
+      "case": "unchecked_filter",
+      "rotation": 1,
+      "repetition": 1,
+      "expected_action": "nonstop",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "nonstop",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Check Nonstop"
+      },
+      "scores": {
+        "nearby": 1.4637800520300726e-12,
+        "nonstop": 1.0,
+        "done": 5.315784790127509e-08,
+        "sort": 1.0815932351138091e-11
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "nearby",
+        "nonstop",
+        "done",
+        "sort"
+      ],
+      "raw_label_logits": {
+        "A": 20.5,
+        "B": 47.75,
+        "C": 31.0,
+        "D": 22.5
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 312.51808302477,
+      "peak_mlx_bytes": 2685714308,
+      "mlx_cache_bytes": 923221920,
+      "case": "unchecked_filter",
+      "rotation": 1,
+      "repetition": 2,
+      "expected_action": "nonstop",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "nonstop",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Check Nonstop"
+      },
+      "scores": {
+        "nearby": 1.4637800520300726e-12,
+        "nonstop": 1.0,
+        "done": 5.315784790127509e-08,
+        "sort": 1.0815932351138091e-11
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "nearby",
+        "nonstop",
+        "done",
+        "sort"
+      ],
+      "raw_label_logits": {
+        "A": 20.5,
+        "B": 47.75,
+        "C": 31.0,
+        "D": 22.5
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 312.8932500258088,
+      "peak_mlx_bytes": 2685714308,
+      "mlx_cache_bytes": 923221920,
+      "case": "unchecked_filter",
+      "rotation": 1,
+      "repetition": 3,
+      "expected_action": "nonstop",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "nonstop",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Check Nonstop"
+      },
+      "scores": {
+        "nonstop": 1.0,
+        "done": 1.18611280797154e-08,
+        "sort": 1.3440410562282068e-08,
+        "nearby": 9.056071170743252e-11
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "nonstop",
+        "done",
+        "sort",
+        "nearby"
+      ],
+      "raw_label_logits": {
+        "A": 45.0,
+        "B": 26.75,
+        "C": 26.875,
+        "D": 21.875
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 311.2612080294639,
+      "peak_mlx_bytes": 2685714308,
+      "mlx_cache_bytes": 923221920,
+      "case": "unchecked_filter",
+      "rotation": 2,
+      "repetition": 0,
+      "expected_action": "nonstop",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "nonstop",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Check Nonstop"
+      },
+      "scores": {
+        "nonstop": 1.0,
+        "done": 1.18611280797154e-08,
+        "sort": 1.3440410562282068e-08,
+        "nearby": 9.056071170743252e-11
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "nonstop",
+        "done",
+        "sort",
+        "nearby"
+      ],
+      "raw_label_logits": {
+        "A": 45.0,
+        "B": 26.75,
+        "C": 26.875,
+        "D": 21.875
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 311.7515000049025,
+      "peak_mlx_bytes": 2685714308,
+      "mlx_cache_bytes": 923221920,
+      "case": "unchecked_filter",
+      "rotation": 2,
+      "repetition": 1,
+      "expected_action": "nonstop",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "nonstop",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Check Nonstop"
+      },
+      "scores": {
+        "nonstop": 1.0,
+        "done": 1.18611280797154e-08,
+        "sort": 1.3440410562282068e-08,
+        "nearby": 9.056071170743252e-11
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "nonstop",
+        "done",
+        "sort",
+        "nearby"
+      ],
+      "raw_label_logits": {
+        "A": 45.0,
+        "B": 26.75,
+        "C": 26.875,
+        "D": 21.875
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 308.97329188883305,
+      "peak_mlx_bytes": 2685714308,
+      "mlx_cache_bytes": 923221920,
+      "case": "unchecked_filter",
+      "rotation": 2,
+      "repetition": 2,
+      "expected_action": "nonstop",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "nonstop",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Check Nonstop"
+      },
+      "scores": {
+        "nonstop": 1.0,
+        "done": 1.18611280797154e-08,
+        "sort": 1.3440410562282068e-08,
+        "nearby": 9.056071170743252e-11
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "nonstop",
+        "done",
+        "sort",
+        "nearby"
+      ],
+      "raw_label_logits": {
+        "A": 45.0,
+        "B": 26.75,
+        "C": 26.875,
+        "D": 21.875
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 298.085083020851,
+      "peak_mlx_bytes": 2685714308,
+      "mlx_cache_bytes": 923221920,
+      "case": "unchecked_filter",
+      "rotation": 2,
+      "repetition": 3,
+      "expected_action": "nonstop",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "nonstop",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Check Nonstop"
+      },
+      "scores": {
+        "done": 3.037979888270356e-14,
+        "sort": 5.1090902342121325e-12,
+        "nearby": 2.3355946066061506e-09,
+        "nonstop": 1.0
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "sort",
+        "nearby",
+        "nonstop"
+      ],
+      "raw_label_logits": {
+        "A": 18.625,
+        "B": 23.75,
+        "C": 29.875,
+        "D": 49.75
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 298.7886250484735,
+      "peak_mlx_bytes": 2685714308,
+      "mlx_cache_bytes": 923221920,
+      "case": "unchecked_filter",
+      "rotation": 3,
+      "repetition": 0,
+      "expected_action": "nonstop",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "nonstop",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Check Nonstop"
+      },
+      "scores": {
+        "done": 3.037979888270356e-14,
+        "sort": 5.1090902342121325e-12,
+        "nearby": 2.3355946066061506e-09,
+        "nonstop": 1.0
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "sort",
+        "nearby",
+        "nonstop"
+      ],
+      "raw_label_logits": {
+        "A": 18.625,
+        "B": 23.75,
+        "C": 29.875,
+        "D": 49.75
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 297.8682080283761,
+      "peak_mlx_bytes": 2685714308,
+      "mlx_cache_bytes": 923221920,
+      "case": "unchecked_filter",
+      "rotation": 3,
+      "repetition": 1,
+      "expected_action": "nonstop",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "nonstop",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Check Nonstop"
+      },
+      "scores": {
+        "done": 3.037979888270356e-14,
+        "sort": 5.1090902342121325e-12,
+        "nearby": 2.3355946066061506e-09,
+        "nonstop": 1.0
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "sort",
+        "nearby",
+        "nonstop"
+      ],
+      "raw_label_logits": {
+        "A": 18.625,
+        "B": 23.75,
+        "C": 29.875,
+        "D": 49.75
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 298.78291697241366,
+      "peak_mlx_bytes": 2685714308,
+      "mlx_cache_bytes": 923221920,
+      "case": "unchecked_filter",
+      "rotation": 3,
+      "repetition": 2,
+      "expected_action": "nonstop",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "nonstop",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Check Nonstop"
+      },
+      "scores": {
+        "done": 3.037979888270356e-14,
+        "sort": 5.1090902342121325e-12,
+        "nearby": 2.3355946066061506e-09,
+        "nonstop": 1.0
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "sort",
+        "nearby",
+        "nonstop"
+      ],
+      "raw_label_logits": {
+        "A": 18.625,
+        "B": 23.75,
+        "C": 29.875,
+        "D": 49.75
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 166,
+      "inference_ms": 298.40879212133586,
+      "peak_mlx_bytes": 2685714308,
+      "mlx_cache_bytes": 923221920,
+      "case": "unchecked_filter",
+      "rotation": 3,
+      "repetition": 3,
+      "expected_action": "nonstop",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "matching_article",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Godel's incompleteness theorems - Wikipedia"
+      },
+      "scores": {
+        "biography": 1.7482356166019508e-13,
+        "matching_article": 1.0,
+        "completeness": 9.056071170743252e-11,
+        "done": 1.1628242119199328e-10
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "biography",
+        "matching_article",
+        "completeness",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 19.375,
+        "B": 48.75,
+        "C": 25.625,
+        "D": 25.875
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 185,
+      "inference_ms": 301.8301248084754,
+      "peak_mlx_bytes": 2714353572,
+      "mlx_cache_bytes": 1400649212,
+      "case": "matching_result",
+      "rotation": 0,
+      "repetition": 0,
+      "expected_action": "matching_article",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "matching_article",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Godel's incompleteness theorems - Wikipedia"
+      },
+      "scores": {
+        "biography": 1.7482356166019508e-13,
+        "matching_article": 1.0,
+        "completeness": 9.056071170743252e-11,
+        "done": 1.1628242119199328e-10
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "biography",
+        "matching_article",
+        "completeness",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 19.375,
+        "B": 48.75,
+        "C": 25.625,
+        "D": 25.875
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 185,
+      "inference_ms": 300.956416875124,
+      "peak_mlx_bytes": 2714353572,
+      "mlx_cache_bytes": 1400649212,
+      "case": "matching_result",
+      "rotation": 0,
+      "repetition": 1,
+      "expected_action": "matching_article",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "matching_article",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Godel's incompleteness theorems - Wikipedia"
+      },
+      "scores": {
+        "biography": 1.7482356166019508e-13,
+        "matching_article": 1.0,
+        "completeness": 9.056071170743252e-11,
+        "done": 1.1628242119199328e-10
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "biography",
+        "matching_article",
+        "completeness",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 19.375,
+        "B": 48.75,
+        "C": 25.625,
+        "D": 25.875
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 185,
+      "inference_ms": 301.60037497989833,
+      "peak_mlx_bytes": 2714353572,
+      "mlx_cache_bytes": 1400649212,
+      "case": "matching_result",
+      "rotation": 0,
+      "repetition": 2,
+      "expected_action": "matching_article",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "matching_article",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Godel's incompleteness theorems - Wikipedia"
+      },
+      "scores": {
+        "biography": 1.7482356166019508e-13,
+        "matching_article": 1.0,
+        "completeness": 9.056071170743252e-11,
+        "done": 1.1628242119199328e-10
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "biography",
+        "matching_article",
+        "completeness",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 19.375,
+        "B": 48.75,
+        "C": 25.625,
+        "D": 25.875
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 185,
+      "inference_ms": 301.9717501010746,
+      "peak_mlx_bytes": 2714353572,
+      "mlx_cache_bytes": 1400649212,
+      "case": "matching_result",
+      "rotation": 0,
+      "repetition": 3,
+      "expected_action": "matching_article",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "matching_article",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Godel's incompleteness theorems - Wikipedia"
+      },
+      "scores": {
+        "matching_article": 1.0,
+        "completeness": 3.3315499664565706e-11,
+        "done": 5.602798669457343e-09,
+        "biography": 1.8795284339317986e-12
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "matching_article",
+        "completeness",
+        "done",
+        "biography"
+      ],
+      "raw_label_logits": {
+        "A": 49.25,
+        "B": 25.125,
+        "C": 30.25,
+        "D": 22.25
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 185,
+      "inference_ms": 301.3674169778824,
+      "peak_mlx_bytes": 2714353572,
+      "mlx_cache_bytes": 1400649212,
+      "case": "matching_result",
+      "rotation": 1,
+      "repetition": 0,
+      "expected_action": "matching_article",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "matching_article",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Godel's incompleteness theorems - Wikipedia"
+      },
+      "scores": {
+        "matching_article": 1.0,
+        "completeness": 3.3315499664565706e-11,
+        "done": 5.602798669457343e-09,
+        "biography": 1.8795284339317986e-12
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "matching_article",
+        "completeness",
+        "done",
+        "biography"
+      ],
+      "raw_label_logits": {
+        "A": 49.25,
+        "B": 25.125,
+        "C": 30.25,
+        "D": 22.25
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 185,
+      "inference_ms": 300.9915000293404,
+      "peak_mlx_bytes": 2714353572,
+      "mlx_cache_bytes": 1400649212,
+      "case": "matching_result",
+      "rotation": 1,
+      "repetition": 1,
+      "expected_action": "matching_article",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "matching_article",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Godel's incompleteness theorems - Wikipedia"
+      },
+      "scores": {
+        "matching_article": 1.0,
+        "completeness": 3.3315499664565706e-11,
+        "done": 5.602798669457343e-09,
+        "biography": 1.8795284339317986e-12
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "matching_article",
+        "completeness",
+        "done",
+        "biography"
+      ],
+      "raw_label_logits": {
+        "A": 49.25,
+        "B": 25.125,
+        "C": 30.25,
+        "D": 22.25
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 185,
+      "inference_ms": 300.9929999243468,
+      "peak_mlx_bytes": 2714353572,
+      "mlx_cache_bytes": 1400649212,
+      "case": "matching_result",
+      "rotation": 1,
+      "repetition": 2,
+      "expected_action": "matching_article",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "A",
+      "selected_action": {
+        "id": "matching_article",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Godel's incompleteness theorems - Wikipedia"
+      },
+      "scores": {
+        "matching_article": 1.0,
+        "completeness": 3.3315499664565706e-11,
+        "done": 5.602798669457343e-09,
+        "biography": 1.8795284339317986e-12
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "matching_article",
+        "completeness",
+        "done",
+        "biography"
+      ],
+      "raw_label_logits": {
+        "A": 49.25,
+        "B": 25.125,
+        "C": 30.25,
+        "D": 22.25
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 185,
+      "inference_ms": 300.6639168597758,
+      "peak_mlx_bytes": 2714353572,
+      "mlx_cache_bytes": 1400649212,
+      "case": "matching_result",
+      "rotation": 1,
+      "repetition": 3,
+      "expected_action": "matching_article",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "matching_article",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Godel's incompleteness theorems - Wikipedia"
+      },
+      "scores": {
+        "completeness": 2.365977659830095e-14,
+        "done": 5.492783658467282e-11,
+        "biography": 1.0467401168057222e-08,
+        "matching_article": 1.0
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "completeness",
+        "done",
+        "biography",
+        "matching_article"
+      ],
+      "raw_label_logits": {
+        "A": 18.875,
+        "B": 26.625,
+        "C": 31.875,
+        "D": 50.25
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 185,
+      "inference_ms": 300.7141249254346,
+      "peak_mlx_bytes": 2714353572,
+      "mlx_cache_bytes": 1400649212,
+      "case": "matching_result",
+      "rotation": 2,
+      "repetition": 0,
+      "expected_action": "matching_article",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "matching_article",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Godel's incompleteness theorems - Wikipedia"
+      },
+      "scores": {
+        "completeness": 2.365977659830095e-14,
+        "done": 5.492783658467282e-11,
+        "biography": 1.0467401168057222e-08,
+        "matching_article": 1.0
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "completeness",
+        "done",
+        "biography",
+        "matching_article"
+      ],
+      "raw_label_logits": {
+        "A": 18.875,
+        "B": 26.625,
+        "C": 31.875,
+        "D": 50.25
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 185,
+      "inference_ms": 301.31816607899964,
+      "peak_mlx_bytes": 2714353572,
+      "mlx_cache_bytes": 1400649212,
+      "case": "matching_result",
+      "rotation": 2,
+      "repetition": 1,
+      "expected_action": "matching_article",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "matching_article",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Godel's incompleteness theorems - Wikipedia"
+      },
+      "scores": {
+        "completeness": 2.365977659830095e-14,
+        "done": 5.492783658467282e-11,
+        "biography": 1.0467401168057222e-08,
+        "matching_article": 1.0
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "completeness",
+        "done",
+        "biography",
+        "matching_article"
+      ],
+      "raw_label_logits": {
+        "A": 18.875,
+        "B": 26.625,
+        "C": 31.875,
+        "D": 50.25
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 185,
+      "inference_ms": 301.65433301590383,
+      "peak_mlx_bytes": 2685891516,
+      "mlx_cache_bytes": 1400649212,
+      "case": "matching_result",
+      "rotation": 2,
+      "repetition": 2,
+      "expected_action": "matching_article",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "matching_article",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Godel's incompleteness theorems - Wikipedia"
+      },
+      "scores": {
+        "completeness": 2.365977659830095e-14,
+        "done": 5.492783658467282e-11,
+        "biography": 1.0467401168057222e-08,
+        "matching_article": 1.0
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "completeness",
+        "done",
+        "biography",
+        "matching_article"
+      ],
+      "raw_label_logits": {
+        "A": 18.875,
+        "B": 26.625,
+        "C": 31.875,
+        "D": 50.25
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 185,
+      "inference_ms": 303.5369999706745,
+      "peak_mlx_bytes": 2714353572,
+      "mlx_cache_bytes": 1400649212,
+      "case": "matching_result",
+      "rotation": 2,
+      "repetition": 3,
+      "expected_action": "matching_article",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "matching_article",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Godel's incompleteness theorems - Wikipedia"
+      },
+      "scores": {
+        "done": 3.900838460297977e-14,
+        "biography": 3.3315499664565706e-11,
+        "matching_article": 1.0,
+        "completeness": 3.978968196594046e-12
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "biography",
+        "matching_article",
+        "completeness"
+      ],
+      "raw_label_logits": {
+        "A": 19.875,
+        "B": 26.625,
+        "C": 50.75,
+        "D": 24.5
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 185,
+      "inference_ms": 301.4408340677619,
+      "peak_mlx_bytes": 2714353572,
+      "mlx_cache_bytes": 1400649212,
+      "case": "matching_result",
+      "rotation": 3,
+      "repetition": 0,
+      "expected_action": "matching_article",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "matching_article",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Godel's incompleteness theorems - Wikipedia"
+      },
+      "scores": {
+        "done": 3.900838460297977e-14,
+        "biography": 3.3315499664565706e-11,
+        "matching_article": 1.0,
+        "completeness": 3.978968196594046e-12
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "biography",
+        "matching_article",
+        "completeness"
+      ],
+      "raw_label_logits": {
+        "A": 19.875,
+        "B": 26.625,
+        "C": 50.75,
+        "D": 24.5
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 185,
+      "inference_ms": 308.5157498717308,
+      "peak_mlx_bytes": 2714353572,
+      "mlx_cache_bytes": 1400649212,
+      "case": "matching_result",
+      "rotation": 3,
+      "repetition": 1,
+      "expected_action": "matching_article",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "matching_article",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Godel's incompleteness theorems - Wikipedia"
+      },
+      "scores": {
+        "done": 3.900838460297977e-14,
+        "biography": 3.3315499664565706e-11,
+        "matching_article": 1.0,
+        "completeness": 3.978968196594046e-12
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "biography",
+        "matching_article",
+        "completeness"
+      ],
+      "raw_label_logits": {
+        "A": 19.875,
+        "B": 26.625,
+        "C": 50.75,
+        "D": 24.5
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 185,
+      "inference_ms": 311.870584031567,
+      "peak_mlx_bytes": 2714353572,
+      "mlx_cache_bytes": 1400649212,
+      "case": "matching_result",
+      "rotation": 3,
+      "repetition": 2,
+      "expected_action": "matching_article",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "matching_article",
+        "operation": "CLICK",
+        "target": "3",
+        "description": "Open Godel's incompleteness theorems - Wikipedia"
+      },
+      "scores": {
+        "done": 3.900838460297977e-14,
+        "biography": 3.3315499664565706e-11,
+        "matching_article": 1.0,
+        "completeness": 3.978968196594046e-12
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "biography",
+        "matching_article",
+        "completeness"
+      ],
+      "raw_label_logits": {
+        "A": 19.875,
+        "B": 26.625,
+        "C": 50.75,
+        "D": 24.5
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 185,
+      "inference_ms": 312.72424990311265,
+      "peak_mlx_bytes": 2714353572,
+      "mlx_cache_bytes": 1400649212,
+      "case": "matching_result",
+      "rotation": 3,
+      "repetition": 3,
+      "expected_action": "matching_article",
+      "correct": true,
+      "phase": "warm_forward"
+    }
+  ],
+  "notes": [
+    "Scores are uncalibrated restricted-label softmax scores, not guaranteed confidence estimates.",
+    "These synthetic cases do not establish browser-task reliability.",
+    "Cold means first forward pass in this process after model loading; disk/OS caches are not cleared.",
+    "Warm runs still prefill the full prompt; no KV cache or prefix reuse.",
+    "Latency excludes tokenization; load time is separate. Peak MLX excludes other applications and OS memory.",
+    "Candidate rotations move each action across all four labels and positions; they are a limited bias check."
+  ],
+  "hardware": {
+    "device_name": "Apple M4 Pro",
+    "max_recommended_working_set_size": 19069665280,
+    "memory_size": 25769803776,
+    "architecture": "applegpu_g16s",
+    "max_buffer_length": 14302248960,
+    "resource_limit": 499000
+  },
+  "disk": {
+    "total_bytes": 494384795648,
+    "free_bytes_before_run": 57204006912
+  },
+  "model_load_ms": 1137.900749919936,
+  "model_active_mlx_bytes": 2264693768,
+  "model_load_peak_mlx_bytes": 2264693768,
+  "weight_bytes": 2263022417,
+  "snapshot_bytes": 2278970666,
+  "forward_passes": 48,
+  "correct_unique_prompts": 12,
+  "unique_prompts": 12,
+  "cold_first_forward_ms": 375.61500002630055,
+  "warm_median_ms": 301.65433301590383,
+  "warm_min_ms": 297.8682080283761,
+  "warm_max_ms": 314.9141250178218,
+  "peak_mlx_bytes": 2714353572,
+  "prompt_tokens_min": 166,
+  "prompt_tokens_max": 185,
+  "rotation_checks": {
+    "empty_field": {
+      "all_rotations_correct": true,
+      "selected_actions": [
+        "fill_destination",
+        "fill_destination",
+        "fill_destination",
+        "fill_destination"
+      ]
+    },
+    "unchecked_filter": {
+      "all_rotations_correct": true,
+      "selected_actions": [
+        "nonstop",
+        "nonstop",
+        "nonstop",
+        "nonstop"
+      ]
+    },
+    "matching_result": {
+      "all_rotations_correct": true,
+      "selected_actions": [
+        "matching_article",
+        "matching_article",
+        "matching_article",
+        "matching_article"
+      ]
+    }
+  }
+}

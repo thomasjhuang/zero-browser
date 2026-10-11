@@ -1,0 +1,269 @@
+{
+  "status": "audited",
+  "fixture_sha256": {
+    "decision_cases.json": "b64b3dcf99ce9b1bfea5663d98a1b09dbfed123ea5abeee881afc2c702c88a01",
+    "decision_quality_cases.json": "dcc572959ac637b5251b2d08c6b93fa8f60d794d4fd6393563dc3963a8753241"
+  },
+  "source_sha256": {
+    "decision-smoke.json": "690a6d8e00a383b9289ebd9772bd2fdeee52801d8c6657dcb8f533749114ce51",
+    "decision-quality.json": "9268c91997fd28d46d8f005acb9a6a2229234cf8e0fc84636450a1a9765c50ab",
+    "decision-codex.json": "5afb4d687bc04b589ea9391fb90b4dc36330a7e77463bb33cd13db2b16913fc3",
+    "decision-claude.json": "4b0e82bf8b1ad04bf94e1b933aa9cbc7dd77723d8743a8def36245b54b1e6126"
+  },
+  "baselines": [
+    {
+      "provider": "qwen",
+      "correct": 47,
+      "total": 48,
+      "per_case": {
+        "empty_field": {
+          "correct": 4,
+          "total": 4
+        },
+        "unchecked_filter": {
+          "correct": 4,
+          "total": 4
+        },
+        "matching_result": {
+          "correct": 4,
+          "total": 4
+        },
+        "completed_filter": {
+          "correct": 4,
+          "total": 4
+        },
+        "wrong_filled_query": {
+          "correct": 4,
+          "total": 4
+        },
+        "filled_form_search": {
+          "correct": 4,
+          "total": 4
+        },
+        "official_matching_result": {
+          "correct": 4,
+          "total": 4
+        },
+        "loading_wait": {
+          "correct": 4,
+          "total": 4
+        },
+        "unsupported_upload": {
+          "correct": 4,
+          "total": 4
+        },
+        "native_select": {
+          "correct": 4,
+          "total": 4
+        },
+        "misleading_page_text": {
+          "correct": 4,
+          "total": 4
+        },
+        "remove_restrictive_filter": {
+          "correct": 3,
+          "total": 4
+        }
+      },
+      "median_latency_ms": 299.0804164437577,
+      "latency_scope": "Warm full prompt prefill, excluding tokenization and model load",
+      "cold_first_forward_ms": [
+        1332.6212079264224,
+        386.4145828410983
+      ],
+      "model_load_ms": [
+        1384.4199171289802,
+        1380.8160421904176
+      ],
+      "peak_mlx_bytes": 2732408772,
+      "prompt_tokens_range": [
+        160,
+        189
+      ],
+      "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b"
+    },
+    {
+      "provider": "codex",
+      "correct": 48,
+      "total": 48,
+      "per_case": {
+        "empty_field": {
+          "correct": 4,
+          "total": 4
+        },
+        "unchecked_filter": {
+          "correct": 4,
+          "total": 4
+        },
+        "matching_result": {
+          "correct": 4,
+          "total": 4
+        },
+        "completed_filter": {
+          "correct": 4,
+          "total": 4
+        },
+        "wrong_filled_query": {
+          "correct": 4,
+          "total": 4
+        },
+        "filled_form_search": {
+          "correct": 4,
+          "total": 4
+        },
+        "official_matching_result": {
+          "correct": 4,
+          "total": 4
+        },
+        "loading_wait": {
+          "correct": 4,
+          "total": 4
+        },
+        "unsupported_upload": {
+          "correct": 4,
+          "total": 4
+        },
+        "native_select": {
+          "correct": 4,
+          "total": 4
+        },
+        "misleading_page_text": {
+          "correct": 4,
+          "total": 4
+        },
+        "remove_restrictive_filter": {
+          "correct": 4,
+          "total": 4
+        }
+      },
+      "median_latency_ms": 4059.1320004314184,
+      "latency_scope": "CLI startup, network access, and provider computation",
+      "first_request_ms": 4705.247125122696,
+      "subsequent_median_ms": 4041.081666946411,
+      "peak_mlx_bytes": null,
+      "remote_peak_memory_bytes": null,
+      "model": "gpt-6.1-sol",
+      "model_identity_source": "Explicit CLI model argument",
+      "cli_version": "codex-cli 0.162.0-alpha.17.2",
+      "authentication": {
+        "auth_method": "ChatGPT subscription"
+      },
+      "usage_totals": {
+        "input_tokens": 617548,
+        "output_tokens": 691,
+        "cached_input_tokens": 226944,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0,
+        "reasoning_output_tokens": 403
+      },
+      "reported_input_tokens_range": [
+        12854,
+        12890
+      ],
+      "effective_prompt_tokens_range": [
+        12854,
+        12890
+      ],
+      "api_equivalent_usd": null
+    },
+    {
+      "provider": "claude",
+      "correct": 48,
+      "total": 48,
+      "per_case": {
+        "empty_field": {
+          "correct": 4,
+          "total": 4
+        },
+        "unchecked_filter": {
+          "correct": 4,
+          "total": 4
+        },
+        "matching_result": {
+          "correct": 4,
+          "total": 4
+        },
+        "completed_filter": {
+          "correct": 4,
+          "total": 4
+        },
+        "wrong_filled_query": {
+          "correct": 4,
+          "total": 4
+        },
+        "filled_form_search": {
+          "correct": 4,
+          "total": 4
+        },
+        "official_matching_result": {
+          "correct": 4,
+          "total": 4
+        },
+        "loading_wait": {
+          "correct": 4,
+          "total": 4
+        },
+        "unsupported_upload": {
+          "correct": 4,
+          "total": 4
+        },
+        "native_select": {
+          "correct": 4,
+          "total": 4
+        },
+        "misleading_page_text": {
+          "correct": 4,
+          "total": 4
+        },
+        "remove_restrictive_filter": {
+          "correct": 4,
+          "total": 4
+        }
+      },
+      "median_latency_ms": 2395.9723128937185,
+      "latency_scope": "CLI startup, network access, and provider computation",
+      "first_request_ms": 2439.706833800301,
+      "subsequent_median_ms": 2395.6031668931246,
+      "peak_mlx_bytes": null,
+      "remote_peak_memory_bytes": null,
+      "model": "claude-opus-5-5",
+      "model_identity_source": "CLI resolved model",
+      "cli_version": "2.1.281 (Claude Code)",
+      "authentication": {
+        "auth_method": "claude.ai",
+        "subscription_type": "max"
+      },
+      "usage_totals": {
+        "input_tokens": 96,
+        "output_tokens": 144,
+        "cached_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 32904,
+        "reasoning_output_tokens": 0
+      },
+      "reported_input_tokens_range": [
+        2,
+        2
+      ],
+      "effective_prompt_tokens_range": [
+        668,
+        727
+      ],
+      "api_equivalent_usd": 0.266496
+    }
+  ],
+  "limits": [
+    "Synthetic text only. No website opens and no browser actions execute.",
+    "These cases do not establish browser-task reliability.",
+    "Qwen latency and subscription CLI latency cover different operations.",
+    "CLI models use high reasoning effort. Qwen uses one forward pass.",
+    "Each request starts a new CLI session. Remote prompt caches can apply.",
+    "Codex retains global instruction and skill context. Its wrapper differs from Claude and Qwen.",
+    "CLI logits and remote peak memory are unavailable. No confidence scores are inferred.",
+    "API-equivalent cost is provider metadata, not subscription billing.",
+    "Only four cyclic candidate orders per case were tested. Repetition budgets differ.",
+    "Claude reports uncached input separately from cache reads and writes.",
+    "Codex input includes cached input."
+  ]
+}

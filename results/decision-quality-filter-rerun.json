@@ -1,0 +1,768 @@
+{
+  "status": "completed",
+  "timestamp_utc": "2026-10-11T18:40:59.017423+00:00",
+  "model_id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+  "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "python": "3.14.2",
+  "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+  "dependencies": {
+    "mlx": "0.32.3",
+    "mlx-lm": "0.32.0",
+    "huggingface-hub": "2.2.0",
+    "transformers": "5.19.0",
+    "tokenizers": "0.23.3",
+    "numpy": "2.5.4"
+  },
+  "measurements": [
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "toggle_sale",
+        "operation": "CLICK",
+        "target": "2",
+        "description": "Toggle On sale"
+      },
+      "scores": {
+        "toggle_stock": 0.04741668328642845,
+        "toggle_sale": 0.9523894190788269,
+        "sort": 1.3761844286364067e-07,
+        "done": 0.0001937811030074954
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "toggle_stock",
+        "toggle_sale",
+        "sort",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 40.5,
+        "B": 43.5,
+        "C": 27.75,
+        "D": 35.0
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 400.923625100404,
+      "peak_mlx_bytes": 2668035912,
+      "mlx_cache_bytes": 446641728,
+      "case": "remove_restrictive_filter",
+      "rotation": 0,
+      "repetition": 0,
+      "expected_action": "toggle_stock",
+      "correct": false,
+      "phase": "cold_first_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "toggle_sale",
+        "operation": "CLICK",
+        "target": "2",
+        "description": "Toggle On sale"
+      },
+      "scores": {
+        "toggle_stock": 0.04741668328642845,
+        "toggle_sale": 0.9523894190788269,
+        "sort": 1.3761844286364067e-07,
+        "done": 0.0001937811030074954
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "toggle_stock",
+        "toggle_sale",
+        "sort",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 40.5,
+        "B": 43.5,
+        "C": 27.75,
+        "D": 35.0
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 250.40016695857048,
+      "peak_mlx_bytes": 2668035912,
+      "mlx_cache_bytes": 446641728,
+      "case": "remove_restrictive_filter",
+      "rotation": 0,
+      "repetition": 1,
+      "expected_action": "toggle_stock",
+      "correct": false,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "toggle_sale",
+        "operation": "CLICK",
+        "target": "2",
+        "description": "Toggle On sale"
+      },
+      "scores": {
+        "toggle_stock": 0.04741668328642845,
+        "toggle_sale": 0.9523894190788269,
+        "sort": 1.3761844286364067e-07,
+        "done": 0.0001937811030074954
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "toggle_stock",
+        "toggle_sale",
+        "sort",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 40.5,
+        "B": 43.5,
+        "C": 27.75,
+        "D": 35.0
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 250.6605840753764,
+      "peak_mlx_bytes": 2668035912,
+      "mlx_cache_bytes": 446641728,
+      "case": "remove_restrictive_filter",
+      "rotation": 0,
+      "repetition": 2,
+      "expected_action": "toggle_stock",
+      "correct": false,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "toggle_sale",
+        "operation": "CLICK",
+        "target": "2",
+        "description": "Toggle On sale"
+      },
+      "scores": {
+        "toggle_stock": 0.04741668328642845,
+        "toggle_sale": 0.9523894190788269,
+        "sort": 1.3761844286364067e-07,
+        "done": 0.0001937811030074954
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "toggle_stock",
+        "toggle_sale",
+        "sort",
+        "done"
+      ],
+      "raw_label_logits": {
+        "A": 40.5,
+        "B": 43.5,
+        "C": 27.75,
+        "D": 35.0
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 250.23929099552333,
+      "peak_mlx_bytes": 2668035912,
+      "mlx_cache_bytes": 446641728,
+      "case": "remove_restrictive_filter",
+      "rotation": 0,
+      "repetition": 3,
+      "expected_action": "toggle_stock",
+      "correct": false,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "toggle_stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "toggle_sale": 1.7257812956472662e-08,
+        "sort": 2.289734200855431e-11,
+        "done": 1.0677026693883818e-06,
+        "toggle_stock": 0.999998927116394
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "toggle_sale",
+        "sort",
+        "done",
+        "toggle_stock"
+      ],
+      "raw_label_logits": {
+        "A": 30.125,
+        "B": 23.5,
+        "C": 34.25,
+        "D": 48.0
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 249.8218328692019,
+      "peak_mlx_bytes": 2668035912,
+      "mlx_cache_bytes": 446641728,
+      "case": "remove_restrictive_filter",
+      "rotation": 1,
+      "repetition": 0,
+      "expected_action": "toggle_stock",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "toggle_stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "toggle_sale": 1.7257812956472662e-08,
+        "sort": 2.289734200855431e-11,
+        "done": 1.0677026693883818e-06,
+        "toggle_stock": 0.999998927116394
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "toggle_sale",
+        "sort",
+        "done",
+        "toggle_stock"
+      ],
+      "raw_label_logits": {
+        "A": 30.125,
+        "B": 23.5,
+        "C": 34.25,
+        "D": 48.0
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 250.19358401186764,
+      "peak_mlx_bytes": 2668035912,
+      "mlx_cache_bytes": 446641728,
+      "case": "remove_restrictive_filter",
+      "rotation": 1,
+      "repetition": 1,
+      "expected_action": "toggle_stock",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "toggle_stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "toggle_sale": 1.7257812956472662e-08,
+        "sort": 2.289734200855431e-11,
+        "done": 1.0677026693883818e-06,
+        "toggle_stock": 0.999998927116394
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "toggle_sale",
+        "sort",
+        "done",
+        "toggle_stock"
+      ],
+      "raw_label_logits": {
+        "A": 30.125,
+        "B": 23.5,
+        "C": 34.25,
+        "D": 48.0
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 250.11499994434416,
+      "peak_mlx_bytes": 2668035912,
+      "mlx_cache_bytes": 446641728,
+      "case": "remove_restrictive_filter",
+      "rotation": 1,
+      "repetition": 2,
+      "expected_action": "toggle_stock",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "D",
+      "selected_action": {
+        "id": "toggle_stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "toggle_sale": 1.7257812956472662e-08,
+        "sort": 2.289734200855431e-11,
+        "done": 1.0677026693883818e-06,
+        "toggle_stock": 0.999998927116394
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "toggle_sale",
+        "sort",
+        "done",
+        "toggle_stock"
+      ],
+      "raw_label_logits": {
+        "A": 30.125,
+        "B": 23.5,
+        "C": 34.25,
+        "D": 48.0
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 249.92037494666874,
+      "peak_mlx_bytes": 2668035912,
+      "mlx_cache_bytes": 446641728,
+      "case": "remove_restrictive_filter",
+      "rotation": 1,
+      "repetition": 3,
+      "expected_action": "toggle_stock",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "toggle_stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "sort": 1.0261790028831541e-10,
+        "done": 1.0467295474825278e-08,
+        "toggle_stock": 0.9999898672103882,
+        "toggle_sale": 1.0129998372576665e-05
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "sort",
+        "done",
+        "toggle_stock",
+        "toggle_sale"
+      ],
+      "raw_label_logits": {
+        "A": 22.75,
+        "B": 27.375,
+        "C": 45.75,
+        "D": 34.25
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 251.54374982230365,
+      "peak_mlx_bytes": 2668035912,
+      "mlx_cache_bytes": 446641728,
+      "case": "remove_restrictive_filter",
+      "rotation": 2,
+      "repetition": 0,
+      "expected_action": "toggle_stock",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "toggle_stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "sort": 1.0261790028831541e-10,
+        "done": 1.0467295474825278e-08,
+        "toggle_stock": 0.9999898672103882,
+        "toggle_sale": 1.0129998372576665e-05
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "sort",
+        "done",
+        "toggle_stock",
+        "toggle_sale"
+      ],
+      "raw_label_logits": {
+        "A": 22.75,
+        "B": 27.375,
+        "C": 45.75,
+        "D": 34.25
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 251.93516607396305,
+      "peak_mlx_bytes": 2668035912,
+      "mlx_cache_bytes": 446641728,
+      "case": "remove_restrictive_filter",
+      "rotation": 2,
+      "repetition": 1,
+      "expected_action": "toggle_stock",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "toggle_stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "sort": 1.0261790028831541e-10,
+        "done": 1.0467295474825278e-08,
+        "toggle_stock": 0.9999898672103882,
+        "toggle_sale": 1.0129998372576665e-05
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "sort",
+        "done",
+        "toggle_stock",
+        "toggle_sale"
+      ],
+      "raw_label_logits": {
+        "A": 22.75,
+        "B": 27.375,
+        "C": 45.75,
+        "D": 34.25
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 252.0398749038577,
+      "peak_mlx_bytes": 2668035912,
+      "mlx_cache_bytes": 446641728,
+      "case": "remove_restrictive_filter",
+      "rotation": 2,
+      "repetition": 2,
+      "expected_action": "toggle_stock",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "C",
+      "selected_action": {
+        "id": "toggle_stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "sort": 1.0261790028831541e-10,
+        "done": 1.0467295474825278e-08,
+        "toggle_stock": 0.9999898672103882,
+        "toggle_sale": 1.0129998372576665e-05
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "sort",
+        "done",
+        "toggle_stock",
+        "toggle_sale"
+      ],
+      "raw_label_logits": {
+        "A": 22.75,
+        "B": 27.375,
+        "C": 45.75,
+        "D": 34.25
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 252.5167081039399,
+      "peak_mlx_bytes": 2668035912,
+      "mlx_cache_bytes": 446641728,
+      "case": "remove_restrictive_filter",
+      "rotation": 2,
+      "repetition": 3,
+      "expected_action": "toggle_stock",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "toggle_stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "done": 9.545032299274059e-12,
+        "toggle_stock": 0.9999998807907104,
+        "toggle_sale": 1.1253519005549606e-07,
+        "sort": 4.058651470462138e-10
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "toggle_stock",
+        "toggle_sale",
+        "sort"
+      ],
+      "raw_label_logits": {
+        "A": 21.625,
+        "B": 47.0,
+        "C": 31.0,
+        "D": 25.375
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 253.04891704581678,
+      "peak_mlx_bytes": 2668035912,
+      "mlx_cache_bytes": 446641728,
+      "case": "remove_restrictive_filter",
+      "rotation": 3,
+      "repetition": 0,
+      "expected_action": "toggle_stock",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "toggle_stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "done": 9.545032299274059e-12,
+        "toggle_stock": 0.9999998807907104,
+        "toggle_sale": 1.1253519005549606e-07,
+        "sort": 4.058651470462138e-10
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "toggle_stock",
+        "toggle_sale",
+        "sort"
+      ],
+      "raw_label_logits": {
+        "A": 21.625,
+        "B": 47.0,
+        "C": 31.0,
+        "D": 25.375
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 252.40558409132063,
+      "peak_mlx_bytes": 2668035912,
+      "mlx_cache_bytes": 446641728,
+      "case": "remove_restrictive_filter",
+      "rotation": 3,
+      "repetition": 1,
+      "expected_action": "toggle_stock",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "toggle_stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "done": 9.545032299274059e-12,
+        "toggle_stock": 0.9999998807907104,
+        "toggle_sale": 1.1253519005549606e-07,
+        "sort": 4.058651470462138e-10
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "toggle_stock",
+        "toggle_sale",
+        "sort"
+      ],
+      "raw_label_logits": {
+        "A": 21.625,
+        "B": 47.0,
+        "C": 31.0,
+        "D": 25.375
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 252.73995893076062,
+      "peak_mlx_bytes": 2668035912,
+      "mlx_cache_bytes": 446641728,
+      "case": "remove_restrictive_filter",
+      "rotation": 3,
+      "repetition": 2,
+      "expected_action": "toggle_stock",
+      "correct": true,
+      "phase": "warm_forward"
+    },
+    {
+      "selected_label": "B",
+      "selected_action": {
+        "id": "toggle_stock",
+        "operation": "CLICK",
+        "target": "1",
+        "description": "Toggle In stock"
+      },
+      "scores": {
+        "done": 9.545032299274059e-12,
+        "toggle_stock": 0.9999998807907104,
+        "toggle_sale": 1.1253519005549606e-07,
+        "sort": 4.058651470462138e-10
+      },
+      "label_tokens": {
+        "A": 32,
+        "B": 33,
+        "C": 34,
+        "D": 35
+      },
+      "candidate_order": [
+        "done",
+        "toggle_stock",
+        "toggle_sale",
+        "sort"
+      ],
+      "raw_label_logits": {
+        "A": 21.625,
+        "B": 47.0,
+        "C": 31.0,
+        "D": 25.375
+      },
+      "valid_label_mass_in_full_vocabulary": 1.0,
+      "prompt_tokens": 160,
+      "inference_ms": 252.84570804797113,
+      "peak_mlx_bytes": 2668035912,
+      "mlx_cache_bytes": 446641728,
+      "case": "remove_restrictive_filter",
+      "rotation": 3,
+      "repetition": 3,
+      "expected_action": "toggle_stock",
+      "correct": true,
+      "phase": "warm_forward"
+    }
+  ],
+  "notes": [
+    "Scores are uncalibrated restricted-label softmax scores, not guaranteed confidence estimates.",
+    "These synthetic cases do not establish browser-task reliability.",
+    "Cold means first forward pass in this process after model loading; disk/OS caches are not cleared.",
+    "Warm runs still prefill the full prompt; no KV cache or prefix reuse.",
+    "Latency excludes tokenization; load time is separate. Peak MLX excludes other applications and OS memory.",
+    "Candidate rotations move each action across all four labels and positions; they are a limited bias check."
+  ],
+  "hardware": {
+    "device_name": "Apple M4 Pro",
+    "max_recommended_working_set_size": 19069665280,
+    "memory_size": 25769803776,
+    "architecture": "applegpu_g16s",
+    "max_buffer_length": 14302248960,
+    "resource_limit": 499000
+  },
+  "disk": {
+    "total_bytes": 494384795648,
+    "free_bytes_before_run": 56012877824
+  },
+  "model_load_ms": 1010.6674998532981,
+  "model_active_mlx_bytes": 2264693768,
+  "model_load_peak_mlx_bytes": 2264693768,
+  "weight_bytes": 2263022417,
+  "snapshot_bytes": 2278970666,
+  "forward_passes": 16,
+  "correct_unique_prompts": 3,
+  "unique_prompts": 4,
+  "cold_first_forward_ms": 400.923625100404,
+  "warm_median_ms": 251.54374982230365,
+  "warm_min_ms": 249.8218328692019,
+  "warm_max_ms": 253.04891704581678,
+  "peak_mlx_bytes": 2668035912,
+  "prompt_tokens_min": 160,
+  "prompt_tokens_max": 160,
+  "rotation_checks": {
+    "remove_restrictive_filter": {
+      "all_rotations_correct": false,
+      "selected_actions": [
+        "toggle_sale",
+        "toggle_stock",
+        "toggle_stock",
+        "toggle_stock"
+      ]
+    }
+  }
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "empty_field",
+    "goal": "Search for flights from Zurich to London. The origin is already correct. Choose the next action.",
+    "observation": "Title: Flight search\n[1] combobox Where from? value=Zurich\n[2] combobox Where to? value=empty\n[3] button Search enabled=true",
+    "candidates": [
+      {"id": "fill_origin", "operation": "TYPE_TEXT", "target": "1", "description": "Fill the Where from? field"},
+      {"id": "fill_destination", "operation": "TYPE_TEXT", "target": "2", "description": "Fill the Where to? field"},
+      {"id": "search", "operation": "CLICK", "target": "3", "description": "Click Search"},
+      {"id": "done", "operation": "DONE", "target": null, "description": "Stop; goal is satisfied"}
+    ],
+    "expected_action": "fill_destination"
+  },
+  {
+    "name": "unchecked_filter",
+    "goal": "Show only nonstop flights. Choose the next action.",
+    "observation": "Title: Flight results\n[1] checkbox Nonstop checked=false\n[2] checkbox Include nearby airports checked=true\n[3] button Sort by price\nVisible results include nonstop flights and flights with stops.",
+    "candidates": [
+      {"id": "sort", "operation": "CLICK", "target": "3", "description": "Click Sort by price"},
+      {"id": "nearby", "operation": "CLICK", "target": "2", "description": "Toggle Include nearby airports"},
+      {"id": "nonstop", "operation": "CLICK", "target": "1", "description": "Check Nonstop"},
+      {"id": "done", "operation": "DONE", "target": null, "description": "Stop; goal is satisfied"}
+    ],
+    "expected_action": "nonstop"
+  },
+  {
+    "name": "matching_result",
+    "goal": "Open the Wikipedia article about Godel's incompleteness theorems. Choose the next action.",
+    "observation": "Title: Search results\n[1] link Kurt Godel - biography\n[2] link Godel's completeness theorem\n[3] link Godel's incompleteness theorems - Wikipedia",
+    "candidates": [
+      {"id": "biography", "operation": "CLICK", "target": "1", "description": "Open Kurt Godel biography"},
+      {"id": "matching_article", "operation": "CLICK", "target": "3", "description": "Open Godel's incompleteness theorems - Wikipedia"},
+      {"id": "completeness", "operation": "CLICK", "target": "2", "description": "Open Godel's completeness theorem"},
+      {"id": "done", "operation": "DONE", "target": null, "description": "Stop; goal is satisfied"}
+    ],
+    "expected_action": "matching_article"
+  }
+]
