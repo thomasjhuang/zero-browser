@@ -142,3 +142,12 @@ Live Flights and both flight variations remain untested. Initial user responsive
 Final delivery checks passed: lint and 124 tests in 4.60 seconds.
 GitNexus impact and change analysis covered the affected policy flows. The MCP still reported stale data after a successful local rebuild.
 Source inspection and the measured reruns remain the evidence for this change.
+
+### Accuracy and continuity session
+
+Thomas authorized 150 minutes on October 11, starting at 14:09 PT and ending at 16:39 PT.
+This session replaces the earlier hackathon cut times. Speed work is paused.
+Task 16 retains sole runtime ownership. No inference is running at session start.
+The plan separates first-action accuracy from persistent task progress.
+Diagnose saved states, compare two bounded local decision methods, then use the evidence to choose the next change.
+Keep the existing goals, action boundary, runtime limits, and independent outcome tests.

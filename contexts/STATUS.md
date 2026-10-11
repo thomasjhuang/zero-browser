@@ -5,22 +5,19 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: RESERVED / IDLE, Codex task 16.** Both observation experiments ended with failed outcomes. Both agents acknowledged the ownership agreement.
+> **Current run state: RESERVED / IDLE, Codex task 16.** Saved-state diagnosis is in progress. No inference is running. Both agents acknowledged the ownership agreement.
 > The coordinator released the hold after publishing `5799c81`. Task 16 owns the next run.
 > The next owner is Codex, **Improve zero-browser benchmarking**. Claude must not start browser runs, replay, cache probes, or model loads.
 >
 > **Current scope:** task 16, with supporting notes in task 13. Tasks 18–22 remain cut from the active plan.
 > This context update does not reopen task 19. Do not create new task numbers.
 >
-> **Next steps for Codex:**
-> 1. Complete: the existing implementation and evidence are pushed in `100c9da`.
-> 2. Complete: Claude's observation metadata now reaches both candidate menus in `local_policy.py`.
->    Include `context`, `empty`, `required`, and `placeholder`. Preserve the observer changes in `510a2bf` and `9f5b613`.
->    Preserve the original experiment order: joint menu for at most 26 candidates, prefix cache, then fresh-observation DONE confirmation.
->    Existing runs remain historical evidence. Do not repeat completed experiments without a new reason.
-> 3. The observation experiment failed at step 4. The field-description correction failed at step 1. Both submitted incomplete fields.
->    Keep earlier results separate: those runs used the observation code before Claude's changes.
-> 4. Require three consecutive local successes, then the layout variations, before live Flights.
+> **Current 150-minute session:** October 11, 14:09–16:39 PT, authorized by Thomas. This replaces the earlier hackathon cut times.
+> Diagnose saved failures first. Compare label scoring with bounded structured responses on fixed observations.
+> Choose from evidence, then implement one improvement and minimal persistent task state.
+> Speed optimization is paused. No desktop control, screenshots, new task numbers, or parallel agents.
+> Test complete outcomes and interruption separately. Live Flights still requires the local success gate.
+> Reserve the final 20 minutes for required checks and delivery.
 >
 > **Test scope:** preserve existing tests and required delivery checks. Defer broad unit-test expansion until the flight demonstration works.
 > Add only small, deterministic tests for critical safeguards or repeatable bugs.
@@ -35,7 +32,7 @@ Reliable multi-step completion, useful time savings, and a native Codex speed co
 The active milestone now tests local task completion. The user reported a visible page, normal responsiveness, and clean closure during the pilot.
 The final cancellation pilot stopped during inference. The user reported normal responsiveness and clean closure. The earlier freeze remains unexplained.
 
-## Open
+## In progress
 
 - **16, Improve zero-browser benchmarking:** local completion remains unresolved. Cancellation observations passed. Baseline commit `9a3e60e` is on origin/main. The follow-up mechanisms passed delivery tests but failed the local outcome gate. Observation integration is complete. The model still submits incomplete fields. No live flight run started.
 
