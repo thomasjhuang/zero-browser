@@ -1,6 +1,7 @@
 """Run fresh sequential Codex coordinators over the same observed browser interface."""
 
 import argparse
+import errno
 import hashlib
 import json
 import os
@@ -104,6 +105,8 @@ def main():
                 with tempfile.TemporaryDirectory(prefix='codex-paired-') as temporary, isolated_browser():
                     instructions = Path(temporary) / 'instructions.txt'
                     instructions.write_text(INSTRUCTIONS)
+                    os.environ.update(JEV_LOCAL='1', HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1',
+                                      ZB_RECORD_PATH=str(run / 'replay.jsonl'))
                     server_args = [str(ROOT / 'scripts/paired_browser_server.py'), str(config_path)]
                     command = [executable, 'exec', '--ignore-user-config', '--skip-git-repo-check',
                                '--sandbox', 'read-only', '--json', '--cd', temporary, '--model', report['model'],
@@ -113,6 +116,11 @@ def main():
                                '-c', f'mcp_servers.paired_browser.command={json.dumps(sys.executable)}',
                                '-c', f'mcp_servers.paired_browser.args={json.dumps(server_args)}',
                                '-c', 'mcp_servers.paired_browser.tool_timeout_sec=45']
+                    for key, value in os.environ.items():
+                        if key.startswith(('BH_', 'BU_')) or key in {
+                            'JEV_LOCAL', 'HF_HUB_OFFLINE', 'TRANSFORMERS_OFFLINE', 'ZB_RECORD_PATH'
+                        }:
+                            command += ['-c', f'mcp_servers.paired_browser.env.{key}={json.dumps(value)}']
                     for tool in ('observe', 'act', 'delegate', 'assess'):
                         command += ['-c', f'mcp_servers.paired_browser.tools.{tool}.approval_mode="approve"']
                     for feature in DISABLED:
@@ -120,15 +128,25 @@ def main():
                     command += ['--enable', 'skip_host_skill_discovery', f'Mode: {method}. Goal: {GOAL}']
                     config['command'] = command
                     save_json(config_path, config)
-                    os.environ.update(JEV_LOCAL='1', HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1',
-                                      ZB_RECORD_PATH=str(run / 'replay.jsonl'))
 
                     def memory(pid):
                         deadline = run / 'active_deadline'
                         if deadline.exists() and time.monotonic() >= float(deadline.read_text()):
                             raise RuntimeError('The local worker deadline ended')
                         server_pid = run / 'server.pid'
-                        return process_memory(int(server_pid.read_text()) if server_pid.exists() else pid)
+                        if server_pid.exists():
+                            try:
+                                return process_memory(int(server_pid.read_text()))
+                            except OSError as error:
+                                if error.errno != errno.ESRCH:
+                                    raise
+                                try:
+                                    os.kill(int(server_pid.read_text()), 0)
+                                except ProcessLookupError:
+                                    pass  # The owned MCP process has exited.
+                                else:
+                                    raise error
+                        return process_memory(pid)
 
                     dispatched_ns = time.monotonic_ns()
                     code = supervise([sys.executable, str(Path(__file__).resolve()), '--child', str(config_path)],

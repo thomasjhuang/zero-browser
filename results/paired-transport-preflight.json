@@ -1,0 +1,14 @@
+{
+  "model_free": true,
+  "mutations": 0,
+  "url": "https://www.wikipedia.org/",
+  "fields": [
+    {
+      "label": "Search Wikipedia",
+      "value": "",
+      "kind": "fill"
+    }
+  ],
+  "elapsed_ms": 1165,
+  "passed": true
+}

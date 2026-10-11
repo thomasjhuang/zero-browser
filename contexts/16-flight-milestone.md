@@ -281,3 +281,13 @@ Final freeze hashes after preflight evidence corrections:
 - `scripts/paired_browser_server.py`: `74878b941b7f90477c03e50cd00e5c24a7afe83ed4bcf85abecbb82df436194a`.
 - `jev_ultrafast/structured_policy.py`: `0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2`.
 All script imports and the dependency lock are included in the measured manifest. Both pre-coordinator startup and coordinator-dispatch-to-verdict are reported; their sum is the cold goal-dispatch-to-verdict interval.
+
+
+First series failure at commit 697c633: the CLI did not inherit owned browser environment settings into the MCP server. Observation failed before any mutation. The coordinator returned a blocked verdict. Sampling the already-exited MCP process then caused a conservative supervisor stop; nine remaining trials are explicitly not run.
+Evidence: `results/paired-browser-five-pairs.json`. Preserve this failed series and do not include it among successful pairs.
+Fix: pass only the owned browser/offline/replay environment explicitly in per-invocation MCP config. If the MCP child has exited, sample the still-owned coordinator wrapper rather than treat normal shutdown as lost memory monitoring.
+Rerun command uses `--output results/paired-browser-five-pairs-v2.json`, with the same ten-trial order, goals, and checks. Source will be frozen at the next commit.
+
+The model-free transport preflight passed: an explicit MCP environment reached the isolated browser and observed the empty Wikipedia field, with zero mutations. Evidence: results/paired-transport-preflight.json. Private preflight source SHA256: 2284c5acaab506a28ca7d53a645859f968d8369afe4b11acf8301f4f4fb5ced2.
+Normal MCP shutdown is tolerated only for ESRCH plus a failed signal-zero existence check. Permission and other sampling errors still stop the series.
+New frozen runner hash: 848807b1c1a5ec4fa394457c098685c89c066ba773e1632c6fcbe5b59d674007. No other measured source changed after series 1.

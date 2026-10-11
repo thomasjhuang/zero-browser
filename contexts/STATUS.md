@@ -5,7 +5,7 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: RESERVED, Codex task 16.** No inference or browser experiment is active. Task 16 is preparing isolated sequential coordinator sessions for a matched real-site comparison.
+> **Current run state: RESERVED, Codex task 16.** The first series stopped after a failed direct attempt before browser mutation. Its nine later trials are marked not run. Task 16 is correcting MCP environment handoff and shutdown memory sampling before a new frozen series.
 > The coordinator released the hold after publishing `5799c81`. Task 16 owns the next run.
 > The next owner is Codex, **Improve zero-browser benchmarking**. Claude must not start browser runs, replay, cache probes, or model loads.
 >
