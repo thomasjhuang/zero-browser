@@ -241,7 +241,7 @@ The worker timing includes browser/model startup and cleanup, but excludes coord
 
 The context coordinator relayed a request for a direct/delegated real-site comparison near the end of the shortened session.
 No valid paired comparison was completed within the existing budget. A direct native-browser attempt also passed the exact field-value and unchanged-URL checks in 9,643 ms from tab opening to verification snapshot. It used an existing Chrome profile and included first-use tool documentation. The worker used an isolated profile and excluded coordinator preparation/assessment. Context was not isolated or equalized. The raw worker-minus-direct difference is -2,818 ms, but this is not a valid time-savings estimate. Full dispatch-to-assessment timing remains missing.
-Exact per-run coordinator token telemetry is not exposed to this chat. Exact token savings and dollar savings cannot be reported.
+Read-only inspection confirmed per-request coordinator token counters in the existing local session log: input, cached input, cache-write input, output, reasoning output, and total. Exact benchmark attribution remains unproven because engineering and test work share the turn. No whole-chat totals are assigned to either path. Cached input is a subset of input, and reasoning output is a subset of output; do not add them twice. Exact token savings and dollar savings cannot be reported.
 The next concrete experiment is the same live field goal through direct native browser control and worker delegation, with equivalent starting conditions and end-to-end timing.
 Separate requests currently start separate browser sessions. Multi-subtask integration needs a retained owned session, observed result handoff, and cancellation across that session.
 

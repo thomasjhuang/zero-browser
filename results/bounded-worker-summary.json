@@ -24,7 +24,7 @@
     "No deterministic-helper comparison",
     "No multi-subtask session continuation or recoverable-failure demonstration",
     "No valid direct/coordinator paired comparison",
-    "Exact coordinator token counts, time savings, and billing savings unavailable",
+    "Coordinator per-request telemetry exists; exact run attribution, time savings, and billing savings remain unproven",
     "Full local flight goal still fails; live Flights not attempted"
   ]
 }

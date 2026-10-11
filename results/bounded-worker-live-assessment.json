@@ -44,5 +44,19 @@
     "coordinator_tokens": null
   },
   "raw_worker_minus_direct_ms": -2818,
-  "comparison_limit": "Both field outcomes passed. This is not a matched end-to-end timing comparison: direct uses an existing Chrome profile and native tools, including first tool documentation; worker uses an isolated browser and its time excludes coordinator preparation and assessment. Raw difference is not time saved. Coordinator context was not isolated or equalized."
+  "comparison_limit": "Both field outcomes passed. This is not a matched end-to-end timing comparison: direct uses an existing Chrome profile and native tools, including first tool documentation; worker uses an isolated browser and its time excludes coordinator preparation and assessment. Raw difference is not time saved. Coordinator context was not isolated or equalized.",
+  "coordinator_telemetry": {
+    "available": true,
+    "source": "Existing local Codex session token_count events; raw log remains private",
+    "fields": [
+      "input_tokens",
+      "cached_input_tokens",
+      "cache_write_input_tokens",
+      "output_tokens",
+      "reasoning_output_tokens",
+      "total_tokens"
+    ],
+    "attribution": "Unproven: engineering and experiment requests share one turn; no whole-chat totals assigned",
+    "accounting": "Cached input is included in input; reasoning output is included in output. Do not double-count subsets."
+  }
 }
