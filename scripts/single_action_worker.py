@@ -19,7 +19,7 @@ from scripts.milestone import (
     show_task_tab,
 )
 from scripts.milestone_record import Journal, read_events, save_json
-from scripts.milestone_verify import verify_selection
+from scripts.milestone_verify import verify_round_trip, verify_selection
 
 
 class PreInputStale(StalePage):
@@ -42,6 +42,29 @@ def resolve(page, target):
     return matches[0]
 
 
+def require_task_action(action, page, events, task, purpose):
+    require_allowed(action)
+    if task["kind"] == "selection":
+        require_selection_action(action, page, events, task["expected"])
+        return
+    purposes = {"origin", "destination", "departure", "return", "trip_type", "passengers", "cabin", "search"}
+    if task["kind"] != "round_trip" or purpose not in purposes:
+        raise ValueError("Supply a permitted search-control purpose")
+    # Codex authorizes the exact observed target for one form action. Links are outside this boundary.
+    if action.get("role") not in {"button", "combobox", "textbox", "searchbox", "spinbutton",
+                                  "option", "gridcell", "radio", "checkbox", "menuitemradio", "menuitem"}:
+        raise ValueError("Only observed search form controls are permitted")
+    if purpose == "search" and (action["kind"] != "click" or action.get("role") != "button"
+                               or "search" not in action["label"].casefold()):
+        raise ValueError("Search requires an observed search button")
+
+
+def assess(page, events, task):
+    if task["kind"] == "round_trip":
+        return verify_round_trip(page, events, task["expected"])
+    return verify_selection(page, events, task["expected"])
+
+
 def dispatch_one(browser, page, request, task, journal, step, deadline):
     """There is one act call and no retry or recursive dispatch in this function."""
     from jev_ultrafast import local_policy
@@ -51,8 +74,10 @@ def dispatch_one(browser, page, request, task, journal, step, deadline):
         raise ValueError("The request does not match its issued observation")
     require_page(page)
     mode = request.get("mode")
+    extra = {"purpose"} if task["kind"] == "round_trip" else set()
+    purpose = request.get("purpose")
     if mode == "exact":
-        if set(request) != {"request_id", "fingerprint", "mode", "target", "value"}:
+        if set(request) != {"request_id", "fingerprint", "mode", "target", "value"} | extra:
             raise ValueError("Invalid exact action request")
         action = resolve(page, request["target"])
         # Click/select use Browser.act's page-key and target guard, without a whole-page veto.
@@ -67,7 +92,7 @@ def dispatch_one(browser, page, request, task, journal, step, deadline):
     elif mode == "choose":
         if not browser.fresh(page):
             raise PreInputStale("The local selection observation is stale before inference")
-        if set(request) != {"request_id", "fingerprint", "mode", "instruction", "permitted"}:
+        if set(request) != {"request_id", "fingerprint", "mode", "instruction", "permitted"} | extra:
             raise ValueError("Invalid local selection request")
         if not isinstance(request["instruction"], str) or not 1 <= len(request["instruction"]) <= 2000:
             raise ValueError("Supply one bounded action instruction")
@@ -78,8 +103,7 @@ def dispatch_one(browser, page, request, task, journal, step, deadline):
             raise ValueError("Repeated permitted action")
         events = read_events(journal.path)
         for candidate in actions:
-            require_allowed(candidate)
-            require_selection_action(candidate, page, events, task["expected"])
+            require_task_action(candidate, page, events, task, purpose)
             if candidate["kind"] != "click":
                 raise ValueError("Local selection accepts observed click choices only")
         candidates = [{"id": a["id"], "operation": "CLICK", "target": str(a["node"]),
@@ -100,8 +124,7 @@ def dispatch_one(browser, page, request, task, journal, step, deadline):
         action, text = matches[0], None
     else:
         raise ValueError("Use exact or choose mode")
-    require_allowed(action)
-    require_selection_action(action, page, read_events(journal.path), task["expected"])
+    require_task_action(action, page, read_events(journal.path), task, purpose)
     check_deadline(deadline)
     journal.write("action_source", step=step, source="deterministic" if mode == "exact" else "local_model")
     try:
@@ -123,7 +146,7 @@ def run(request):
     if not isinstance(deadline, (int, float)) or not math.isfinite(deadline):
         raise ValueError("Supply the external shared deadline")
     budget = request["max_decisions"]
-    if type(budget) is not int or not 1 <= budget <= 20:
+    if type(budget) is not int or not 1 <= budget <= (60 if request["task"]["kind"] == "round_trip" else 20):
         raise ValueError("Supply a bounded action budget")
     if list(folder.glob("action-*.json")) or (folder / "ready.json").exists():
         raise ValueError("Use a fresh request folder")
@@ -177,7 +200,7 @@ def run(request):
                         raise ValueError(observed_error.group(0))
                     # Consume the request budget. Only a NEW coordinator request can act.
                     continue
-                outcome = verify_selection(page, read_events(journal.path), request["task"]["expected"])
+                outcome = assess(page, read_events(journal.path), request["task"])
                 error = ERROR_TEXT.search(page.get("text", ""))
                 stopped = bool(error or visible_state(page) == visible_state(before))
                 response = {"request_id": request_id, "sequence": number, "action_executed": True,

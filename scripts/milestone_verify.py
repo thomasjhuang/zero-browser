@@ -97,8 +97,19 @@ def verify_selection(page, events, expected):
     """Require an observed option click followed by a closed, populated target field."""
     target = expected["target_label"].strip().casefold()
     token = re.compile(r"(?<!\w)" + re.escape(expected["option_text"]) + r"(?!\w)", re.I)
+    # Keep identity across a label update only within the same document.
+    original = next((e["page"] for e in events if e.get("event") == "observation"
+                     and any(a.get("kind") == "fill" and a.get("label", "").strip().casefold() == target
+                             for a in e["page"].get("actions", []))), {})
+    nodes = {a.get("node") for a in original.get("actions", []) if a.get("kind") == "fill"
+             and a.get("label", "").strip().casefold() == target}
+    same_document = (bool(page.get("page_key")) and bool(original.get("page_key"))
+                     and page["page_key"][0] == original["page_key"][0])
     fields = [a for a in page.get("actions", []) if a.get("kind") == "fill"
-              and a.get("label", "").strip().casefold() == target]
+              and (a.get("label", "").strip().casefold() == target
+                   or (same_document and len(nodes) == 1 and a.get("node") in nodes
+                       and a.get("label", "").strip().casefold().startswith(target + " ")
+                       and token.search(a.get("label", ""))))]
     mutations = [(i, e) for i, e in enumerate(events)
                  if e.get("event") == "executed" and e["action"]["kind"] not in {"wait", "scroll"}]
     selection = None
@@ -120,3 +131,71 @@ def verify_selection(page, events, expected):
     return {"passed": all(checks.values()), "checks": checks, "selected_option": selection,
             "observed_field": fields[0] if len(fields) == 1 else None,
             "limitations": "Typed text alone is insufficient. Unrecognized option semantics fail closed."}
+
+
+def verify_round_trip(page, events, expected):
+    """Read provider output independently. This adapter never chooses actions."""
+    parsed = urlparse(page.get("url", ""))
+    actions = page.get("actions", [])
+    encoded = parse_qs(parsed.query).get("tfs", [""])[0]
+    try:
+        payload = base64.urlsafe_b64decode(encoded + "=" * (-len(encoded) % 4))
+    except ValueError:
+        payload = b""
+    def field(prefix):
+        matches = [a for a in actions if a.get("kind") == "fill"
+                   and a.get("label", "").strip().casefold().startswith(prefix.casefold())]
+        return matches[0] if len(matches) == 1 else None
+
+    origin, destination = field("Where from?"), field("Where to?")
+    departure, returning = field("Departure"), field("Return")
+    def airport(control, code, names):
+        if not control or control.get("expanded") != "false":
+            return False
+        label = control.get("label", "")
+        value = control.get("value", "").strip().casefold()
+        return (re.search(r"(?<!\w)" + re.escape(code) + r"(?!\w)", label) is not None
+                or (code.encode() in payload and value in {n.casefold() for n in names}))
+
+    def date_matches(control, date):
+        from datetime import date as Date
+        day = Date.fromisoformat(date)
+        text = " ".join(str(control.get(k, "")) for k in ("label", "value")) if control else ""
+        month_day = re.search(r"\b" + day.strftime("%b") + r"\s+" + str(day.day) + r"\b", text, re.I)
+        return bool(control and (date in text or month_day) and date.encode() in payload)
+
+    labels = [a.get("label", "") for a in actions]
+    options = [label for label in labels if "select flight" in label.casefold()]
+    adult_evidence = []
+    for event in events:
+        if event.get("event") != "observation":
+            continue
+        observed = event["page"]
+        for a in observed.get("actions", []):
+            if (re.search(r"\badults?\b", a.get("label", ""), re.I)
+                    and str(a.get("value", "")).isdigit()):
+                adult_evidence.append({"step": event.get("step"), "count": int(a["value"]),
+                                       "label": a["label"]})
+        count = re.search(r"\bAdults?\s*\n\s*(\d+)\b", observed.get("text", ""), re.I)
+        if count:
+            adult_evidence.append({"step": event.get("step"), "count": int(count.group(1)),
+                                   "text": count.group(0)})
+    explicit_adults = any(re.fullmatch(r"1 passenger[,.]? 1 adult[.]?", label, re.I) for label in labels)
+    passenger_summary = any(re.match(r"1 passenger(?:\b|,)", label, re.I) for label in labels)
+    adults = explicit_adults or (passenger_summary and bool(adult_evidence)
+                                 and adult_evidence[-1]["count"] == expected["adults"])
+    checks = {
+        "results_page": parsed.hostname == "www.google.com" and parsed.path == "/travel/flights/search",
+        "origin_SFO": airport(origin, expected["origin"], expected["origin_names"]),
+        "destination_JFK": airport(destination, expected["destination"], expected["destination_names"]),
+        "round_trip": any(a.get("value") == "Round trip" for a in actions),
+        "departure_date_and_year": date_matches(departure, expected["departure"]),
+        "return_date_and_year": date_matches(returning, expected["return"]),
+        "one_adult": bool(adults),
+        "economy": any(a.get("value") == expected["cabin"] for a in actions),
+        "actual_flight_options": bool(options),
+    }
+    return {"passed": all(checks.values()), "checks": checks, "visible_result_count": len(options),
+            "flight_options": options[:5], "fields": {"origin": origin, "destination": destination,
+            "departure": departure, "return": returning}, "adult_evidence": adult_evidence[-1:],
+            "limitations": "Unknown provider output fails closed. URL date evidence supports the explicit year."}

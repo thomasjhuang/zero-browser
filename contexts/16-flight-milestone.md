@@ -592,3 +592,20 @@ All twenty-one runtime source hashes remained unchanged. Private requests, obser
 This attempt demonstrates one safe stale-return continuation and independently evidenced JFK selection. It does not prove automatic assessment, Qwen value, general reliability, or speed superiority. Dates and the full itinerary remain untested. No code change or further trial followed. Runtime is idle.
 
 Preservation checks passed: lint and 184 existing tests in 4.49 seconds. Public evidence passed the private-path and credential scan.
+
+
+### Full round-trip development
+
+Thomas authorized iterative fixes and reruns until matching SFO–JFK round-trip results appear for November 12–16, 2026, one adult, economy. Root remains sole launcher and controls each action. Task 16 prepares code and frozen launchers. Each attempt preserves a fresh evidence directory and exclusive marker. Runtime code remains frozen during attempts. Comparisons follow full success and require the same fixed task.
+
+The existing single-action worker now accepts a `round_trip` task. Each request includes one purpose: `origin`, `destination`, `departure`, `return`, `trip_type`, `passengers`, `cabin`, or `search`. Codex supplies the exact observed target for that purpose. The executor permits observed form-control roles and rejects links. Existing forbidden-action, target, ambiguity, freshness, and no-replay safeguards remain. Search requires an observed search button. No policy action sequence or field answer was added.
+
+The provider assessment reads controls, encoded date evidence, passenger observations, and actual flight options. Every requested condition has a separate result. Unknown output fails closed. Selection assessment now accepts a changed airport label only with the original field node, document identity, and matching airport token. Previous raw assessments remain unchanged.
+
+Development attempts share a 300-second deadline and sixty request slots, including coordinator waits and model startup. The first prepared folder is `artifacts/flights-round-trip-01`. Exact and local selection requests retain their existing schemas plus `purpose`. The worker returns each fresh result before another request. No new unit tests, indexing, or broad review occurred. Lint and all 184 existing tests passed in 4.30 seconds. No browser or inference ran during preparation.
+
+Root launch command after source freeze:
+
+```sh
+ZB_RECORD_PATH=artifacts/replay/flights-round-trip-01.jsonl uv run --offline --frozen --extra local python artifacts/flights-round-trip-01/launch.py > artifacts/flights-round-trip-01/console.log 2>&1
+```
