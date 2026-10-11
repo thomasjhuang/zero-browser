@@ -26,9 +26,12 @@ class Recorder:
         self.page = None
         self.controller = None
         self.active = False
-        self.saved = 0
+        previous = sorted(output.glob("*/session.json"))
+        self.saved = len(previous)
         self.rows = []
-        self.files = []
+        self.files = [str(p.parent) for p in previous]
+        self.notice = "Previous recordings are preserved." if previous else ""
+        self.warnings = []
         self.error = None
         self.session = None
         self.stream = None
@@ -42,7 +45,7 @@ class Recorder:
 
     def status(self):
         return {"active": self.active, "saved": self.saved, "events": len(self.rows),
-                "files": self.files, "error": self.error}
+                "files": self.files, "error": self.error, "notice": self.notice}
 
     async def save_event(self, source, row):
         if not self.active or row.get("session_id") != self.session:
@@ -107,6 +110,11 @@ class Recorder:
             await self.open_page(url)
         if self.error:
             raise ValueError(self.error)
+        ready = await self.page.evaluate("typeof window.__humanRecorderSet === 'function'")
+        if not ready:
+            raise ValueError("This page cannot record actions. Open a loaded website before recording.")
+        self.warnings = []
+        self.notice = ""
         self.session = str(uuid.uuid4())
         self.directory = self.output / self.session
         self.directory.mkdir(parents=True, mode=0o700)
@@ -123,20 +131,29 @@ class Recorder:
                 "Scroll distances, Enter submissions, and child-frame actions are not training labels.",
                 "A matched action is not proof that the action achieved the task goal.",
                 "Candidate capacity and tokenizer compatibility require a separate export step.",
+                "Only main-frame actions are recorded. Browser error pages have no recording hook.",
             ],
         }
         self.write_metadata()
         await self.context.tracing.start(screenshots=True, snapshots=True, sources=False)
         self.active = True
         for page in self.context.pages:
-            for frame in page.frames:
-                try:
-                    await frame.evaluate("s => window.__humanRecorderSet(s)", self.config())
-                except Exception as exc:
-                    self.error = f"The recorder could not attach to a document: {exc}"
+            await self.set_page_recording(page, self.config())
         self.metadata["initial_observation"] = await self.page.evaluate(self.observer)
         self.write_metadata()
         await self.page.bring_to_front()
+
+    async def set_page_recording(self, page, state):
+        try:
+            attached = await page.evaluate("""async state => {
+                if (typeof window.__humanRecorderSet !== 'function') return false;
+                await window.__humanRecorderSet(state);
+                return true;
+            }""", state)
+            if not attached:
+                self.warnings.append({"page_url": page.url, "reason": "This page has no recording hook."})
+        except Exception as exc:
+            self.warnings.append({"page_url": page.url, "reason": f"The document was unavailable: {exc}"})
 
     def write_metadata(self):
         target = self.directory / "session.json"
@@ -148,16 +165,13 @@ class Recorder:
         if not self.active:
             raise ValueError("No demonstration is recording.")
         final_pages = []
-        # Keep the binding active until every document flushes its pending input.
+        # Keep the binding active until each supported page flushes its pending input.
         for page in list(self.context.pages):
-            for frame in page.frames:
-                try:
-                    await frame.evaluate("s => window.__humanRecorderSet(s)",
-                                         {"active": False, "session_id": self.session})
-                    if frame == page.main_frame:
-                        final_pages.append(await page.evaluate(self.observer))
-                except Exception as exc:
-                    self.error = f"A document could not finish recording: {exc}"
+            await self.set_page_recording(page, {"active": False, "session_id": self.session})
+            try:
+                final_pages.append(await page.evaluate(self.observer))
+            except Exception as exc:
+                self.warnings.append({"page_url": page.url, "reason": f"The final observation was unavailable: {exc}"})
         self.active = False
         if self.checkpoints:
             await asyncio.gather(*list(self.checkpoints), return_exceptions=True)
@@ -167,16 +181,18 @@ class Recorder:
             self.error = f"The trace could not finish: {exc}"
         self.stream.close()
         self.metadata.update(
-            status="incomplete" if interrupted or self.error else "saved",
+            status="incomplete" if interrupted or self.error else "saved_with_warnings" if self.warnings else "saved",
             ended_at=datetime.now(timezone.utc).isoformat(), user_reported_outcome=outcome,
             final_observations=final_pages, event_count=len(self.rows),
             matched_events=sum(r.get("mapping") == "matched" for r in self.rows),
             unsupported_events=sum(r.get("mapping") != "matched" for r in self.rows),
-            error=self.error,
+            error=self.error, capture_warnings=self.warnings, frame_coverage="main_frames_only",
         )
         self.write_metadata()
         self.files.append(str(self.directory))
         self.saved += 1
+        self.notice = ("Demonstration saved with capture gaps. See session.json for details."
+                       if self.warnings else "Demonstration saved.")
         print(json.dumps({"saved": str(self.directory), "events": len(self.rows), "error": self.error}), flush=True)
 
     async def command(self, source, request):
@@ -208,7 +224,7 @@ class Recorder:
         await self.controller.locator("#url").fill(self.starting_url)
         self.controller.on("close", lambda _: self.done.set())
         self.browser.on("disconnected", lambda _: self.done.set())
-        print(json.dumps({"status": "ready", "output": str(self.output)}), flush=True)
+        print(json.dumps({"status": "ready", "output": str(self.output), "saved": self.saved}), flush=True)
         await self.done.wait()
         if self.active:
             await self.save(interrupted=True)

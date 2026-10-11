@@ -1,8 +1,9 @@
 (() => {
+  if (window.top !== window) return;
   const observe = () => __OBSERVER__;
   let active = false, session = null, sequence = 0, pending = null, armed = null;
   let scrollBefore = null, scrollTimer = null;
-  const documentId = crypto.randomUUID();
+  const documentId = String(performance.timeOrigin) + '-' + Math.random().toString(36).slice(2);
   const snapshot = () => { try { return observe(); } catch { return null; } };
   const safe = e => e && !['password', 'file', 'hidden'].includes(e.type);
   const value = e => safe(e) ? (e.isContentEditable ? e.innerText : e.value) : null;
