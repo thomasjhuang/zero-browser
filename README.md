@@ -98,3 +98,6 @@ A later [controlled comparison](results/paired-browser-comparison.json) used fre
 
 
 The [focused workflow attempt](results/workflow-focused-summary.json) used a dedicated bounded prompt, deterministic exact actions, and returned page evidence across one browser session. Search-and-open succeeded. The next link disappeared from visible controls after a donation banner appeared, so the worker stopped before input. The full workflow failed in 29.29 seconds. It used six coordinator responses, two local calls, and one model load. Exactly one attempt ran, with no replacement. Reliable recovery from these page changes remains unresolved. Native desktop workflow comparison did not run after the user changed scope.
+
+
+The authorized [additional workflow attempt](results/workflow-recovery-summary.json) passed all route and answer checks in 29.90 seconds, including startup. It used three browser actions, six coordinator responses, two local calls, and one model load. **Recovery was not invoked.** The new one-action recovery passed model-free regression checks, but this live success does not prove its effectiveness. The prior failed result remains unchanged. A controlled disappearing-target case is the next proposed test.

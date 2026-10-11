@@ -5,8 +5,8 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: IDLE, reserved for Codex task 16.** Thomas authorized a minimal one-action recovery and exactly one additional live attempt. The previous failed result remains unchanged. Required checks precede source freeze. No browser or inference is active.
-> Task 16 retains the runtime reservation. Exactly one additional recovery attempt is authorized. No replacement run is permitted.
+> **Current run state: IDLE, Codex task 16.** The one additional attempt passed the full workflow at frozen `e45aa7e`. Recovery was not invoked, so live recovery effectiveness remains unproven. Evidence: `results/workflow-recovery-summary.json`. The previous failure remains unchanged. No further trial is authorized.
+> Task 16 retains the runtime reservation. The additional attempt is complete. No replacement or further run is permitted.
 > The next owner is Codex, **Improve zero-browser benchmarking**. Claude must not start browser runs, replay, cache probes, or model loads.
 >
 > **Current scope:** task 16, with supporting notes in task 13. Tasks 18–22 remain cut from the active plan.
@@ -17,7 +17,7 @@
 > Accept one outcome, supplied values, allowed actions, stopping conditions, a deadline, and an action budget.
 > Return success/failure/uncertainty with observed evidence, actions, unresolved execution, timing, calls, and memory.
 > Test supplied field entry, dropdown selection, and autocomplete with reordered, distracting, ambiguous, and missing controls.
-> Pause caching, screenshots, desktop control, and long-task planning. Shared browser/model lifetime now supports bounded subtasks. The latest complete workflow attempt failed safely at its second subtask.
+> Pause caching, screenshots, desktop control, and long-task planning. Shared browser/model lifetime now supports bounded subtasks. The latest workflow attempt passed both subtasks and the independent route/answer assessment. Its recovery path did not run.
 > No new task numbers or parallel runtime agents. Sequential Codex sessions are authorized only as benchmark subjects, with no implementation work. Read-only accounting and outcome audits passed for the recorded failed result. A controlled shared-interface comparison is recorded. Native desktop CUA speed and dollar savings remain unproven.
 >
 > **Test scope:** preserve existing tests and required delivery checks. Defer broad unit-test expansion until the flight demonstration works.
@@ -35,7 +35,7 @@ The final cancellation pilot stopped during inference. The user reported normal 
 
 ## Open follow-up
 
-- **16, Improve zero-browser benchmarking:** bounded-worker proof delivered: three identical suites passed 27/27 requested outcomes and 6/6 safe stops. One live Wikipedia field task passed. Full local flight completion remains unresolved; no live flight run started. The shared-interface field comparison passed all ten original outcomes and both supplemental outcomes. The five-pair comparison set excludes the original pair with indexing overlap. Its median delegated time reduction is 1.90 seconds. Native desktop CUA speed remains unproven. Next proposal: bounded recovery for a previously observed control that leaves the visible action set. No recovery run is authorized yet.
+- **16, Improve zero-browser benchmarking:** bounded-worker proof delivered: three identical suites passed 27/27 requested outcomes and 6/6 safe stops. One live Wikipedia field task passed. Full local flight completion remains unresolved; no live flight run started. The shared-interface field comparison passed all ten original outcomes and both supplemental outcomes. The five-pair comparison set excludes the original pair with indexing overlap. Its median delegated time reduction is 1.90 seconds. Native desktop CUA speed remains unproven. One additional workflow attempt passed in 29.90 seconds, without invoking recovery. Next proposal: a controlled disappearing-target case to test recovery end to end. No further run is authorized.
 
 ## Completed context work
 

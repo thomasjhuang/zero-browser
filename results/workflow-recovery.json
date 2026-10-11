@@ -1,0 +1,1985 @@
+{
+  "goal": "Start at https://www.wikipedia.org/. Search for Ada Lovelace, open the matching article, follow its article link to the Analytical Engine, and return its inventor with supporting article URLs. Use only observed controls and source text. Do not use prior knowledge as evidence. Do not log in, edit articles, or leave Wikipedia. Stop for human verification or uncertain execution.",
+  "order": [
+    "persistent"
+  ],
+  "model": "gpt-6-astra",
+  "reasoning_effort": "high",
+  "instructions_sha256": "b84b9f7a6f5fd55980961fae16b1a44efb6776d2b09e9c17b00244cd6f327bfd",
+  "source_sha256": {
+    "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+    "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+    "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+    "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+    "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+    "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+    "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+    "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+    "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+    "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+    "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+    "scripts/paired_browser_benchmark.py": "d79ffdf7951d65ec1145b30ade6ea869bc956a4949a932a12b5c6289bddd9227",
+    "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+    "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+    "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+    "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+    "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+    "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+    "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+    "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+    "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+    "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+    "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+    "scripts/workflow_browser.py": "75624b1012340946221b0af6808f0da237d2f662752b48bdd3249140e74ace6a",
+    "scripts/workflow_session.py": "2718d19de433e904e0130195b673acfdb8d19b0dfff2176015250c9dfa7e7dd3",
+    "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+    "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+    "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+    "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+    "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+    "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+    "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+    "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+    "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+    "jev_ultrafast/structured_policy.py": "008742becc08c3551caaee02dd37515f775f80ad338d534dc44176b68d6ea8a8",
+    "jev_ultrafast/workflow_worker.py": "d63cedf767c62bb18f61659d0e2343eb986a1a17c44d25105a3e423115326e11",
+    "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+    "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+    "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+  },
+  "revision": "e45aa7e761192c4e6a7983f075b9843d9bd6a9cb",
+  "scope": "Bounded multi-step workflow attempts. Interpret only the recorded order and outcome evidence.",
+  "conditions": {
+    "browser": "fresh isolated Chrome, 1120x780, visible",
+    "coordinator": "fresh session, identical tools and instructions; mode differs",
+    "local_model": "Reload per subtask or persistent per workflow. Initial load included. No prompt cache reuse.",
+    "tool_documentation": "Same schemas in both arms disclose both path behaviors",
+    "prompt_cache": "Provider caching is not controlled; report actual cached-input counters",
+    "timer": "Cold browser startup and coordinator dispatch through final verdict receipt",
+    "memory": "Summed MCP and local decision process footprint. Excludes browser and coordinator client."
+  },
+  "runs": [
+    {
+      "run": "1-persistent",
+      "method": "persistent",
+      "error": null,
+      "exit_code": 0,
+      "passed": true,
+      "assessment": {
+        "passed": true,
+        "checks": {
+          "started_at_portal": true,
+          "query_entered": true,
+          "search_opened": true,
+          "ada_article_observed": true,
+          "article_link_followed": true,
+          "destination_observed": true,
+          "inventor_passage_observed": true,
+          "answer_correct": true,
+          "supporting_urls": true,
+          "no_uncertain_execution": true
+        },
+        "answer": "Charles Babbage. The Analytical engine article states that it was \"designed by the English mathematician and computer pioneer Charles Babbage\".",
+        "urls": [
+          "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "https://en.wikipedia.org/wiki/Analytical_engine"
+        ],
+        "supporting_passage": "Jump to content\nSearch\nDonate\nCreate account\nLog in\nContents\nhide\n(Top)\nDesign\nConstruction\nInstruction set\nInfluence\nToggle Influence subsection\nPredicted influence\nComputer science\nComparison to other early computers\nIn popular culture\nReferences\nBibliography\nExternal links\nAnalytical engine\nArticle\nTalk\nRead\nEdit\nView history\nAppearance\nhide\nFrom Wikipedia, the free encyclopedia\nPrinting mechanism from Babbage's analytical engine, as displayed at the\nScience Museum, London\n[\n1\n]\nHistory of computing\nHardware\nHardware 1960s to present\nThe\nanalytical engine\nwas a proposed\ndigital\nmechanical\ngeneral-purpose computer\ndesigned by the English mathematician and computer pioneer\nCharles Babbage\n.\n[\n2\n]\n[\n3\n]\nIt was first described in 1837 as the successor to Babbage's\ndifference engine\n, which was a design for a simpler\nmechanical calculator\n.\n[\n4\n]\nThe analytical engine incorporated an\narithmetic logic unit\n(ALU),\ncontrol flow\nin the form of\nconditional branching\nand\nloops\n, and\nintegrated memory\n, making it the first design for a general-purpose computer that could be described in modern terms as\nTuring-complete\n.\n[\n5\n]\n[\n6\n]\nIn other words, the structure of the analytical engine was essentially the same as that which has dominated computer design in the electronic era.\n[\n3\n]\nBabbage was never able to complete construction of any of his machines due to conflicts with his chief engineer and inadequate funding.",
+        "assessment_version": "ordered-observed-route-v4",
+        "observed_destination_url": "https://en.wikipedia.org/wiki/Analytical_engine",
+        "search_route": "observed result or submit control"
+      },
+      "verdict": "Verified: **Charles Babbage**. The [Analytical Engine article](https://en.wikipedia.org/wiki/Analytical_engine) states it was \u201cdesigned by the English mathematician and computer pioneer Charles Babbage.\u201d\n\nFollowed the link from [Ada Lovelace](https://en.wikipedia.org/wiki/Ada_Lovelace). Independent assessment passed.\n\nASD-STE100 guidance was unavailable with the permitted tools.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1649278113101375,
+      "verdict_received_monotonic_ns": 1649308017636625,
+      "pre_coordinator_startup_ms": 381.061041,
+      "coordinator_dispatch_to_verdict_ms": 29523.474209,
+      "goal_dispatch_to_verdict_ms": 29904.53525,
+      "cleanup_ms": 1035.174416,
+      "runtime": {
+        "peak_worker_bytes": 3815345368,
+        "memory_samples": 290,
+        "worker_stopped_ms": 30171
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 132957,
+          "cached_input_tokens": 103424,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 315,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_03ad25dbbe404997016acc0b2c23fc819b8ce963cf5c877957",
+          "turn_id": "01a12d0b-9ef6-7f61-a2f5-6c2f6763f94a",
+          "timestamp": "2026-10-11T22:18:23.566Z",
+          "usage": {
+            "input_tokens": 13074,
+            "cached_input_tokens": 3456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 25,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13099
+          }
+        },
+        {
+          "response_id": "resp_03ad25dbbe404997016acc0b2ffc08819ba760a9d7679f0fe9",
+          "turn_id": "01a12d0b-9ef6-7f61-a2f5-6c2f6763f94a",
+          "timestamp": "2026-10-11T22:18:25.272Z",
+          "usage": {
+            "input_tokens": 13559,
+            "cached_input_tokens": 12928,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13581
+          }
+        },
+        {
+          "response_id": "resp_03ad25dbbe404997016acc0b3211e0819b90f18dfbc1dcbae9",
+          "turn_id": "01a12d0b-9ef6-7f61-a2f5-6c2f6763f94a",
+          "timestamp": "2026-10-11T22:18:28.137Z",
+          "usage": {
+            "input_tokens": 18135,
+            "cached_input_tokens": 13440,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 52,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 18187
+          }
+        },
+        {
+          "response_id": "resp_03ad25dbbe404997016acc0b3ea9f0819b876764961b8ec5d5",
+          "turn_id": "01a12d0b-9ef6-7f61-a2f5-6c2f6763f94a",
+          "timestamp": "2026-10-11T22:18:42.236Z",
+          "usage": {
+            "input_tokens": 24673,
+            "cached_input_tokens": 17920,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 46,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 24719
+          }
+        },
+        {
+          "response_id": "resp_03ad25dbbe404997016acc0b42a220819ba31421db83035d56",
+          "turn_id": "01a12d0b-9ef6-7f61-a2f5-6c2f6763f94a",
+          "timestamp": "2026-10-11T22:18:44.959Z",
+          "usage": {
+            "input_tokens": 31359,
+            "cached_input_tokens": 24448,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 80,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 31439
+          }
+        },
+        {
+          "response_id": "resp_03ad25dbbe404997016acc0b453e84819bbcf6342efabb4775",
+          "turn_id": "01a12d0b-9ef6-7f61-a2f5-6c2f6763f94a",
+          "timestamp": "2026-10-11T22:18:47.611Z",
+          "usage": {
+            "input_tokens": 32157,
+            "cached_input_tokens": 31232,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 90,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 32247
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 132957,
+        "cached_input_tokens": 103424,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 315,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 133272
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 15029,
+          "monotonic_ns": 1649294496520583,
+          "pid": 46155,
+          "wrapper_ms": 5887.887209,
+          "timing": {
+            "imports_ms": 883.692,
+            "model_acquisition_ms": 1233.928,
+            "prompt_preparation_ms": 10.604,
+            "generation_ms": 3661,
+            "structured_call_total_ms": 5790.228,
+            "result_handling_ms": 1.004
+          },
+          "usage": {
+            "prompt_tokens": 1935,
+            "completion_tokens": 27
+          },
+          "load": {
+            "actual_load": true,
+            "pid": 46155,
+            "call_started_monotonic_ns": 1649288705616000,
+            "model_load_ms": 1232.8736251220107
+          }
+        },
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 18936,
+          "monotonic_ns": 1649298403471708,
+          "pid": 46155,
+          "wrapper_ms": 3877.629334,
+          "timing": {
+            "imports_ms": 0.012,
+            "model_acquisition_ms": 0.002,
+            "prompt_preparation_ms": 1.861,
+            "generation_ms": 3875,
+            "structured_call_total_ms": 3877.064,
+            "result_handling_ms": 0.189
+          },
+          "usage": {
+            "prompt_tokens": 2284,
+            "completion_tokens": 28
+          },
+          "load": {
+            "actual_load": false,
+            "pid": 46155,
+            "call_started_monotonic_ns": 1649294526203583,
+            "model_load_ms": 0
+          }
+        }
+      ],
+      "tools": [
+        "observe",
+        "delegate",
+        "delegate",
+        "assess"
+      ],
+      "private_events_sha256": "36ddca0b5d6021e1936f24153b8b3826d98ce5f34143d09e025e46b19e584a91",
+      "recoveries": [],
+      "subtasks": [
+        {
+          "event": "subtask_started",
+          "elapsed_ms": 9084,
+          "step": 1,
+          "kind": "search_open",
+          "target": "Search Wikipedia",
+          "value": "Ada Lovelace",
+          "outcome": "Open the matching Ada Lovelace article on Wikipedia.",
+          "monotonic_ns": 1649288551841041,
+          "browser_target": "6549B807BD59BEE19CE8F4C57EC5D9BC"
+        },
+        {
+          "event": "subtask_finished",
+          "elapsed_ms": 10061.981584,
+          "step": 1,
+          "result": {
+            "status": "success",
+            "action_executed": true,
+            "page_changed": true,
+            "outcome_achieved": true,
+            "unresolved_execution": false,
+            "observation": {
+              "url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+              "title": "Ada Lovelace - Wikipedia",
+              "text": "Jump to content\nSearch\nDonate\nCreate account\nLog in\nContents\nhide\n(Top)\nBiography\nToggle Biography subsection\nWork\nToggle Work subsection\nCommemoration\nToggle Commemoration subsection\nIn popular culture\nToggle In popular culture subsection\nPublications\nToggle Publications subsection\nSee also\nExplanatory notes\nReferences\nToggle References subsection\nFurther reading\nExternal links\nAda Lovelace\nArticle\nTalk\nRead\nView source\nView history\nAppearance\nhide\nFrom Wikipedia, the free encyclopedia\nFor the computer microarchitecture, see\nAda Lovelace (microarchitecture)\n.\nThe Right Honourable\nThe Countess of Lovelace\nDaguerreotype\nof Lovelace (\nc.\n1843\n)\n[\n1\n]\nBorn\nAugusta Ada Byron\n10 December 1815\nLondon, England\nDied\n27 November 1852\n(aged\n36)\nMarylebone\n, London, England\nResting place\nChurch of St Mary Magdalene, Hucknall\nAugusta Ada King, Countess of Lovelace\n(\nn\u00e9e\nByron\n; 10 December 1815 \u2013 27 November 1852), also known as\nAda Lovelace\n, was an English\nmathematician\nand\nwriter\nchiefly known for work on\nCharles Babbage\n's proposed mechanical general-purpose\ncomputer\n, the\nanalytical engine\n. She was the first to recognise the machine had applications beyond pure calculation. Lovelace is often considered the first\ncomputer programmer\n.\nLovelace was the only\nlegitimate child\nof poet\nLord Byron\nand reformer\nAnne Isabella Milbanke\n.\n[\n2\n]\nLord Byron separated from his wife a month after Ada was born, and died when she was eight. Although often ill in childhood, Lovelace pursued her studies",
+              "actions": [
+                {
+                  "node": 1,
+                  "role": "link",
+                  "label": "Wikipedia \n\t\t The Free Encyclopedia",
+                  "rect": {
+                    "x": 84,
+                    "y": 14,
+                    "w": 140,
+                    "h": 38
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e1"
+                },
+                {
+                  "node": 2,
+                  "role": "searchbox",
+                  "label": "Search Wikipedia",
+                  "rect": {
+                    "x": 266,
+                    "y": 17,
+                    "w": 404.296875,
+                    "h": 32
+                  },
+                  "empty": "true",
+                  "placeholder": "Search Wikipedia",
+                  "kind": "fill",
+                  "value": "",
+                  "id": "e2"
+                },
+                {
+                  "node": 2,
+                  "role": "searchbox",
+                  "label": "Open Search Wikipedia",
+                  "rect": {
+                    "x": 266,
+                    "y": 17,
+                    "w": 404.296875,
+                    "h": 32
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e3"
+                },
+                {
+                  "node": 3,
+                  "role": "button",
+                  "label": "Search",
+                  "rect": {
+                    "x": 669.296875,
+                    "y": 17,
+                    "w": 70.703125,
+                    "h": 32
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e4"
+                },
+                {
+                  "node": 4,
+                  "role": "link",
+                  "label": "Donate",
+                  "rect": {
+                    "x": 877.7578125,
+                    "y": 25,
+                    "w": 45.1484375,
+                    "h": 16
+                  },
+                  "context": "Donate Create account Log in",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e5"
+                },
+                {
+                  "node": 5,
+                  "role": "link",
+                  "label": "Create account",
+                  "rect": {
+                    "x": 930.90625,
+                    "y": 25,
+                    "w": 94.9453125,
+                    "h": 16
+                  },
+                  "context": "Donate Create account Log in",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e6"
+                },
+                {
+                  "node": 6,
+                  "role": "link",
+                  "label": "Log in",
+                  "rect": {
+                    "x": 1033.8515625,
+                    "y": 25,
+                    "w": 38.1484375,
+                    "h": 16
+                  },
+                  "context": "Donate Create account Log in",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e7"
+                },
+                {
+                  "node": 7,
+                  "role": "button",
+                  "label": "Hide Contents",
+                  "rect": {
+                    "x": 132.5546875,
+                    "y": 136.84375,
+                    "w": 38.6875,
+                    "h": 22
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e8"
+                },
+                {
+                  "node": 8,
+                  "role": "link",
+                  "label": "(Top)",
+                  "rect": {
+                    "x": 60,
+                    "y": 172.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e9"
+                },
+                {
+                  "node": 9,
+                  "role": "link",
+                  "label": "1 \n\t\t\t\t Biography",
+                  "rect": {
+                    "x": 60,
+                    "y": 200.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "context": "Biography Toggle Biography subsection",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e10"
+                },
+                {
+                  "node": 10,
+                  "role": "button",
+                  "label": "Toggle Biography subsection",
+                  "rect": {
+                    "x": 37,
+                    "y": 201.375,
+                    "w": 22,
+                    "h": 22
+                  },
+                  "context": "Biography Toggle Biography subsection",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e11"
+                },
+                {
+                  "node": 11,
+                  "role": "link",
+                  "label": "2 \n\t\t\t\t Work",
+                  "rect": {
+                    "x": 60,
+                    "y": 228.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e12"
+                },
+                {
+                  "node": 12,
+                  "role": "button",
+                  "label": "Toggle Work subsection",
+                  "rect": {
+                    "x": 37,
+                    "y": 229.375,
+                    "w": 22,
+                    "h": 22
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e13"
+                },
+                {
+                  "node": 13,
+                  "role": "link",
+                  "label": "3 \n\t\t\t\t Commemoration",
+                  "rect": {
+                    "x": 60,
+                    "y": 256.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "context": "Commemoration Toggle Commemoration subsection",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e14"
+                },
+                {
+                  "node": 14,
+                  "role": "button",
+                  "label": "Toggle Commemoration subsection",
+                  "rect": {
+                    "x": 37,
+                    "y": 257.375,
+                    "w": 22,
+                    "h": 22
+                  },
+                  "context": "Commemoration Toggle Commemoration subsection",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e15"
+                },
+                {
+                  "node": 15,
+                  "role": "link",
+                  "label": "4 \n\t\t\t\t In popular culture",
+                  "rect": {
+                    "x": 60,
+                    "y": 284.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e16"
+                },
+                {
+                  "node": 16,
+                  "role": "button",
+                  "label": "Toggle In popular culture subsection",
+                  "rect": {
+                    "x": 37,
+                    "y": 285.375,
+                    "w": 22,
+                    "h": 22
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e17"
+                },
+                {
+                  "node": 17,
+                  "role": "link",
+                  "label": "5 \n\t\t\t\t Publications",
+                  "rect": {
+                    "x": 60,
+                    "y": 312.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "context": "Publications Toggle Publications subsection",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e18"
+                },
+                {
+                  "node": 18,
+                  "role": "button",
+                  "label": "Toggle Publications subsection",
+                  "rect": {
+                    "x": 37,
+                    "y": 313.375,
+                    "w": 22,
+                    "h": 22
+                  },
+                  "context": "Publications Toggle Publications subsection",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e19"
+                },
+                {
+                  "node": 19,
+                  "role": "link",
+                  "label": "6 \n\t\t\t\t See also",
+                  "rect": {
+                    "x": 60,
+                    "y": 340.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e20"
+                },
+                {
+                  "node": 20,
+                  "role": "link",
+                  "label": "7 \n\t\t\t\t Explanatory notes",
+                  "rect": {
+                    "x": 60,
+                    "y": 368.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e21"
+                },
+                {
+                  "node": 21,
+                  "role": "link",
+                  "label": "8 \n\t\t\t\t References",
+                  "rect": {
+                    "x": 60,
+                    "y": 396.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "context": "References Toggle References subsection",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e22"
+                },
+                {
+                  "node": 22,
+                  "role": "button",
+                  "label": "Toggle References subsection",
+                  "rect": {
+                    "x": 37,
+                    "y": 397.375,
+                    "w": 22,
+                    "h": 22
+                  },
+                  "context": "References Toggle References subsection",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e23"
+                },
+                {
+                  "node": 23,
+                  "role": "link",
+                  "label": "9 \n\t\t\t\t Further reading",
+                  "rect": {
+                    "x": 60,
+                    "y": 424.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e24"
+                },
+                {
+                  "node": 24,
+                  "role": "link",
+                  "label": "10 \n\t\t\t\t External links",
+                  "rect": {
+                    "x": 60,
+                    "y": 452.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e25"
+                },
+                {
+                  "node": 25,
+                  "role": "link",
+                  "label": "Article",
+                  "rect": {
+                    "x": 264,
+                    "y": 129.640625,
+                    "w": 38.8984375,
+                    "h": 32
+                  },
+                  "context": "Article Talk",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e26"
+                },
+                {
+                  "node": 26,
+                  "role": "link",
+                  "label": "Talk",
+                  "rect": {
+                    "x": 318.8984375,
+                    "y": 129.640625,
+                    "w": 24.8984375,
+                    "h": 32
+                  },
+                  "context": "Article Talk",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e27"
+                },
+                {
+                  "node": 27,
+                  "role": "link",
+                  "label": "Read",
+                  "rect": {
+                    "x": 607.2890625,
+                    "y": 129.640625,
+                    "w": 33.46875,
+                    "h": 32
+                  },
+                  "context": "Read View source View history",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e28"
+                },
+                {
+                  "node": 28,
+                  "role": "link",
+                  "label": "View source",
+                  "rect": {
+                    "x": 656.7578125,
+                    "y": 129.640625,
+                    "w": 76.015625,
+                    "h": 32
+                  },
+                  "context": "Read View source View history",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e29"
+                },
+                {
+                  "node": 29,
+                  "role": "link",
+                  "label": "View history",
+                  "rect": {
+                    "x": 748.7734375,
+                    "y": 129.640625,
+                    "w": 75.2265625,
+                    "h": 32
+                  },
+                  "context": "Read View source View history",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e30"
+                },
+                {
+                  "node": 30,
+                  "role": "button",
+                  "label": "Hide Appearance",
+                  "rect": {
+                    "x": 988.0390625,
+                    "y": 136.84375,
+                    "w": 38.6875,
+                    "h": 22
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e31"
+                },
+                {
+                  "node": 31,
+                  "role": "link",
+                  "label": "Page semi-protected",
+                  "rect": {
+                    "x": 836,
+                    "y": 173.640625,
+                    "w": 20,
+                    "h": 16
+                  },
+                  "context": "From Wikipedia, the free encyclopedia",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e32"
+                },
+                {
+                  "node": 32,
+                  "role": "link",
+                  "label": "Ada Lovelace (microarchitecture)",
+                  "rect": {
+                    "x": 577.265625,
+                    "y": 212.890625,
+                    "w": 234.328125,
+                    "h": 18.5
+                  },
+                  "context": "For the computer microarchitecture, see Ada Lovelace (microarchitecture).",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e33"
+                },
+                {
+                  "node": 33,
+                  "role": "link",
+                  "label": "The Right Honourable",
+                  "rect": {
+                    "x": 632.2421875,
+                    "y": 260.7421875,
+                    "w": 137.7578125,
+                    "h": 16
+                  },
+                  "context": "The Right Honourable The Countess of Lovelace",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e34"
+                },
+                {
+                  "node": 34,
+                  "role": "link",
+                  "label": "Augusta Ada King, Countess of Lovelace, daguerrotype portrait circa 1843",
+                  "rect": {
+                    "x": 576.1171875,
+                    "y": 458.15625,
+                    "w": 250,
+                    "h": 16
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e35"
+                },
+                {
+                  "node": 35,
+                  "role": "link",
+                  "label": "Daguerreotype",
+                  "rect": {
+                    "x": 581.546875,
+                    "y": 631.9765625,
+                    "w": 93.1484375,
+                    "h": 16
+                  },
+                  "context": "Daguerreotype of Lovelace (c. 1843)[1]",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e36"
+                },
+                {
+                  "node": 36,
+                  "role": "link",
+                  "label": "[ 1 ]",
+                  "rect": {
+                    "x": 808.1640625,
+                    "y": 629.7890625,
+                    "w": 12.53125,
+                    "h": 12.5
+                  },
+                  "context": "Daguerreotype of Lovelace (c. 1843)[1]",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e37"
+                },
+                {
+                  "node": 37,
+                  "role": "link",
+                  "label": "Marylebone",
+                  "rect": {
+                    "x": 637.78125,
+                    "y": 747.5625,
+                    "w": 73.5703125,
+                    "h": 16
+                  },
+                  "context": "Marylebone, London, England",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e38"
+                },
+                {
+                  "node": 38,
+                  "role": "link",
+                  "label": "n\u00e9e",
+                  "rect": {
+                    "x": 342.2578125,
+                    "y": 272.890625,
+                    "w": 26.6953125,
+                    "h": 18.5
+                  },
+                  "context": "n\u00e9e Byron",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e39"
+                },
+                {
+                  "node": 39,
+                  "role": "link",
+                  "label": "mathematician",
+                  "rect": {
+                    "x": 320.921875,
+                    "y": 350.890625,
+                    "w": 104.046875,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e40"
+                },
+                {
+                  "node": 40,
+                  "role": "link",
+                  "label": "writer",
+                  "rect": {
+                    "x": 460.5546875,
+                    "y": 350.890625,
+                    "w": 39.109375,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e41"
+                },
+                {
+                  "node": 41,
+                  "role": "link",
+                  "label": "Charles Babbage",
+                  "rect": {
+                    "x": 264,
+                    "y": 376.890625,
+                    "w": 239.2109375,
+                    "h": 44.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e42"
+                },
+                {
+                  "node": 42,
+                  "role": "link",
+                  "label": "computer",
+                  "rect": {
+                    "x": 384.96875,
+                    "y": 428.890625,
+                    "w": 66.2578125,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e43"
+                },
+                {
+                  "node": 43,
+                  "role": "link",
+                  "label": "analytical engine",
+                  "rect": {
+                    "x": 264,
+                    "y": 454.890625,
+                    "w": 119.1953125,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e44"
+                },
+                {
+                  "node": 44,
+                  "role": "link",
+                  "label": "computer programmer",
+                  "rect": {
+                    "x": 264,
+                    "y": 558.890625,
+                    "w": 157.8359375,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e45"
+                },
+                {
+                  "node": 45,
+                  "role": "link",
+                  "label": "legitimate child",
+                  "rect": {
+                    "x": 425.875,
+                    "y": 600.890625,
+                    "w": 105.828125,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e46"
+                },
+                {
+                  "node": 46,
+                  "role": "link",
+                  "label": "Lord Byron",
+                  "rect": {
+                    "x": 317.375,
+                    "y": 626.890625,
+                    "w": 78.265625,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e47"
+                },
+                {
+                  "node": 47,
+                  "role": "link",
+                  "label": "Anne Isabella Milbanke",
+                  "rect": {
+                    "x": 264,
+                    "y": 652.890625,
+                    "w": 165.4375,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e48"
+                },
+                {
+                  "node": 48,
+                  "role": "link",
+                  "label": "[ 2 ]",
+                  "rect": {
+                    "x": 433.8828125,
+                    "y": 650.0625,
+                    "w": 14.25,
+                    "h": 15
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e49"
+                },
+                {
+                  "id": "scroll_down",
+                  "kind": "scroll",
+                  "label": "Scroll down",
+                  "delta": 560
+                },
+                {
+                  "id": "wait",
+                  "kind": "wait",
+                  "label": "Wait for the page to update"
+                }
+              ],
+              "identity": {
+                "page_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+                "headings": [
+                  "Ada Lovelace"
+                ],
+                "canonical_url": "https://en.wikipedia.org/wiki/Ada_Lovelace"
+              }
+            },
+            "evidence": {
+              "predicate": "new_page_exact_visible_heading",
+              "query": "Ada Lovelace",
+              "before_url": "https://www.wikipedia.org/",
+              "after_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+              "identity": {
+                "page_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+                "headings": [
+                  "Ada Lovelace"
+                ],
+                "canonical_url": "https://en.wikipedia.org/wiki/Ada_Lovelace"
+              }
+            },
+            "recovery_available": false
+          },
+          "monotonic_ns": 1649298613822458,
+          "browser_target": "6549B807BD59BEE19CE8F4C57EC5D9BC"
+        },
+        {
+          "event": "subtask_started",
+          "elapsed_ms": 23188,
+          "step": 2,
+          "kind": "click",
+          "target": "analytical engine",
+          "value": "",
+          "outcome": "Follow the observed analytical engine article link.",
+          "monotonic_ns": 1649302655559083,
+          "browser_target": "6549B807BD59BEE19CE8F4C57EC5D9BC"
+        },
+        {
+          "event": "subtask_finished",
+          "elapsed_ms": 109.892042,
+          "step": 2,
+          "result": {
+            "action_executed": true,
+            "page_changed": true,
+            "unresolved_execution": false,
+            "observed_href": "https://en.wikipedia.org/wiki/Analytical_engine",
+            "status": "success",
+            "outcome_achieved": true,
+            "observation": {
+              "url": "https://en.wikipedia.org/wiki/Analytical_engine",
+              "title": "Analytical engine - Wikipedia",
+              "text": "Jump to content\nSearch\nDonate\nCreate account\nLog in\nContents\nhide\n(Top)\nDesign\nConstruction\nInstruction set\nInfluence\nToggle Influence subsection\nPredicted influence\nComputer science\nComparison to other early computers\nIn popular culture\nReferences\nBibliography\nExternal links\nAnalytical engine\nArticle\nTalk\nRead\nEdit\nView history\nAppearance\nhide\nFrom Wikipedia, the free encyclopedia\nPrinting mechanism from Babbage's analytical engine, as displayed at the\nScience Museum, London\n[\n1\n]\nHistory of computing\nHardware\nHardware 1960s to present\nThe\nanalytical engine\nwas a proposed\ndigital\nmechanical\ngeneral-purpose computer\ndesigned by the English mathematician and computer pioneer\nCharles Babbage\n.\n[\n2\n]\n[\n3\n]\nIt was first described in 1837 as the successor to Babbage's\ndifference engine\n, which was a design for a simpler\nmechanical calculator\n.\n[\n4\n]\nThe analytical engine incorporated an\narithmetic logic unit\n(ALU),\ncontrol flow\nin the form of\nconditional branching\nand\nloops\n, and\nintegrated memory\n, making it the first design for a general-purpose computer that could be described in modern terms as\nTuring-complete\n.\n[\n5\n]\n[\n6\n]\nIn other words, the structure of the analytical engine was essentially the same as that which has dominated computer design in the electronic era.\n[\n3\n]\nBabbage was never able to complete construction of any of his machines due to conflicts with his chief engineer and inadequate funding.",
+              "actions": [
+                {
+                  "node": 1,
+                  "role": "link",
+                  "label": "Wikipedia \n\t\t The Free Encyclopedia",
+                  "rect": {
+                    "x": 84,
+                    "y": 14,
+                    "w": 140,
+                    "h": 38
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e1"
+                },
+                {
+                  "node": 2,
+                  "role": "searchbox",
+                  "label": "Search Wikipedia",
+                  "rect": {
+                    "x": 266,
+                    "y": 17,
+                    "w": 404.296875,
+                    "h": 32
+                  },
+                  "empty": "true",
+                  "placeholder": "Search Wikipedia",
+                  "kind": "fill",
+                  "value": "",
+                  "id": "e2"
+                },
+                {
+                  "node": 2,
+                  "role": "searchbox",
+                  "label": "Open Search Wikipedia",
+                  "rect": {
+                    "x": 266,
+                    "y": 17,
+                    "w": 404.296875,
+                    "h": 32
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e3"
+                },
+                {
+                  "node": 3,
+                  "role": "button",
+                  "label": "Search",
+                  "rect": {
+                    "x": 669.296875,
+                    "y": 17,
+                    "w": 70.703125,
+                    "h": 32
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e4"
+                },
+                {
+                  "node": 4,
+                  "role": "link",
+                  "label": "Donate",
+                  "rect": {
+                    "x": 877.7578125,
+                    "y": 25,
+                    "w": 45.1484375,
+                    "h": 16
+                  },
+                  "context": "Donate Create account Log in",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e5"
+                },
+                {
+                  "node": 5,
+                  "role": "link",
+                  "label": "Create account",
+                  "rect": {
+                    "x": 930.90625,
+                    "y": 25,
+                    "w": 94.9453125,
+                    "h": 16
+                  },
+                  "context": "Donate Create account Log in",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e6"
+                },
+                {
+                  "node": 6,
+                  "role": "link",
+                  "label": "Log in",
+                  "rect": {
+                    "x": 1033.8515625,
+                    "y": 25,
+                    "w": 38.1484375,
+                    "h": 16
+                  },
+                  "context": "Donate Create account Log in",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e7"
+                },
+                {
+                  "node": 7,
+                  "role": "button",
+                  "label": "Hide Contents",
+                  "rect": {
+                    "x": 132.5546875,
+                    "y": 136.84375,
+                    "w": 38.6875,
+                    "h": 22
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e8"
+                },
+                {
+                  "node": 8,
+                  "role": "link",
+                  "label": "(Top)",
+                  "rect": {
+                    "x": 60,
+                    "y": 172.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e9"
+                },
+                {
+                  "node": 9,
+                  "role": "link",
+                  "label": "1 \n\t\t\t\t Design",
+                  "rect": {
+                    "x": 60,
+                    "y": 200.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e10"
+                },
+                {
+                  "node": 10,
+                  "role": "link",
+                  "label": "2 \n\t\t\t\t Construction",
+                  "rect": {
+                    "x": 60,
+                    "y": 228.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e11"
+                },
+                {
+                  "node": 11,
+                  "role": "link",
+                  "label": "3 \n\t\t\t\t Instruction set",
+                  "rect": {
+                    "x": 60,
+                    "y": 256.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e12"
+                },
+                {
+                  "node": 12,
+                  "role": "link",
+                  "label": "4 \n\t\t\t\t Influence",
+                  "rect": {
+                    "x": 60,
+                    "y": 284.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "context": "Influence Toggle Influence subsection Predicted influence Computer science",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e13"
+                },
+                {
+                  "node": 13,
+                  "role": "button",
+                  "label": "Toggle Influence subsection",
+                  "rect": {
+                    "x": 37,
+                    "y": 285.375,
+                    "w": 22,
+                    "h": 22
+                  },
+                  "context": "Influence Toggle Influence subsection Predicted influence Computer science",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e14"
+                },
+                {
+                  "node": 14,
+                  "role": "link",
+                  "label": "4.1 \n\t\t\t\t\t Predicted influence",
+                  "rect": {
+                    "x": 72,
+                    "y": 312.375,
+                    "w": 152,
+                    "h": 28
+                  },
+                  "context": "Predicted influence Computer science",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e15"
+                },
+                {
+                  "node": 15,
+                  "role": "link",
+                  "label": "4.2 \n\t\t\t\t\t Computer science",
+                  "rect": {
+                    "x": 72,
+                    "y": 340.375,
+                    "w": 152,
+                    "h": 28
+                  },
+                  "context": "Predicted influence Computer science",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e16"
+                },
+                {
+                  "node": 16,
+                  "role": "link",
+                  "label": "5 \n\t\t\t\t Comparison to other early computers",
+                  "rect": {
+                    "x": 60,
+                    "y": 368.375,
+                    "w": 164,
+                    "h": 44
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e17"
+                },
+                {
+                  "node": 17,
+                  "role": "link",
+                  "label": "6 \n\t\t\t\t In popular culture",
+                  "rect": {
+                    "x": 60,
+                    "y": 412.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e18"
+                },
+                {
+                  "node": 18,
+                  "role": "link",
+                  "label": "7 \n\t\t\t\t References",
+                  "rect": {
+                    "x": 60,
+                    "y": 440.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e19"
+                },
+                {
+                  "node": 19,
+                  "role": "link",
+                  "label": "8 \n\t\t\t\t Bibliography",
+                  "rect": {
+                    "x": 60,
+                    "y": 468.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e20"
+                },
+                {
+                  "node": 20,
+                  "role": "link",
+                  "label": "9 \n\t\t\t\t External links",
+                  "rect": {
+                    "x": 60,
+                    "y": 496.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e21"
+                },
+                {
+                  "node": 21,
+                  "role": "link",
+                  "label": "Article",
+                  "rect": {
+                    "x": 264,
+                    "y": 129.640625,
+                    "w": 38.8984375,
+                    "h": 32
+                  },
+                  "context": "Article Talk",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e22"
+                },
+                {
+                  "node": 22,
+                  "role": "link",
+                  "label": "Talk",
+                  "rect": {
+                    "x": 318.8984375,
+                    "y": 129.640625,
+                    "w": 24.8984375,
+                    "h": 32
+                  },
+                  "context": "Article Talk",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e23"
+                },
+                {
+                  "node": 23,
+                  "role": "link",
+                  "label": "Read",
+                  "rect": {
+                    "x": 659.1796875,
+                    "y": 129.640625,
+                    "w": 33.46875,
+                    "h": 32
+                  },
+                  "context": "Read Edit View history",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e24"
+                },
+                {
+                  "node": 24,
+                  "role": "link",
+                  "label": "Edit",
+                  "rect": {
+                    "x": 708.6484375,
+                    "y": 129.640625,
+                    "w": 24.125,
+                    "h": 32
+                  },
+                  "context": "Read Edit View history",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e25"
+                },
+                {
+                  "node": 25,
+                  "role": "link",
+                  "label": "View history",
+                  "rect": {
+                    "x": 748.7734375,
+                    "y": 129.640625,
+                    "w": 75.2265625,
+                    "h": 32
+                  },
+                  "context": "Read Edit View history",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e26"
+                },
+                {
+                  "node": 26,
+                  "role": "button",
+                  "label": "Hide Appearance",
+                  "rect": {
+                    "x": 988.0390625,
+                    "y": 136.84375,
+                    "w": 38.6875,
+                    "h": 22
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e27"
+                },
+                {
+                  "node": 27,
+                  "role": "link",
+                  "label": "link",
+                  "rect": {
+                    "x": 597,
+                    "y": 218.390625,
+                    "w": 258,
+                    "h": 204
+                  },
+                  "context": "Printing mechanism from Babbage's analytical engine, as displayed at the Science",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e28"
+                },
+                {
+                  "node": 28,
+                  "role": "link",
+                  "label": "Science Museum, London",
+                  "rect": {
+                    "x": 603,
+                    "y": 463.5,
+                    "w": 163.5,
+                    "h": 16.5
+                  },
+                  "context": "Printing mechanism from Babbage's analytical engine, as displayed at the Science",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e29"
+                },
+                {
+                  "node": 29,
+                  "role": "link",
+                  "label": "[ 1 ]",
+                  "rect": {
+                    "x": 766.5,
+                    "y": 461.2890625,
+                    "w": 12.59375,
+                    "h": 12.5
+                  },
+                  "context": "Printing mechanism from Babbage's analytical engine, as displayed at the Science",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e30"
+                },
+                {
+                  "node": 30,
+                  "role": "link",
+                  "label": "History of computing",
+                  "rect": {
+                    "x": 598.4765625,
+                    "y": 522.21875,
+                    "w": 205.28125,
+                    "h": 23
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e31"
+                },
+                {
+                  "node": 31,
+                  "role": "link",
+                  "label": "link",
+                  "rect": {
+                    "x": 576.1171875,
+                    "y": 639.2890625,
+                    "w": 250,
+                    "h": 16
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e32"
+                },
+                {
+                  "node": 32,
+                  "role": "link",
+                  "label": "Hardware",
+                  "rect": {
+                    "x": 669.03125,
+                    "y": 752.640625,
+                    "w": 64.171875,
+                    "h": 16
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e33"
+                },
+                {
+                  "node": 33,
+                  "role": "link",
+                  "label": "digital",
+                  "rect": {
+                    "x": 264,
+                    "y": 238.890625,
+                    "w": 41.8046875,
+                    "h": 18.5
+                  },
+                  "context": "The analytical engine was a proposed digital mechanical general-purpose computer",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e34"
+                },
+                {
+                  "node": 34,
+                  "role": "link",
+                  "label": "mechanical",
+                  "rect": {
+                    "x": 310.25,
+                    "y": 238.890625,
+                    "w": 80.9296875,
+                    "h": 18.5
+                  },
+                  "context": "The analytical engine was a proposed digital mechanical general-purpose computer",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e35"
+                },
+                {
+                  "node": 35,
+                  "role": "link",
+                  "label": "general-purpose computer",
+                  "rect": {
+                    "x": 264,
+                    "y": 238.890625,
+                    "w": 248.1484375,
+                    "h": 44.5
+                  },
+                  "context": "The analytical engine was a proposed digital mechanical general-purpose computer",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e36"
+                },
+                {
+                  "node": 36,
+                  "role": "link",
+                  "label": "Charles Babbage",
+                  "rect": {
+                    "x": 264,
+                    "y": 316.890625,
+                    "w": 123.640625,
+                    "h": 18.5
+                  },
+                  "context": "The analytical engine was a proposed digital mechanical general-purpose computer",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e37"
+                },
+                {
+                  "node": 37,
+                  "role": "link",
+                  "label": "[ 2 ]",
+                  "rect": {
+                    "x": 392.0859375,
+                    "y": 314.0625,
+                    "w": 14.25,
+                    "h": 15
+                  },
+                  "context": "The analytical engine was a proposed digital mechanical general-purpose computer",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e38"
+                },
+                {
+                  "node": 38,
+                  "role": "link",
+                  "label": "[ 3 ]",
+                  "rect": {
+                    "x": 406.3359375,
+                    "y": 314.0625,
+                    "w": 14.25,
+                    "h": 15
+                  },
+                  "context": "The analytical engine was a proposed digital mechanical general-purpose computer",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e39"
+                },
+                {
+                  "node": 39,
+                  "role": "link",
+                  "label": "difference engine",
+                  "rect": {
+                    "x": 264,
+                    "y": 368.890625,
+                    "w": 122.4765625,
+                    "h": 18.5
+                  },
+                  "context": "The analytical engine was a proposed digital mechanical general-purpose computer",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e40"
+                },
+                {
+                  "node": 40,
+                  "role": "link",
+                  "label": "mechanical calculator",
+                  "rect": {
+                    "x": 320.0078125,
+                    "y": 394.890625,
+                    "w": 153.4140625,
+                    "h": 18.5
+                  },
+                  "context": "The analytical engine was a proposed digital mechanical general-purpose computer",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e41"
+                },
+                {
+                  "node": 41,
+                  "role": "link",
+                  "label": "[ 4 ]",
+                  "rect": {
+                    "x": 477.4296875,
+                    "y": 392.0625,
+                    "w": 14.25,
+                    "h": 15
+                  },
+                  "context": "The analytical engine was a proposed digital mechanical general-purpose computer",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e42"
+                },
+                {
+                  "node": 42,
+                  "role": "link",
+                  "label": "arithmetic logic unit",
+                  "rect": {
+                    "x": 264,
+                    "y": 462.890625,
+                    "w": 136.9453125,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e43"
+                },
+                {
+                  "node": 43,
+                  "role": "link",
+                  "label": "control flow",
+                  "rect": {
+                    "x": 456.0625,
+                    "y": 462.890625,
+                    "w": 80.921875,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e44"
+                },
+                {
+                  "node": 44,
+                  "role": "link",
+                  "label": "conditional branching",
+                  "rect": {
+                    "x": 344.921875,
+                    "y": 488.890625,
+                    "w": 151.21875,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e45"
+                },
+                {
+                  "node": 45,
+                  "role": "link",
+                  "label": "loops",
+                  "rect": {
+                    "x": 264,
+                    "y": 514.890625,
+                    "w": 38.25,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e46"
+                },
+                {
+                  "node": 46,
+                  "role": "link",
+                  "label": "integrated memory",
+                  "rect": {
+                    "x": 342.28125,
+                    "y": 514.890625,
+                    "w": 132.8046875,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e47"
+                },
+                {
+                  "node": 47,
+                  "role": "link",
+                  "label": "Turing-complete",
+                  "rect": {
+                    "x": 264,
+                    "y": 618.890625,
+                    "w": 115.015625,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e48"
+                },
+                {
+                  "node": 48,
+                  "role": "link",
+                  "label": "[ 5 ]",
+                  "rect": {
+                    "x": 383.4609375,
+                    "y": 616.0625,
+                    "w": 14.25,
+                    "h": 15
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e49"
+                },
+                {
+                  "node": 49,
+                  "role": "link",
+                  "label": "[ 6 ]",
+                  "rect": {
+                    "x": 397.7109375,
+                    "y": 616.0625,
+                    "w": 14.25,
+                    "h": 15
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e50"
+                },
+                {
+                  "node": 50,
+                  "role": "link",
+                  "label": "[ 3 ]",
+                  "rect": {
+                    "x": 459.671875,
+                    "y": 720.0625,
+                    "w": 14.25,
+                    "h": 15
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e51"
+                },
+                {
+                  "id": "scroll_down",
+                  "kind": "scroll",
+                  "label": "Scroll down",
+                  "delta": 560
+                },
+                {
+                  "id": "wait",
+                  "kind": "wait",
+                  "label": "Wait for the page to update"
+                }
+              ],
+              "identity": {
+                "page_url": "https://en.wikipedia.org/wiki/Analytical_engine",
+                "headings": [
+                  "Analytical engine"
+                ],
+                "canonical_url": "https://en.wikipedia.org/wiki/Analytical_engine"
+              }
+            },
+            "evidence": {
+              "before_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+              "after_url": "https://en.wikipedia.org/wiki/Analytical_engine",
+              "predicate": "observed_link_destination"
+            },
+            "recovery_available": false
+          },
+          "monotonic_ns": 1649302765450791,
+          "browser_target": "6549B807BD59BEE19CE8F4C57EC5D9BC"
+        }
+      ],
+      "actions": [
+        {
+          "event": "executed",
+          "elapsed_ms": 9106,
+          "action": {
+            "node": 11,
+            "role": "searchbox",
+            "label": "Search Wikipedia",
+            "rect": {
+              "x": 334.8984375,
+              "y": 469.59375,
+              "w": 394.1953125,
+              "h": 44
+            },
+            "empty": "true",
+            "kind": "fill",
+            "value": "",
+            "id": "e11"
+          },
+          "text": "Ada Lovelace",
+          "href": null,
+          "from_url": "https://www.wikipedia.org/",
+          "source": "deterministic",
+          "monotonic_ns": 1649288573710416
+        },
+        {
+          "event": "rejected",
+          "elapsed_ms": 15046,
+          "execution": "not_executed",
+          "cause": "Page changed since this decision. Observe again.",
+          "monotonic_ns": 1649294513405625
+        },
+        {
+          "event": "executed",
+          "elapsed_ms": 19006,
+          "action": {
+            "node": 32,
+            "role": "link",
+            "label": "Ada Lovelace English mathematician (1815\u20131852)",
+            "rect": {
+              "x": 335.8984375,
+              "y": 513.59375,
+              "w": 392.1953125,
+              "h": 70
+            },
+            "context": "Ada Lovelace English mathematician (1815\u20131852) Ada Lovelace (microarchitecture) ",
+            "kind": "click",
+            "value": "",
+            "id": "e13"
+          },
+          "text": null,
+          "href": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "from_url": "https://www.wikipedia.org/",
+          "source": "qwen",
+          "monotonic_ns": 1649298473178541
+        },
+        {
+          "event": "executed",
+          "elapsed_ms": 23217,
+          "action": {
+            "node": 43,
+            "role": "link",
+            "label": "analytical engine",
+            "rect": {
+              "x": 264,
+              "y": 601.890625,
+              "w": 119.1953125,
+              "h": 18.5
+            },
+            "kind": "click",
+            "value": "",
+            "id": "e42"
+          },
+          "text": null,
+          "href": "https://en.wikipedia.org/wiki/Analytical_engine",
+          "from_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "source": "deterministic",
+          "monotonic_ns": 1649302684915500
+        }
+      ],
+      "first_failure": null,
+      "model_loads": [
+        {
+          "actual_load": true,
+          "pid": 46155,
+          "call_started_monotonic_ns": 1649288705616000,
+          "model_load_ms": 1232.8736251220107
+        }
+      ],
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "d79ffdf7951d65ec1145b30ade6ea869bc956a4949a932a12b5c6289bddd9227",
+        "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "scripts/workflow_browser.py": "75624b1012340946221b0af6808f0da237d2f662752b48bdd3249140e74ace6a",
+        "scripts/workflow_session.py": "2718d19de433e904e0130195b673acfdb8d19b0dfff2176015250c9dfa7e7dd3",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "008742becc08c3551caaee02dd37515f775f80ad338d534dc44176b68d6ea8a8",
+        "jev_ultrafast/workflow_worker.py": "d63cedf767c62bb18f61659d0e2343eb986a1a17c44d25105a3e423115326e11",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    }
+  ]
+}

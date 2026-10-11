@@ -1,0 +1,175 @@
+{
+  "source": "results/workflow-recovery.json",
+  "revision": "e45aa7e761192c4e6a7983f075b9843d9bd6a9cb",
+  "attempts": 1,
+  "replacement_runs": 0,
+  "outcome": "passed",
+  "independent_checks": {
+    "started_at_portal": true,
+    "query_entered": true,
+    "search_opened": true,
+    "ada_article_observed": true,
+    "article_link_followed": true,
+    "destination_observed": true,
+    "inventor_passage_observed": true,
+    "answer_correct": true,
+    "supporting_urls": true,
+    "no_uncertain_execution": true
+  },
+  "answer": "Charles Babbage. The Analytical engine article states that it was \"designed by the English mathematician and computer pioneer Charles Babbage\".",
+  "supporting_urls": [
+    "https://en.wikipedia.org/wiki/Ada_Lovelace",
+    "https://en.wikipedia.org/wiki/Analytical_engine"
+  ],
+  "total_ms": 29904.53525,
+  "cleanup_ms": 1035.174416,
+  "recovery_invocations": 0,
+  "recovery_limit": "Implemented and covered by model-free regressions. The live trial did not trigger recovery.",
+  "subtasks": [
+    {
+      "step": 1,
+      "elapsed_ms": 10061.981584,
+      "status": "success"
+    },
+    {
+      "step": 2,
+      "elapsed_ms": 109.892042,
+      "status": "success"
+    }
+  ],
+  "executed_actions": [
+    {
+      "source": "deterministic",
+      "action": {
+        "node": 11,
+        "role": "searchbox",
+        "label": "Search Wikipedia",
+        "rect": {
+          "x": 334.8984375,
+          "y": 469.59375,
+          "w": 394.1953125,
+          "h": 44
+        },
+        "empty": "true",
+        "kind": "fill",
+        "value": "",
+        "id": "e11"
+      },
+      "from_url": "https://www.wikipedia.org/",
+      "href": null,
+      "text": "Ada Lovelace"
+    },
+    {
+      "source": "qwen",
+      "action": {
+        "node": 32,
+        "role": "link",
+        "label": "Ada Lovelace English mathematician (1815\u20131852)",
+        "rect": {
+          "x": 335.8984375,
+          "y": 513.59375,
+          "w": 392.1953125,
+          "h": 70
+        },
+        "context": "Ada Lovelace English mathematician (1815\u20131852) Ada Lovelace (microarchitecture) ",
+        "kind": "click",
+        "value": "",
+        "id": "e13"
+      },
+      "from_url": "https://www.wikipedia.org/",
+      "href": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+      "text": null
+    },
+    {
+      "source": "deterministic",
+      "action": {
+        "node": 43,
+        "role": "link",
+        "label": "analytical engine",
+        "rect": {
+          "x": 264,
+          "y": 601.890625,
+          "w": 119.1953125,
+          "h": 18.5
+        },
+        "kind": "click",
+        "value": "",
+        "id": "e42"
+      },
+      "from_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+      "href": "https://en.wikipedia.org/wiki/Analytical_engine",
+      "text": null
+    }
+  ],
+  "first_rejection": {
+    "event": "rejected",
+    "elapsed_ms": 15046,
+    "execution": "not_executed",
+    "cause": "Page changed since this decision. Observe again.",
+    "monotonic_ns": 1649294513405625
+  },
+  "terminal_failure": null,
+  "coordinator": {
+    "responses": 6,
+    "usage": {
+      "input_tokens": 132957,
+      "cached_input_tokens": 103424,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 315,
+      "reasoning_output_tokens": 0,
+      "total_tokens": 133272
+    },
+    "uncached_input_tokens": 29533,
+    "usage_reconciles": true
+  },
+  "local": {
+    "calls": 2,
+    "actual_loads": 1,
+    "prompt_tokens": 4219,
+    "retokenized_response_tokens": 55,
+    "wrapper_ms": [
+      5887.887209,
+      3877.629334
+    ],
+    "timing": [
+      {
+        "imports_ms": 883.692,
+        "model_acquisition_ms": 1233.928,
+        "prompt_preparation_ms": 10.604,
+        "generation_ms": 3661,
+        "structured_call_total_ms": 5790.228,
+        "result_handling_ms": 1.004
+      },
+      {
+        "imports_ms": 0.012,
+        "model_acquisition_ms": 0.002,
+        "prompt_preparation_ms": 1.861,
+        "generation_ms": 3875,
+        "structured_call_total_ms": 3877.064,
+        "result_handling_ms": 0.189
+      }
+    ],
+    "weight_load_ms": [
+      1232.8736251220107
+    ]
+  },
+  "memory": {
+    "peak_bytes": 3815345368,
+    "scope": "Combined sampled MCP and local model process. Excludes browser and coordinator client."
+  },
+  "source_unchanged": true,
+  "source_hash_count": 39,
+  "previous_failed_evidence": {
+    "results/workflow-focused.json": "c0ef3621ba3043cb61585733c3596b5061b91eaa00f12cb896a6ac13daea4552",
+    "results/workflow-focused-summary.json": "858c1e72bfed84fd5244899e265b39703b25153957e28a54440c0dfeedb22940"
+  },
+  "limits": [
+    "One complete success does not establish general reliability.",
+    "Recovery was not invoked in the live trial. No claim that recovery caused this success.",
+    "The previous failed run is not a comparable speed baseline.",
+    "Native desktop comparison and compactor integration remain untested.",
+    "Local generation timing combines prompt processing and token generation. Weight-load duration is nested inside acquisition."
+  ],
+  "next_recommendation": "Use a controlled browser fixture that reliably removes and restores a target to exercise the one-action recovery end to end.",
+  "user_observation_needed": false
+}

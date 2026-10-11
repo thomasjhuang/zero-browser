@@ -2,7 +2,7 @@
 
 Priority P0. Owner Codex milestone chat.
 
-Current scope: the focused bounded-delegation change and exactly one live workflow attempt are complete. The attempt failed safely after search-and-open succeeded. Runtime is idle. No retry or replacement ran. Native workflow pairs remain unrun after the user's scope change. General reliability, efficiency, and the original flight milestone remain unresolved. The original plan below is historical. Latest Result entries and STATUS govern current work.
+Current scope: bounded delegation and one-action recovery are implemented. The authorized additional workflow attempt passed. Recovery did not run in that attempt, so its live effectiveness remains unproven. The earlier failed result is unchanged. Runtime is idle, and no further trial is authorized. Native workflow comparison, general reliability, efficiency, and the original flight milestone remain unresolved. Latest Result entries and STATUS govern current work.
 
 ## Why
 
@@ -391,3 +391,16 @@ The recovery implementation permits one coordinator-selected observed click or s
 Command: `ZB_RECORD_PATH=artifacts/replay/workflow-recovery.jsonl uv run --offline --frozen --extra local python scripts/paired_browser_benchmark.py --workflow --order persistent --output results/workflow-recovery.json --stop-file artifacts/workflow-recovery.stop`. Exactly one additional attempt is authorized. The previous focused raw result and summary remain unchanged. No compactor changes are included.
 
 Model-free checks passed: lint and 159 tests in 4.45 seconds. Focused regressions cover confirmed non-execution, unknown-result stops, one recovery action, unique-target continuation, and rejection of a second recovery. GitNexus found the shared workflow paths affected and reports high aggregate impact. Source inspection and tests cover those paths. The MCP index retains stale metadata and truncated flows, so it does not establish completeness. The compactor owner explicitly confirmed idle.
+
+Recovery trial source freeze: `e45aa7e761192c4e6a7983f075b9843d9bd6a9cb`. The recorded recovery command starts now. No other browser, local inference, indexing, or tests are active.
+
+
+### Additional recovery-enabled attempt result
+
+Exactly one additional attempt ran at `e45aa7e761192c4e6a7983f075b9843d9bd6a9cb`. Evidence: `results/workflow-recovery.json` and `results/workflow-recovery-summary.json`. All independent route and answer checks passed. The worker opened Ada Lovelace, followed the observed analytical engine link, and returned Charles Babbage with the supporting article passage and URLs.
+Recovery was not invoked. This result demonstrates one complete workflow, not live recovery effectiveness or general reliability. The previous failed raw result and summary are unchanged. No extra trial or replacement ran.
+Full startup-to-verdict time was 29,904.54 ms. Cleanup took 1,035.17 ms separately. Search-and-open took 10,061.98 ms. The exact link subtask took 109.89 ms. The run executed three mutations: deterministic query entry, a Qwen-selected result click, and deterministic article-link navigation. One earlier Qwen decision encountered a known pre-input freshness rejection. A fresh decision succeeded. There was no terminal failure or uncertain mutation.
+Six coordinator responses used 132,957 input tokens, including 103,424 cached tokens, plus 315 output tokens. Total: 133,272. Uncached input: 29,533. Two local calls used 4,219 prompt tokens and 55 retokenized response tokens. One local process loaded once. Sampled MCP/model memory peaked at 3,815,345,368 bytes, excluding browser and coordinator-client memory. Initial load is inside total time. Local generation timing still combines prompt processing and token generation.
+All 39 measured source hashes remained unchanged. The previous incomplete task is not a comparable speed baseline. Compactor integration and native desktop workflow comparison remain untested. The one recommendation is a controlled browser fixture that reliably removes and restores a target, to exercise the bounded recovery end to end. That proposed work is not started here. No new responsiveness observation is needed.
+
+Final evidence delivery checks passed: lint and 159 tests in 4.20 seconds. The public evidence contains no detected private paths or credentials. Previous focused result files remain unchanged.
