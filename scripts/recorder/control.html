@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demonstration recorder</title>
+<style>
+  body { font: 16px system-ui, sans-serif; color: #18212b; background: #f5f6f8; margin: 0; }
+  main { max-width: 680px; margin: 48px auto; padding: 32px; background: white; border: 1px solid #d8dde3; border-radius: 12px; }
+  h1 { font-size: 25px; margin-top: 0; } label { display: block; margin: 20px 0 7px; font-weight: 600; }
+  input, textarea, select, button { box-sizing: border-box; font: inherit; }
+  input, textarea, select { width: 100%; padding: 10px; border: 1px solid #89929e; border-radius: 5px; }
+  button { padding: 11px 16px; margin: 14px 8px 0 0; border: 1px solid #1849ad; border-radius: 5px; background: #1849ad; color: white; cursor: pointer; }
+  button.secondary { color: #1849ad; background: white; } button:disabled { opacity: .45; cursor: default; }
+  #status { padding: 12px; background: #edf2fa; border-radius: 5px; } #error { color: #a01616; white-space: pre-wrap; }
+  #files { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14px; } .hint { color: #526071; font-size: 14px; }
+</style>
+<main>
+  <h1>Demonstration recorder</h1>
+  <p id="status" role="status">Ready. 0 of 2 demonstrations saved.</p>
+  <label for="url">Starting URL</label>
+  <input id="url" type="url" value="https://www.google.com/travel/flights">
+  <button class="secondary" id="open">Open page</button>
+  <p class="hint">Complete sign-in before you start recording.</p>
+  <label for="goal">Task goal</label>
+  <textarea id="goal" rows="4" placeholder="Enter the route, dates, travelers, and desired result."></textarea>
+  <button id="start">Start recording</button>
+  <label for="outcome">Task result</label>
+  <select id="outcome"><option value="unverified">Not assessed</option><option value="human_reported_complete">I completed the task</option><option value="human_reported_incomplete">I did not complete the task</option></select>
+  <button id="save" disabled>Save demonstration</button>
+  <button class="secondary" id="finish">Finish session</button>
+  <p id="error" role="alert"></p>
+  <div id="files"></div>
+</main>
+<script>
+  const el = id => document.getElementById(id);
+  let busy = false, state = {active: false, saved: 0};
+  function show(next) {
+    state = next;
+    el('status').textContent = `${state.active ? 'Recording' : 'Ready'}. ${state.events || 0} actions captured. ${state.saved} of 2 demonstrations saved.`;
+    for (const id of ['start', 'open', 'url', 'goal']) el(id).disabled = busy || state.active || state.saved >= 2;
+    el('save').disabled = busy || !state.active;
+    el('finish').disabled = busy || state.active;
+    el('files').textContent = (state.files || []).join('\n');
+    if (state.error) el('error').textContent = state.error;
+  }
+  async function command(action) {
+    busy = true; show(state); el('error').textContent = '';
+    try { state = await window.__recorderControl({action, url: el('url').value, goal: el('goal').value, outcome: el('outcome').value}); }
+    catch (error) { el('error').textContent = error.message; }
+    finally { busy = false; show(state); }
+  }
+  for (const id of ['open', 'start', 'save', 'finish']) el(id).onclick = () => command(id);
+  setInterval(async () => { if (!busy) show(await window.__recorderControl({action: 'status'})); }, 1000);
+</script>
