@@ -47,6 +47,7 @@ DISABLED = ['shell_tool', 'shell_snapshot', 'apps', 'plugins', 'multi_agent', 'h
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--workflow', action='store_true')
     parser.add_argument('--order',
                         default='direct,delegated,delegated,direct,direct,delegated,delegated,direct,direct,delegated')
     parser.add_argument('--output', type=Path, default=ROOT / 'results/paired-browser.json')
@@ -67,8 +68,16 @@ def main():
                 output.write(json.dumps(event)+'\n')
                 output.flush()
             return process.wait()
+    goal, instructions_text = GOAL, INSTRUCTIONS
+    server_file = 'paired_browser_server.py'
+    if args.workflow:
+        from scripts.workflow_browser import GOAL as workflow_goal
+        from scripts.workflow_browser import INSTRUCTIONS as workflow_instructions
+        goal, instructions_text = workflow_goal, workflow_instructions
+        server_file = 'workflow_browser.py'
     order = args.order.split(',')
-    if not order or any(method not in {'direct', 'delegated'} for method in order):
+    allowed_modes = {'reload', 'persistent'} if args.workflow else {'direct', 'delegated'}
+    if not order or any(method not in allowed_modes for method in order):
         parser.error('Use direct and delegated methods only')
     executable = shutil.which('codex')
     if not executable:
@@ -78,8 +87,8 @@ def main():
     sources = [*sorted((ROOT / 'scripts').glob('*.py')),
                *sorted((ROOT / 'jev_ultrafast').glob('*.py')), ROOT / 'jev_ultrafast/snapshot.js',
                ROOT / 'model-lock.json', ROOT / 'uv.lock']
-    report = {'goal': GOAL, 'order': order, 'model': 'gpt-6-astra', 'reasoning_effort': 'high',
-              'instructions_sha256': hashlib.sha256(INSTRUCTIONS.encode()).hexdigest(),
+    report = {'goal': goal, 'order': order, 'model': 'gpt-6-astra', 'reasoning_effort': 'high',
+              'instructions_sha256': hashlib.sha256(instructions_text.encode()).hexdigest(),
               'source_sha256': {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in sources},
               'revision': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
               'scope': 'Direct Codex versus local delegation over a shared observed-action MCP interface. '
@@ -92,6 +101,12 @@ def main():
                              'timer': 'Cold browser startup and coordinator dispatch through final verdict receipt',
                              'memory': 'Sampled MCP browser/model process; excludes Chrome and coordinator client'},
               'runs': []}
+    if args.workflow:
+        report['scope'] = 'Four exploratory multi-step attempts comparing model reload per subtask with process reuse.'
+        report['conditions']['local_model'] = (
+            'Reload per subtask or persistent per workflow. Initial load included. No prompt cache reuse.')
+        report['conditions']['memory'] = (
+            'Summed MCP and local decision process footprint. Excludes browser and coordinator client.')
     save_json(args.output, report)
     with cancellation_signals(), single_run():
         for index, method in enumerate(order, 1):
@@ -107,10 +122,10 @@ def main():
                 limit = worker_memory_limit()
                 with tempfile.TemporaryDirectory(prefix='codex-paired-') as temporary, isolated_browser():
                     instructions = Path(temporary) / 'instructions.txt'
-                    instructions.write_text(INSTRUCTIONS)
+                    instructions.write_text(instructions_text)
                     os.environ.update(JEV_LOCAL='1', HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1',
                                       ZB_RECORD_PATH=str(run / 'replay.jsonl'))
-                    server_args = [str(ROOT / 'scripts/paired_browser_server.py'), str(config_path)]
+                    server_args = [str(ROOT / 'scripts' / server_file), str(config_path)]
                     command = [executable, 'exec', '--ignore-user-config', '--skip-git-repo-check',
                                '--sandbox', 'read-only', '--json', '--cd', temporary, '--model', report['model'],
                                '-c', 'model_reasoning_effort="high"', '-c', 'project_doc_max_bytes=0',
@@ -128,7 +143,8 @@ def main():
                         command += ['-c', f'mcp_servers.paired_browser.tools.{tool}.approval_mode="approve"']
                     for feature in DISABLED:
                         command += ['--disable', feature]
-                    command += ['--enable', 'skip_host_skill_discovery', f'Mode: {method}. Goal: {GOAL}']
+                    prompt = f'Goal: {goal}' if args.workflow else f'Mode: {method}. Goal: {goal}'
+                    command += ['--enable', 'skip_host_skill_discovery', prompt]
                     config['command'] = command
                     save_json(config_path, config)
 
@@ -139,7 +155,14 @@ def main():
                         server_pid = run / 'server.pid'
                         if server_pid.exists():
                             try:
-                                return process_memory(int(server_pid.read_text()))
+                                footprint = process_memory(int(server_pid.read_text()))
+                                model_pid = run / 'model.pid'
+                                if model_pid.exists():
+                                    try:
+                                        footprint += process_memory(int(model_pid.read_text()))
+                                    except (FileNotFoundError, ProcessLookupError):
+                                        pass
+                                return footprint
                             except OSError as error:
                                 if error.errno != errno.ESRCH:
                                     raise
@@ -153,7 +176,8 @@ def main():
 
                     dispatched_ns = time.monotonic_ns()
                     code = supervise([sys.executable, str(Path(__file__).resolve()), '--child', str(config_path)],
-                                     timeout=90, memory_limit=limit, memory_reader=memory, stats=stats)
+                                     timeout=180 if args.workflow else 90, memory_limit=limit,
+                                     memory_reader=memory, stats=stats)
                     verdict_received_ns = time.monotonic_ns()
                 cleanup_ms = (time.monotonic_ns()-verdict_received_ns)/1e6
             except (Exception, KeyboardInterrupt) as problem:
@@ -208,6 +232,12 @@ def main():
                              and e.get('item', {}).get('type') == 'mcp_tool_call'],
                    'private_events_sha256': hashlib.sha256((run / 'codex.jsonl').read_bytes()).hexdigest()
                    if (run / 'codex.jsonl').exists() else None}
+            if args.workflow:
+                row['subtasks'] = [e for e in journal if e.get('event') in {'subtask_started','subtask_finished'}]
+                row['actions'] = [e for e in journal if e.get('event') in {'executed','rejected','mutation_uncertain'}]
+                row['first_failure'] = next((e['result']['first_failure'] for e in row['subtasks']
+                    if e['event']=='subtask_finished' and e['result'].get('first_failure')), None)
+                row['model_loads'] = [c['load'] for c in row['local_calls'] if c.get('load',{}).get('actual_load')]
             row['end_source_sha256'] = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
                                         for p in sources}
             row['source_unchanged'] = row['end_source_sha256'] == report['source_sha256']

@@ -5,7 +5,7 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: IDLE, Codex task 16.** The authorized supplemental pair passed both outcomes. All 36 runtime hashes match the frozen original series. No benchmark or model run remains active. The original ten attempts remain unchanged. Evidence: `results/paired-browser-supplemental.json` and `results/paired-browser-comparison.json`. Required lint and all 135 tests passed. No further measurements are planned.
+> **Current run state: IDLE, reserved for Codex task 16.** Thomas authorized two multi-step reload/persistent pairs, then the native desktop comparison. Native tool discovery passed in a fresh isolated agent. Task 16 is implementing bounded navigation and shared-session measurement. No inference is active.
 > The coordinator released the hold after publishing `5799c81`. Task 16 owns the next run.
 > The next owner is Codex, **Improve zero-browser benchmarking**. Claude must not start browser runs, replay, cache probes, or model loads.
 >

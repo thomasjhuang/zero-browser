@@ -339,3 +339,14 @@ Independent read-only audits passed outcomes, timing, source integrity, and acco
 No further measurements are authorized or planned in this delivery. Shared-interface behavior, uncontrolled caching, network timing, and the narrow field task limit interpretation. A deterministic helper and a useful multi-step workflow remain untested. No new responsiveness observation is needed.
 
 Supplemental delivery checks passed: lint and all 135 tests in 4.72 seconds. No measured source changed. Public evidence passed the private-path and credential scan.
+
+
+### Multi-step worker reuse and native comparison
+
+Thomas explicitly authorized the next experiments in the coordination chat after field delivery `bb6c545`. The fixed workflow starts at Wikipedia, searches for Ada Lovelace, follows the article link to the Analytical Engine, and returns its inventor with supporting URLs. The evaluator requires observed navigation and source text. Expected answers stay outside subject prompts.
+Experiment 1 contains four attempts: reload, persistent, persistent, reload. Both modes preserve one browser through the workflow. Reload starts a new model process per subtask. Persistent reuses one model process. The main timer includes the initial load. No prompt or KV-cache changes are permitted.
+Experiment 2 uses actual native Codex desktop browser tools. A fresh agent exposed `mcp__cua_repl` and the In-app Browser provider. It supports fresh tabs but does not establish isolated cookies. Hosted agent context and tools differ from stripped CLI sessions, so this comparison cannot claim fully controlled conditions.
+The native capability probe opened no website. Its session ID is `01a12cf2-bae9-7712-b0af-455d81db0546`. Planned evidence: `results/workflow-reuse.json` and `results/workflow-native-comparison.json`. Task 16 owns the browser and inference slot. Implementation and delivery checks precede source freeze.
+
+The minimum implementation separates the browser from a JSON decision subprocess. Both modes retain the browser. Actual first loads and process IDs accompany each local call. The shared session stops after uncertain execution or a failed subtask. Navigation is restricted by caller-supplied hosts. The benchmark evaluator separately requires search submission, both articles, the observed article link, supporting text, and the returned answer and URLs.
+Model-free tests cover ambiguous controls, uncertain mutation handling, and each route requirement. Lint and 143 tests passed before the initial measurement freeze. GitNexus reports low runner impact. Its index has truncated flows and a cross-language link gap.
