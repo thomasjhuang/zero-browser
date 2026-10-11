@@ -27,11 +27,15 @@ Do not add site-specific policies or change the decision model. Do not claim gen
 
 The local stdio MCP server and Codex registration work. Codex made one `run_browser_goal` call with native browser tools disabled.
 Local Qwen opened Casa Flora. Independent URL and page-text assertions passed.
-The browser supervisor recorded 8591 ms and a peak sampled inference footprint of 3600517856 bytes.
+The clean-checkout browser run recorded 7636 ms and a peak sampled inference footprint of 3605334728 bytes.
 Evidence: [successful run](../results/codex-mcp.json). An earlier attempt stopped before execution because Codex required tool approval.
 That failed attempt remains in [its record](../results/codex-mcp-approval.json).
 
-The integration runner now rejects failed calls and unverified outcomes. It preserves the existing runtime limits.
+The integration runner rejects failed calls and unverified outcomes. It preserves the existing runtime limits.
+Independent review found incomplete cancellation cleanup. An AnyIO shield now protects the bounded cleanup waits.
+A model-free cancellation regression test passes. Lint and 118 tests passed in the shared working tree, including pending milestone tests.
+The final browser experiment used the committed runtime in a clean checkout. The earlier working-tree run remains
+in [its record](../results/codex-mcp-working-tree.json).
 The MCP server loads the model for each goal. Persistent browser sessions, field entry, multi-step goals, and Claude remain untested through MCP.
 GitNexus query, context, impact, index refresh, and change analysis ran. The graph reports omitted dynamic callers and truncated execution flows.
 Source inspection and the actual browser outcome support this result. Other chats own the existing local model and runtime edits.

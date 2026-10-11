@@ -10,6 +10,8 @@ import time
 from pathlib import Path
 from urllib.parse import urlparse
 
+import anyio
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
@@ -89,12 +91,13 @@ async def run_browser_goal(goal: str, url: str, expect_url: str = "", expect_tex
             finally:
                 # The supervisor handles SIGTERM and closes its separately owned browser and worker groups.
                 if process.returncode is None:
-                    process.terminate()
-                    try:
-                        await asyncio.wait_for(asyncio.shield(process.wait()), timeout=15)
-                    except TimeoutError:
-                        process.kill()
-                        await process.wait()
+                    with anyio.CancelScope(shield=True):
+                        process.terminate()
+                        try:
+                            await asyncio.wait_for(process.wait(), timeout=15)
+                        except TimeoutError:
+                            process.kill()
+                            await asyncio.wait_for(process.wait(), timeout=5)
         result_path = base / "result.json"
         if not result_path.exists():
             return {"successful_run": False, "outcome_verified": False, "exit_code": process.returncode,
