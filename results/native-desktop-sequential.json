@@ -1,0 +1,225 @@
+{
+  "experiment": "Sequential native desktop Wikipedia baseline",
+  "classification": "Preliminary product comparison",
+  "authorized_attempts": 1,
+  "actual_attempts": 1,
+  "valid_timing_comparison": true,
+  "protocol_deviation": null,
+  "previous_create_rejection": null,
+  "runs": [
+    {
+      "thread_id": "01a12d12-6c6a-7460-b9a8-73e48e18b9eb",
+      "role": "sole sequential native attempt",
+      "model": "gpt-6-astra",
+      "reasoning": "high",
+      "raw_session_sha256": "1edaaa0070bf430548926a29c9d5c641f84c89b21f8cfbb8f8abab3420e880ce",
+      "dispatch_utc": "2026-10-11T22:25:41.870258+00:00",
+      "final_verdict_emitted_utc": "2026-10-11T22:26:14.922Z",
+      "final_message_create_time": null,
+      "goal_dispatch_to_verdict_ms": 33051.742,
+      "task_complete_utc": "2026-10-11T22:26:15.510Z",
+      "usage_events": [
+        {
+          "timestamp": "2026-10-11T22:25:49.867Z",
+          "input_tokens": 38027,
+          "cached_input_tokens": 22912,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 46,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 38073,
+          "response_item_id": "ctc_0efdc3d5765f7d23016acc0ced3a8487d08b201d504f2cd082"
+        },
+        {
+          "timestamp": "2026-10-11T22:25:57.395Z",
+          "input_tokens": 40726,
+          "cached_input_tokens": 37888,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 87,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 40813,
+          "response_item_id": "fc_0efdc3d5765f7d23016acc0cf003e487d0ada889ff8074a85d"
+        },
+        {
+          "timestamp": "2026-10-11T22:25:59.869Z",
+          "input_tokens": 55563,
+          "cached_input_tokens": 40576,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 50,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 55613,
+          "response_item_id": "fc_0efdc3d5765f7d23016acc0cf6ea0887d08501e174e6b8982f"
+        },
+        {
+          "timestamp": "2026-10-11T22:26:05.286Z",
+          "input_tokens": 55746,
+          "cached_input_tokens": 55424,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 46,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 55792,
+          "response_item_id": "fc_0efdc3d5765f7d23016acc0cf8fc6887d093cb8134dfa166bc"
+        },
+        {
+          "timestamp": "2026-10-11T22:26:07.947Z",
+          "input_tokens": 87877,
+          "cached_input_tokens": 55552,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 42,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 87919,
+          "response_item_id": "fc_0efdc3d5765f7d23016acc0cfec06087d09db69bd71ae057b1"
+        },
+        {
+          "timestamp": "2026-10-11T22:26:11.413Z",
+          "input_tokens": 118795,
+          "cached_input_tokens": 87680,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 37,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 118832,
+          "response_item_id": "fc_0efdc3d5765f7d23016acc0d021e0487d09d3c24dc6fedbe4c"
+        },
+        {
+          "timestamp": "2026-10-11T22:26:15.496Z",
+          "input_tokens": 118860,
+          "cached_input_tokens": 118656,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 152,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 119012,
+          "response_item_id": "msg_0efdc3d5765f7d23016acc0d04ecb087d0a13116b107c09ed4"
+        }
+      ],
+      "coordinator_usage": {
+        "input_tokens": 515594,
+        "cached_input_tokens": 418688,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 460,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 516054
+      },
+      "uncached_input_tokens": 96906,
+      "usage_reconciles": true,
+      "coordinator_response_count": 7,
+      "local_model_calls": 0,
+      "memory_bytes": null,
+      "memory_status": "Not sampled for native desktop task.",
+      "browser_calls": [
+        {
+          "timestamp": "2026-10-11T22:25:52.427Z",
+          "call_id": "call_s1IVRloBvif1gVC1hcKKmZrM",
+          "arguments": "{\"code\":\"let tab = await cua.createBrowserTab(\\\"iab\\\", \\\"https://www.wikipedia.org/\\\", { visible: true });\",\"title\":\"Open Wikipedia in a new tab\"}"
+        },
+        {
+          "timestamp": "2026-10-11T22:25:59.568Z",
+          "call_id": "call_1SZa0lUNiZ0kUTEKauozNQCo",
+          "arguments": "{\"code\":\"await tab.typeText(20, \\\"Ada Lovelace\\\"); await tab.getAXState();\",\"title\":\"Search for Ada Lovelace\"}"
+        },
+        {
+          "timestamp": "2026-10-11T22:26:01.319Z",
+          "call_id": "call_y3HCroqcc4wKnuqxLe1GMXPv",
+          "arguments": "{\"code\":\"await tab.pressKey(20, \\\"Return\\\"); await tab.getAXState();\",\"title\":\"Open the matching Wikipedia article\"}"
+        },
+        {
+          "timestamp": "2026-10-11T22:26:07.080Z",
+          "call_id": "call_hNf7mK7qFtXjwCBU93aokPcT",
+          "arguments": "{\"code\":\"await tab.click(196); await tab.getAXState();\",\"title\":\"Follow the Analytical Engine article link\"}"
+        },
+        {
+          "timestamp": "2026-10-11T22:26:11.360Z",
+          "call_id": "call_EyBFPQ2fhyjBHEkfrpxiXiC7",
+          "arguments": "{\"code\":\"await tab.markDeliverable();\",\"title\":\"Keep the article tab open for assessment\"}"
+        }
+      ],
+      "observed_evidence": [
+        {
+          "timestamp": "2026-10-11T22:25:57.394Z",
+          "call_id": "call_s1IVRloBvif1gVC1hcKKmZrM",
+          "observation_sha256": "ef242988363cf6fff90942ffe6bb3331d68c02f9891e33a1dae9adba3bf07ace",
+          "excerpts": "Browser tab: 1, Title: \"Wikipedia\", URL: \"https://www.wikipedia.org/\".\n\t\t\t\t\t19 text Search Wikipedia\n\t\t\t\t\t20 search text field (settable) Search Wikipedia, ID: searchInput\n\t\t\t\t\t21 container\n\t\t\t\t\t\t22 text EN\n\t\t\t\t\t\t23 pop up button (collapsed, settable) EN, Value: English, ID: searchLanguage, Secondary Actions: Expand\n\t\t\t\t\t\t\t\t101 \u7cb5\u8a9e\n\t\t\t\t102 button Search\n\t\t\t\t\t103 text Search\n\t\t\t104 container All languages\n\t\t\t\t105 button (collapsed) Read Wikipedia in your language , ID: js-lang-list-button, Secondary Actions: Expand\n\nThe focused UI element is 20 search text field (settable) Search Wikipedia, ID: searchInput"
+        },
+        {
+          "timestamp": "2026-10-11T22:25:59.869Z",
+          "call_id": "call_1SZa0lUNiZ0kUTEKauozNQCo",
+          "observation_sha256": "77ade1e14f83537e76b374fad398197582305134cea04334c33884509e484a89",
+          "excerpts": "Browser tab: 1, Title: \"Wikipedia\", URL: \"https://www.wikipedia.org/\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t\t\t\t\t20 search text field (settable) Search Wikipedia, Value: Ada Lovelace, ID: searchInput\nThe focused UI element is 20 search text field (settable) Search Wikipedia, Value: Ada Lovelace, ID: searchInput"
+        },
+        {
+          "timestamp": "2026-10-11T22:26:05.285Z",
+          "call_id": "call_y3HCroqcc4wKnuqxLe1GMXPv",
+          "observation_sha256": "db17fb67888804cf16bf7dc60495de2a099e7421fb7c0ec5d68950dbd49dce34",
+          "excerpts": "Browser tab: 1, Title: \"Ada Lovelace - Wikipedia\", URL: \"https://en.wikipedia.org/wiki/Ada_Lovelace\".\n\t\t\t56 container\n\t\t\t\t57 heading Ada Lovelace, Value: 1, ID: firstHeading\n\t\t\t\t\t58 text Ada Lovelace\n\t\t\t\t59 pop up button Description: 112 languages, ID: p-lang-btn-checkbox\n\t\t\t60 container Namespaces\n\t\t\t\t\t\t\t195 text , the \n\t\t\t\t\t\t\t196 link Description: analytical engine, Help: Analytical engine, Value: en.wikipedia.org/wi\u2026, ID: mwGw\n\t\t\t\t\t\t\t197 text . She was the first to recognise the machine had applications beyond pure calculation. Lovelace is often considered the first \n\t\t\t\t\t\t\t198 link Description: computer programmer, Help: Computer programmer, Value: en.wikipedia.org/wi\u2026, ID: mwHA\n\t\t\t\t\t\t\t199 text ."
+        },
+        {
+          "timestamp": "2026-10-11T22:26:07.946Z",
+          "call_id": "call_hNf7mK7qFtXjwCBU93aokPcT",
+          "observation_sha256": "9222296a324a78651214a5fc0524006dce5619fa4d63dc1a9ac830659cd8d127",
+          "excerpts": "Browser tab: 1, Title: \"Analytical engine - Wikipedia\", URL: \"https://en.wikipedia.org/wiki/Analytical_engine\".\n\t\t\t49 container\n\t\t\t\t50 heading Analytical engine, Value: 1, ID: firstHeading\n\t\t\t\t\t51 text Analytical engine\n\t\t\t\t52 pop up button Description: 34 languages, ID: p-lang-btn-checkbox\n\t\t\t53 container Namespaces\n\t\t\t\t\t\t\t237 link Description: general-purpose computer, Help: General-purpose computer, Value: en.wikipedia.org/wi\u2026, ID: mwFw\n\t\t\t\t\t\t\t238 text  designed by the English mathematician and computer pioneer \n\t\t\t\t\t\t\t239 link Description: Charles Babbage, Value: en.wikipedia.org/wi\u2026, ID: mwGA\n\t\t\t\t\t\t\t240 text .\n\t\t\t\t\t\t\t241 link Description: [2], Value: en.wikipedia.org/wi\u2026, ID: mwGQ"
+        }
+      ],
+      "independent_checks": {
+        "started_at_portal": true,
+        "query_entered": true,
+        "observed_search_control": true,
+        "ada_article_observed": true,
+        "observed_article_link": true,
+        "observed_link_clicked": true,
+        "destination_observed": true,
+        "supporting_passage": true,
+        "answer_supported": true,
+        "supporting_urls": true,
+        "normal_browser_tools": true
+      },
+      "route_and_answer_passed": true,
+      "final_response": "**Success. Charles Babbage was the inventor.** The [Analytical engine article](https://en.wikipedia.org/wiki/Analytical_engine) states: \u201cdesigned by the English mathematician and computer pioneer Charles Babbage.\u201d\n\nObserved route:\n\n1. Opened [Wikipedia](https://www.wikipedia.org/).\n2. Entered \u201cAda Lovelace\u201d in the search field and pressed Return. The [Ada Lovelace article](https://en.wikipedia.org/wiki/Ada_Lovelace) opened.\n3. Followed its introductory \u201canalytical engine\u201d link to the article above.\n\nCompleted in one attempt. No login, article edits, or navigation outside Wikipedia occurred. The article tab remains open for independent assessment.",
+      "browser_mutations": 3,
+      "tab_creation_count": 1,
+      "cleanup": {
+        "status": "closed",
+        "call_started_utc": "2026-10-11T22:27:09.285Z",
+        "call_finished_utc": "2026-10-11T22:27:10.958Z",
+        "tool_reported_ms": 1668.3,
+        "raw_call_interval_ms": 1673.0,
+        "cleanup_turn_completed_utc": "2026-10-11T22:27:13.906Z",
+        "cleanup_turn_usage": {
+          "input_tokens": 238362,
+          "cached_input_tokens": 237568,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 65,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 238427
+        },
+        "scope": "Separate follow-up turn. Excluded from benchmark time and usage."
+      }
+    }
+  ],
+  "successful_system_reference": {
+    "source": "results/workflow-recovery-summary.json",
+    "goal_dispatch_to_verdict_ms": 29904.53525,
+    "coordinator_tokens": 133272,
+    "local_calls": 2,
+    "local_prompt_tokens": 4219,
+    "local_retokenized_response_tokens": 55
+  },
+  "timing_method": "Local UTC timestamp immediately before create_thread dispatch to the raw session final-answer emission timestamp. Includes task startup, browser startup, tool initialization, and skill loading. Excludes polling return delay and later cleanup. Wall clocks rather than one shared monotonic clock provide these native boundaries; millisecond log precision and the short pre-call dispatch gap limit precision. Final message create_time marks an earlier generation boundary and is not the final emission boundary.",
+  "usage_scope": "Exact main benchmark session cumulative counters reconcile with each recorded per-response usage event. Cached input is included in input. Reasoning output is included in output. Separate approval-review sessions, parent coordination, and later cleanup are excluded. Counters do not establish billed cost.",
+  "browser_state_limits": "The task started a new IAB tab after both earlier benchmark tabs closed. Cookies, cache, profile, renderer lifetime, and provider internals were not cleared or matched to the system isolated Chrome browser.",
+  "limits": [
+    "One separately authorized sequential native attempt does not establish repeatable speed or reliability.",
+    "Earlier overlapping native attempts remain preserved and excluded from this timing comparison.",
+    "Normal desktop CUA/IAB differs from the system custom interface and isolated Chrome.",
+    "Desktop context, skill loading, and tool documentation differ from the CLI coordinator context.",
+    "Native submitted search with Return. The system selected an autocomplete suggestion.",
+    "New tab does not imply cleared cookies, browser cache, profile, or a cold renderer. Earlier native runs can affect cache state.",
+    "Live website state and control order differed between runs.",
+    "No billed-cost, general savings, or controlled architecture claim follows.",
+    "Native memory was not sampled. No new local-model responsiveness observation is required."
+  ],
+  "next_recommendation": "Demonstrate the current Wikipedia workflow with observed route and source evidence. Present demonstrated feasibility, not general speed or live recovery effectiveness.",
+  "prior_invalid_experiment": "results/native-desktop-comparison.json",
+  "launch_control": "The coordination chat was the sole launcher. Task16 and the compactor acknowledged idle. Previous benchmark tabs closed and tasks stopped before dispatch. No concurrent benchmark or resource-intensive work was reported.",
+  "timing_comparison_scope": "Both completed outcomes include goal dispatch, task/browser startup and final verdict. Native ends at raw final-answer emission; the system ends at verdict receipt. Transport and timestamp precision differ. Descriptive product timing only, not an isolated architecture or general speed result.",
+  "observed_difference_ms": 3147.207,
+  "source_hashes_unchanged": true,
+  "source_hash_count": 39
+}

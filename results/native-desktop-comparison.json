@@ -1,0 +1,376 @@
+{
+  "experiment": "Native desktop Wikipedia baseline",
+  "classification": "Preliminary product comparison with a protocol violation",
+  "authorized_attempts": 1,
+  "actual_attempts": 2,
+  "valid_timing_comparison": false,
+  "protocol_deviation": "Two coordinating chats created fresh tasks almost simultaneously. The later task received STOP after its browser actions finished. Both attempts overlapped. Neither is a clean sequential timing sample. No replacement ran.",
+  "previous_create_rejection": "Automatic approval review rejected task16 creation before direct approval in task16. That rejected creation started no task.",
+  "runs": [
+    {
+      "thread_id": "01a12d0f-b780-7692-9b96-f6b8c066c63d",
+      "role": "retained attempt",
+      "model": "gpt-6-astra",
+      "reasoning": "high",
+      "raw_session_sha256": "ab75471726d95a48fd4dcf8e2412fb09229700163e4e10051fe05aa9d9cf6e88",
+      "dispatch_utc": "2026-10-11T22:22:45.017799+00:00",
+      "final_verdict_emitted_utc": "2026-10-11T22:23:23.523Z",
+      "final_message_create_time": 1791757400.3763592,
+      "goal_dispatch_to_verdict_ms": 38505.201,
+      "task_complete_utc": "2026-10-11T22:23:23.564Z",
+      "usage_events": [
+        {
+          "timestamp": "2026-10-11T22:22:52.760Z",
+          "input_tokens": 38001,
+          "cached_input_tokens": 22912,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 77,
+          "reasoning_output_tokens": 23,
+          "total_tokens": 38078
+        },
+        {
+          "timestamp": "2026-10-11T22:23:04.638Z",
+          "input_tokens": 40523,
+          "cached_input_tokens": 37760,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 92,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 40615
+        },
+        {
+          "timestamp": "2026-10-11T22:23:07.644Z",
+          "input_tokens": 55415,
+          "cached_input_tokens": 40320,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 50,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 55465
+        },
+        {
+          "timestamp": "2026-10-11T22:23:13.954Z",
+          "input_tokens": 55598,
+          "cached_input_tokens": 55296,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 41,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 55639
+        },
+        {
+          "timestamp": "2026-10-11T22:23:16.668Z",
+          "input_tokens": 87720,
+          "cached_input_tokens": 55424,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 42,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 87762
+        },
+        {
+          "timestamp": "2026-10-11T22:23:19.030Z",
+          "input_tokens": 118685,
+          "cached_input_tokens": 87552,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 37,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 118722
+        },
+        {
+          "timestamp": "2026-10-11T22:23:23.550Z",
+          "input_tokens": 118750,
+          "cached_input_tokens": 118528,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 156,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 118906
+        }
+      ],
+      "coordinator_usage": {
+        "input_tokens": 514692,
+        "cached_input_tokens": 417792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 495,
+        "reasoning_output_tokens": 23,
+        "total_tokens": 515187
+      },
+      "uncached_input_tokens": 96900,
+      "usage_reconciles": true,
+      "coordinator_response_count": 7,
+      "local_model_calls": 0,
+      "memory_bytes": null,
+      "memory_status": "Not sampled for native desktop task.",
+      "browser_calls": [
+        {
+          "timestamp": "2026-10-11T22:22:54.746Z",
+          "call_id": "call_d01a48cb23a74dd1ab18faa4e69d50a2",
+          "arguments": "{\"code\":\"let tab = await cua.createBrowserTab(\\\"iab\\\", \\\"https://www.wikipedia.org/\\\", { visible: true });\",\"title\":\"Open Wikipedia in a new tab\"}"
+        },
+        {
+          "timestamp": "2026-10-11T22:23:07.343Z",
+          "call_id": "call_e1e8074b8044426092e16c362d0575f5",
+          "arguments": "{\"code\":\"await tab.typeText(20, \\\"Ada Lovelace\\\"); await tab.getAXState();\",\"title\":\"Search for Ada Lovelace\"}"
+        },
+        {
+          "timestamp": "2026-10-11T22:23:09.969Z",
+          "call_id": "call_fe5193c91cc54ff5942dd3918999ba9f",
+          "arguments": "{\"code\":\"await tab.click(102); await tab.getAXState();\",\"title\":\"Open the matching Wikipedia article\"}"
+        },
+        {
+          "timestamp": "2026-10-11T22:23:15.714Z",
+          "call_id": "call_65cd5cad964c42d493b90572a56f36d9",
+          "arguments": "{\"code\":\"await tab.click(209); await tab.getAXState();\",\"title\":\"Follow the Analytical Engine article link\"}"
+        },
+        {
+          "timestamp": "2026-10-11T22:23:18.877Z",
+          "call_id": "call_2b8386352fd04cc9b70b3657a02126dc",
+          "arguments": "{\"code\":\"await tab.markDeliverable();\",\"title\":\"Keep the article tab available for assessment\"}"
+        }
+      ],
+      "observed_evidence": [
+        {
+          "timestamp": "2026-10-11T22:23:04.637Z",
+          "call_id": "call_d01a48cb23a74dd1ab18faa4e69d50a2",
+          "observation_sha256": "8aa71ec959dcf1b79e4f974b668396f1d20651a5290dca0d74931e1727072ee6",
+          "excerpts": "Browser tab: 1, Title: \"Wikipedia\", URL: \"https://www.wikipedia.org/\".\n\t\t\t\t\t19 text Search Wikipedia\n\t\t\t\t\t20 search text field (settable) Search Wikipedia, ID: searchInput\n\t\t\t\t\t21 container\n\t\t\t\t\t\t22 text EN\n\t\t\t\t\t\t23 pop up button (collapsed, settable) EN, Value: English, ID: searchLanguage, Secondary Actions: Expand\n\t\t\t\t\t\t\t\t101 \u7cb5\u8a9e\n\t\t\t\t102 button Search\n\t\t\t\t\t103 text Search\n\t\t\t104 container All languages\n\t\t\t\t105 button (collapsed) Read Wikipedia in your language , ID: js-lang-list-button, Secondary Actions: Expand\n\nThe focused UI element is 20 search text field (settable) Search Wikipedia, ID: searchInput"
+        },
+        {
+          "timestamp": "2026-10-11T22:23:07.644Z",
+          "call_id": "call_e1e8074b8044426092e16c362d0575f5",
+          "observation_sha256": "77ade1e14f83537e76b374fad398197582305134cea04334c33884509e484a89",
+          "excerpts": "Browser tab: 1, Title: \"Wikipedia\", URL: \"https://www.wikipedia.org/\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t\t\t\t\t20 search text field (settable) Search Wikipedia, Value: Ada Lovelace, ID: searchInput\nThe focused UI element is 20 search text field (settable) Search Wikipedia, Value: Ada Lovelace, ID: searchInput"
+        },
+        {
+          "timestamp": "2026-10-11T22:23:13.952Z",
+          "call_id": "call_fe5193c91cc54ff5942dd3918999ba9f",
+          "observation_sha256": "12c52885a4185408e88435c7889cfa805fbc24fa8fadfb4122316a0a8caa4080",
+          "excerpts": "Browser tab: 1, Title: \"Ada Lovelace - Wikipedia\", URL: \"https://en.wikipedia.org/wiki/Ada_Lovelace\".\n\t\t\t58 container\n\t\t\t\t59 heading Ada Lovelace, Value: 1, ID: firstHeading\n\t\t\t\t\t60 text Ada Lovelace\n\t\t\t\t61 pop up button Description: 112 languages, ID: p-lang-btn-checkbox\n\t\t\t62 container Namespaces\n\t\t\t\t\t\t\t208 text , the \n\t\t\t\t\t\t\t209 link Description: analytical engine, Help: Analytical engine, Value: en.wikipedia.org/wi\u2026, ID: mwGw\n\t\t\t\t\t\t\t210 text . She was the first to recognise the machine had applications beyond pure calculation. Lovelace is often considered the first \n\t\t\t\t\t\t\t211 link Description: computer programmer, Help: Computer programmer, Value: en.wikipedia.org/wi\u2026, ID: mwHA\n\t\t\t\t\t\t\t212 text ."
+        },
+        {
+          "timestamp": "2026-10-11T22:23:16.667Z",
+          "call_id": "call_65cd5cad964c42d493b90572a56f36d9",
+          "observation_sha256": "6360d48100198d2e13ce1a2621ecbe979310b39e13acb75ab2f75312d3c50922",
+          "excerpts": "Browser tab: 1, Title: \"Analytical engine - Wikipedia\", URL: \"https://en.wikipedia.org/wiki/Analytical_engine\".\n\t\t\t51 container\n\t\t\t\t52 heading Analytical engine, Value: 1, ID: firstHeading\n\t\t\t\t\t53 text Analytical engine\n\t\t\t\t54 pop up button Description: 34 languages, ID: p-lang-btn-checkbox\n\t\t\t55 container Namespaces\n\t\t\t\t\t\t\t239 link Description: general-purpose computer, Help: General-purpose computer, Value: en.wikipedia.org/wi\u2026, ID: mwFw\n\t\t\t\t\t\t\t240 text  designed by the English mathematician and computer pioneer \n\t\t\t\t\t\t\t241 link Description: Charles Babbage, Value: en.wikipedia.org/wi\u2026, ID: mwGA\n\t\t\t\t\t\t\t242 text .\n\t\t\t\t\t\t\t243 link Description: [2], Value: en.wikipedia.org/wi\u2026, ID: mwGQ"
+        }
+      ],
+      "independent_checks": {
+        "started_at_portal": true,
+        "query_entered": true,
+        "observed_search_control": true,
+        "ada_article_observed": true,
+        "observed_article_link": true,
+        "observed_link_clicked": true,
+        "destination_observed": true,
+        "supporting_passage": true,
+        "answer_supported": true,
+        "supporting_urls": true,
+        "normal_browser_tools": true
+      },
+      "route_and_answer_passed": true,
+      "final_response": "**Verdict: Success. The inventor was Charles Babbage.** The [Analytical engine article](https://en.wikipedia.org/wiki/Analytical_engine) states: \u201cdesigned by the English mathematician and computer pioneer Charles Babbage.\u201d\n\nObserved route:\n\n1. Opened [Wikipedia](https://www.wikipedia.org/) in a new In-app Browser tab.\n2. Entered \u201cAda Lovelace\u201d and clicked Search. This opened the [Ada Lovelace article](https://en.wikipedia.org/wiki/Ada_Lovelace).\n3. Followed its \u201canalytical engine\u201d link to the supporting article.\n\nI completed one attempt without retries, login, edits, or navigation outside Wikipedia. The article tab remains available for independent assessment.",
+      "browser_mutations": 3,
+      "tab_creation_count": 1,
+      "cleanup": {
+        "status": "closed",
+        "call_started_utc": "2026-10-11T22:25:04.746Z",
+        "call_finished_utc": "2026-10-11T22:25:06.151Z",
+        "tool_reported_ms": 1401.0,
+        "raw_call_interval_ms": 1405.0,
+        "cleanup_turn_completed_utc": "2026-10-11T22:25:31.328Z",
+        "cleanup_turn_usage": {
+          "input_tokens": 238152,
+          "cached_input_tokens": 237440,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 59,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 238211
+        },
+        "scope": "Separate follow-up turn. Excluded from benchmark time and usage."
+      }
+    },
+    {
+      "thread_id": "01a12d0f-d192-7150-bd28-555524b46e7b",
+      "role": "accidental overlapping duplicate",
+      "model": "gpt-6-astra",
+      "reasoning": "high",
+      "raw_session_sha256": "9981ebd3693d36ed507d3899136efcedd32168e43961821aaedfcd772817fd8d",
+      "dispatch_utc": "2026-10-11T22:22:51.520874+00:00",
+      "final_verdict_emitted_utc": "2026-10-11T22:23:23.548Z",
+      "final_message_create_time": 1791757401.6001554,
+      "goal_dispatch_to_verdict_ms": 32027.126,
+      "task_complete_utc": "2026-10-11T22:23:23.563Z",
+      "usage_events": [
+        {
+          "timestamp": "2026-10-11T22:23:00.319Z",
+          "input_tokens": 37997,
+          "cached_input_tokens": 22912,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 77,
+          "reasoning_output_tokens": 29,
+          "total_tokens": 38074
+        },
+        {
+          "timestamp": "2026-10-11T22:23:08.329Z",
+          "input_tokens": 40703,
+          "cached_input_tokens": 37760,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 88,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 40791
+        },
+        {
+          "timestamp": "2026-10-11T22:23:11.460Z",
+          "input_tokens": 55541,
+          "cached_input_tokens": 40576,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 50,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 55591
+        },
+        {
+          "timestamp": "2026-10-11T22:23:16.735Z",
+          "input_tokens": 55724,
+          "cached_input_tokens": 55424,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 46,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 55770
+        },
+        {
+          "timestamp": "2026-10-11T22:23:20.218Z",
+          "input_tokens": 87855,
+          "cached_input_tokens": 55552,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 70,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 87925
+        },
+        {
+          "timestamp": "2026-10-11T22:23:23.550Z",
+          "input_tokens": 92620,
+          "cached_input_tokens": 87680,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 126,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 92746
+        }
+      ],
+      "coordinator_usage": {
+        "input_tokens": 370440,
+        "cached_input_tokens": 299904,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 457,
+        "reasoning_output_tokens": 29,
+        "total_tokens": 370897
+      },
+      "uncached_input_tokens": 70536,
+      "usage_reconciles": true,
+      "coordinator_response_count": 6,
+      "local_model_calls": 0,
+      "memory_bytes": null,
+      "memory_status": "Not sampled for native desktop task.",
+      "browser_calls": [
+        {
+          "timestamp": "2026-10-11T22:23:03.511Z",
+          "call_id": "call_cb7fe7531d814cec8b1dd36ac9b7d4ef",
+          "arguments": "{\"code\":\"let tab = await cua.createBrowserTab(\\\"iab\\\", \\\"https://www.wikipedia.org/\\\", { visible: true });\",\"title\":\"Open Wikipedia in a new tab\"}"
+        },
+        {
+          "timestamp": "2026-10-11T22:23:11.023Z",
+          "call_id": "call_b7265546c9fb4286abcfa515945765c9",
+          "arguments": "{\"code\":\"await tab.typeText(20, \\\"Ada Lovelace\\\"); await tab.getAXState();\",\"title\":\"Search for Ada Lovelace\"}"
+        },
+        {
+          "timestamp": "2026-10-11T22:23:13.088Z",
+          "call_id": "call_448cd4617f264554b3f58aec438f97e4",
+          "arguments": "{\"code\":\"await tab.pressKey(20, \\\"Return\\\"); await tab.getAXState();\",\"title\":\"Open the matching Wikipedia article\"}"
+        },
+        {
+          "timestamp": "2026-10-11T22:23:18.861Z",
+          "call_id": "call_b77ddb66b2c74a0d89e60ceb86485438",
+          "arguments": "{\"code\":\"await tab.click(196); let engineState = await tab.getAXState({emit:false}); nodeRepl.write(engineState.slice(0,18000)); await tab.markDeliverable();\",\"title\":\"Follow the article link to the Analytical Engine\"}"
+        }
+      ],
+      "observed_evidence": [
+        {
+          "timestamp": "2026-10-11T22:23:08.324Z",
+          "call_id": "call_cb7fe7531d814cec8b1dd36ac9b7d4ef",
+          "observation_sha256": "ef242988363cf6fff90942ffe6bb3331d68c02f9891e33a1dae9adba3bf07ace",
+          "excerpts": "Browser tab: 1, Title: \"Wikipedia\", URL: \"https://www.wikipedia.org/\".\n\t\t\t\t\t19 text Search Wikipedia\n\t\t\t\t\t20 search text field (settable) Search Wikipedia, ID: searchInput\n\t\t\t\t\t21 container\n\t\t\t\t\t\t22 text EN\n\t\t\t\t\t\t23 pop up button (collapsed, settable) EN, Value: English, ID: searchLanguage, Secondary Actions: Expand\n\t\t\t\t\t\t\t\t101 \u7cb5\u8a9e\n\t\t\t\t102 button Search\n\t\t\t\t\t103 text Search\n\t\t\t104 container All languages\n\t\t\t\t105 button (collapsed) Read Wikipedia in your language , ID: js-lang-list-button, Secondary Actions: Expand\n\nThe focused UI element is 20 search text field (settable) Search Wikipedia, ID: searchInput"
+        },
+        {
+          "timestamp": "2026-10-11T22:23:11.458Z",
+          "call_id": "call_b7265546c9fb4286abcfa515945765c9",
+          "observation_sha256": "77ade1e14f83537e76b374fad398197582305134cea04334c33884509e484a89",
+          "excerpts": "Browser tab: 1, Title: \"Wikipedia\", URL: \"https://www.wikipedia.org/\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t\t\t\t\t20 search text field (settable) Search Wikipedia, Value: Ada Lovelace, ID: searchInput\nThe focused UI element is 20 search text field (settable) Search Wikipedia, Value: Ada Lovelace, ID: searchInput"
+        },
+        {
+          "timestamp": "2026-10-11T22:23:16.734Z",
+          "call_id": "call_448cd4617f264554b3f58aec438f97e4",
+          "observation_sha256": "db17fb67888804cf16bf7dc60495de2a099e7421fb7c0ec5d68950dbd49dce34",
+          "excerpts": "Browser tab: 1, Title: \"Ada Lovelace - Wikipedia\", URL: \"https://en.wikipedia.org/wiki/Ada_Lovelace\".\n\t\t\t56 container\n\t\t\t\t57 heading Ada Lovelace, Value: 1, ID: firstHeading\n\t\t\t\t\t58 text Ada Lovelace\n\t\t\t\t59 pop up button Description: 112 languages, ID: p-lang-btn-checkbox\n\t\t\t60 container Namespaces\n\t\t\t\t\t\t\t195 text , the \n\t\t\t\t\t\t\t196 link Description: analytical engine, Help: Analytical engine, Value: en.wikipedia.org/wi\u2026, ID: mwGw\n\t\t\t\t\t\t\t197 text . She was the first to recognise the machine had applications beyond pure calculation. Lovelace is often considered the first \n\t\t\t\t\t\t\t198 link Description: computer programmer, Help: Computer programmer, Value: en.wikipedia.org/wi\u2026, ID: mwHA\n\t\t\t\t\t\t\t199 text ."
+        },
+        {
+          "timestamp": "2026-10-11T22:23:20.218Z",
+          "call_id": "call_b77ddb66b2c74a0d89e60ceb86485438",
+          "observation_sha256": "8dc3664dc7e69c00bfaf7d66719514e252ee4f354c32f705f8739db125514aae",
+          "excerpts": "Browser tab: 1, Title: \"Analytical engine - Wikipedia\", URL: \"https://en.wikipedia.org/wiki/Analytical_engine\".\n\t\t\t49 container\n\t\t\t\t50 heading Analytical engine, Value: 1, ID: firstHeading\n\t\t\t\t\t51 text Analytical engine\n\t\t\t\t52 pop up button Description: 34 languages, ID: p-lang-btn-checkbox\n\t\t\t53 container Namespaces\n\t\t\t\t\t\t\t237 link Description: general-purpose computer, Help: General-purpose computer, Value: en.wikipedia.org/wi\u2026, ID: mwFw\n\t\t\t\t\t\t\t238 text  designed by the English mathematician and computer pioneer \n\t\t\t\t\t\t\t239 link Description: Charles Babbage, Value: en.wikipedia.org/wi\u2026, ID: mwGA\n\t\t\t\t\t\t\t240 text .\n\t\t\t\t\t\t\t241 link Description: [2], Value: en.wikipedia.org/wi\u2026, ID: mwGQ"
+        }
+      ],
+      "independent_checks": {
+        "started_at_portal": true,
+        "query_entered": true,
+        "observed_search_control": true,
+        "ada_article_observed": true,
+        "observed_article_link": true,
+        "observed_link_clicked": true,
+        "destination_observed": true,
+        "supporting_passage": true,
+        "answer_supported": true,
+        "supporting_urls": true,
+        "normal_browser_tools": true
+      },
+      "route_and_answer_passed": true,
+      "final_response": "Stopped. The completed actions were:\n\n1. Opened a new tab at [Wikipedia](https://www.wikipedia.org/).\n2. Searched for \u201cAda Lovelace\u201d and opened [Ada Lovelace](https://en.wikipedia.org/wiki/Ada_Lovelace).\n3. Followed its \u201canalytical engine\u201d link to [Analytical engine](https://en.wikipedia.org/wiki/Analytical_engine).\n\nThe observed article identified **Charles Babbage**: \u201cdesigned by the English mathematician and computer pioneer Charles Babbage.\u201d\n\nTab 1 remains open. No operation is active.",
+      "browser_mutations": 3,
+      "tab_creation_count": 1,
+      "cleanup": {
+        "status": "closed",
+        "call_started_utc": "2026-10-11T22:25:07.155Z",
+        "call_finished_utc": "2026-10-11T22:25:08.211Z",
+        "tool_reported_ms": 1050.5,
+        "raw_call_interval_ms": 1056.0,
+        "cleanup_turn_completed_utc": "2026-10-11T22:25:09.764Z",
+        "cleanup_turn_usage": {
+          "input_tokens": 185968,
+          "cached_input_tokens": 185216,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 63,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 186031
+        },
+        "scope": "Separate follow-up turn. Excluded from benchmark time and usage."
+      }
+    }
+  ],
+  "successful_system_reference": {
+    "source": "results/workflow-recovery-summary.json",
+    "goal_dispatch_to_verdict_ms": 29904.53525,
+    "coordinator_tokens": 133272,
+    "local_calls": 2,
+    "local_prompt_tokens": 4219,
+    "local_retokenized_response_tokens": 55
+  },
+  "timing_method": "Local UTC timestamp immediately before create_thread dispatch to the raw session final-answer emission timestamp. Includes task startup, browser startup, tool initialization, and skill loading. Excludes polling return delay and later cleanup. Wall clocks rather than one shared monotonic clock provide these native boundaries; millisecond log precision and the short pre-call dispatch gap limit precision. Final message create_time marks an earlier generation boundary and is not the final emission boundary.",
+  "usage_scope": "Exact main benchmark session cumulative counters reconcile with each recorded per-response usage event. Cached input is included in input. Reasoning output is included in output. Separate approval-review sessions, parent coordination, and later cleanup are excluded. Counters do not establish billed cost.",
+  "browser_state_limits": "Both started new IAB tabs. Cookies, browser cache, profile, renderer lifetime, and provider internals were not cleared or matched to isolated Chrome in the system run. Tab IDs are local to each task, so both reporting tab1 does not establish a shared underlying tab.",
+  "limits": [
+    "The one-attempt and sequential requirements were violated by a coordination race.",
+    "Normal desktop CUA/IAB differs from the system custom interface and isolated Chrome.",
+    "Desktop context and tool documentation differ from the CLI coordinator context.",
+    "The retained native task clicked Search; the system task selected an autocomplete suggestion.",
+    "Live website state differed, including donation content and control indices.",
+    "Both native model sessions and browser work overlapped. No general speed, architecture, reliability, or dollar-savings claim follows.",
+    "No new local-model responsiveness observation is required."
+  ],
+  "next_recommendation": "Demonstrate the current Wikipedia workflow with observed route and source evidence. Present demonstrated feasibility, not general speed or live recovery effectiveness.",
+  "source_hashes_unchanged": true,
+  "source_hash_count": 39
+}

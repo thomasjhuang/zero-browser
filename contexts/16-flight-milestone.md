@@ -2,7 +2,7 @@
 
 Priority P0. Owner Codex milestone chat.
 
-Current scope: bounded delegation and one-action recovery are implemented. The authorized additional workflow attempt passed. Recovery did not run in that attempt, so its live effectiveness remains unproven. The earlier failed result is unchanged. Runtime is idle, and no further trial is authorized. Native workflow comparison, general reliability, efficiency, and the original flight milestone remain unresolved. Latest Result entries and STATUS govern current work.
+Current scope: bounded delegation and one-action recovery are implemented. The authorized additional workflow attempt passed. Recovery did not run in that attempt, so its live effectiveness remains unproven. The earlier failed result is unchanged. Runtime is idle, and no further trial is authorized. One sequential native comparison is recorded. General reliability, efficiency, and the original flight milestone remain unresolved. Latest Result entries and STATUS govern current work.
 
 ## Why
 
@@ -404,3 +404,31 @@ Six coordinator responses used 132,957 input tokens, including 103,424 cached to
 All 39 measured source hashes remained unchanged. The previous incomplete task is not a comparable speed baseline. Compactor integration and native desktop workflow comparison remain untested. The one recommendation is a controlled browser fixture that reliably removes and restores a target, to exercise the bounded recovery end to end. That proposed work is not started here. No new responsiveness observation is needed.
 
 Final evidence delivery checks passed: lint and 159 tests in 4.20 seconds. The public evidence contains no detected private paths or credentials. Previous focused result files remain unchanged.
+
+
+### Native desktop baseline and coordination error
+
+Thomas authorized one fresh desktop task and one native-browser attempt after the recovery result was published in `17e7cc5`. Automatic approval review rejected the first task16 creation because it did not accept cross-chat authorization. That rejection started no task. Thomas then approved creation directly in task16. The coordination chat also created a task before it received task16's success notice. This race created two overlapping browser attempts. The later task received STOP after its three browser mutations finished. Both tasks stopped. No replacement ran.
+
+Evidence: `results/native-desktop-comparison.json`. Both fresh projectless tasks used gpt-6-astra with high reasoning and normal desktop CUA tools. Independent saved observations establish the portal, query entry, Ada Lovelace article, observed analytical engine link, destination article, supporting passage, and answer URLs. Both routes and answers passed. This is a preliminary product comparison with a protocol violation. It is not a controlled architecture experiment or a valid sequential timing comparison.
+
+The retained attempt took 38,505.201 ms from pre-creation dispatch to final-answer emission. It used seven coordinator responses and 515,187 total tokens: 514,692 input, including 417,792 cached, and 495 output. Uncached input was 96,900. The accidental duplicate took 32,027.126 ms. It used six responses and 370,897 total tokens: 370,440 input, including 299,904 cached, and 457 output. Uncached input was 70,536. Each original turn's usage reconciles independently. These counts exclude approval-review sessions, parent coordination, and later cleanup. They do not establish billed cost.
+
+Native timing includes task and browser startup, tool initialization, skill loading, and final response generation. It excludes polling delay and later cleanup. Local wall-clock dispatch and raw millisecond log timestamps limit precision. Both native browser/model sessions overlapped. Browser profile, cookies, caching, provider, desktop tool context, and live page state differ from the system run. Native Search submission also differs from the system autocomplete choice. The saved system run took 29,904.535 ms, but these samples do not establish a speed advantage. Native memory was not sampled. All 39 system source hashes remain unchanged.
+
+The overlapping comparison is excluded. The separately authorized sequential result follows below.
+
+
+### Separately authorized sequential native baseline
+
+Thomas authorized exactly one new native attempt after the overlap. The coordination chat was the sole launcher. Task16 and the compactor stopped all resource-intensive work. Both old tabs closed and their tasks became idle before the new dispatch. Task16 read saved evidence only after END. No implementation changed.
+
+Evidence: `results/native-desktop-sequential.json`. The fresh gpt-6-astra/high task used normal desktop CUA tools and a new IAB tab. Independent saved observations passed all eleven route and answer conditions. The task entered the supplied query, submitted with Return, opened Ada Lovelace, clicked its observed analytical engine link, and returned the supported inventor and URLs. It executed three browser mutations plus tab creation. No local model ran.
+
+Dispatch was 22:25:41.870258 UTC. The raw final answer emission was 22:26:14.922 UTC. Total time was 33,051.742 ms. Seven unique response-item records reconcile to 516,054 coordinator tokens: 515,594 input, including 418,688 cached, and 460 output. Uncached input was 96,906. These original-turn counts exclude separate approval-review sessions, parent coordination, and cleanup. Native memory was not sampled. The initial raw session was preserved before cleanup.
+
+The successful system reference took 29,904.535 ms and used 133,272 coordinator tokens plus two local calls. The observed time difference was 3,147.207 ms. Both totals include startup and the final verdict. Native ends at raw final-answer emission, while the system ends at verdict receipt. Clock precision and transport therefore differ. Browser caches, profile, tool interface, model context, and website state were not controlled. The native task submitted search, while the system selected autocomplete. This single preliminary product comparison does not establish a general speed, architecture, reliability, or billed-cost advantage. The earlier overlapping attempts remain preserved and excluded. All 39 system source hashes remain unchanged.
+
+The recommendation is to demonstrate the current Wikipedia workflow with its observed route and source evidence. Present feasibility, not general speed or live recovery effectiveness. No further experiment or implementation is included. No new user responsiveness observation is needed.
+
+All three native benchmark tabs closed after their measured verdicts. The sequential close operation took 1,668.3 ms, outside benchmark timing. Its cleanup turn used 238,427 tokens, recorded separately. Lint and 159 tests passed in 4.65 seconds. Earlier system evidence remains unchanged. Public evidence passed the private-path and credential scan.

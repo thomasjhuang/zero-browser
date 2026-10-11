@@ -5,8 +5,8 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: IDLE, Codex task 16.** The one additional attempt passed the full workflow at frozen `e45aa7e`. Recovery was not invoked, so live recovery effectiveness remains unproven. Evidence: `results/workflow-recovery-summary.json`. The previous failure remains unchanged. No further trial is authorized.
-> Task 16 retains the runtime reservation. The additional attempt is complete. No replacement or further run is permitted.
+> **Current run state: IDLE, Codex task 16.** The system workflow passed in 29.90 seconds. Recovery did not run. The first native comparison had two overlapping attempts and remains invalid for timing. Thomas then authorized one new sequential attempt with the coordination chat as sole launcher. It passed in 33.05 seconds. Evidence: `results/native-desktop-sequential.json`. This is one product comparison, not a general speed or cost result.
+> Task 16 retains the runtime reservation through evidence delivery. All benchmark work ended. All owned benchmark tabs closed. Cleanup is separate from measurement. No further run is authorized.
 > The next owner is Codex, **Improve zero-browser benchmarking**. Claude must not start browser runs, replay, cache probes, or model loads.
 >
 > **Current scope:** task 16, with supporting notes in task 13. Tasks 18–22 remain cut from the active plan.

@@ -101,3 +101,7 @@ The [focused workflow attempt](results/workflow-focused-summary.json) used a ded
 
 
 The authorized [additional workflow attempt](results/workflow-recovery-summary.json) passed all route and answer checks in 29.90 seconds, including startup. It used three browser actions, six coordinator responses, two local calls, and one model load. **Recovery was not invoked.** The new one-action recovery passed model-free regression checks, but this live success does not prove its effectiveness. The prior failed result remains unchanged. A controlled disappearing-target case is the next proposed test.
+
+The [native desktop baseline](results/native-desktop-comparison.json) reached the correct article and answer. A coordination race created two overlapping attempts despite authorization for one. The retained attempt recorded 38.51 seconds, but the overlap invalidates a clean comparison with the 29.90-second system run. Both traces and separate usage counts are preserved. No speed or cost advantage is established.
+
+A [separately authorized sequential native attempt](results/native-desktop-sequential.json) passed in 33.05 seconds with one launch owner. It used 516,054 coordinator tokens, including cached input. The saved system run passed in 29.90 seconds with 133,272 coordinator tokens plus two local calls. These are single product measurements with different browser state, context, tools, and final-verdict timing. They do not establish general speed or billed-cost savings.
