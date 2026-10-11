@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "conditions": {
+    "viewport": [
+      1120,
+      780
+    ],
+    "profile": "fresh isolated Chrome profile",
+    "language": "en",
+    "backend": "local pinned Qwen only",
+    "max_decisions": 20,
+    "timeout_seconds": 120,
+    "repeats": "Three consecutive primary passes, then both variations. Local layout cases remain separate."
+  },
+  "boundary": {
+    "allow": [
+      "navigation",
+      "scrolling",
+      "search-field entry",
+      "autocomplete selection",
+      "filters",
+      "search submission"
+    ],
+    "human_required": [
+      "login",
+      "CAPTCHA",
+      "flight selection",
+      "booking",
+      "payment",
+      "messages",
+      "account changes"
+    ]
+  },
+  "tasks": {
+    "sfo_bos": {
+      "url": "https://www.google.com/travel/flights?hl=en",
+      "kind": "flights",
+      "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+      "expected": {
+        "origin_labels": [
+          "San Francisco"
+        ],
+        "destination_labels": [
+          "Boston"
+        ],
+        "date": "2026-11-16",
+        "date_label": "Mon, Nov 16",
+        "result_date": "Monday, November 16"
+      }
+    },
+    "sfo_bos_next_day": {
+      "url": "https://www.google.com/travel/flights?hl=en",
+      "kind": "flights",
+      "goal": "Find one-way flights from San Francisco to Boston on November 17, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+      "expected": {
+        "origin_labels": [
+          "San Francisco"
+        ],
+        "destination_labels": [
+          "Boston"
+        ],
+        "date": "2026-11-17",
+        "date_label": "Tue, Nov 17",
+        "result_date": "Tuesday, November 17"
+      }
+    },
+    "sfo_sea": {
+      "url": "https://www.google.com/travel/flights?hl=en",
+      "kind": "flights",
+      "goal": "Find one-way flights from San Francisco to Seattle on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+      "expected": {
+        "origin_labels": [
+          "San Francisco"
+        ],
+        "destination_labels": [
+          "Seattle"
+        ],
+        "date": "2026-11-16",
+        "date_label": "Mon, Nov 16",
+        "result_date": "Monday, November 16"
+      }
+    },
+    "local_search": {
+      "kind": "local",
+      "layout": "normal",
+      "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+      "expected": {
+        "origin": "San Francisco",
+        "destination": "Boston",
+        "departure": "2026-11-16",
+        "adults": "1",
+        "cabin": "Economy",
+        "trip_type": "One way"
+      }
+    },
+    "local_search_reordered": {
+      "kind": "local",
+      "layout": "reverse",
+      "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+      "expected": {
+        "origin": "San Francisco",
+        "destination": "Boston",
+        "departure": "2026-11-16",
+        "adults": "1",
+        "cabin": "Economy",
+        "trip_type": "One way"
+      }
+    },
+    "local_search_crowded": {
+      "kind": "local",
+      "layout": "crowded",
+      "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+      "expected": {
+        "origin": "San Francisco",
+        "destination": "Boston",
+        "departure": "2026-11-16",
+        "adults": "1",
+        "cabin": "Economy",
+        "trip_type": "One way"
+      }
+    }
+  }
+}

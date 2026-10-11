@@ -51,12 +51,26 @@ def worker_memory_limit():
 def cleanup_signals():
     # Further Ctrl-C presses must not interrupt cleanup of owned processes.
     main_thread = threading.current_thread() is threading.main_thread()
-    previous = signal.signal(signal.SIGINT, signal.SIG_IGN) if main_thread else None
+    previous = {sig: signal.signal(sig, signal.SIG_IGN) for sig in (signal.SIGINT, signal.SIGTERM)} \
+        if main_thread else {}
     try:
         yield
     finally:
-        if main_thread:
-            signal.signal(signal.SIGINT, previous)
+        for sig, handler in previous.items():
+            signal.signal(sig, handler)
+
+
+@contextmanager
+def cancellation_signals():
+    """Route a termination request through owned-process cleanup."""
+    def cancel(_signal, _frame):
+        raise KeyboardInterrupt
+
+    previous = signal.signal(signal.SIGTERM, cancel)
+    try:
+        yield
+    finally:
+        signal.signal(signal.SIGTERM, previous)
 
 
 def stop_process_group(process, grace=1):
@@ -77,11 +91,17 @@ def stop_process_group(process, grace=1):
         process.wait(timeout=grace)
 
 
-def supervise(command, *, timeout, memory_limit, memory_reader=process_memory):
+def supervise(command, *, timeout, memory_limit, memory_reader=process_memory, stats=None, cancel_after=None):
+    stats = stats if stats is not None else {}
+    started = time.monotonic()
+    stats.update(peak_worker_bytes=0, memory_samples=0)
     process = subprocess.Popen(command, start_new_session=True)
-    deadline = time.monotonic() + timeout
+    deadline = started + timeout
     try:
         while process.poll() is None:
+            if cancel_after is not None and time.monotonic() - started >= cancel_after:
+                stats["cancel_requested_ms"] = round((time.monotonic() - started) * 1000)
+                raise KeyboardInterrupt
             if time.monotonic() >= deadline:
                 raise RuntimeError("Worker deadline reached. The owned run stopped.")
             try:
@@ -90,12 +110,15 @@ def supervise(command, *, timeout, memory_limit, memory_reader=process_memory):
                 if process.poll() is not None:
                     break
                 raise
+            stats["peak_worker_bytes"] = max(stats["peak_worker_bytes"], footprint)
+            stats["memory_samples"] += 1
             if footprint > memory_limit:
                 raise RuntimeError("Worker memory budget exceeded. The owned run stopped.")
             time.sleep(0.1)
         return process.wait()
     finally:
         stop_process_group(process)
+        stats["worker_stopped_ms"] = round((time.monotonic() - started) * 1000)
 
 
 @contextmanager

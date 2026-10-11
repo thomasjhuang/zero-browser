@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Local flight search test</title>
+<style>
+body { font: 16px system-ui; max-width: 1000px; margin: 24px auto; }
+form { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; }
+label { display: grid; gap: 6px; }
+input, select, button { font: inherit; padding: 8px; }
+#extras { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; margin-top: 16px; }
+#extras button { font-size: 11px; padding: 4px; }
+</style>
+<h1>Flight search</h1>
+<form id="search">
+  <label>Origin <input name="origin" aria-label="Origin" autocomplete="off"></label>
+  <label>Destination <input name="destination" aria-label="Destination" autocomplete="off"></label>
+  <label>Departure date <input name="departure" aria-label="Departure date (YYYY-MM-DD)" placeholder="YYYY-MM-DD"></label>
+  <label>Adults <select name="adults" aria-label="Adults"><option>2</option><option>1</option><option>3</option></select></label>
+  <label>Cabin <select name="cabin" aria-label="Cabin"><option>Business</option><option>Economy</option></select></label>
+  <label>Trip type <select name="trip_type" aria-label="Trip type"><option>Round trip</option><option>One way</option></select></label>
+  <button>Search flights</button>
+</form>
+<p id="message" role="status"></p>
+<section id="results" hidden><h2>Flight options</h2></section>
+<div id="extras"></div>
+<script>
+const form = document.getElementById('search');
+const layout = new URLSearchParams(location.search).get('layout');
+window.submittedSearch = null;
+window.flightSelected = false;
+if (layout === 'reverse') {
+  [...form.children].reverse().forEach(child => form.appendChild(child));
+}
+if (layout === 'crowded') {
+  for (let index = 1; index <= 80; index++) {
+    const button = document.createElement('button');
+    button.textContent = `Help topic ${index}`;
+    button.onclick = () => { document.getElementById('message').textContent = `Help topic ${index} opened.`; };
+    document.getElementById('extras').appendChild(button);
+  }
+}
+form.onsubmit = event => {
+  event.preventDefault();
+  const values = Object.fromEntries(new FormData(form));
+  if (!values.origin.trim() || !values.destination.trim() || !/^\d{4}-\d{2}-\d{2}$/.test(values.departure)) {
+    document.getElementById('message').textContent = 'Enter both cities and a departure date in YYYY-MM-DD format.';
+    return;
+  }
+  window.submittedSearch = values;
+  const results = document.getElementById('results');
+  results.replaceChildren();
+  const row = document.createElement('article');
+  row.textContent = `${values.origin} to ${values.destination}, ${values.departure}, ${values.adults} adult(s), ${values.cabin}, ${values.trip_type}.`;
+  const select = document.createElement('button');
+  select.textContent = 'Select flight';
+  select.onclick = () => { window.flightSelected = true; document.getElementById('message').textContent = 'Flight selected.'; };
+  row.appendChild(select);
+  results.appendChild(row);
+  results.hidden = false;
+};
+</script>
+</html>

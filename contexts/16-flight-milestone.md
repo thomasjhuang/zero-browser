@@ -35,4 +35,24 @@ Do not add site-specific decision rules, hardcoded field answers, or a separate 
 
 ## Result
 
-Preparation started. No inference run is authorized until the user answers the readiness request.
+The fixed runner, durable records, outcome tests, and local layouts are ready.
+Model-free delivery checks and scripted browser experiments passed. These are not agent-performance results.
+Evidence: [preparation](../results/milestone-preparation.json).
+
+One verifier error occurred before search submission. The correction passed the same test.
+The live flight verifier and unfamiliar action labels remain untested. The freeze cause remains unknown.
+Task 13 still owns prompt changes. No cache optimization was added to this milestone runner.
+
+After the user gives readiness, run:
+
+```bash
+uv run --offline --frozen --extra local python scripts/milestone.py --task local_search --pilot --ready
+```
+
+The pilot cancels after ten seconds, permits two decisions, and has a twenty-second worker deadline.
+Chrome startup has a separate twenty-second deadline. Cleanup adds time after cancellation.
+Ask the user to observe pointer movement, application switching, scrolling, cancellation, and browser closure.
+Obtain their observations before longer runs. No model run occurred during preparation.
+
+Private event records remain in ignored `artifacts/milestone/`. Use `--report` to compare saved runs without inference.
+Interrupted runs remain failures in comparisons. A code change resets the consecutive-success count.

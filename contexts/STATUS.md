@@ -13,12 +13,13 @@ Plan and ranked tasks are in `README.md` here.
 
 ## In progress
 
-- 16-flight-milestone (Codex milestone chat). Model-free safety, durable records, and fixed completion tests. Local inference waits for user readiness.
 
 - 12-benchmark-loop (Astra). Owns bench.py, run_cli.py, bench_tasks.json, results/bench/, verify.py.
 - 13-latency-and-field-text (Sol). Owns local_policy.py, local_model.py, questions.py, browser timeout.
 
 ## Open, in priority order
+
+- 16-flight-milestone (Codex milestone chat). Preparation passed. Await user readiness for the bounded local pilot, then user observations before longer runs. [Evidence](../results/milestone-preparation.json).
 
 - 17-experiment-priority. Instructions updated locally. Delivery checks passed. Publication waits for unfinished shared changes.
 
@@ -54,6 +55,9 @@ Plan and ranked tasks are in `README.md` here.
 (none)
 
 ## Known limits
+
+Task 16 has no model-performance result. Its local browser checks use scripted actions.
+The live flight verifier and unfamiliar action labels remain untested. See `results/milestone-preparation.json`.
 
 The user reported a freeze during a Google CLI task. Its cause remains unconfirmed.
 Task 15 adds runtime guards. Qwen correctness and live speed after those changes remain untested.
@@ -99,6 +103,8 @@ default profile lacked remote debugging. Jev's per-step timeout can be exceeded 
 - `scripts/decision_baselines.py` and the recorder are Codex's. Nobody deletes them in task 10.
 
 ## Log
+
+- 2026-10-11 13:12 PT. Task 16 completed model-free preparation. The pilot awaits user readiness. Evidence: `results/milestone-preparation.json`.
 
 - 2026-10-11. Task 18 completed the Codex-to-MCP fixture experiment and registered `zero_browser` in Codex. Evidence: `results/codex-mcp.json`.
 

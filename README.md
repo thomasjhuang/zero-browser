@@ -34,6 +34,10 @@ Prompt and cache limits reduce inference work. These safeguards do not establish
 [Safety evidence](results/cli-runtime-safety.json) records model-free tests and a local challenge stop.
 Qwen inference after these changes remains untested.
 
+The [flight milestone](contexts/16-flight-milestone.md) defines fixed goals and separate outcome tests.
+Its [preparation evidence](results/milestone-preparation.json) covers model-free stops and scripted local browser checks.
+The model pilot awaits user readiness. These checks do not establish flight-search success.
+
 The CLI reads the final page independently. Supplied expectations determine `outcome_verified`.
 Without expectations, a DONE choice remains unverified. Failed expectations return a nonzero exit code.
 
