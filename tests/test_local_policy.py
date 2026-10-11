@@ -17,7 +17,8 @@ def scored(candidates, selected):
 def test_local_choice_uses_only_the_selected_operations_targets(monkeypatch):
     state = {"url": "https://example.test", "title": "Search", "text": "City Search", "actions": [
         {"id": "click-button", "kind": "click", "node": 1, "label": "Search"},
-        {"id": "fill-city", "kind": "fill", "node": 2, "label": "City", "value": ""},
+        {"id": "fill-city", "kind": "fill", "node": 2, "label": "City", "value": "",
+         "context": "Destination", "empty": "true", "required": "true", "placeholder": "Enter a city"},
     ]}
     state["actions"].extend({"id": f"extra-{i}", "kind": "click", "node": i + 3, "label": f"Help {i}"}
                            for i in range(24))
@@ -35,14 +36,20 @@ def test_local_choice_uses_only_the_selected_operations_targets(monkeypatch):
     assert {c["id"] for c in calls[1]} == {"2"}
     assert answer["probabilities"] == {"fill-city": 1.0}
     assert answer["usage"]["prompt_tokens"] == 20
+    assert json.loads(calls[1][0]["description"]) == {
+        "label": "City", "current_value": "", "context": "Destination", "empty": "true",
+        "required": "true", "placeholder": "Enter a city",
+    }
 
 
 @pytest.mark.parametrize("selected,operation,target", [("type", "TYPE_TEXT", "1"), ("option", "SELECT", "2:1")])
 def test_joint_menu_executes_only_its_concrete_observed_action(monkeypatch, selected, operation, target):
     state = {"url": "https://example.test", "title": "Search", "text": "", "actions": [
-        {"id": "type", "kind": "fill", "node": 1, "label": "City", "value": ""},
+        {"id": "type", "kind": "fill", "node": 1, "label": "City", "value": "",
+         "context": "Destination", "empty": "true", "required": "true", "placeholder": "Enter a city"},
         {"id": "open", "kind": "click", "node": 1, "label": "Open City", "value": ""},
         {"id": "option", "kind": "select", "node": 2, "label": "Count → 1", "current_value": "2", "value": "1"},
+        {"id": "search", "kind": "click", "node": 3, "role": "button", "label": "Search", "value": ""},
     ]}
     calls = []
 
@@ -55,7 +62,13 @@ def test_joint_menu_executes_only_its_concrete_observed_action(monkeypatch, sele
     assert len(calls) == 1
     assert (answer["choice"], answer["operation"], answer["target"]) == (selected, operation, target)
     assert answer["usage"]["prompt_tokens"] == 10
-    assert {c["id"] for c in calls[0]} == {"type", "open", "option", "DONE", "BLOCKED"}
+    assert {c["id"] for c in calls[0]} == {"type", "open", "option", "search", "DONE", "BLOCKED"}
+    assert next(c["description"] for c in calls[0] if c["id"] == "search") == "Search"
+    description = calls[0][0]["description"]
+    assert '"context": "Destination"' in description
+    assert '"empty": "true"' in description
+    assert '"required": "true"' in description
+    assert '"placeholder": "Enter a city"' in description
 
 
 def test_large_target_groups_rescore_winners_together(monkeypatch):

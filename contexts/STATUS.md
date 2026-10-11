@@ -5,7 +5,7 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: RESERVED / IDLE, Codex task 16.** Codex reports no inference running. Both agents acknowledged the ownership agreement.
+> **Current run state: RESERVED / IDLE, Codex task 16.** Both observation experiments ended with failed outcomes. Both agents acknowledged the ownership agreement.
 > The coordinator released the hold after publishing `5799c81`. Task 16 owns the next run.
 > The next owner is Codex, **Improve zero-browser benchmarking**. Claude must not start browser runs, replay, cache probes, or model loads.
 >
@@ -13,12 +13,12 @@
 > This context update does not reopen task 19. Do not create new task numbers.
 >
 > **Next steps for Codex:**
-> 1. Publish the existing joint-menu, cache, and DONE-confirmation implementation with its existing evidence.
-> 2. Integrate Claude's observation metadata into the candidate descriptions in `local_policy.py`.
+> 1. Complete: the existing implementation and evidence are pushed in `100c9da`.
+> 2. Complete: Claude's observation metadata now reaches both candidate menus in `local_policy.py`.
 >    Include `context`, `empty`, `required`, and `placeholder`. Preserve the observer changes in `510a2bf` and `9f5b613`.
 >    Preserve the original experiment order: joint menu for at most 26 candidates, prefix cache, then fresh-observation DONE confirmation.
 >    Existing runs remain historical evidence. Do not repeat completed experiments without a new reason.
-> 3. Run one fixed `local_search` experiment. Record its independent outcome and first failed step in task 16.
+> 3. The observation experiment failed at step 4. The field-description correction failed at step 1. Both submitted incomplete fields.
 >    Keep earlier results separate: those runs used the observation code before Claude's changes.
 > 4. Require three consecutive local successes, then the layout variations, before live Flights.
 >
@@ -35,9 +35,9 @@ Reliable multi-step completion, useful time savings, and a native Codex speed co
 The active milestone now tests local task completion. The user reported a visible page, normal responsiveness, and clean closure during the pilot.
 The final cancellation pilot stopped during inference. The user reported normal responsiveness and clean closure. The earlier freeze remains unexplained.
 
-## In progress
+## Open
 
-- **16, Improve zero-browser benchmarking:** local completion remains unresolved. Cancellation observations passed. Baseline commit `9a3e60e` is on origin/main. The follow-up mechanisms passed delivery tests but failed the local outcome gate. Observation integration is next.
+- **16, Improve zero-browser benchmarking:** local completion remains unresolved. Cancellation observations passed. Baseline commit `9a3e60e` is on origin/main. The follow-up mechanisms passed delivery tests but failed the local outcome gate. Observation integration is complete. The model still submits incomplete fields. No live flight run started.
 
 ## Completed context work
 
@@ -104,6 +104,8 @@ If another agent has uncommitted edits, preserve them. Use an isolated publicati
 Do not alter the shared Git index while another owner prepares a commit.
 
 ## Log
+
+- October 11, 14:02 PT: task 16 integrated the observation handoff and corrected field descriptions. Both fixed local reruns failed. Evidence: `results/milestone-followup.json`. Slot idle.
 
 - October 11, 13:59 PT: task 16 accepted the handoff in `5799c81`. No inference is running. Publish the measured follow-up before observation integration.
 

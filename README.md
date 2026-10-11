@@ -40,6 +40,7 @@ The pilot showed a visible page, a responsive computer, and clean browser closur
 The normal and reversed local tasks failed their outcome tests. The crowded task reached its external deadline.
 The user also reported normal responsiveness and clean closure during cancellation. No live flight-search success is established.
 [Follow-up tests](results/milestone-followup.json) cover joint choices, cache reuse, and a second DONE choice after a fresh observation.
+The observation-metadata follow-up also failed the fixed local task. Correct field descriptions did not prevent incomplete submission.
 [Cache parity](results/milestone-cache-parity.json) passed on fixed menus. Multi-step completion and the crowded-page speed target still fail.
 
 The CLI reads the final page independently. Supplied expectations determine `outcome_verified`.

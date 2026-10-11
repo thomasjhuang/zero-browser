@@ -77,8 +77,11 @@ def local_choose(state, goal, history):
                 value = action.get("current_value", action.get("value", ""))
                 if operation == "SELECT":
                     description = f"{description.split(' → ')[0]}: {value!r} -> {action['value']!r}"
-                elif "value" in action:
+                elif operation == "TYPE_TEXT" or "empty" in action:
                     description += f" (current value: {value!r})" if value else " (empty)"
+                details = {k: action[k] for k in ("context", "empty", "required", "placeholder") if k in action}
+                if details:
+                    description += " " + json.dumps(details, ensure_ascii=False)
                 candidates.append({"id": action["id"], "operation": operation,
                                    "target": index, "description": description})
         candidates.extend({"id": controls[op]["id"] if op in controls else op,
@@ -108,7 +111,8 @@ def local_choose(state, goal, history):
             candidates = [
                 {"id": index, "operation": operation, "target": index, "description": json.dumps({
                     "label": action["label"], "current_value": action.get("current_value", action.get("value", "")),
-                    **{k: action[k] for k in ("role", "checked", "selected", "expanded") if k in action},
+                    **{k: action[k] for k in ("role", "checked", "selected", "expanded", "context",
+                                               "empty", "required", "placeholder") if k in action},
                 }, ensure_ascii=False)}
                 for index, action in targets[operation].items()
             ]
