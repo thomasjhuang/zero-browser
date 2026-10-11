@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Synthetic flight search fixture</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f4f7fb; color: #182334; font: 15px system-ui, sans-serif; }
+    main { max-width: 1060px; margin: auto; padding: 20px; }
+    .search-shell { position: sticky; top: 0; z-index: 5; background: #f4f7fb; padding-bottom: 10px; }
+    h1 { margin: 0 0 6px; font-size: 24px; }
+    .notice { margin: 0 0 12px; color: #526176; }
+    form { padding: 16px; background: white; border: 1px solid #d0dae8; border-radius: 12px; }
+    .controls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .field { position: relative; }
+    label { display: block; margin-bottom: 4px; font-weight: 600; }
+    input, select { width: 100%; height: 38px; padding: 7px 10px; font: inherit; border: 1px solid #b8c6d9; border-radius: 6px; }
+    input[readonly] { background: #eef4fb; }
+    [role="listbox"] { position: absolute; z-index: 10; width: 100%; background: white; box-shadow: 0 4px 16px #17284033; }
+    [role="option"] { display: block; width: 100%; text-align: left; padding: 11px; background: white; color: #182334; border: 1px solid #d0dae8; }
+    button { cursor: pointer; font: inherit; }
+    .submit { margin-top: 12px; padding: 9px 18px; border: 0; border-radius: 6px; background: #225bd5; color: white; }
+    #error { color: #a32323; margin-left: 12px; }
+    #results h2 { font-size: 20px; }
+    .flight { width: 100%; display: flex; justify-content: space-between; align-items: center; min-height: 100px; padding: 18px; margin: 0 0 10px; background: white; border: 1px solid #d0dae8; border-radius: 10px; text-align: left; }
+    .flight strong { font-size: 18px; }
+    .flight small { display: block; margin-top: 7px; color: #526176; }
+    .price { font-weight: 700; font-size: 22px; }
+    .passenger-open { width: 100%; height: 38px; text-align: left; padding: 7px 10px; background: white; border: 1px solid #b8c6d9; border-radius: 6px; }
+    .passenger-popup { max-width: 460px; margin: 100px auto; padding: 22px; border: 1px solid #d0dae8; border-radius: 12px; background: white; }
+    .passenger-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; }
+    .passenger-row span { margin-right: 16px; }
+    .add-passenger { width: 32px; height: 32px; background: white; border: 1px solid #b8c6d9; border-radius: 50%; }
+    .popup-footer { display: flex; justify-content: end; gap: 12px; }
+    .popup-footer button { padding: 8px 18px; border: 1px solid #b8c6d9; border-radius: 6px; background: white; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+<main id="main">
+  <div class="search-shell">
+    <h1>Flight search fixture</h1>
+    <p class="notice">Synthetic browser test. All flights and prices below are invented.</p>
+    <form id="search-form" novalidate>
+      <div class="controls" id="controls">
+        <div class="field" data-field="trip_type">
+          <label for="trip-type">Trip type</label>
+          <select id="trip-type"><option>Round trip</option><option>One way</option></select>
+        </div>
+        <div class="field" data-field="adults">
+          <label for="adults">Adults</label>
+          <select id="adults"><option value="2">2</option><option value="1">1</option><option value="3">3</option></select>
+        </div>
+        <div class="field" data-field="cabin">
+          <label for="cabin">Cabin</label>
+          <select id="cabin"><option>Business</option><option>Economy</option><option>Premium economy</option></select>
+        </div>
+        <div class="field" data-field="origin">
+          <label for="origin">Origin</label>
+          <input id="origin" type="text" role="combobox" aria-autocomplete="list" aria-controls="origin-options" aria-expanded="false" autocomplete="off">
+          <div id="origin-options" role="listbox" aria-label="Origin airport suggestions" hidden></div>
+        </div>
+        <div class="field" data-field="destination">
+          <label for="destination">Destination</label>
+          <input id="destination" type="text" role="combobox" aria-autocomplete="list" aria-controls="destination-options" aria-expanded="false" autocomplete="off">
+          <div id="destination-options" role="listbox" aria-label="Destination airport suggestions" hidden></div>
+        </div>
+        <div class="field" data-field="departure">
+          <label for="departure">Departure date (YYYY-MM-DD)</label>
+          <input id="departure" type="text" placeholder="YYYY-MM-DD" autocomplete="off">
+        </div>
+      </div>
+      <button class="submit" type="submit">Search flights</button>
+      <span id="error" role="status"></span>
+    </form>
+  </div>
+  <section id="results" aria-label="Flight search results"></section>
+</main>
+<script>
+  const layout = new URLSearchParams(location.search).get('layout') || 'normal';
+  const airports = [
+    {code: 'SFO', city: 'San Francisco', name: 'San Francisco International Airport'},
+    {code: 'BOS', city: 'Boston', name: 'Boston Logan International Airport'},
+    {code: 'SJC', city: 'San Jose', name: 'San Jose International Airport'},
+    {code: 'JFK', city: 'New York', name: 'John F Kennedy International Airport'}
+  ];
+  const committed = {origin: null, destination: null};
+  let submittedPassengerCounts = [1, 0, 0, 0];
+  const controls = document.getElementById('controls');
+  if (layout === 'reverse') [...controls.children].reverse().forEach(node => controls.append(node));
+  if (layout === 'renamed') {
+    const labels = {trip_type: 'Ticket type', adults: 'Passengers', cabin: 'Cabin class', origin: 'Departure airport', destination: 'Arrival airport'};
+    [...controls.children].forEach(node => {
+      if (labels[node.dataset.field]) node.querySelector('label').textContent = labels[node.dataset.field];
+    });
+    document.querySelector('.submit').textContent = 'Find flights';
+  }
+  if (layout === 'ambiguous') {
+    const duplicate = document.createElement('div');
+    duplicate.className = 'field';
+    duplicate.innerHTML = '<label for="second-origin">Origin</label><input id="second-origin" type="text" autocomplete="off">';
+    controls.append(duplicate);
+  }
+  if (layout === 'passengers') {
+    // This variation also exercises restoring search context after scrolling hides the header.
+    document.querySelector('.search-shell').style.position = 'static';
+    const field = document.querySelector('[data-field="adults"]');
+    field.querySelector('label').textContent = 'Passengers';
+    const select = document.getElementById('adults');
+    select.hidden = true;
+    select.value = '1';
+    const open = document.createElement('button');
+    open.type = 'button';
+    open.className = 'passenger-open';
+    open.textContent = '1 passenger';
+    field.append(open);
+    const popup = document.createElement('div');
+    popup.className = 'passenger-popup';
+    popup.setAttribute('role', 'dialog');
+    popup.setAttribute('aria-label', 'Passengers');
+    popup.hidden = true;
+    const categories = [
+      {title: 'Adults', detail: '', label: 'Add adult', count: 1},
+      {title: 'Children', detail: 'Aged 2 to 11', label: 'Add child aged 2 to 11', count: 0},
+      {title: 'Infants', detail: 'In seat', label: 'Add infant in seat', count: 0},
+      {title: 'Infants', detail: 'On lap', label: 'Add infant on lap', count: 0}
+    ];
+    for (const category of categories) {
+      const row = document.createElement('div');
+      row.className = 'passenger-row';
+      const text = document.createElement('span');
+      text.textContent = category.title + (category.detail ? ' ' + category.detail : '');
+      const count = document.createElement('span');
+      count.textContent = String(category.count);
+      category.display = count;
+      const add = document.createElement('button');
+      add.type = 'button';
+      add.className = 'add-passenger';
+      add.setAttribute('aria-label', category.label);
+      add.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M2 8h12" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
+      add.addEventListener('click', () => {
+        category.count += 1;
+        count.textContent = String(category.count);
+      });
+      row.append(text, count, add);
+      popup.append(row);
+    }
+    const footer = document.createElement('div');
+    footer.className = 'popup-footer';
+    let priorScroll = 0;
+    function closePopup(commit) {
+      if (commit) {
+        submittedPassengerCounts = categories.map(category => category.count);
+        const total = categories.reduce((sum, category) => sum + category.count, 0);
+        open.textContent = `${total} passenger${total === 1 ? '' : 's'}`;
+        select.value = String(categories[0].count);
+      }
+      popup.hidden = true;
+      document.getElementById('main').hidden = false;
+      window.scrollTo(0, priorScroll);
+    }
+    for (const label of ['Done', 'Cancel']) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = label;
+      button.addEventListener('click', () => closePopup(label === 'Done'));
+      footer.append(button);
+    }
+    popup.append(footer);
+    document.body.append(popup);
+    open.addEventListener('click', () => {
+      categories.forEach((category, index) => {
+        category.count = submittedPassengerCounts[index];
+        category.display.textContent = String(category.count);
+      });
+      priorScroll = window.scrollY;
+      document.getElementById('main').hidden = true;
+      popup.hidden = false;
+    });
+  }
+  if (layout === 'challenge') {
+    document.getElementById('main').innerHTML = '<h1>Please verify you are human</h1><p>Complete the security check to continue.</p>';
+  } else {
+    for (const key of ['origin', 'destination']) {
+      const input = document.getElementById(key);
+      const list = document.getElementById(key + '-options');
+      input.addEventListener('input', () => {
+        committed[key] = null;
+        const query = input.value.trim().toLowerCase();
+        list.replaceChildren();
+        const matches = airports.filter(airport => query && (airport.city.toLowerCase().includes(query) || airport.name.toLowerCase().includes(query) || airport.code.toLowerCase() === query));
+        for (const airport of matches) {
+          const option = document.createElement('button');
+          option.type = 'button';
+          option.setAttribute('role', 'option');
+          option.textContent = `${airport.name} (${airport.code})`;
+          option.addEventListener('click', () => {
+            committed[key] = airport;
+            input.value = airport.code;
+            // Readonly is independent evidence that the autocomplete choice was committed.
+            input.readOnly = true;
+            input.setAttribute('aria-expanded', 'false');
+            list.hidden = true;
+          });
+          list.append(option);
+        }
+        list.hidden = !matches.length;
+        input.setAttribute('aria-expanded', String(matches.length > 0));
+      });
+    }
+    document.getElementById('search-form').addEventListener('submit', event => {
+      event.preventDefault();
+      const departure = document.getElementById('departure').value;
+      const tripType = document.getElementById('trip-type').value;
+      const adults = document.getElementById('adults').value;
+      const cabin = document.getElementById('cabin').value;
+      const validDate = /^\d{4}-\d{2}-\d{2}$/.test(departure) && !Number.isNaN(Date.parse(departure)) && new Date(departure + 'T12:00:00Z').toISOString().slice(0, 10) === departure;
+      if (!committed.origin || !committed.destination || committed.origin.code === committed.destination.code || !validDate || tripType !== 'One way' || adults !== '1' || cabin !== 'Economy' || submittedPassengerCounts.slice(1).some(count => count !== 0)) {
+        document.getElementById('error').textContent = 'Choose two airport suggestions, a valid departure date, one way, one adult and Economy.';
+        return;
+      }
+      const query = new URLSearchParams({layout, origin: committed.origin.code, destination: committed.destination.code, date: departure, adults, cabin, trip_type: tripType, currency: 'USD'});
+      history.replaceState(null, '', 'fixture.html?' + query);
+      document.getElementById('error').textContent = '';
+      renderFlights(departure);
+    });
+  }
+  function dayLabel(dateString) {
+    return new Date(dateString + 'T12:00:00Z').toLocaleDateString('en-US', {timeZone: 'UTC', weekday: 'long', month: 'long', day: 'numeric'});
+  }
+  function renderFlights(departure) {
+    const results = document.getElementById('results');
+    results.replaceChildren();
+    const heading = document.createElement('h2');
+    heading.textContent = 'Observed synthetic results — USD';
+    results.append(heading);
+    if (layout === 'empty') {
+      const message = document.createElement('p');
+      message.textContent = 'No matching flights found.';
+      results.append(message);
+      return;
+    }
+    // Mixed order intentionally includes excluded rows ahead of some qualifying fares.
+    const flights = [
+      {airline: 'JetBlue', price: 219, depart: '7:10 AM', arrive: '3:42 PM', duration: '5 hr 32 min', stops: 0},
+      {airline: 'United Airlines', price: 179, depart: '6:00 AM', arrive: '4:25 PM', duration: '7 hr 25 min', stops: 1},
+      {airline: 'Delta', price: 249, depart: '8:05 AM', arrive: '4:38 PM', duration: '5 hr 33 min', stops: 0},
+      {airline: 'Alaska Airlines', price: 199, depart: '10:00 AM', arrive: '6:31 PM', duration: '5 hr 31 min', stops: 0},
+      {airline: 'United Airlines', price: 269, depart: '8:30 AM', arrive: '5:06 PM', duration: '5 hr 36 min', stops: 0},
+      {airline: 'American Airlines', price: 400, depart: '7:45 AM', arrive: '4:21 PM', duration: '5 hr 36 min', stops: 0},
+      {airline: 'Alaska Airlines', price: 289, depart: '8:55 AM', arrive: '5:26 PM', duration: '5 hr 31 min', stops: 0},
+      {airline: 'JetBlue', price: 139, depart: '10:20 PM', arrive: '6:52 AM', duration: '5 hr 32 min', stops: 0, nextDay: true},
+      {airline: 'American Airlines', price: 309, depart: '9:15 AM', arrive: '5:49 PM', duration: '5 hr 34 min', stops: 0},
+      {airline: 'JetBlue', price: 329, depart: '8:00 AM', arrive: '4:35 PM', duration: '5 hr 35 min', stops: 0},
+      {airline: 'Delta', price: 229, depart: '9:25 AM', arrive: '6:00 PM', duration: '5 hr 35 min', stops: 0}
+    ];
+    for (const flight of flights) {
+      const nextDate = new Date(departure + 'T12:00:00Z');
+      if (flight.nextDay) nextDate.setUTCDate(nextDate.getUTCDate() + 1);
+      const arrivalDay = dayLabel(nextDate.toISOString().slice(0, 10));
+      const stops = flight.stops === 0 ? 'Nonstop' : `${flight.stops} stop`;
+      const label = `From ${flight.price} US dollars. ${stops} flight with ${flight.airline}. Leaves ${committed.origin.name} at ${flight.depart} on ${dayLabel(departure)} and arrives at ${committed.destination.name} at ${flight.arrive} on ${arrivalDay}. Total duration ${flight.duration}. Select flight`;
+      const row = document.createElement('button');
+      row.type = 'button';
+      row.className = 'flight';
+      row.setAttribute('aria-label', label);
+      row.innerHTML = `<span><strong>${flight.airline}: ${flight.depart} → ${flight.arrive}${flight.nextDay ? ' (+1 day)' : ''}</strong><small>${committed.origin.code} → ${committed.destination.code} · ${stops} · ${flight.duration}</small></span><span class="price">$${flight.price}</span>`;
+      // The fixture never offers booking, selection navigation, or payment.
+      results.append(row);
+    }
+  }
+</script>
+</body>
+</html>

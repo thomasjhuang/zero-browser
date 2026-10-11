@@ -1,0 +1,22 @@
+{
+  "origin": {
+    "city": "San Francisco",
+    "code": "SFO",
+    "aliases": ["San Francisco", "San Francisco International Airport", "SFO"]
+  },
+  "destination": {
+    "city": "Boston",
+    "code": "BOS",
+    "aliases": ["Boston", "Boston Logan International Airport", "Boston Logan Airport", "BOS"]
+  },
+  "departure_date": "2026-11-16",
+  "trip_type": "One way",
+  "adults": 1,
+  "cabin": "Economy",
+  "currency": "USD",
+  "max_price": 400,
+  "nonstop": true,
+  "arrive_before": "18:00",
+  "airlines": [],
+  "limit": 5
+}

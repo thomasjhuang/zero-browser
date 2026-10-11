@@ -28,6 +28,7 @@ The fixture-first plan is retired. The loop is now: fix, rerun the same live tas
 
 | Rank | Task | Priority | Timebox | Owner | Notes |
 |---|---|---|---|---|---|
+| 0 | 19-travel-demo | P0 | Preparation done | Codex travel demo | Isolated branch; fixture and headless-live evidence recorded; visible Google transitions unreliable; main engine preserved |
 | 0 | 18-codex-mcp | P0 | One integration experiment | Codex MCP | Codex delegates a goal to local Qwen through MCP |
 | 0 | 17-experiment-priority | P0 | Instructions only | Codex | Prioritize end-to-end evidence and restrict new unit tests |
 | 0 | 16-flight-milestone | P0 | Staged with user readiness | Codex milestone | Safety, fixed goals, independent outcomes, and durable evidence |

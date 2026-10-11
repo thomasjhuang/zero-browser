@@ -36,6 +36,7 @@ Plan and ranked tasks are in `README.md` here.
 
 | Work | Outcome | Evidence |
 | --- | --- | --- |
+| 19 Isolated travel-demo preparation | Ten fixture expectations passed; headless live shortlist verified; visible live transitions remain unreliable | [Evidence](../results/travel-demo-preparation.json) |
 | 18 Codex browser MCP | Codex called the local server with native browser tools disabled. The local fixture goal passed independent outcome tests | [Evidence](../results/codex-mcp.json) |
 | 15 CLI runtime safety | Model-free guards passed. Local challenge stopped before Qwen loaded. Live inference remains untested | [Evidence](../results/cli-runtime-safety.json) |
 | 11 Installer and local CLI | Setup and simple fixture goal passed. Multi-step goals failed | [Evidence](../results/install-cli-verification.json) |
@@ -76,6 +77,12 @@ default profile lacked remote debugging. Jev's per-step timeout can be exceeded 
 
 ## Coordination
 
+- Task 19 is user-authorized isolated travel-demo scaffolding on `codex/travel-demo-scaffolding`, separate
+  from main's engine and active lanes. It owns new `travel_demo/` files and branch-local context updates.
+  Preparation is done: actual fixture checks and a headless Google observation are recorded. Visible
+  Google transitions remain unreliable; review hold was verified only on the synthetic fixture. No Qwen
+  or frontier comparison ran. No publication occurs until the user requests it. See [task 19](19-travel-demo.md).
+
 - Task 18 owns `scripts/mcp_server.py`, `scripts/codex_mcp_smoke.py`, MCP dependencies, and `results/codex-mcp.json`.
   The user requests an immediate test. Run one bounded local fixture goal through Codex with native browser tools disabled.
   Preserve task 16 files and the existing runtime guards. The single-run lock prevents concurrent inference.
@@ -103,6 +110,10 @@ default profile lacked remote debugging. Jev's per-step timeout can be exceeded 
 - `scripts/decision_baselines.py` and the recorder are Codex's. Nobody deletes them in task 10.
 
 ## Log
+
+- 2026-10-11. Task 19 completed isolated preparation: fixture expectations, a verified headless live
+  shortlist, honest visible-live stops, synthetic review hold, and required checks. Evidence:
+  [travel-demo-preparation.json](../results/travel-demo-preparation.json). Main's engine is unchanged.
 
 - 2026-10-11 13:12 PT. Task 16 completed model-free preparation. The pilot awaits user readiness. Evidence: `results/milestone-preparation.json`.
 
