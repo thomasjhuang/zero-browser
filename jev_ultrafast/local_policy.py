@@ -3,7 +3,14 @@
 import json
 import time
 
-from .local_model import PREFILL_CHUNK_TOKENS, begin_decision_group, check_prompt_size, get_model, score_decision
+from .local_model import (
+    PREFILL_CHUNK_TOKENS,
+    begin_decision_group,
+    check_prompt_size,
+    decision_prefix_cache,
+    get_model,
+    score_decision,
+)
 from .model import action_space
 from .questions import NEXT_ACTION, TARGET, TEXT_VALUE
 
@@ -62,39 +69,68 @@ def local_choose(state, goal, history):
     observation = "\n".join(lines)
     instruction = goal + "\nDecision rules:\n" + NEXT_ACTION
     records = []
-    operation_answer = _select(instruction, observation, [
-        {"id": op, "operation": op, "target": "", "description": description}
-        for op, description in operations.items()
-    ], records)
-    operation = operation_answer["selected_action"]["id"]
-    target, target_answer = None, None
-    if operation in targets:
-        candidates = [
-            {"id": index, "operation": operation, "target": index, "description": json.dumps({
-                "label": action["label"], "current_value": action.get("current_value", action.get("value", "")),
-                **{k: action[k] for k in ("role", "checked", "selected", "expanded") if k in action},
-            }, ensure_ascii=False)}
-            for index, action in targets[operation].items()
-        ]
-        target_answer = _select(instruction + "\n" + TARGET, observation, candidates, records)
-        target = target_answer["selected_action"]["id"]
-        choice = targets[operation][target]["id"]
-        probabilities = {a["id"]: target_answer["scores"].get(index, 0.0)
-                         for index, a in targets[operation].items()}
-    else:
-        choice = controls[operation]["id"] if operation in controls else operation
-        probabilities = {choice: operation_answer["scores"][operation]}
-    return {
-        "choice": choice, "operation": operation, "target": target,
-        "confidence": operation_answer["scores"][operation], "probabilities": probabilities,
-        "operation_probabilities": operation_answer["scores"],
-        "target_probabilities": target_answer["scores"] if target_answer else {},
-        "target_confidence": target_answer["scores"][target] if target_answer else None,
-        "raw_answers": {"operation": operation_answer, "target": target_answer},
-        "model": MODEL_ID, "usage": {"prompt_tokens": sum(r["prompt_tokens"] for r in records),
-                                     "completion_tokens": 0},
-        "latency_ms": round((time.perf_counter() - started) * 1000), "request": request,
-    }
+    if len(operations) + sum(len(group) for group in targets.values()) <= 26:
+        candidates = []
+        for operation, group in targets.items():
+            for index, action in group.items():
+                description = action["label"]
+                value = action.get("current_value", action.get("value", ""))
+                if operation == "SELECT":
+                    description = f"{description.split(' → ')[0]}: {value!r} -> {action['value']!r}"
+                elif "value" in action:
+                    description += f" (current value: {value!r})" if value else " (empty)"
+                candidates.append({"id": action["id"], "operation": operation,
+                                   "target": index, "description": description})
+        candidates.extend({"id": controls[op]["id"] if op in controls else op,
+                           "operation": op, "target": "", "description": description}
+                          for op, description in operations.items() if op not in targets)
+        answer = _score(instruction, observation, candidates)
+        selected = answer["selected_action"]
+        operation, target, choice = selected["operation"], selected["target"], selected["id"]
+        operation_scores = {op: sum(answer["scores"][c["id"]] for c in candidates if c["operation"] == op)
+                            for op in operations}
+        return {
+            "choice": choice, "operation": operation, "target": target or None,
+            "confidence": answer["scores"][choice], "probabilities": answer["scores"],
+            "operation_probabilities": operation_scores, "target_probabilities": {}, "target_confidence": None,
+            "raw_answers": {"joint": answer}, "decision_path": "joint", "model": MODEL_ID,
+            "usage": {"prompt_tokens": answer["prompt_tokens"], "completion_tokens": 0},
+            "latency_ms": round((time.perf_counter() - started) * 1000), "request": request,
+        }
+    with decision_prefix_cache():
+        operation_answer = _select(instruction, observation, [
+            {"id": op, "operation": op, "target": "", "description": description}
+            for op, description in operations.items()
+        ], records)
+        operation = operation_answer["selected_action"]["id"]
+        target, target_answer = None, None
+        if operation in targets:
+            candidates = [
+                {"id": index, "operation": operation, "target": index, "description": json.dumps({
+                    "label": action["label"], "current_value": action.get("current_value", action.get("value", "")),
+                    **{k: action[k] for k in ("role", "checked", "selected", "expanded") if k in action},
+                }, ensure_ascii=False)}
+                for index, action in targets[operation].items()
+            ]
+            target_answer = _select(instruction + "\n" + TARGET, observation, candidates, records)
+            target = target_answer["selected_action"]["id"]
+            choice = targets[operation][target]["id"]
+            probabilities = {a["id"]: target_answer["scores"].get(index, 0.0)
+                             for index, a in targets[operation].items()}
+        else:
+            choice = controls[operation]["id"] if operation in controls else operation
+            probabilities = {choice: operation_answer["scores"][operation]}
+        return {
+            "choice": choice, "operation": operation, "target": target,
+            "confidence": operation_answer["scores"][operation], "probabilities": probabilities,
+            "operation_probabilities": operation_answer["scores"],
+            "target_probabilities": target_answer["scores"] if target_answer else {},
+            "target_confidence": target_answer["scores"][target] if target_answer else None,
+            "raw_answers": {"operation": operation_answer, "target": target_answer},
+            "model": MODEL_ID, "usage": {"prompt_tokens": sum(r["prompt_tokens"] for r in records),
+                                         "completion_tokens": 0},
+            "latency_ms": round((time.perf_counter() - started) * 1000), "request": request,
+        }
 
 
 def local_field_text(context):

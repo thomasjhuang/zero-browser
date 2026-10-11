@@ -3,6 +3,7 @@
 import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor
+from types import SimpleNamespace
 
 import pytest
 
@@ -61,3 +62,35 @@ def test_failed_load_does_not_cache_a_model(monkeypatch):
         local_model.get_model()
     assert local_model._MODEL is None
     assert local_model._MODEL_INFO is None
+
+
+def test_prefix_cache_reuses_only_exact_tokens_and_does_not_mutate_saved_cache(monkeypatch):
+    from mlx_lm.models import cache as cache_module
+
+    monkeypatch.setattr(cache_module, "make_prompt_cache", lambda model: [SimpleNamespace(ids=[])])
+    monkeypatch.setattr(cache_module, "can_trim_prompt_cache", lambda cache: True)
+
+    def trim(cache, count):
+        del cache[0].ids[-count:]
+        return count
+
+    def prefill(model, mx, ids, cache):
+        cache[0].ids.extend(ids)
+        return tuple(cache[0].ids)
+
+    monkeypatch.setattr(cache_module, "trim_prompt_cache", trim)
+    monkeypatch.setattr(local_model, "bounded_prefill", prefill)
+    model = object()
+    first, second = list(range(300)), list(range(290)) + [999]
+    with local_model.decision_prefix_cache():
+        assert local_model.cached_prefill(model, None, first) == (tuple(first), 0)
+        saved = local_model._PREFIX_STATE.get()["cache"]
+        assert local_model.cached_prefill(model, None, second) == (tuple(second), 256)
+        assert saved[0].ids == first
+        assert local_model.cached_prefill(object(), None, second) == (tuple(second), 0)
+        with pytest.raises(ValueError):
+            local_model.cached_prefill(model, None, list(range(4097)))
+    assert local_model._PREFIX_STATE.get() is None
+    with pytest.raises(RuntimeError), local_model.decision_prefix_cache():
+        raise RuntimeError("cancel")
+    assert local_model._PREFIX_STATE.get() is None

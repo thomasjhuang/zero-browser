@@ -1,0 +1,27 @@
+{
+  "menus": 14,
+  "identical_picks": 14,
+  "mismatches": [],
+  "max_score_difference": 0.0,
+  "plain_inference_ms": 87506.57991459593,
+  "cached_inference_ms": 31574.24845942296,
+  "records_sha256": "880867bd45ef33a0bd8b96055ed879de86f03fe2b4b93798de027829fbe1e84d",
+  "provenance": "Fixed menus reconstructed without inference from two saved crowded-page observations. This is a cache parity test, not a successful browser task.",
+  "plain_runtime": {
+    "peak_worker_bytes": 4002171616,
+    "memory_samples": 986,
+    "worker_stopped_ms": 102083,
+    "total_ms": 102089,
+    "exit_code": 0,
+    "error": null
+  },
+  "cached_runtime": {
+    "peak_worker_bytes": 4475030336,
+    "memory_samples": 445,
+    "worker_stopped_ms": 46187,
+    "total_ms": 46193,
+    "exit_code": 0,
+    "error": null
+  },
+  "setup_failure": "The first replay setup used Python outside the repository environment. No model loaded. Setup passed with the repository environment."
+}

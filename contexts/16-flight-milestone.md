@@ -52,7 +52,7 @@ The user reported normal responsiveness and clean browser closure for that cance
 The runner retains partial records under ignored `artifacts/milestone/`. `--report` reads them without inference.
 
 The milestone remains open. No live flight task passed, and the flight variations remain untested.
-Next: publish this measured baseline, then test the small-page joint menu in the current STATUS sequence.
+The measured baseline was pushed as `9a3e60e`. The joint menu, cache reuse, and DONE confirmation now have measured reruns.
 The live flight verifier remains untested. The freeze cause remains unknown.
 
 Use `--pilot --ready` only after user readiness. The pilot permits two decisions and cancels after three seconds.
@@ -60,7 +60,7 @@ The worker deadline is twenty seconds. Browser startup has a separate twenty-sec
 Cleanup adds time after cancellation. The user supplied the required observations.
 
 The latest goal-placement experiment also failed and was removed. The independent tests rejected every full local run.
-Delivery checks passed. Publication remains subject to the shared hold in STATUS.
+Baseline delivery checks passed. The user resolved the publication hold and requested the follow-up changes.
 
 ### Test scope and publication follow-up
 
@@ -68,3 +68,31 @@ The user requested publication of pending evidence and an explicit limit on test
 Keep existing tests. Add tests only for critical safeguards or repeatable bugs until the flight demonstration works.
 Follow [the working rules](AGENT-RULES.md#while-working). A passing unit suite does not establish browser completion.
 This follow-up changes context and evidence only. Preserve the owner's unfinished runtime and test edits.
+
+Joint-menu rerun: the first failed step was 3, an incomplete search submission. DONE followed at step 6.
+One scoring call per decision reduced decision time, but the task still failed.
+Evidence: [follow-up experiments](../results/milestone-followup.json).
+
+Cache replay matched all 14 plain choices and scores. The local rerun still failed at step 3 with an incomplete submission.
+Evidence: [cache parity](../results/milestone-cache-parity.json) and the follow-up experiments.
+
+Cached crowded rerun: step 6 stopped after three actions without observed progress. No field text was entered.
+Decisions still exceeded the two-second target. The follow-up evidence preserves the failed run.
+
+DONE-confirmation rerun: the first failed step remained 3, an incomplete submission.
+The model chose DONE at steps 6 and 7 with a fresh observation between them. Independent outcome tests still failed.
+
+The conditional-autocomplete experiment also failed at step 3 and was removed.
+All requested follow-up mechanisms are implemented. The local success gate remains unsatisfied.
+No live flight run or flight variation started. The root cause of omitted goal requirements remains unresolved.
+The joint menu did not establish the proposed explanation that operation splitting caused every earlier failure.
+
+Cache reuse matched the uncached choices on the fixed replay menus, but increased worker memory.
+The crowded-page speed target remains unmet. DONE confirmation adds a fresh observation, not independent proof of completion.
+Next work must address missing goal requirements before another success sequence or live flight test.
+
+At 13:59 PT, task 16 accepted the coordinated runtime handoff in `5799c81`.
+Claude handed observation files, replay, and recording to this task. Claude remains in read-only review mode.
+No inference is running. Publish the current implementation and evidence before the next observation experiment.
+The recorded follow-up runs predate observer commits `510a2bf` and `9f5b613`.
+Delivery checks passed: lint and 124 tests. GitNexus found affected runtime and replay flows, with the recorded index limits.

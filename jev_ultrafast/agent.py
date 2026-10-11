@@ -67,7 +67,8 @@ class Agent:
                 raise ValueError("Start a demo first")
             if state["started_at"] is None:
                 state["started_at"] = time.perf_counter()
-            if not state["browser"].fresh(state["page"]):
+            confirm_done = state.pop("confirm_done", False)
+            if confirm_done or not state["browser"].fresh(state["page"]):
                 state["page"] = state["browser"].observe(screenshot=self.screenshots)
             state["decision"] = None
             if state["status"] in {"done", "blocked"}:
@@ -75,6 +76,7 @@ class Agent:
             if len(state["decisions"]) >= MAX_STEPS * 2:
                 raise ValueError("Reached the demo's model-call budget")
             state["decision"] = choose(state["page"], state["goal"], state["history"])
+            state["decision"]["done_confirmation"] = confirm_done and state["decision"]["choice"] == "DONE"
             state["decisions"].append(
                 {
                     **state["decision"],
@@ -94,8 +96,12 @@ class Agent:
                 if not state["browser"].fresh(page):
                     state["status"] = "ready"
                     raise StalePage("Page changed since the decision. Choose again.")
-                state["status"] = "done" if selected == "DONE" else "blocked"
-                state["plan_index"] = int(selected == "DONE")
+                if selected == "DONE" and not decision.get("done_confirmation", False):
+                    state["confirm_done"] = True
+                    state["status"] = "ready"
+                else:
+                    state["status"] = "done" if selected == "DONE" else "blocked"
+                    state["plan_index"] = int(selected == "DONE")
                 state["elapsed_ms"] = round((time.perf_counter() - state["started_at"]) * 1000)
                 return self.snapshot()
             action = next(a for a in page["actions"] if a["id"] == selected)

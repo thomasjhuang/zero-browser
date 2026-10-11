@@ -186,6 +186,40 @@ def test_stale_decision_is_consumed_before_any_mutation(runner):
     assert runner.state["decision"] is None
 
 
+def test_done_requires_a_second_choice_after_fresh_observation(runner, monkeypatch):
+    monkeypatch.setattr(loop, "choose", lambda *args: decision("DONE"))
+    runner.command("predict")
+    runner.command("act", {"fingerprint": runner.state["page"]["fingerprint"]})
+    assert runner.state["status"] == "ready"
+    runner.state["browser"].observe.assert_not_called()
+    runner.command("predict")
+    runner.state["browser"].observe.assert_called_once()
+    runner.command("act", {"fingerprint": runner.state["page"]["fingerprint"]})
+    assert runner.state["status"] == "done"
+    runner.state["browser"].act.assert_not_called()
+
+
+def test_other_decisions_reset_done_confirmation(runner, monkeypatch):
+    picks = iter(["DONE", "wait", "DONE"])
+    monkeypatch.setattr(loop, "choose", lambda *args: decision(next(picks)))
+    for _ in range(3):
+        runner.command("predict")
+        runner.command("act", {"fingerprint": runner.state["page"]["fingerprint"]})
+    assert runner.state["status"] == "ready"
+
+
+def test_stale_confirmation_does_not_accept_done(runner, monkeypatch):
+    monkeypatch.setattr(loop, "choose", lambda *args: decision("DONE"))
+    runner.command("predict")
+    runner.command("act", {"fingerprint": runner.state["page"]["fingerprint"]})
+    runner.command("predict")
+    runner.state["browser"].fresh.return_value = False
+    with pytest.raises(StalePage):
+        runner.command("act", {"fingerprint": runner.state["page"]["fingerprint"]})
+    assert runner.state["status"] != "done"
+    assert not runner.state.get("confirm_done")
+
+
 def test_generated_text_reused_only_for_identical_retry_context(runner, monkeypatch):
     helper = Mock(return_value=("book", {"model": "test", "latency_ms": 10}))
     monkeypatch.setattr(loop, "field_text", helper)

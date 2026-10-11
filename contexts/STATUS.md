@@ -6,7 +6,7 @@
 > No two agents run local inference or browser experiments at the same time.
 >
 > **Current run state: RESERVED / IDLE, Codex task 16.** Codex reports no inference running. Both agents acknowledged the ownership agreement.
-> Start the next run only after the context coordinator sends the publication notice.
+> The coordinator released the hold after publishing `5799c81`. Task 16 owns the next run.
 > The next owner is Codex, **Improve zero-browser benchmarking**. Claude must not start browser runs, replay, cache probes, or model loads.
 >
 > **Current scope:** task 16, with supporting notes in task 13. Tasks 18–22 remain cut from the active plan.
@@ -35,9 +35,9 @@ Reliable multi-step completion, useful time savings, and a native Codex speed co
 The active milestone now tests local task completion. The user reported a visible page, normal responsiveness, and clean closure during the pilot.
 The final cancellation pilot stopped during inference. The user reported normal responsiveness and clean closure. The earlier freeze remains unexplained.
 
-## Open
+## In progress
 
-- **16, Improve zero-browser benchmarking:** local completion remains unresolved. Cancellation observations passed. Baseline commit `9a3e60e` is on origin/main. The owner controls subsequent experiments.
+- **16, Improve zero-browser benchmarking:** local completion remains unresolved. Cancellation observations passed. Baseline commit `9a3e60e` is on origin/main. The follow-up mechanisms passed delivery tests but failed the local outcome gate. Observation integration is next.
 
 ## Completed context work
 
@@ -104,6 +104,8 @@ If another agent has uncommitted edits, preserve them. Use an isolated publicati
 Do not alter the shared Git index while another owner prepares a commit.
 
 ## Log
+
+- October 11, 13:59 PT: task 16 accepted the handoff in `5799c81`. No inference is running. Publish the measured follow-up before observation integration.
 
 - October 11: Thomas requested coordination between Codex and Claude. Codex acknowledged the hold and reported no inference running. Claude acknowledged the hold and handed its observer and replay files to Codex. The context update assigns one runtime owner.
 

@@ -139,12 +139,31 @@ def score_prefix(ctx, prepared):
     return out
 
 
+def score_runtime_prefix(ctx, prepared):
+    """Exercise the production cache against the same prompts as the plain variant."""
+    from jev_ultrafast.local_model import decision_prefix_cache, score_decision
+
+    groups = {}
+    for item in prepared:
+        groups.setdefault(item[0]["group"], []).append(item)
+    out = []
+    for members in groups.values():
+        with decision_prefix_cache():
+            for row, (_ids, _labels, _label_ids) in members:
+                result = score_decision(ctx["model"], ctx["tokenizer"], ctx["mx"],
+                                        row["goal"], row["observation"], row["candidates"])
+                out.append((row, result["selected_label"], list(result["scores"].values()),
+                            result["inference_ms"], result["prompt_tokens"],
+                            result["prompt_tokens"] - result["reused_prefix_tokens"]))
+    return out
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model", default=DEFAULT_MODEL, choices=sorted(ALLOWED))
     parser.add_argument("--records", action="append", default=[])
     parser.add_argument("--cases", action="append", default=[])
-    parser.add_argument("--variant", choices=["plain", "prefix"], default="plain")
+    parser.add_argument("--variant", choices=["plain", "prefix", "runtime-prefix"], default="plain")
     parser.add_argument("--repeats", type=int, default=1, help="Timed repeats per menu (median reported)")
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--allow-download", action="store_true")
@@ -156,9 +175,9 @@ def main():
     from jev_ultrafast.local_model import make_prompt
 
     model, tokenizer, mx, load_ms = load(args.model, args.allow_download)
-    ctx = {"model": model, "mx": mx}
+    ctx = {"model": model, "tokenizer": tokenizer, "mx": mx}
     prepared = [(row, make_prompt(tokenizer, row["goal"], row["observation"], row["candidates"])) for row in rows]
-    scorer = score_prefix if args.variant == "prefix" else score_plain
+    scorer = {"plain": score_plain, "prefix": score_prefix, "runtime-prefix": score_runtime_prefix}[args.variant]
     scorer(ctx, prepared[:2])  # warm kernels once, untimed
     runs = [scorer(ctx, prepared) for _ in range(args.repeats)]
     results = []

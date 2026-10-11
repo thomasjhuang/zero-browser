@@ -19,6 +19,8 @@ def test_local_choice_uses_only_the_selected_operations_targets(monkeypatch):
         {"id": "click-button", "kind": "click", "node": 1, "label": "Search"},
         {"id": "fill-city", "kind": "fill", "node": 2, "label": "City", "value": ""},
     ]}
+    state["actions"].extend({"id": f"extra-{i}", "kind": "click", "node": i + 3, "label": f"Help {i}"}
+                           for i in range(24))
     calls = []
 
     def score(goal, observation, candidates):
@@ -33,6 +35,27 @@ def test_local_choice_uses_only_the_selected_operations_targets(monkeypatch):
     assert {c["id"] for c in calls[1]} == {"2"}
     assert answer["probabilities"] == {"fill-city": 1.0}
     assert answer["usage"]["prompt_tokens"] == 20
+
+
+@pytest.mark.parametrize("selected,operation,target", [("type", "TYPE_TEXT", "1"), ("option", "SELECT", "2:1")])
+def test_joint_menu_executes_only_its_concrete_observed_action(monkeypatch, selected, operation, target):
+    state = {"url": "https://example.test", "title": "Search", "text": "", "actions": [
+        {"id": "type", "kind": "fill", "node": 1, "label": "City", "value": ""},
+        {"id": "open", "kind": "click", "node": 1, "label": "Open City", "value": ""},
+        {"id": "option", "kind": "select", "node": 2, "label": "Count → 1", "current_value": "2", "value": "1"},
+    ]}
+    calls = []
+
+    def score(goal, observation, candidates):
+        calls.append(candidates)
+        return scored(candidates, selected)
+
+    monkeypatch.setattr(local_policy, "_score", score)
+    answer = local_policy.local_choose(state, "Search a city", [])
+    assert len(calls) == 1
+    assert (answer["choice"], answer["operation"], answer["target"]) == (selected, operation, target)
+    assert answer["usage"]["prompt_tokens"] == 10
+    assert {c["id"] for c in calls[0]} == {"type", "open", "option", "DONE", "BLOCKED"}
 
 
 def test_large_target_groups_rescore_winners_together(monkeypatch):

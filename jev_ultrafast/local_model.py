@@ -1,9 +1,12 @@
 """Shared offline Qwen model and restricted-label decision scoring."""
 
+import copy
 import json
 import os
 import platform
 import time
+from contextlib import contextmanager
+from contextvars import ContextVar
 from pathlib import Path
 from threading import Lock
 
@@ -65,6 +68,39 @@ def make_prompt(tokenizer, goal, observation, candidates):
 
 
 _RECORD_GROUP = [""]
+_PREFIX_STATE = ContextVar("decision_prefix_state", default=None)
+
+
+@contextmanager
+def decision_prefix_cache():
+    """Keep one cache within this decision. Discard it on return or error."""
+    token = _PREFIX_STATE.set({})
+    try:
+        yield
+    finally:
+        _PREFIX_STATE.reset(token)
+
+
+def cached_prefill(model, mx, prompt_ids):
+    from mlx_lm.models.cache import can_trim_prompt_cache, make_prompt_cache, trim_prompt_cache
+
+    check_prompt_size(prompt_ids)
+    state = _PREFIX_STATE.get()
+    cache, shared = make_prompt_cache(model), 0
+    if state and state["model"] is model and can_trim_prompt_cache(state["cache"]):
+        previous = state["ids"]
+        while shared < min(len(previous), len(prompt_ids) - 1) and previous[shared] == prompt_ids[shared]:
+            shared += 1
+        # Preserve the uncached prefill's chunk boundaries to limit numerical changes.
+        shared -= shared % PREFILL_CHUNK_TOKENS
+        if shared:
+            cache = copy.deepcopy(state["cache"])
+            if trim_prompt_cache(cache, len(previous) - shared) != len(previous) - shared:
+                cache, shared = make_prompt_cache(model), 0
+    logits = bounded_prefill(model, mx, prompt_ids[shared:], cache)
+    if state is not None:
+        state.update(model=model, ids=tuple(prompt_ids), cache=cache)
+    return logits, shared
 
 
 def begin_decision_group(name=None):
@@ -87,17 +123,15 @@ def record_decision(goal, observation, candidates, selected_label, scores, promp
 
 
 def score_decision(model, tokenizer, mx, goal, observation, candidates):
-    """One bounded prefill per menu. No cache reuse across decisions or menus."""
-    from mlx_lm.models.cache import make_prompt_cache
-
+    """Score a bounded menu. Reuse exact prefixes only inside an explicit decision scope."""
     prompt_ids, labels, label_ids = make_prompt(tokenizer, goal, observation, candidates)
     indices = mx.array(label_ids)
     mx.eval(indices)
     mx.synchronize()
     mx.reset_peak_memory()
     started = time.perf_counter()
-    cache = make_prompt_cache(model)
-    next_logits = bounded_prefill(model, mx, prompt_ids, cache).astype(mx.float32)
+    next_logits, reused = cached_prefill(model, mx, prompt_ids)
+    next_logits = next_logits.astype(mx.float32)
     valid_logits = next_logits[indices]
     scores = mx.softmax(valid_logits)
     valid_label_mass = mx.sum(mx.softmax(next_logits)[indices])
@@ -117,6 +151,7 @@ def score_decision(model, tokenizer, mx, goal, observation, candidates):
         "raw_label_logits": dict(zip(labels, valid_logits.tolist(), strict=True)),
         "valid_label_mass_in_full_vocabulary": valid_label_mass.item(),
         "prompt_tokens": len(prompt_ids),
+        "reused_prefix_tokens": reused,
         "inference_ms": latency_ms,
         "peak_mlx_bytes": peak_bytes,
         "mlx_cache_bytes": mx.get_cache_memory(),

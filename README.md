@@ -39,6 +39,8 @@ Its [preparation evidence](results/milestone-preparation.json) covers model-free
 The pilot showed a visible page, a responsive computer, and clean browser closure, according to the user.
 The normal and reversed local tasks failed their outcome tests. The crowded task reached its external deadline.
 The user also reported normal responsiveness and clean closure during cancellation. No live flight-search success is established.
+[Follow-up tests](results/milestone-followup.json) cover joint choices, cache reuse, and a second DONE choice after a fresh observation.
+[Cache parity](results/milestone-cache-parity.json) passed on fixed menus. Multi-step completion and the crowded-page speed target still fail.
 
 The CLI reads the final page independently. Supplied expectations determine `outcome_verified`.
 Without expectations, a DONE choice remains unverified. Failed expectations return a nonzero exit code.
