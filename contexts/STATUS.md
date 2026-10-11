@@ -13,6 +13,8 @@ Plan and ranked tasks are in `README.md` here.
 
 ## In progress
 
+- 19-context-roadmap (this chat). Reconcile task state and define the next engineering sequence. Documentation only. Preserve active task 16 and reserved task 13 files.
+
 
 - 12-benchmark-loop (Astra). Owns bench.py, run_cli.py, bench_tasks.json, results/bench/, verify.py.
 - 13-latency-and-field-text (Sol). Owns local_policy.py, local_model.py, questions.py, browser timeout.
