@@ -16,7 +16,7 @@ does not move the end-to-end demo forward.
 - Test against the local fixture page (`fixture.html?scenario=travel`, served by `jev_ultrafast/demo.py`
   on 127.0.0.1:8766). It needs no network and no keys. Google Flights is a stretch target.
 - Keep `agent.py` and `browser.py` untouched. All local work plugs in through `model.py` function signatures.
-- Existing tests must keep passing. Add a test only when it is faster than manual checking.
+- Preserve existing tests. Follow [Experimental validation](../AGENTS.md#experimental-validation) for new unit tests.
 - Reuse `scripts/decision_smoke.py` logic by moving it, not rewriting it.
 - Commit at the end of every task. Nothing is pushed unless Thomas says so.
 
@@ -28,6 +28,8 @@ The fixture-first plan is retired. The loop is now: fix, rerun the same live tas
 
 | Rank | Task | Priority | Timebox | Owner | Notes |
 |---|---|---|---|---|---|
+| 0 | 17-experiment-priority | P0 | Instructions only | Codex | Prioritize end-to-end evidence and restrict new unit tests |
+| 0 | 16-flight-milestone | P0 | Staged with user readiness | Codex milestone | Safety, fixed goals, independent outcomes, and durable evidence |
 | 0 | 15-cli-runtime-safety | P0 | 60 min | Codex | Emergency prompt, memory, shutdown, and CAPTCHA guards |
 | 1 | 12-benchmark-loop | P0 | 60 min | Astra | Fixed task, backend switch, per-step records, repeat runs |
 | 2 | 13-latency-and-field-text | P0 | 75 min | Sol | Under 1s per decision, plain field values, browser timeout |

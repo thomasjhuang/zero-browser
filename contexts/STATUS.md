@@ -13,6 +13,8 @@ Plan and ranked tasks are in `README.md` here.
 
 ## In progress
 
+- 17-experiment-priority (Codex). Update the testing policy and shared instruction references. Preserve task 16 edits.
+- 16-flight-milestone (Codex milestone chat). Model-free safety, durable records, and fixed completion tests. Local inference waits for user readiness.
 
 - 12-benchmark-loop (Astra). Owns bench.py, run_cli.py, bench_tasks.json, results/bench/, verify.py.
 - 13-latency-and-field-text (Sol). Owns local_policy.py, local_model.py, questions.py, browser timeout.
@@ -67,6 +69,14 @@ memory target is untested. The browser guard check passed only in an isolated he
 default profile lacked remote debugging. Jev's per-step timeout can be exceeded by a slow local call.
 
 ## Coordination
+
+- Task 17 changes instructions only. It prioritizes end-to-end experiments and permits new unit tests only for safeguards or repeatable bugs.
+  Existing delivery checks and the task 16 readiness requirement remain in effect.
+
+- Task 16 uses separate milestone files and preserves tasks 12 and 13 ownership.
+  The user selected the flight demonstration and two variations in task 16.
+  Task 16 can extend the completed task 15 guard for durable stop evidence and cancellation.
+  No benchmark or Qwen run occurs before the user's readiness response and a single-run lock.
 
 - Task 15 adds safety guards to task 12's `run_cli.py` and task 13's `local_model.py`.
   The user reported a computer freeze. Changes cover limits and shutdown, not benchmark or prompt optimization.
