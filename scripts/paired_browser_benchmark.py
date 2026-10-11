@@ -140,7 +140,7 @@ def main():
                             'JEV_LOCAL', 'HF_HUB_OFFLINE', 'TRANSFORMERS_OFFLINE', 'ZB_RECORD_PATH'
                         }:
                             command += ['-c', f'mcp_servers.paired_browser.env.{key}={json.dumps(value)}']
-                    for tool in ('observe', 'act', 'delegate', 'assess'):
+                    for tool in ('observe', 'act', 'delegate', 'recover', 'assess'):
                         command += ['-c', f'mcp_servers.paired_browser.tools.{tool}.approval_mode="approve"']
                     for feature in DISABLED:
                         command += ['--disable', feature]
@@ -234,6 +234,7 @@ def main():
                    'private_events_sha256': hashlib.sha256((run / 'codex.jsonl').read_bytes()).hexdigest()
                    if (run / 'codex.jsonl').exists() else None}
             if args.workflow:
+                row['recoveries'] = [e for e in journal if e.get('event') in {'recovery_started', 'recovery_finished'}]
                 row['subtasks'] = [e for e in journal if e.get('event') in {'subtask_started','subtask_finished'}]
                 row['actions'] = [e for e in journal if e.get('event') in {'executed','rejected','mutation_uncertain'}]
                 row['first_failure'] = next((e['result']['first_failure'] for e in row['subtasks']

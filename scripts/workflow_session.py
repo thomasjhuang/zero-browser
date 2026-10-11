@@ -55,7 +55,7 @@ def main():
                     continue
                 path = requests[0]
                 request = json.loads(path.read_text())
-                if request["method"] not in {"observe", "delegate", "assess", "close"}:
+                if request["method"] not in {"observe", "delegate", "recover", "assess", "close"}:
                     raise ValueError("Unsupported session operation")
                 path.rename(path.with_suffix(".processing"))
                 stop = request["method"] == "close"

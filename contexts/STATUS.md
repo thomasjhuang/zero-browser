@@ -5,8 +5,8 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: IDLE, Codex task 16.** The one authorized attempt ended at frozen `9a47df9`. Search-and-open passed. A later donation banner appeared and the requested article link was absent from the fresh visible action set. The worker stopped before input. No rerun or replacement occurred. Evidence: `results/workflow-focused-summary.json`.
-> Task 16 retains the runtime reservation. No further benchmark is authorized in this delivery.
+> **Current run state: IDLE, reserved for Codex task 16.** Thomas authorized a minimal one-action recovery and exactly one additional live attempt. The previous failed result remains unchanged. Required checks precede source freeze. No browser or inference is active.
+> Task 16 retains the runtime reservation. Exactly one additional recovery attempt is authorized. No replacement run is permitted.
 > The next owner is Codex, **Improve zero-browser benchmarking**. Claude must not start browser runs, replay, cache probes, or model loads.
 >
 > **Current scope:** task 16, with supporting notes in task 13. Tasks 18–22 remain cut from the active plan.
@@ -45,7 +45,7 @@ The final cancellation pilot stopped during inference. The user reported normal 
 
 | Owner | Reserved files and actions |
 | --- | --- |
-| Codex: optional observation compactor support | Separate worktree from `3fd3936`. New `observation_compactor.py`, its test, assessment script, and sanitized results only. No runtime integration or browser/model runs. Required checks use an agreed idle slot |
+| Codex: optional observation compactor support | Complete in detached candidate `1f1ccd4` from `3fd3936`, independently reviewed. New `observation_compactor.py`, its test, assessment script, and sanitized results only. Integration remains pending. No runtime integration or browser/model runs. Required checks use an agreed idle slot |
 | Codex: **Improve zero-browser benchmarking**, task 16 | `jev_ultrafast/agent.py`, `local_policy.py`, `local_model.py`, `questions.py`, `snapshot.js`, `model.py`, `scripts/replay.py`, milestone scripts and fixtures, related tests, milestone evidence, root `README.md`, and task 16 |
 | Claude: **Hackathon project tasks**, task 13 support | Handed `snapshot.js`, `model.py`, replay, and the recording hook to Codex at `9f5b613`. Read-only review and task 13 notes only. No runtime edits or browser/model runs without a new handoff |
 | Codex: **Assess zero-browser’s thesis**, context coordinator | `contexts/AGENT-RULES.md`, `contexts/STATUS.md`, and `contexts/README.md` during this update. No inference or browser experiments |

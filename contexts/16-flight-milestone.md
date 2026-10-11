@@ -380,3 +380,14 @@ Independent audits passed exact token reconciliation, all 39 unchanged source ha
 The next proposed build is bounded recovery for a previously observed control that leaves the visible action set. Use observed scrolling and unchanged freshness safeguards. This delivery does not implement or test that recovery. No additional trial ran. No new user responsiveness observation is required.
 
 Final delivery checks passed: lint and 151 tests in 4.45 seconds. Public evidence passed the private-path and credential scan. Prior raw result hashes remain unchanged. The runtime is idle.
+
+
+### One bounded recovery and additional attempt
+
+Thomas explicitly authorized minimal recovery and exactly one additional live attempt. Recovery is allowed only after confirmed non-execution with a missing target. The coordinator receives the fresh observation and chooses one permitted observed action. After that action, the worker observes again. It continues the original operation only if the original target is uniquely available. Unknown execution stops without replay. The prior failed result remains unchanged. No banner, site, selector, or answer rule is added.
+The optional compactor is complete in detached candidate `1f1ccd400e8ad3c11d5763ce932c89aca946e11a`, with independent review. Runtime integration remains pending and is excluded from this trial.
+
+The recovery implementation permits one coordinator-selected observed click or scroll after a known missing-target stop. It checks that the selected recovery control still matches its observed node and semantics. Existing freshness and action guards run before input. After one recovery action, the original operation continues only if its target is uniquely observed. A second recovery request is rejected. Unknown input results never reach continuation.
+Command: `ZB_RECORD_PATH=artifacts/replay/workflow-recovery.jsonl uv run --offline --frozen --extra local python scripts/paired_browser_benchmark.py --workflow --order persistent --output results/workflow-recovery.json --stop-file artifacts/workflow-recovery.stop`. Exactly one additional attempt is authorized. The previous focused raw result and summary remain unchanged. No compactor changes are included.
+
+Model-free checks passed: lint and 159 tests in 4.45 seconds. Focused regressions cover confirmed non-execution, unknown-result stops, one recovery action, unique-target continuation, and rejection of a second recovery. GitNexus found the shared workflow paths affected and reports high aggregate impact. Source inspection and tests cover those paths. The MCP index retains stale metadata and truncated flows, so it does not establish completeness. The compactor owner explicitly confirmed idle.

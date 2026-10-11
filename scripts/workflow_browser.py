@@ -12,7 +12,7 @@ from urllib.parse import urldefrag, urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from jev_ultrafast.browser import Browser  # noqa: E402
-from jev_ultrafast.workflow_worker import LocalDecisions, run_step  # noqa: E402
+from jev_ultrafast.workflow_worker import LocalDecisions, recover_missing, recovery_allowed, run_step  # noqa: E402
 from scripts.milestone import require_page, show_task_tab  # noqa: E402
 from scripts.milestone_record import Journal, read_events, save_json  # noqa: E402
 
@@ -33,7 +33,11 @@ Use scroll for an observed scroll action.
 Exact operation and target pairs execute deterministically. Qwen selects controls inside search_open only.
 Each kind defines its outcome test. The outcome text describes that bounded task and cannot expand its authority.
 Keep the same browser session. Never repeat uncertain input.
-Stop for a failed subtask, ambiguity, or human verification.
+If recovery_available is true, choose one click or scroll from the returned observed actions.
+Recovery is permitted only after confirmed non-execution with a missing target.
+Call recover once with that observed action ID. Do not assume why the target disappeared.
+The worker continues the original operation only if its target becomes uniquely available after that action.
+Otherwise stop for a failed subtask, ambiguity, human verification, or unknown execution.
 Return the inventor only from the observed source passage. Call assess with your answer and supporting observed URLs.
 Return a short final verdict based on the independent assessment. Do not perform implementation work."""
 
@@ -155,6 +159,7 @@ class Workflow:
         self.browser = None
         self.model = LocalDecisions(self.folder, config["method"], self.journal)
         self.steps, self.stopped = 0, False
+        self.pending_recovery, self.recovery_used = None, False
         (self.folder / "server.pid").write_text(str(os.getpid()))
 
     def observe(self):
@@ -170,7 +175,7 @@ class Workflow:
         return {k: p[k] for k in ("url", "title", "text", "actions")}
 
     def delegate(self, kind, target, value, outcome):
-        if self.stopped or self.browser is None or self.steps >= 12:
+        if self.stopped or self.pending_recovery or self.browser is None or self.steps >= 12:
             raise ValueError("Observe first. Stop after failure or twelve subtasks.")
         self.steps += 1
         started = time.monotonic_ns()
@@ -205,7 +210,14 @@ class Workflow:
         finally:
             self.model.end_subtask()
             (self.folder / "active_deadline").unlink(missing_ok=True)
-        self.stopped |= result["status"] != "success" or result.get("unresolved_execution", False)
+        result["recovery_available"] = recovery_allowed(result, kind, self.recovery_used)
+        if result["recovery_available"]:
+            self.pending_recovery = {
+                "observation": result["observation"],
+                "original": {"kind": kind, "target": target, "value": value, "outcome": outcome},
+            }
+        else:
+            self.stopped |= result["status"] != "success" or result.get("unresolved_execution", False)
         self.journal.write(
             "subtask_finished",
             step=self.steps,
@@ -214,6 +226,38 @@ class Workflow:
             elapsed_ms=(time.monotonic_ns() - started) / 1e6,
             browser_target=self.browser.target,
         )
+        return result
+
+    def recover(self, action_id):
+        if self.stopped or not self.pending_recovery or self.recovery_used:
+            raise ValueError("Recovery requires confirmed non-execution with a missing target, and is allowed once")
+        pending, self.pending_recovery = self.pending_recovery, None
+        self.recovery_used = True
+        self.journal.write(
+            "recovery_started", action_id=action_id, original=pending["original"], monotonic_ns=time.monotonic_ns()
+        )
+        (self.folder / "active_deadline").write_text(str(time.monotonic() + 40))
+        try:
+            result = recover_missing(
+                self.browser,
+                pending["observation"],
+                pending["original"],
+                action_id,
+                ["www.wikipedia.org", "en.wikipedia.org"],
+                self.model.choose,
+                self.journal,
+            )
+        except Exception as error:
+            result = {
+                "status": "uncertainty",
+                "unresolved_execution": True,
+                "first_failure": {"category": "recovery_failure", "cause": str(error)},
+            }
+        finally:
+            (self.folder / "active_deadline").unlink(missing_ok=True)
+        result["recovery_available"] = False
+        self.stopped |= result["status"] != "success" or result.get("unresolved_execution", False)
+        self.journal.write("recovery_finished", result=result, monotonic_ns=time.monotonic_ns())
         return result
 
     def assess(self, answer, urls):
@@ -251,6 +295,13 @@ def main():
         Use an observed target label. Do not supply selectors or code.
         """
         return w.delegate(kind, target, value, outcome)
+
+    @mcp.tool()
+    def recover(action_id: str) -> dict:
+        """Once after recovery_available: execute one observed click or scroll and reassess the original target.
+        Never use this for unknown execution. Continue the original operation only if its target is uniquely available.
+        """
+        return w.recover(action_id)
 
     @mcp.tool()
     def assess(answer: str, urls: list[str]) -> dict:

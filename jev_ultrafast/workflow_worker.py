@@ -340,3 +340,50 @@ def model_main():
 
 if __name__ == "__main__":
     model_main()
+
+
+def recovery_allowed(result, kind, used):
+    return (
+        not used
+        and kind in {"fill", "click", "scroll"}
+        and result.get("first_failure", {}).get("category") == "missing_target"
+        and result.get("action_executed") is False
+        and result.get("unresolved_execution") is False
+        and bool(result.get("observation"))
+    )
+
+
+def recover_missing(browser, missing, original, action_id, allowed_hosts, choose, journal):
+    """Execute one coordinator-selected observed recovery action, then reassess the original target."""
+    selected = [a for a in missing["actions"] if a["id"] == action_id and a["kind"] in {"click", "scroll"}]
+    if len(selected) != 1:
+        return failure("invalid_recovery", "Select one permitted observed recovery action", page=missing)
+    page = observation(browser, journal, allowed_hosts)
+    candidate = selected[0]
+    matches = [
+        a
+        for a in page["actions"]
+        if all(a.get(k) == candidate.get(k) for k in ("node", "kind", "label", "value", "delta"))
+    ]
+    if len(matches) != 1:
+        return failure(
+            "recovery_target_changed", "The selected recovery control is no longer uniquely available", page=page
+        )
+    result = execute_observed(browser, page, matches[0], None, journal, allowed_hosts, "recovery")
+    if result.get("rejected"):
+        return failure("recovery_rejected", "The recovery action failed its freshness guard before input", page=page)
+    if "page" not in result:
+        return result
+    after = result.pop("page")
+    recovery = {**result, "action": matches[0], "observation": public_observation(after)}
+    try:
+        observed_candidates(after, original["kind"], original["target"])
+    except TargetResolutionError as error:
+        outcome = failure(str(error), "The original target is not uniquely available after recovery", page=after)
+        outcome.update(
+            action_executed=result["action_executed"], page_changed=result["page_changed"], recovery=recovery
+        )
+        return outcome
+    outcome = run_step(browser, allowed_hosts=allowed_hosts, choose=choose, journal=journal, **original)
+    outcome["recovery"] = recovery
+    return outcome

@@ -248,3 +248,68 @@ def test_oracle_accepts_observed_canonical_destination_and_rejects_negated_answe
         "Charles Babbage. The inventor was Ada Lovelace.",
     ]:
         assert not assess_workflow(events, answer, [ada, final])["passed"]
+
+
+@pytest.mark.parametrize(
+    "executed,unresolved,used,allowed",
+    [(False, False, False, True), (None, True, False, False), (True, False, False, False), (False, False, True, False)],
+)
+def test_recovery_requires_confirmed_non_execution(executed, unresolved, used, allowed):
+    from jev_ultrafast.workflow_worker import recovery_allowed
+
+    result = {
+        "first_failure": {"category": "missing_target"},
+        "action_executed": executed,
+        "unresolved_execution": unresolved,
+        "observation": {"actions": []},
+    }
+    assert recovery_allowed(result, "click", used) is allowed
+
+
+@pytest.mark.parametrize("target_returns,unknown", [(True, False), (False, False), (True, True)])
+def test_one_recovery_action_continues_only_after_unique_target_returns(monkeypatch, target_returns, unknown):
+    from jev_ultrafast.workflow_worker import recover_missing
+
+    recovery = {"id": "s1", "kind": "scroll", "label": "Scroll down", "delta": 500}
+    original = {"kind": "click", "target": "Destination", "value": "", "outcome": "Open the observed destination"}
+    page = {"url": "https://example.org/", "title": "Example", "text": "", "actions": [recovery]}
+    after = {
+        **page,
+        "actions": [{"id": "e2", "kind": "click", "label": "Destination", "node": 2}] if target_returns else [],
+    }
+    calls = []
+    monkeypatch.setattr("jev_ultrafast.workflow_worker.observation", lambda *args: page)
+
+    def execute(*args):
+        calls.append("recovery")
+        if unknown:
+            return {
+                "status": "uncertainty",
+                "unresolved_execution": True,
+                "first_failure": {"category": "execution_failure"},
+            }
+        return {"action_executed": True, "page_changed": True, "unresolved_execution": False, "page": after}
+
+    def resume(*args, **kwargs):
+        calls.append("original")
+        return {"status": "success", "outcome_achieved": True, "unresolved_execution": False}
+
+    monkeypatch.setattr("jev_ultrafast.workflow_worker.execute_observed", execute)
+    monkeypatch.setattr("jev_ultrafast.workflow_worker.run_step", resume)
+    result = recover_missing(None, page, original, "s1", ["example.org"], None, None)
+    assert calls == (["recovery", "original"] if target_returns and not unknown else ["recovery"])
+    assert result["unresolved_execution"] is unknown
+
+
+def test_workflow_recovery_cannot_repeat(tmp_path, monkeypatch):
+    from scripts.workflow_browser import Workflow
+
+    worker = Workflow({"folder": str(tmp_path), "method": "persistent"})
+    worker.pending_recovery = {"observation": {}, "original": {}}
+    monkeypatch.setattr(
+        "scripts.workflow_browser.recover_missing",
+        lambda *args: {"status": "uncertainty", "unresolved_execution": False},
+    )
+    worker.recover("s1")
+    with pytest.raises(ValueError, match="allowed once"):
+        worker.recover("s1")
