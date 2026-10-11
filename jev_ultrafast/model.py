@@ -79,6 +79,10 @@ def action_space(actions):
 
 
 def choose(state, goal, history):
+    if os.environ.get("JEV_LOCAL") == "1":
+        from .local_policy import local_choose
+
+        return local_choose(state, goal, history)
     elements, targets, controls = action_space(state["actions"])
     labels = {
         "CLICK": "Click an element, button, menu option, autocomplete suggestion, or calendar day.",
@@ -158,6 +162,10 @@ def field_context(goal, action, page, history):
 
 
 def field_text(context):
+    if os.environ.get("JEV_LOCAL") == "1":
+        from .local_policy import local_field_text
+
+        return local_field_text(context)
     key = os.environ.get("TEXT_MODEL_API_KEY")
     if not key:
         raise ValueError("TYPE_TEXT needs TEXT_MODEL_API_KEY; no text is hardcoded or guessed by the executor.")

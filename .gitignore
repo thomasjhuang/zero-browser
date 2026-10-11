@@ -211,6 +211,7 @@ tempCodeRunnerFile.py
 .gitnexus/
 .venv-local/
 .hf-cache/
+.zero-browser/
 models/
 *.safetensors
 *.gguf

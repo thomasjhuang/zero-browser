@@ -1,0 +1,240 @@
+{
+  "recorded_at": "2026-10-11 12:40 PT",
+  "base_commit": "383d60856e2bb49d0410296ef001839f1b3f0353",
+  "source_sha256": {
+    "install.sh": "03ae76aab72df1221de2cc4944e19c258b784e610aa67afa69923d63a5c4830a",
+    "zero-browser": "79ced119122d572ea46da8239565b370bbe2ea2897c4f627fa6e44e0ede42509",
+    "scripts/run_cli.py": "b9bef51a7e73b52c6ff062efbe74700a929aba1f7175b25c1328c13ff1cf6149",
+    "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+    "jev_ultrafast/local_policy.py": "3238044787284f606450bb8010907ef9bd080e3610ee937c617fa8b585e6ecb4",
+    "jev_ultrafast/model.py": "9c54f1029d8f2f8c24576679b1bc73a58bf51a917208c707fb87d8c690357190"
+  },
+  "platform": {
+    "system": "Darwin",
+    "architecture": "arm64",
+    "python": "3.13.3"
+  },
+  "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+  "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "installation_checks": {
+    "cached_offline_install": {
+      "passed": true,
+      "exit_code": 0
+    },
+    "fresh_environment_network_install": {
+      "passed": true,
+      "exit_code": 0,
+      "packages_installed": 50,
+      "model_cache_reused": true
+    },
+    "automatic_uv_install": {
+      "passed": true,
+      "exit_code": 0,
+      "version": "0.13.0",
+      "shell_profiles_modified": false
+    },
+    "automatic_chrome_download_and_doctor": {
+      "passed": true,
+      "exit_code": 0,
+      "version": "155.0.8059.39"
+    },
+    "repeated_offline_install": {
+      "passed": true,
+      "exit_code": 0
+    },
+    "locks_unchanged": {
+      "passed": true,
+      "files": [
+        "model-lock.json",
+        "requirements-local.lock.txt",
+        "uv.lock",
+        "pyproject.toml"
+      ]
+    },
+    "initial_fresh_offline_attempt": {
+      "passed": false,
+      "expected": true,
+      "reason": "A required mlx-metal wheel was absent from the cache."
+    }
+  },
+  "field_text": {
+    "text": "Lisbon",
+    "expected_text": "Lisbon",
+    "passed": true,
+    "shared_model_instance": true,
+    "metadata": {
+      "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "latency_ms": 383,
+      "usage": {
+        "prompt_tokens": 150,
+        "completion_tokens": 8
+      }
+    }
+  },
+  "fixture_runs": [
+    {
+      "attempt": "Earlier prompt: premature DONE",
+      "status": "done",
+      "outcome_verified": false,
+      "assertions": {
+        "text:Your filters: Design \u00b7 Free cancellation enabled \u00b7 Destination Lisbon": false,
+        "url:#casa-flora": false
+      },
+      "actions": 1,
+      "decisions": 2,
+      "text_calls": 0,
+      "elapsed_ms": 5841,
+      "decision_latency_ms": [
+        3591,
+        1680
+      ],
+      "text_latency_ms": [],
+      "final_page": {
+        "url": "http://127.0.0.1:54537/fixture.html?scenario=travel",
+        "title": "Forma \u00b7 Find a place to slow down",
+        "text": "forma.\nFind a stay\nReading room\nPLACES WITH CHARACTER\nTHE SLOWER WAY TO STAY\nSomewhere you can exhale.\n\nSmall, considered places. A little closer to what matters.\n\nCURATED, NOT CROWDED\nFind stays\nCategory\nAll stays\nDesign\nNature\nCoastal\nFree cancellation\n2 places\nLISBON \u00b7 DESIGN\nCasa Flora\nFree cancellation \u00b7 2 guests\n\u20ac145 / night\nView stay \u2197\nCOPENHAGEN \u00b7 DESIGN\nThe Glasshouse\nFree cancellation \u00b7 2 guests\n\u20ac210 / night\nView stay \u2197\nThoughtful places, independent hosts. \u00b7 Local demo: no bookings or payments."
+      }
+    },
+    {
+      "attempt": "Earlier prompt: incomplete search and filters",
+      "status": "done",
+      "outcome_verified": false,
+      "assertions": {
+        "text:Your filters: Design \u00b7 Free cancellation enabled \u00b7 Destination Lisbon": false,
+        "url:#casa-flora": false
+      },
+      "actions": 4,
+      "decisions": 5,
+      "text_calls": 1,
+      "elapsed_ms": 17121,
+      "decision_latency_ms": [
+        3260,
+        3480,
+        3834,
+        3045,
+        1615
+      ],
+      "text_latency_ms": [
+        1013
+      ],
+      "final_page": {
+        "url": "http://127.0.0.1:54675/fixture.html?scenario=travel",
+        "title": "Forma \u00b7 Find a place to slow down",
+        "text": "forma.\nFind a stay\nReading room\nPLACES WITH CHARACTER\nTHE SLOWER WAY TO STAY\nSomewhere you can exhale.\n\nSmall, considered places. A little closer to what matters.\n\nCURATED, NOT CROWDED\nFind stays\nCategory\nAll stays\nDesign\nNature\nCoastal\nFree cancellation\n2 places\nLISBON \u00b7 DESIGN\nCasa Flora\nFree cancellation \u00b7 2 guests\n\u20ac145 / night\nView stay \u2197\nCOPENHAGEN \u00b7 DESIGN\nThe Glasshouse\nFree cancellation \u00b7 2 guests\n\u20ac210 / night\nView stay \u2197\nThoughtful places, independent hosts. \u00b7 Local demo: no bookings or payments."
+      }
+    },
+    {
+      "attempt": "Current adapter: missed destination submission",
+      "status": "done",
+      "outcome_verified": false,
+      "assertions": {
+        "text:Your filters: Design \u00b7 Free cancellation enabled \u00b7 Destination Lisbon": false,
+        "url:#casa-flora": true
+      },
+      "actions": 4,
+      "decisions": 5,
+      "text_calls": 1,
+      "elapsed_ms": 17677,
+      "decision_latency_ms": [
+        3695,
+        3364,
+        3805,
+        3890,
+        1263
+      ],
+      "text_latency_ms": [
+        956
+      ],
+      "final_page": {
+        "url": "http://127.0.0.1:54942/fixture.html?scenario=travel#casa-flora",
+        "title": "Casa Flora \u00b7 Forma",
+        "text": "forma.\nFind a stay\nReading room\nPLACES WITH CHARACTER\n\u2190 All stays\nLISBON \u00b7 DESIGN\nCasa Flora\n\nA quiet courtyard, warm terracotta, and light that stays all afternoon.\n\n\u20ac145 / night \u00b7 2 guests\nFree cancellation included\n\nYour filters: Design \u00b7 Free cancellation enabled \u00b7 Destination anywhere\n\nLocal demo property. No reservation has been made."
+      }
+    },
+    {
+      "attempt": "Current adapter: missed requested filter",
+      "status": "done",
+      "outcome_verified": false,
+      "assertions": {
+        "text:Your filters: Design \u00b7 Free cancellation enabled": false,
+        "url:#casa-flora": true
+      },
+      "actions": 2,
+      "decisions": 3,
+      "text_calls": 0,
+      "elapsed_ms": 8970,
+      "decision_latency_ms": [
+        3696,
+        3715,
+        1202
+      ],
+      "text_latency_ms": [],
+      "final_page": {
+        "url": "http://127.0.0.1:55067/fixture.html?scenario=travel#casa-flora",
+        "title": "Casa Flora \u00b7 Forma",
+        "text": "forma.\nFind a stay\nReading room\nPLACES WITH CHARACTER\n\u2190 All stays\nLISBON \u00b7 DESIGN\nCasa Flora\n\nA quiet courtyard, warm terracotta, and light that stays all afternoon.\n\n\u20ac145 / night \u00b7 2 guests\nFree cancellation included\n\nYour filters: Design \u00b7 Free cancellation off \u00b7 Destination anywhere\n\nLocal demo property. No reservation has been made."
+      }
+    },
+    {
+      "attempt": "Current adapter: completed simple goal",
+      "status": "done",
+      "outcome_verified": true,
+      "assertions": {
+        "text:Casa Flora": true,
+        "url:#casa-flora": true
+      },
+      "actions": 1,
+      "decisions": 2,
+      "text_calls": 0,
+      "elapsed_ms": 5246,
+      "decision_latency_ms": [
+        3798,
+        1105
+      ],
+      "text_latency_ms": [],
+      "final_page": {
+        "url": "http://127.0.0.1:55169/fixture.html?scenario=travel#casa-flora",
+        "title": "Casa Flora \u00b7 Forma",
+        "text": "forma.\nFind a stay\nReading room\nPLACES WITH CHARACTER\n\u2190 All stays\nLISBON \u00b7 DESIGN\nCasa Flora\n\nA quiet courtyard, warm terracotta, and light that stays all afternoon.\n\n\u20ac145 / night \u00b7 2 guests\nFree cancellation included\n\nYour filters: all \u00b7 Free cancellation off \u00b7 Destination anywhere\n\nLocal demo property. No reservation has been made."
+      }
+    }
+  ],
+  "verification": {
+    "ruff": {
+      "passed": true,
+      "exit_code": 0
+    },
+    "pytest": {
+      "passed": true,
+      "exit_code": 0,
+      "tests_passed": 64
+    },
+    "bash_syntax": {
+      "passed": true,
+      "exit_code": 0
+    },
+    "gitnexus": {
+      "calls": [
+        "list_repos",
+        "context resource",
+        "query",
+        "context",
+        "impact",
+        "detect_changes"
+      ],
+      "index_refreshed": true,
+      "limitations": [
+        "The index omits some execution flows because of traversal limits. Cross-language property resolution is incomplete."
+      ]
+    }
+  },
+  "limitations": [
+    "Fresh model-cache download was not repeated. The installer reused the pinned cached weights.",
+    "A clean operating system without Python was not tested. uv prepared a new environment with installed Python.",
+    "Only this Apple Silicon Mac was tested. The 16 GB memory target remains untested.",
+    "Multi-step browser goals failed. DONE is not outcome evidence.",
+    "Timings are run records, not isolated performance benchmarks.",
+    "The timeout applies between model calls.",
+    "The inherited hosted demo remains separate. The CLI forces local inference."
+  ]
+}

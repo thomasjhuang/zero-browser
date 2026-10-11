@@ -30,4 +30,13 @@ Do not claim support for Linux, Windows, or Intel Macs.
 
 ## Result
 
-In progress. No installation or browser outcome claim yet.
+The installer and local CLI are implemented. Setup passed in a fresh Python environment and on repeated offline runs.
+Automatic uv installation and Chrome download passed. The model and dependency locks stayed unchanged.
+Local field-text generation returned Lisbon and reused the shared model instance.
+The CLI completed the simple fixture goal. Multi-step destination and filter goals failed.
+Evidence: `results/install-cli-verification.json`. Required lint and all 64 tests passed.
+
+The CLI adapter overlaps tasks 01 and 02. Those tasks remain open for integration and reliability work.
+Task 10 can remove the inherited hosted paths after it reconciles this adapter.
+Task 06 must resolve and independently test the full fixture goal.
+The 16 GB memory target and other machines remain untested.

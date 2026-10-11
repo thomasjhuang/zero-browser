@@ -1,18 +1,19 @@
 # Project status
 
-Updated 2026-10-11 12:30 PT. This is the single shared state file. Edit it on every claim, finish, or block.
+Updated 2026-10-11 12:40 PT. This is the single shared state file. Edit it on every claim, finish, or block.
 Keep it short. Evidence lives in `results/` and is linked, never restated beyond one number.
 
 ## Where we are
 
 Jev Ultrafast scaffolding imported. Local Qwen3-4B 4-bit scorer works offline on synthetic decisions.
-The agent loop still calls TypeSafe for decisions and OpenRouter for field text. No local end-to-end browser
-run exists. Task 00 is complete. Tasks 01 and 02 can use the shared model.
+The new CLI forces local Qwen decisions and field text. It completes a simple local fixture goal.
+Multi-step goals remain incomplete. The inherited demo still uses hosted services.
+Tasks 01 and 02 must reconcile their work with the CLI adapter before changing shared interfaces.
 Plan and ranked tasks are in `README.md` here.
 
 ## In progress
 
-- 11-install-and-cli (Codex): pinned model setup, local CLI, and installation checks.
+(none)
 
 ## Open, in priority order
 
@@ -32,6 +33,7 @@ Plan and ranked tasks are in `README.md` here.
 
 | Work | Outcome | Evidence |
 | --- | --- | --- |
+| 11 Installer and local CLI | Setup and simple fixture goal passed. Multi-step goals failed | [Evidence](../results/install-cli-verification.json) |
 | 00 Shared local model | One cached model supports scoring and generation. Smoke: 12/12 | [Smoke](../results/shared-local-model-smoke.json), [tests and reuse](../results/shared-local-model-verification.json) |
 | Local scorer, pinned weights, offline rerun | 12/12 synthetic decisions, 48 forward passes, ~300ms warm | `results/decision-smoke.json`, `results/decision-smoke-rerun.json` |
 | Quality cases | 35/36. One candidate order picks the wrong filter, repeats 4/4 in that order | `results/decision-quality.json`, `results/decision-quality-filter-rerun.json` |
@@ -45,6 +47,10 @@ Plan and ranked tasks are in `README.md` here.
 (none)
 
 ## Known limits
+
+The CLI can stop at DONE before the entire goal succeeds. Final-page assertions detect this problem.
+Destination submission and requested filters failed in local multi-step attempts.
+Task 06 remains open. The new simple-goal result does not establish general browser reliability.
 
 Human recordings expose unsupported clicks and manual scrolls. The largest observation contains 74 actions.
 Resolve recording coverage and candidate scaling before longer demonstrations or training. Human completion
@@ -67,6 +73,8 @@ default profile lacked remote debugging. Jev's per-step timeout can be exceeded 
 - `scripts/decision_baselines.py` and the recorder are Codex's. Nobody deletes them in task 10.
 
 ## Log
+
+- 2026-10-11 12:40 PT. Codex completed task 11. Installation and the simple CLI goal passed. Multi-step failures remain in the evidence.
 
 - 2026-10-11 12:30 PT. Codex completed task 00 within its timebox. Evidence is linked in Done. Stopped after task 00.
 - 2026-10-11 12:27 PT. Codex claimed task 00. Main matched origin before the claim.

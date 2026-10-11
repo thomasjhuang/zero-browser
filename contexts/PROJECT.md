@@ -5,6 +5,26 @@ Run all commands from the project root.
 Record current work and its evidence in [STATUS.md](STATUS.md).
 The numbered files describe planned work.
 
+## CLI setup
+
+Run `bash install.sh` from the project root. The installer preserves the model and dependency locks.
+It installs missing dependencies, downloads the pinned Qwen weights, and prepares Chrome.
+
+```bash
+./zero-browser --doctor
+./zero-browser --url https://www.google.com "Your browser goal"
+./zero-browser --fixture --expect-url '#casa-flora' --expect-text 'Casa Flora' "Open Casa Flora."
+```
+
+The CLI forces local inference through `JEV_LOCAL=1`. The inherited hosted runner remains separate.
+It uses a temporary Chrome profile and closes that browser after the run.
+Use `--expect-text` and `--expect-url` for independent final-page assertions.
+Without assertions, model completion does not establish outcome success.
+The time budget applies between model calls. It cannot interrupt a slow call.
+
+Installation and browser outcome evidence lives in `results/install-cli-verification.json`.
+The simple fixture goal passes. Multi-step destination and filter goals remain incomplete.
+
 ## Local scorer setup
 
 
@@ -74,8 +94,8 @@ The original README is in `docs/upstream/README.md`.
 `LICENSE.jev-ultrafast` preserves its MIT license and Browser Use attribution.
 The import omits demonstration images and videos.
 
-The local scorer is standalone. Jev's inherited policy still requires hosted services.
-Live examples need separate authorization and credentials.
+The CLI uses local decisions and field text. Jev's inherited demo still requires hosted services.
+The CLI does not load API credentials. Hosted examples need separate authorization and credentials.
 
 ## Browser baselines
 
@@ -157,10 +177,6 @@ Run records preserve dated prices and source hashes. Private traces stay in igno
 
 ## Tests and delivery
 
-Use the current rules in the primary checkout's `AGENTS.md`.
-Automated tests and code review are deferred until the user changes this policy.
-Actual task outcomes must prove capabilities before automated tests start.
-Publish authorized changes through a task branch and a PR without separate approval or quality gates.
-Merge the PR into `main` without separate approval.
-Examine the intended publication for secrets and sensitive user information first.
-Keep this context and the shared progress file local and ignored.
+Follow `AGENTS.md` and `contexts/AGENT-RULES.md` for delivery.
+Run the required lint and tests before each commit. Commit and push intended files to `main`.
+Keep model weights, environments, private traces, and credentials outside Git.
