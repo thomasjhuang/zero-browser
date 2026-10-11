@@ -102,7 +102,8 @@ def main():
                              'memory': 'Sampled MCP browser/model process; excludes Chrome and coordinator client'},
               'runs': []}
     if args.workflow:
-        report['scope'] = 'Four exploratory multi-step attempts comparing model reload per subtask with process reuse.'
+        report['scope'] = (
+            'Bounded multi-step workflow attempts. Interpret only the recorded order and outcome evidence.')
         report['conditions']['local_model'] = (
             'Reload per subtask or persistent per workflow. Initial load included. No prompt cache reuse.')
         report['conditions']['memory'] = (

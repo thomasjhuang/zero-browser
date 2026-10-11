@@ -5,7 +5,7 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: IDLE, reserved for Codex task 16.** Thomas authorized two multi-step reload/persistent pairs, then the native desktop comparison. Native tool discovery passed in a fresh isolated agent. Task 16 is implementing bounded navigation and shared-session measurement. No inference is active.
+> **Current run state: IDLE, reserved for Codex task 16.** All four reuse attempts ended. Thomas replaced further paired/native trials with one bounded-delegation improvement and exactly one live workflow trial. Focused source and outcome reviews must pass before that trial. Native trials remain unrun.
 > The coordinator released the hold after publishing `5799c81`. Task 16 owns the next run.
 > The next owner is Codex, **Improve zero-browser benchmarking**. Claude must not start browser runs, replay, cache probes, or model loads.
 >
@@ -45,6 +45,7 @@ The final cancellation pilot stopped during inference. The user reported normal 
 
 | Owner | Reserved files and actions |
 | --- | --- |
+| Codex: optional observation compactor support | Separate worktree from `3fd3936`. New `observation_compactor.py`, its test, assessment script, and sanitized results only. No runtime integration or browser/model runs. Required checks use an agreed idle slot |
 | Codex: **Improve zero-browser benchmarking**, task 16 | `jev_ultrafast/agent.py`, `local_policy.py`, `local_model.py`, `questions.py`, `snapshot.js`, `model.py`, `scripts/replay.py`, milestone scripts and fixtures, related tests, milestone evidence, root `README.md`, and task 16 |
 | Claude: **Hackathon project tasks**, task 13 support | Handed `snapshot.js`, `model.py`, replay, and the recording hook to Codex at `9f5b613`. Read-only review and task 13 notes only. No runtime edits or browser/model runs without a new handoff |
 | Codex: **Assess zero-browser’s thesis**, context coordinator | `contexts/AGENT-RULES.md`, `contexts/STATUS.md`, and `contexts/README.md` during this update. No inference or browser experiments |

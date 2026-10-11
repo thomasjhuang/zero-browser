@@ -1,0 +1,2242 @@
+{
+  "goal": "Start at https://www.wikipedia.org/. Search for Ada Lovelace, open the matching article, follow its article link to the Analytical Engine, and return its inventor with supporting article URLs. Use only observed controls and source text. Do not use prior knowledge as evidence. Do not log in, edit articles, or leave Wikipedia. Stop for human verification or uncertain execution.",
+  "order": [
+    "reload",
+    "persistent",
+    "persistent",
+    "reload"
+  ],
+  "model": "gpt-6-astra",
+  "reasoning_effort": "high",
+  "instructions_sha256": "b6becb598b9a260fa57dfde9863a02a34713815b9004827955af6f28c8c51ec9",
+  "source_sha256": {
+    "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+    "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+    "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+    "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+    "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+    "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+    "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+    "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+    "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+    "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+    "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+    "scripts/paired_browser_benchmark.py": "d68f4953f7ef5ff620d2a3d0f5ed4ebec69dbbd49bf21c43a30cbed0e4778027",
+    "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+    "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+    "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+    "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+    "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+    "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+    "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+    "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+    "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+    "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+    "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+    "scripts/workflow_browser.py": "52e82e070f376987ea52febf4fce30faf0d3606d54e8458774b404074b68eb3b",
+    "scripts/workflow_session.py": "e48a5240768efc6b96ecf958ce497ea8b159ebe4053e4f495164261b10b092c8",
+    "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+    "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+    "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+    "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+    "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+    "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+    "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+    "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+    "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+    "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+    "jev_ultrafast/workflow_worker.py": "e2337a05c5823922addf621dceef5daae877b248d11e2b3a44d5af321985179d",
+    "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+    "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+    "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+  },
+  "revision": "3fd39363790f3927af9bd186eca920a05230348f",
+  "scope": "Four exploratory multi-step attempts comparing model reload per subtask with process reuse.",
+  "conditions": {
+    "browser": "fresh isolated Chrome, 1120x780, visible",
+    "coordinator": "fresh session, identical tools and instructions; mode differs",
+    "local_model": "Reload per subtask or persistent per workflow. Initial load included. No prompt cache reuse.",
+    "tool_documentation": "Same schemas in both arms disclose both path behaviors",
+    "prompt_cache": "Provider caching is not controlled; report actual cached-input counters",
+    "timer": "Cold browser startup and coordinator dispatch through final verdict receipt",
+    "memory": "Summed MCP and local decision process footprint. Excludes browser and coordinator client."
+  },
+  "runs": [
+    {
+      "run": "1-reload",
+      "method": "reload",
+      "error": null,
+      "exit_code": 0,
+      "passed": false,
+      "assessment": {
+        "passed": false,
+        "checks": {
+          "started_at_portal": true,
+          "search_submitted": false,
+          "ada_article_observed": true,
+          "article_link_followed": false,
+          "destination_observed": false,
+          "inventor_passage_observed": false,
+          "answer_correct": false,
+          "supporting_urls": false,
+          "no_uncertain_execution": true
+        },
+        "answer": "Charles Babbage. The Analytical engine article states: \u201cThe analytical engine was a proposed digital mechanical general-purpose computer designed by the English mathematician and computer pioneer Charles Babbage.\u201d I reached this article through the analytical engine link in the Ada Lovelace article.",
+        "urls": [
+          "https://www.wikipedia.org/",
+          "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "https://en.wikipedia.org/wiki/Analytical_engine"
+        ],
+        "supporting_passage": null
+      },
+      "verdict": "Verification failed: the independent assessment did not confirm the required route or supporting passage. I stopped for human verification.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1647900608886000,
+      "verdict_received_monotonic_ns": 1647940392798625,
+      "pre_coordinator_startup_ms": 277.924333,
+      "coordinator_dispatch_to_verdict_ms": 39505.988292,
+      "goal_dispatch_to_verdict_ms": 39783.912625,
+      "cleanup_ms": 1379.232083,
+      "runtime": {
+        "peak_worker_bytes": 3447999728,
+        "memory_samples": 383,
+        "worker_stopped_ms": 40466
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 236565,
+          "cached_input_tokens": 188416,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 436,
+          "reasoning_output_tokens": 29
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_044fb856f56f7456016acc05ca8ac48198b8d6bc9c8fd055c3",
+          "turn_id": "01a12cf6-999c-73a2-99ef-b8ad5be464c1",
+          "timestamp": "2026-10-11T21:55:25.106Z",
+          "usage": {
+            "input_tokens": 12964,
+            "cached_input_tokens": 3456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 56,
+            "reasoning_output_tokens": 29,
+            "total_tokens": 13020
+          }
+        },
+        {
+          "response_id": "resp_044fb856f56f7456016acc05cd653081989b342ec593458262",
+          "turn_id": "01a12cf6-999c-73a2-99ef-b8ad5be464c1",
+          "timestamp": "2026-10-11T21:55:26.582Z",
+          "usage": {
+            "input_tokens": 13323,
+            "cached_input_tokens": 12800,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13345
+          }
+        },
+        {
+          "response_id": "resp_044fb856f56f7456016acc05cf398081989f16b95000988d0c",
+          "turn_id": "01a12cf6-999c-73a2-99ef-b8ad5be464c1",
+          "timestamp": "2026-10-11T21:55:28.935Z",
+          "usage": {
+            "input_tokens": 17924,
+            "cached_input_tokens": 3456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 51,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17975
+          }
+        },
+        {
+          "response_id": "resp_044fb856f56f7456016acc05d62dd48198b0757417f13c7c67",
+          "turn_id": "01a12cf6-999c-73a2-99ef-b8ad5be464c1",
+          "timestamp": "2026-10-11T21:55:35.551Z",
+          "usage": {
+            "input_tokens": 18197,
+            "cached_input_tokens": 13184,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 18219
+          }
+        },
+        {
+          "response_id": "resp_044fb856f56f7456016acc05d7e5fc8198877ac22ab2307e06",
+          "turn_id": "01a12cf6-999c-73a2-99ef-b8ad5be464c1",
+          "timestamp": "2026-10-11T21:55:38.020Z",
+          "usage": {
+            "input_tokens": 22386,
+            "cached_input_tokens": 18048,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 57,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 22443
+          }
+        },
+        {
+          "response_id": "resp_044fb856f56f7456016acc05df19a48198b00ffd99bcbbba83",
+          "turn_id": "01a12cf6-999c-73a2-99ef-b8ad5be464c1",
+          "timestamp": "2026-10-11T21:55:44.320Z",
+          "usage": {
+            "input_tokens": 22573,
+            "cached_input_tokens": 22144,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 22595
+          }
+        },
+        {
+          "response_id": "resp_044fb856f56f7456016acc05e107b48198869f5482a0440194",
+          "turn_id": "01a12cf6-999c-73a2-99ef-b8ad5be464c1",
+          "timestamp": "2026-10-11T21:55:47.818Z",
+          "usage": {
+            "input_tokens": 28915,
+            "cached_input_tokens": 22400,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 47,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 28962
+          }
+        },
+        {
+          "response_id": "resp_044fb856f56f7456016acc05e92cf081989ccb19f86fe3b95e",
+          "turn_id": "01a12cf6-999c-73a2-99ef-b8ad5be464c1",
+          "timestamp": "2026-10-11T21:55:54.602Z",
+          "usage": {
+            "input_tokens": 29095,
+            "cached_input_tokens": 28800,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 29117
+          }
+        },
+        {
+          "response_id": "resp_044fb856f56f7456016acc05ead01c81988a1477443ccfedb7",
+          "turn_id": "01a12cf6-999c-73a2-99ef-b8ad5be464c1",
+          "timestamp": "2026-10-11T21:55:57.974Z",
+          "usage": {
+            "input_tokens": 35405,
+            "cached_input_tokens": 28928,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 111,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 35516
+          }
+        },
+        {
+          "response_id": "resp_044fb856f56f7456016acc05ee482481989903344aabb2c7b8",
+          "turn_id": "01a12cf6-999c-73a2-99ef-b8ad5be464c1",
+          "timestamp": "2026-10-11T21:56:00.053Z",
+          "usage": {
+            "input_tokens": 35783,
+            "cached_input_tokens": 35200,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 26,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 35809
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 236565,
+        "cached_input_tokens": 188416,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 436,
+        "reasoning_output_tokens": 29,
+        "total_tokens": 237001
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 12390,
+          "monotonic_ns": 1647914243146250,
+          "pid": 35359,
+          "wrapper_ms": 5065.236958,
+          "timing": {
+            "imports_ms": 912.045,
+            "model_acquisition_ms": 1877.542,
+            "prompt_preparation_ms": 11.008,
+            "generation_ms": 2165,
+            "structured_call_total_ms": 4966.032,
+            "result_handling_ms": 0.437
+          },
+          "usage": {
+            "prompt_tokens": 999,
+            "completion_tokens": 24
+          },
+          "load": {
+            "actual_load": true,
+            "pid": 35359,
+            "call_started_monotonic_ns": 1647909276417083,
+            "model_load_ms": 1876.6214582137764
+          }
+        },
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 21221,
+          "monotonic_ns": 1647923074446083,
+          "pid": 41501,
+          "wrapper_ms": 4694.79175,
+          "timing": {
+            "imports_ms": 942.853,
+            "model_acquisition_ms": 1389.329,
+            "prompt_preparation_ms": 9.293,
+            "generation_ms": 2218,
+            "structured_call_total_ms": 4560.303,
+            "result_handling_ms": 0.828
+          },
+          "usage": {
+            "prompt_tokens": 1042,
+            "completion_tokens": 28
+          },
+          "load": {
+            "actual_load": true,
+            "pid": 41501,
+            "call_started_monotonic_ns": 1647918513455958,
+            "model_load_ms": 1388.493875041604
+          }
+        },
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 30898,
+          "monotonic_ns": 1647932751480708,
+          "pid": 44122,
+          "wrapper_ms": 4547.408042,
+          "timing": {
+            "imports_ms": 903.485,
+            "model_acquisition_ms": 1332.86,
+            "prompt_preparation_ms": 9.447,
+            "generation_ms": 2124,
+            "structured_call_total_ms": 4370.281,
+            "result_handling_ms": 0.489
+          },
+          "usage": {
+            "prompt_tokens": 873,
+            "completion_tokens": 26
+          },
+          "load": {
+            "actual_load": true,
+            "pid": 44122,
+            "call_started_monotonic_ns": 1647928376790333,
+            "model_load_ms": 1331.9614580832422
+          }
+        }
+      ],
+      "tools": [
+        "observe",
+        "delegate",
+        "observe",
+        "delegate",
+        "observe",
+        "delegate",
+        "observe",
+        "assess"
+      ],
+      "private_events_sha256": "32e0790cd30a68870e2863b8fcf543d56e9c37ebb7203dd6f5960f06d4abf754",
+      "subtasks": [
+        {
+          "event": "subtask_started",
+          "elapsed_ms": 7317,
+          "step": 1,
+          "kind": "fill",
+          "target": "Search Wikipedia",
+          "value": "Ada Lovelace",
+          "outcome": "Fill the search field with Ada Lovelace.",
+          "monotonic_ns": 1647909170384041,
+          "browser_target": "49F5B7B12ED0046ECEB42BEEB8740223"
+        },
+        {
+          "event": "subtask_finished",
+          "elapsed_ms": 5178.672375,
+          "step": 1,
+          "result": {
+            "status": "success",
+            "evidence": {
+              "value": "Ada Lovelace",
+              "expanded": null,
+              "selected_text": null,
+              "option_nodes": []
+            },
+            "executed_actions": [
+              {
+                "action": "Search Wikipedia",
+                "kind": "fill",
+                "text": "Ada Lovelace",
+                "execution": "executed",
+                "page_changed": null
+              }
+            ],
+            "model_claims": [
+              {
+                "unmet": "Search field not filled with Ada Lovelace."
+              }
+            ],
+            "unresolved_execution": false,
+            "elapsed_ms": 5161,
+            "first_failure": null
+          },
+          "monotonic_ns": 1647914349056166,
+          "browser_target": "49F5B7B12ED0046ECEB42BEEB8740223"
+        },
+        {
+          "event": "subtask_started",
+          "elapsed_ms": 16518,
+          "step": 2,
+          "kind": "click",
+          "target": "Ada Lovelace English mathematician (1815\u20131852)",
+          "value": "",
+          "outcome": "Open the matching Ada Lovelace article.",
+          "monotonic_ns": 1647918370875833,
+          "browser_target": "49F5B7B12ED0046ECEB42BEEB8740223"
+        },
+        {
+          "event": "subtask_finished",
+          "elapsed_ms": 4922.380708,
+          "step": 2,
+          "result": {
+            "status": "success",
+            "unresolved_execution": false,
+            "evidence": {
+              "before_url": "https://www.wikipedia.org/",
+              "after_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+              "changed": true,
+              "observed_href": "https://en.wikipedia.org/wiki/Ada_Lovelace"
+            }
+          },
+          "monotonic_ns": 1647923293256250,
+          "browser_target": "49F5B7B12ED0046ECEB42BEEB8740223"
+        },
+        {
+          "event": "subtask_started",
+          "elapsed_ms": 26331,
+          "step": 3,
+          "kind": "click",
+          "target": "analytical engine",
+          "value": "",
+          "outcome": "Follow the article link to the analytical engine.",
+          "monotonic_ns": 1647928183968333,
+          "browser_target": "49F5B7B12ED0046ECEB42BEEB8740223"
+        },
+        {
+          "event": "subtask_finished",
+          "elapsed_ms": 4814.409417,
+          "step": 3,
+          "result": {
+            "status": "success",
+            "unresolved_execution": false,
+            "evidence": {
+              "before_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+              "after_url": "https://en.wikipedia.org/wiki/Analytical_engine",
+              "changed": true,
+              "observed_href": "https://en.wikipedia.org/wiki/Analytical_engine"
+            }
+          },
+          "monotonic_ns": 1647932998377500,
+          "browser_target": "49F5B7B12ED0046ECEB42BEEB8740223"
+        }
+      ],
+      "actions": [
+        {
+          "event": "executed",
+          "elapsed_ms": 12465,
+          "step": 1,
+          "action": {
+            "node": 11,
+            "role": "searchbox",
+            "label": "Search Wikipedia",
+            "rect": {
+              "x": 334.8984375,
+              "y": 469.59375,
+              "w": 394.1953125,
+              "h": 44
+            },
+            "empty": "true",
+            "kind": "fill",
+            "value": "",
+            "id": "e11"
+          },
+          "text": "Ada Lovelace"
+        },
+        {
+          "event": "executed",
+          "elapsed_ms": 21253,
+          "action": {
+            "node": 32,
+            "role": "link",
+            "label": "Ada Lovelace English mathematician (1815\u20131852)",
+            "rect": {
+              "x": 335.8984375,
+              "y": 513.59375,
+              "w": 392.1953125,
+              "h": 70
+            },
+            "context": "Ada Lovelace English mathematician (1815\u20131852) Ada Lovelace (microarchitecture) ",
+            "kind": "click",
+            "value": "",
+            "id": "e13"
+          },
+          "href": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "from_url": "https://www.wikipedia.org/",
+          "monotonic_ns": 1647923106010000
+        },
+        {
+          "event": "executed",
+          "elapsed_ms": 30960,
+          "action": {
+            "node": 43,
+            "role": "link",
+            "label": "analytical engine",
+            "rect": {
+              "x": 264,
+              "y": 454.890625,
+              "w": 119.1953125,
+              "h": 18.5
+            },
+            "kind": "click",
+            "value": "",
+            "id": "e44"
+          },
+          "href": "https://en.wikipedia.org/wiki/Analytical_engine",
+          "from_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "monotonic_ns": 1647932813622708
+        }
+      ],
+      "first_failure": null,
+      "model_loads": [
+        {
+          "actual_load": true,
+          "pid": 35359,
+          "call_started_monotonic_ns": 1647909276417083,
+          "model_load_ms": 1876.6214582137764
+        },
+        {
+          "actual_load": true,
+          "pid": 41501,
+          "call_started_monotonic_ns": 1647918513455958,
+          "model_load_ms": 1388.493875041604
+        },
+        {
+          "actual_load": true,
+          "pid": 44122,
+          "call_started_monotonic_ns": 1647928376790333,
+          "model_load_ms": 1331.9614580832422
+        }
+      ],
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "d68f4953f7ef5ff620d2a3d0f5ed4ebec69dbbd49bf21c43a30cbed0e4778027",
+        "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "scripts/workflow_browser.py": "52e82e070f376987ea52febf4fce30faf0d3606d54e8458774b404074b68eb3b",
+        "scripts/workflow_session.py": "e48a5240768efc6b96ecf958ce497ea8b159ebe4053e4f495164261b10b092c8",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/workflow_worker.py": "e2337a05c5823922addf621dceef5daae877b248d11e2b3a44d5af321985179d",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    },
+    {
+      "run": "2-persistent",
+      "method": "persistent",
+      "error": null,
+      "exit_code": 0,
+      "passed": false,
+      "assessment": {
+        "passed": false,
+        "checks": {
+          "started_at_portal": true,
+          "search_submitted": false,
+          "ada_article_observed": true,
+          "article_link_followed": false,
+          "destination_observed": false,
+          "inventor_passage_observed": false,
+          "answer_correct": false,
+          "supporting_urls": false,
+          "no_uncertain_execution": true
+        },
+        "answer": "Charles Babbage. The Analytical engine article states: \u201cThe analytical engine was a proposed digital mechanical general-purpose computer designed by the English mathematician and computer pioneer Charles Babbage.\u201d The observed route was Wikipedia home, the Ada Lovelace search result, then the analytical engine article link.",
+        "urls": [
+          "https://www.wikipedia.org/",
+          "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "https://en.wikipedia.org/wiki/Analytical_engine"
+        ],
+        "supporting_passage": null
+      },
+      "verdict": "Independent assessment failed, so the result is not verified. I stopped for human verification.\n\nThe observed [Analytical Engine article](https://en.wikipedia.org/wiki/Analytical_engine) names **Charles Babbage** as its designer. I reached it from [Ada Lovelace](https://en.wikipedia.org/wiki/Ada_Lovelace).\n\nASD-STE100 guidance was unavailable through the permitted tools.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1647941785386500,
+      "verdict_received_monotonic_ns": 1647981660435041,
+      "pre_coordinator_startup_ms": 338.267916,
+      "coordinator_dispatch_to_verdict_ms": 39536.780625,
+      "goal_dispatch_to_verdict_ms": 39875.048541,
+      "cleanup_ms": 1286.994375,
+      "runtime": {
+        "peak_worker_bytes": 3450522792,
+        "memory_samples": 387,
+        "worker_stopped_ms": 40438
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 236288,
+          "cached_input_tokens": 202368,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 470,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_0161791efdfbf50e016acc05f468f081998b29d4bba75e7eaa",
+          "turn_id": "01a12cf7-3af8-75d2-b8e9-9bed28a31c75",
+          "timestamp": "2026-10-11T21:56:06.884Z",
+          "usage": {
+            "input_tokens": 12960,
+            "cached_input_tokens": 3456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 25,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 12985
+          }
+        },
+        {
+          "response_id": "resp_0161791efdfbf50e016acc05f7aab481999e7cd3029b29043c",
+          "turn_id": "01a12cf7-3af8-75d2-b8e9-9bed28a31c75",
+          "timestamp": "2026-10-11T21:56:09.854Z",
+          "usage": {
+            "input_tokens": 13288,
+            "cached_input_tokens": 12800,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13310
+          }
+        },
+        {
+          "response_id": "resp_0161791efdfbf50e016acc05fac06c81998f75257274de4a08",
+          "turn_id": "01a12cf7-3af8-75d2-b8e9-9bed28a31c75",
+          "timestamp": "2026-10-11T21:56:12.710Z",
+          "usage": {
+            "input_tokens": 17893,
+            "cached_input_tokens": 13056,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 51,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17944
+          }
+        },
+        {
+          "response_id": "resp_0161791efdfbf50e016acc06023900819987647f57f0040a69",
+          "turn_id": "01a12cf7-3af8-75d2-b8e9-9bed28a31c75",
+          "timestamp": "2026-10-11T21:56:20.142Z",
+          "usage": {
+            "input_tokens": 18166,
+            "cached_input_tokens": 17664,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 18188
+          }
+        },
+        {
+          "response_id": "resp_0161791efdfbf50e016acc060497a081998870653c7934e8ba",
+          "turn_id": "01a12cf7-3af8-75d2-b8e9-9bed28a31c75",
+          "timestamp": "2026-10-11T21:56:22.923Z",
+          "usage": {
+            "input_tokens": 22355,
+            "cached_input_tokens": 18048,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 57,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 22412
+          }
+        },
+        {
+          "response_id": "resp_0161791efdfbf50e016acc0609993c81998cd77ed40c383276",
+          "turn_id": "01a12cf7-3af8-75d2-b8e9-9bed28a31c75",
+          "timestamp": "2026-10-11T21:56:27.343Z",
+          "usage": {
+            "input_tokens": 22542,
+            "cached_input_tokens": 22144,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 22564
+          }
+        },
+        {
+          "response_id": "resp_0161791efdfbf50e016acc060ba0c88199ade90070ad9f85e1",
+          "turn_id": "01a12cf7-3af8-75d2-b8e9-9bed28a31c75",
+          "timestamp": "2026-10-11T21:56:29.533Z",
+          "usage": {
+            "input_tokens": 28884,
+            "cached_input_tokens": 22400,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 47,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 28931
+          }
+        },
+        {
+          "response_id": "resp_0161791efdfbf50e016acc060fa74c8199bc6d43926d6cd85a",
+          "turn_id": "01a12cf7-3af8-75d2-b8e9-9bed28a31c75",
+          "timestamp": "2026-10-11T21:56:33.212Z",
+          "usage": {
+            "input_tokens": 29064,
+            "cached_input_tokens": 28672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 29086
+          }
+        },
+        {
+          "response_id": "resp_0161791efdfbf50e016acc06118aa88199938b58e77497b102",
+          "turn_id": "01a12cf7-3af8-75d2-b8e9-9bed28a31c75",
+          "timestamp": "2026-10-11T21:56:36.947Z",
+          "usage": {
+            "input_tokens": 35374,
+            "cached_input_tokens": 28928,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 116,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 35490
+          }
+        },
+        {
+          "response_id": "resp_0161791efdfbf50e016acc0615554081998ed18cb878d9aeff",
+          "turn_id": "01a12cf7-3af8-75d2-b8e9-9bed28a31c75",
+          "timestamp": "2026-10-11T21:56:41.266Z",
+          "usage": {
+            "input_tokens": 35762,
+            "cached_input_tokens": 35200,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 86,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 35848
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 236288,
+        "cached_input_tokens": 202368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 470,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 236758
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 14403,
+          "monotonic_ns": 1647957528300416,
+          "pid": 44203,
+          "wrapper_ms": 4463.0615,
+          "timing": {
+            "imports_ms": 837.668,
+            "model_acquisition_ms": 1374.265,
+            "prompt_preparation_ms": 9.456,
+            "generation_ms": 2126,
+            "structured_call_total_ms": 4348.162,
+            "result_handling_ms": 0.773
+          },
+          "usage": {
+            "prompt_tokens": 999,
+            "completion_tokens": 24
+          },
+          "load": {
+            "actual_load": true,
+            "pid": 44203,
+            "call_started_monotonic_ns": 1647953179492291,
+            "model_load_ms": 1373.471457976848
+          }
+        },
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 22469,
+          "monotonic_ns": 1647965594011916,
+          "pid": 44203,
+          "wrapper_ms": 2385.097666,
+          "timing": {
+            "imports_ms": 0.054,
+            "model_acquisition_ms": 0.009,
+            "prompt_preparation_ms": 4.956,
+            "generation_ms": 2378,
+            "structured_call_total_ms": 2384.081,
+            "result_handling_ms": 1.062
+          },
+          "usage": {
+            "prompt_tokens": 1042,
+            "completion_tokens": 28
+          },
+          "load": {
+            "actual_load": false,
+            "pid": 44203,
+            "call_started_monotonic_ns": 1647963209525791,
+            "model_load_ms": 0
+          }
+        },
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 28580,
+          "monotonic_ns": 1647971705499375,
+          "pid": 44203,
+          "wrapper_ms": 1852.972875,
+          "timing": {
+            "imports_ms": 0.016,
+            "model_acquisition_ms": 0.002,
+            "prompt_preparation_ms": 1.621,
+            "generation_ms": 1849,
+            "structured_call_total_ms": 1852.352,
+            "result_handling_ms": 1.713
+          },
+          "usage": {
+            "prompt_tokens": 874,
+            "completion_tokens": 32
+          },
+          "load": {
+            "actual_load": false,
+            "pid": 44203,
+            "call_started_monotonic_ns": 1647969852900333,
+            "model_load_ms": 0
+          }
+        }
+      ],
+      "tools": [
+        "observe",
+        "delegate",
+        "observe",
+        "delegate",
+        "observe",
+        "delegate",
+        "observe",
+        "assess"
+      ],
+      "private_events_sha256": "069f9fc82cadbb3fc7f893ffe29be69b540b33f1e3bdd8b32142b01b2ae8bfaf",
+      "subtasks": [
+        {
+          "event": "subtask_started",
+          "elapsed_ms": 9933,
+          "step": 1,
+          "kind": "fill",
+          "target": "Search Wikipedia",
+          "value": "Ada Lovelace",
+          "outcome": "Fill the search field with Ada Lovelace.",
+          "monotonic_ns": 1647953058276125,
+          "browser_target": "9FB64F85283ECFEE35856138A82640C8"
+        },
+        {
+          "event": "subtask_finished",
+          "elapsed_ms": 4512.759708,
+          "step": 1,
+          "result": {
+            "status": "success",
+            "evidence": {
+              "value": "Ada Lovelace",
+              "expanded": null,
+              "selected_text": null,
+              "option_nodes": []
+            },
+            "executed_actions": [
+              {
+                "action": "Search Wikipedia",
+                "kind": "fill",
+                "text": "Ada Lovelace",
+                "execution": "executed",
+                "page_changed": null
+              }
+            ],
+            "model_claims": [
+              {
+                "unmet": "Search field not filled with Ada Lovelace."
+              }
+            ],
+            "unresolved_execution": false,
+            "elapsed_ms": 4512,
+            "first_failure": null
+          },
+          "monotonic_ns": 1647957571035708,
+          "browser_target": "9FB64F85283ECFEE35856138A82640C8"
+        },
+        {
+          "event": "subtask_started",
+          "elapsed_ms": 20078,
+          "step": 2,
+          "kind": "click",
+          "target": "Ada Lovelace English mathematician (1815\u20131852)",
+          "value": "",
+          "outcome": "Open the matching Ada Lovelace article.",
+          "monotonic_ns": 1647963202874166,
+          "browser_target": "9FB64F85283ECFEE35856138A82640C8"
+        },
+        {
+          "event": "subtask_finished",
+          "elapsed_ms": 2568.446375,
+          "step": 2,
+          "result": {
+            "status": "success",
+            "unresolved_execution": false,
+            "evidence": {
+              "before_url": "https://www.wikipedia.org/",
+              "after_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+              "changed": true,
+              "observed_href": "https://en.wikipedia.org/wiki/Ada_Lovelace"
+            }
+          },
+          "monotonic_ns": 1647965771320333,
+          "browser_target": "9FB64F85283ECFEE35856138A82640C8"
+        },
+        {
+          "event": "subtask_started",
+          "elapsed_ms": 26711,
+          "step": 3,
+          "kind": "click",
+          "target": "analytical engine",
+          "value": "",
+          "outcome": "Follow the article link to the Analytical Engine.",
+          "monotonic_ns": 1647969836311833,
+          "browser_target": "9FB64F85283ECFEE35856138A82640C8"
+        },
+        {
+          "event": "subtask_finished",
+          "elapsed_ms": 1956.690083,
+          "step": 3,
+          "result": {
+            "status": "success",
+            "unresolved_execution": false,
+            "evidence": {
+              "before_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+              "after_url": "https://en.wikipedia.org/wiki/Analytical_engine",
+              "changed": true,
+              "observed_href": "https://en.wikipedia.org/wiki/Analytical_engine"
+            }
+          },
+          "monotonic_ns": 1647971793001666,
+          "browser_target": "9FB64F85283ECFEE35856138A82640C8"
+        }
+      ],
+      "actions": [
+        {
+          "event": "executed",
+          "elapsed_ms": 14425,
+          "step": 1,
+          "action": {
+            "node": 11,
+            "role": "searchbox",
+            "label": "Search Wikipedia",
+            "rect": {
+              "x": 334.8984375,
+              "y": 469.59375,
+              "w": 394.1953125,
+              "h": 44
+            },
+            "empty": "true",
+            "kind": "fill",
+            "value": "",
+            "id": "e11"
+          },
+          "text": "Ada Lovelace"
+        },
+        {
+          "event": "executed",
+          "elapsed_ms": 22497,
+          "action": {
+            "node": 32,
+            "role": "link",
+            "label": "Ada Lovelace English mathematician (1815\u20131852)",
+            "rect": {
+              "x": 335.8984375,
+              "y": 513.59375,
+              "w": 392.1953125,
+              "h": 70
+            },
+            "context": "Ada Lovelace English mathematician (1815\u20131852) Ada Lovelace (microarchitecture) ",
+            "kind": "click",
+            "value": "",
+            "id": "e13"
+          },
+          "href": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "from_url": "https://www.wikipedia.org/",
+          "monotonic_ns": 1647965622154166
+        },
+        {
+          "event": "executed",
+          "elapsed_ms": 28590,
+          "action": {
+            "node": 43,
+            "role": "link",
+            "label": "analytical engine",
+            "rect": {
+              "x": 264,
+              "y": 454.890625,
+              "w": 119.1953125,
+              "h": 18.5
+            },
+            "kind": "click",
+            "value": "",
+            "id": "e44"
+          },
+          "href": "https://en.wikipedia.org/wiki/Analytical_engine",
+          "from_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "monotonic_ns": 1647971715344333
+        }
+      ],
+      "first_failure": null,
+      "model_loads": [
+        {
+          "actual_load": true,
+          "pid": 44203,
+          "call_started_monotonic_ns": 1647953179492291,
+          "model_load_ms": 1373.471457976848
+        }
+      ],
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "d68f4953f7ef5ff620d2a3d0f5ed4ebec69dbbd49bf21c43a30cbed0e4778027",
+        "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "scripts/workflow_browser.py": "52e82e070f376987ea52febf4fce30faf0d3606d54e8458774b404074b68eb3b",
+        "scripts/workflow_session.py": "e48a5240768efc6b96ecf958ce497ea8b159ebe4053e4f495164261b10b092c8",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/workflow_worker.py": "e2337a05c5823922addf621dceef5daae877b248d11e2b3a44d5af321985179d",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    },
+    {
+      "run": "3-persistent",
+      "method": "persistent",
+      "error": null,
+      "exit_code": 0,
+      "passed": false,
+      "assessment": {
+        "passed": false,
+        "checks": {
+          "started_at_portal": true,
+          "search_submitted": false,
+          "ada_article_observed": true,
+          "article_link_followed": false,
+          "destination_observed": false,
+          "inventor_passage_observed": false,
+          "answer_correct": false,
+          "supporting_urls": false,
+          "no_uncertain_execution": true
+        },
+        "answer": "Charles Babbage. The Analytical engine article states: \u201cThe analytical engine was a proposed digital mechanical general-purpose computer designed by the English mathematician and computer pioneer Charles Babbage.\u201d Followed the analytical engine link from the Ada Lovelace article.",
+        "urls": [
+          "https://www.wikipedia.org/",
+          "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "https://en.wikipedia.org/wiki/Analytical_engine"
+        ],
+        "supporting_passage": null
+      },
+      "verdict": "The observed [Analytical engine article](https://en.wikipedia.org/wiki/Analytical_engine) names **Charles Babbage** as its designer, reached from [Ada Lovelace](https://en.wikipedia.org/wiki/Ada_Lovelace).\n\n**Verification failed:** the independent assessment did not confirm the route or evidence. Stopped for human verification.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1647982959170541,
+      "verdict_received_monotonic_ns": 1648021663233500,
+      "pre_coordinator_startup_ms": 222.510834,
+      "coordinator_dispatch_to_verdict_ms": 38481.552125,
+      "goal_dispatch_to_verdict_ms": 38704.062959,
+      "cleanup_ms": 1222.578166,
+      "runtime": {
+        "peak_worker_bytes": 3456355568,
+        "memory_samples": 377,
+        "worker_stopped_ms": 39315
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 237013,
+          "cached_input_tokens": 208896,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 519,
+          "reasoning_output_tokens": 30
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_02b80e46231021d7016acc061ccb508199aa1aa1f0d67c13e9",
+          "turn_id": "01a12cf7-dad1-7dd0-a220-af4bdefd808a",
+          "timestamp": "2026-10-11T21:56:46.510Z",
+          "usage": {
+            "input_tokens": 12964,
+            "cached_input_tokens": 11264,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 30,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 12994
+          }
+        },
+        {
+          "response_id": "resp_02b80e46231021d7016acc061ebeb481998c9ef61a883163ba",
+          "turn_id": "01a12cf7-dad1-7dd0-a220-af4bdefd808a",
+          "timestamp": "2026-10-11T21:56:48.186Z",
+          "usage": {
+            "input_tokens": 13297,
+            "cached_input_tokens": 11264,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13319
+          }
+        },
+        {
+          "response_id": "resp_02b80e46231021d7016acc0620e59c8199a2d8b6eb9609180b",
+          "turn_id": "01a12cf7-dad1-7dd0-a220-af4bdefd808a",
+          "timestamp": "2026-10-11T21:56:52.084Z",
+          "usage": {
+            "input_tokens": 17896,
+            "cached_input_tokens": 12800,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 93,
+            "reasoning_output_tokens": 11,
+            "total_tokens": 17989
+          }
+        },
+        {
+          "response_id": "resp_02b80e46231021d7016acc06295a1481998941e0c7a867ab55",
+          "turn_id": "01a12cf7-dad1-7dd0-a220-af4bdefd808a",
+          "timestamp": "2026-10-11T21:56:58.661Z",
+          "usage": {
+            "input_tokens": 18211,
+            "cached_input_tokens": 17664,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 18233
+          }
+        },
+        {
+          "response_id": "resp_02b80e46231021d7016acc062afba48199bb224c46a3b381ab",
+          "turn_id": "01a12cf7-dad1-7dd0-a220-af4bdefd808a",
+          "timestamp": "2026-10-11T21:57:00.786Z",
+          "usage": {
+            "input_tokens": 22400,
+            "cached_input_tokens": 18048,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 57,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 22457
+          }
+        },
+        {
+          "response_id": "resp_02b80e46231021d7016acc062f6f10819980a755805465366b",
+          "turn_id": "01a12cf7-dad1-7dd0-a220-af4bdefd808a",
+          "timestamp": "2026-10-11T21:57:06.064Z",
+          "usage": {
+            "input_tokens": 22587,
+            "cached_input_tokens": 22272,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 22609
+          }
+        },
+        {
+          "response_id": "resp_02b80e46231021d7016acc06325f3081999d69deeb40fdaa2d",
+          "turn_id": "01a12cf7-dad1-7dd0-a220-af4bdefd808a",
+          "timestamp": "2026-10-11T21:57:08.021Z",
+          "usage": {
+            "input_tokens": 28929,
+            "cached_input_tokens": 22400,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 47,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 28976
+          }
+        },
+        {
+          "response_id": "resp_02b80e46231021d7016acc063618a081998d0a88f1103e9127",
+          "turn_id": "01a12cf7-dad1-7dd0-a220-af4bdefd808a",
+          "timestamp": "2026-10-11T21:57:12.945Z",
+          "usage": {
+            "input_tokens": 29109,
+            "cached_input_tokens": 28800,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 29131
+          }
+        },
+        {
+          "response_id": "resp_02b80e46231021d7016acc06393ab08199ade5c9e466b887a4",
+          "turn_id": "01a12cf7-dad1-7dd0-a220-af4bdefd808a",
+          "timestamp": "2026-10-11T21:57:16.126Z",
+          "usage": {
+            "input_tokens": 35624,
+            "cached_input_tokens": 28928,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 108,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 35732
+          }
+        },
+        {
+          "response_id": "resp_02b80e46231021d7016acc063c7a688199a51fc6d0787060c4",
+          "turn_id": "01a12cf7-dad1-7dd0-a220-af4bdefd808a",
+          "timestamp": "2026-10-11T21:57:21.326Z",
+          "usage": {
+            "input_tokens": 35996,
+            "cached_input_tokens": 35456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 96,
+            "reasoning_output_tokens": 19,
+            "total_tokens": 36092
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 237013,
+        "cached_input_tokens": 208896,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 519,
+        "reasoning_output_tokens": 30,
+        "total_tokens": 237532
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 13309,
+          "monotonic_ns": 1647997356469791,
+          "pid": 44410,
+          "wrapper_ms": 4893.805375,
+          "timing": {
+            "imports_ms": 877.982,
+            "model_acquisition_ms": 1549.799,
+            "prompt_preparation_ms": 10.222,
+            "generation_ms": 2358,
+            "structured_call_total_ms": 4796.587,
+            "result_handling_ms": 0.584
+          },
+          "usage": {
+            "prompt_tokens": 999,
+            "completion_tokens": 24
+          },
+          "load": {
+            "actual_load": true,
+            "pid": 44410,
+            "call_started_monotonic_ns": 1647992558897208,
+            "model_load_ms": 1548.8543750252575
+          }
+        },
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 19416,
+          "monotonic_ns": 1648003463199291,
+          "pid": 44410,
+          "wrapper_ms": 2304.822542,
+          "timing": {
+            "imports_ms": 0.063,
+            "model_acquisition_ms": 0.015,
+            "prompt_preparation_ms": 2.654,
+            "generation_ms": 2300,
+            "structured_call_total_ms": 2303.226,
+            "result_handling_ms": 0.494
+          },
+          "usage": {
+            "prompt_tokens": 1042,
+            "completion_tokens": 28
+          },
+          "load": {
+            "actual_load": false,
+            "pid": 44410,
+            "call_started_monotonic_ns": 1648001159284166,
+            "model_load_ms": 0
+          }
+        },
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 26177,
+          "monotonic_ns": 1648010224731625,
+          "pid": 44410,
+          "wrapper_ms": 1918.825709,
+          "timing": {
+            "imports_ms": 0.007,
+            "model_acquisition_ms": 0.002,
+            "prompt_preparation_ms": 1.887,
+            "generation_ms": 1914,
+            "structured_call_total_ms": 1918.086,
+            "result_handling_ms": 2.19
+          },
+          "usage": {
+            "prompt_tokens": 874,
+            "completion_tokens": 32
+          },
+          "load": {
+            "actual_load": false,
+            "pid": 44410,
+            "call_started_monotonic_ns": 1648008306423041,
+            "model_load_ms": 0
+          }
+        }
+      ],
+      "tools": [
+        "observe",
+        "delegate",
+        "observe",
+        "delegate",
+        "observe",
+        "delegate",
+        "observe",
+        "assess"
+      ],
+      "private_events_sha256": "e058cb447caf0027e3f6401a939a9b3d98f792face14d3792c72213b21282df9",
+      "subtasks": [
+        {
+          "event": "subtask_started",
+          "elapsed_ms": 8407,
+          "step": 1,
+          "kind": "fill",
+          "target": "Search Wikipedia",
+          "value": "Ada Lovelace",
+          "outcome": "Fill the search field with Ada Lovelace.",
+          "monotonic_ns": 1647992454916458,
+          "browser_target": "B0A72CD66A85EB52CC1FD82CCACB2F48"
+        },
+        {
+          "event": "subtask_finished",
+          "elapsed_ms": 5034.908583,
+          "step": 1,
+          "result": {
+            "status": "success",
+            "evidence": {
+              "value": "Ada Lovelace",
+              "expanded": null,
+              "selected_text": null,
+              "option_nodes": []
+            },
+            "executed_actions": [
+              {
+                "action": "Search Wikipedia",
+                "kind": "fill",
+                "text": "Ada Lovelace",
+                "execution": "executed",
+                "page_changed": null
+              }
+            ],
+            "model_claims": [
+              {
+                "unmet": "Search field not filled with Ada Lovelace."
+              }
+            ],
+            "unresolved_execution": false,
+            "elapsed_ms": 5034,
+            "first_failure": null
+          },
+          "monotonic_ns": 1647997489824750,
+          "browser_target": "B0A72CD66A85EB52CC1FD82CCACB2F48"
+        },
+        {
+          "event": "subtask_started",
+          "elapsed_ms": 17105,
+          "step": 2,
+          "kind": "click",
+          "target": "Ada Lovelace English mathematician (1815\u20131852)",
+          "value": "",
+          "outcome": "Open the matching Ada Lovelace article.",
+          "monotonic_ns": 1648001152840583,
+          "browser_target": "B0A72CD66A85EB52CC1FD82CCACB2F48"
+        },
+        {
+          "event": "subtask_finished",
+          "elapsed_ms": 2490.40725,
+          "step": 2,
+          "result": {
+            "status": "success",
+            "unresolved_execution": false,
+            "evidence": {
+              "before_url": "https://www.wikipedia.org/",
+              "after_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+              "changed": true,
+              "observed_href": "https://en.wikipedia.org/wiki/Ada_Lovelace"
+            }
+          },
+          "monotonic_ns": 1648003643247666,
+          "browser_target": "B0A72CD66A85EB52CC1FD82CCACB2F48"
+        },
+        {
+          "event": "subtask_started",
+          "elapsed_ms": 24239,
+          "step": 3,
+          "kind": "click",
+          "target": "analytical engine",
+          "value": "",
+          "outcome": "Follow the article link to the Analytical Engine.",
+          "monotonic_ns": 1648008286963875,
+          "browser_target": "B0A72CD66A85EB52CC1FD82CCACB2F48"
+        },
+        {
+          "event": "subtask_finished",
+          "elapsed_ms": 2042.793041,
+          "step": 3,
+          "result": {
+            "status": "success",
+            "unresolved_execution": false,
+            "evidence": {
+              "before_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+              "after_url": "https://en.wikipedia.org/wiki/Analytical_engine",
+              "changed": true,
+              "observed_href": "https://en.wikipedia.org/wiki/Analytical_engine"
+            }
+          },
+          "monotonic_ns": 1648010329756833,
+          "browser_target": "B0A72CD66A85EB52CC1FD82CCACB2F48"
+        }
+      ],
+      "actions": [
+        {
+          "event": "executed",
+          "elapsed_ms": 13401,
+          "step": 1,
+          "action": {
+            "node": 11,
+            "role": "searchbox",
+            "label": "Search Wikipedia",
+            "rect": {
+              "x": 334.8984375,
+              "y": 469.59375,
+              "w": 394.1953125,
+              "h": 44
+            },
+            "empty": "true",
+            "kind": "fill",
+            "value": "",
+            "id": "e11"
+          },
+          "text": "Ada Lovelace"
+        },
+        {
+          "event": "executed",
+          "elapsed_ms": 19441,
+          "action": {
+            "node": 32,
+            "role": "link",
+            "label": "Ada Lovelace English mathematician (1815\u20131852)",
+            "rect": {
+              "x": 335.8984375,
+              "y": 513.59375,
+              "w": 392.1953125,
+              "h": 70
+            },
+            "context": "Ada Lovelace English mathematician (1815\u20131852) Ada Lovelace (microarchitecture) ",
+            "kind": "click",
+            "value": "",
+            "id": "e13"
+          },
+          "href": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "from_url": "https://www.wikipedia.org/",
+          "monotonic_ns": 1648003488345166
+        },
+        {
+          "event": "executed",
+          "elapsed_ms": 26183,
+          "action": {
+            "node": 43,
+            "role": "link",
+            "label": "analytical engine",
+            "rect": {
+              "x": 264,
+              "y": 454.890625,
+              "w": 119.1953125,
+              "h": 18.5
+            },
+            "kind": "click",
+            "value": "",
+            "id": "e44"
+          },
+          "href": "https://en.wikipedia.org/wiki/Analytical_engine",
+          "from_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "monotonic_ns": 1648010230871875
+        }
+      ],
+      "first_failure": null,
+      "model_loads": [
+        {
+          "actual_load": true,
+          "pid": 44410,
+          "call_started_monotonic_ns": 1647992558897208,
+          "model_load_ms": 1548.8543750252575
+        }
+      ],
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "d68f4953f7ef5ff620d2a3d0f5ed4ebec69dbbd49bf21c43a30cbed0e4778027",
+        "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "scripts/workflow_browser.py": "52e82e070f376987ea52febf4fce30faf0d3606d54e8458774b404074b68eb3b",
+        "scripts/workflow_session.py": "e48a5240768efc6b96ecf958ce497ea8b159ebe4053e4f495164261b10b092c8",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/workflow_worker.py": "e2337a05c5823922addf621dceef5daae877b248d11e2b3a44d5af321985179d",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    },
+    {
+      "run": "4-reload",
+      "method": "reload",
+      "error": null,
+      "exit_code": 0,
+      "passed": false,
+      "assessment": {
+        "passed": false,
+        "checks": {
+          "started_at_portal": true,
+          "search_submitted": false,
+          "ada_article_observed": true,
+          "article_link_followed": false,
+          "destination_observed": false,
+          "inventor_passage_observed": false,
+          "answer_correct": false,
+          "supporting_urls": false,
+          "no_uncertain_execution": true
+        },
+        "answer": "Charles Babbage. The Analytical engine article states: \u201cThe analytical engine was a proposed digital mechanical general-purpose computer designed by the English mathematician and computer pioneer Charles Babbage.\u201d I reached this article through the analytical engine link in the Ada Lovelace article.",
+        "urls": [
+          "https://www.wikipedia.org/",
+          "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "https://en.wikipedia.org/wiki/Analytical_engine"
+        ],
+        "supporting_passage": null
+      },
+      "verdict": "Independent assessment failed, despite the observed passage naming **Charles Babbage**. Stopped for human verification.\n\nObserved articles:\n- [Ada Lovelace](https://en.wikipedia.org/wiki/Ada_Lovelace)\n- [Analytical engine](https://en.wikipedia.org/wiki/Analytical_engine)\n\nASD-STE100 guidance was unavailable through the permitted tools.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1648022896716083,
+      "verdict_received_monotonic_ns": 1648077200466916,
+      "pre_coordinator_startup_ms": 281.087083,
+      "coordinator_dispatch_to_verdict_ms": 54022.66375,
+      "goal_dispatch_to_verdict_ms": 54303.750833,
+      "cleanup_ms": 1134.622334,
+      "runtime": {
+        "peak_worker_bytes": 3449539776,
+        "memory_samples": 523,
+        "worker_stopped_ms": 54781
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 308518,
+          "cached_input_tokens": 266496,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 535,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_005a88d6b490ea8d016acc0644dfc4819895393e790809c1eb",
+          "turn_id": "01a12cf8-77b4-7fe0-bc8b-d90e1a9c57c3",
+          "timestamp": "2026-10-11T21:57:26.919Z",
+          "usage": {
+            "input_tokens": 12958,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 36,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 12994
+          }
+        },
+        {
+          "response_id": "resp_005a88d6b490ea8d016acc064738dc8198aa107e95270fd1b7",
+          "turn_id": "01a12cf8-77b4-7fe0-bc8b-d90e1a9c57c3",
+          "timestamp": "2026-10-11T21:57:28.280Z",
+          "usage": {
+            "input_tokens": 13297,
+            "cached_input_tokens": 12800,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13319
+          }
+        },
+        {
+          "response_id": "resp_005a88d6b490ea8d016acc0649153c81989f5a9053b128e81b",
+          "turn_id": "01a12cf8-77b4-7fe0-bc8b-d90e1a9c57c3",
+          "timestamp": "2026-10-11T21:57:30.880Z",
+          "usage": {
+            "input_tokens": 17397,
+            "cached_input_tokens": 13056,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 51,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17448
+          }
+        },
+        {
+          "response_id": "resp_005a88d6b490ea8d016acc065046d08198b1ea16e682ca5202",
+          "turn_id": "01a12cf8-77b4-7fe0-bc8b-d90e1a9c57c3",
+          "timestamp": "2026-10-11T21:57:37.679Z",
+          "usage": {
+            "input_tokens": 17671,
+            "cached_input_tokens": 17280,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17693
+          }
+        },
+        {
+          "response_id": "resp_005a88d6b490ea8d016acc0651f67c819896a63bd207d3a8ab",
+          "turn_id": "01a12cf8-77b4-7fe0-bc8b-d90e1a9c57c3",
+          "timestamp": "2026-10-11T21:57:39.696Z",
+          "usage": {
+            "input_tokens": 21860,
+            "cached_input_tokens": 17536,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 57,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 21917
+          }
+        },
+        {
+          "response_id": "resp_005a88d6b490ea8d016acc06589760819895926e23750cff4e",
+          "turn_id": "01a12cf8-77b4-7fe0-bc8b-d90e1a9c57c3",
+          "timestamp": "2026-10-11T21:57:46.229Z",
+          "usage": {
+            "input_tokens": 22047,
+            "cached_input_tokens": 21632,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 22069
+          }
+        },
+        {
+          "response_id": "resp_005a88d6b490ea8d016acc065c21d881988b82cff663694112",
+          "turn_id": "01a12cf8-77b4-7fe0-bc8b-d90e1a9c57c3",
+          "timestamp": "2026-10-11T21:57:49.648Z",
+          "usage": {
+            "input_tokens": 28389,
+            "cached_input_tokens": 21888,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 47,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 28436
+          }
+        },
+        {
+          "response_id": "resp_005a88d6b490ea8d016acc06623df4819890cad22fe8594eeb",
+          "turn_id": "01a12cf8-77b4-7fe0-bc8b-d90e1a9c57c3",
+          "timestamp": "2026-10-11T21:57:57.211Z",
+          "usage": {
+            "input_tokens": 28569,
+            "cached_input_tokens": 28160,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 28591
+          }
+        },
+        {
+          "response_id": "resp_005a88d6b490ea8d016acc06656c088198a2a507aec13d5852",
+          "turn_id": "01a12cf8-77b4-7fe0-bc8b-d90e1a9c57c3",
+          "timestamp": "2026-10-11T21:58:00.413Z",
+          "usage": {
+            "input_tokens": 33184,
+            "cached_input_tokens": 28416,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 45,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 33229
+          }
+        },
+        {
+          "response_id": "resp_005a88d6b490ea8d016acc066cc1548198bb2893d7726684f2",
+          "turn_id": "01a12cf8-77b4-7fe0-bc8b-d90e1a9c57c3",
+          "timestamp": "2026-10-11T21:58:06.240Z",
+          "usage": {
+            "input_tokens": 33350,
+            "cached_input_tokens": 33024,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 33372
+          }
+        },
+        {
+          "response_id": "resp_005a88d6b490ea8d016acc066f996c8198908c5d9beee6bb95",
+          "turn_id": "01a12cf8-77b4-7fe0-bc8b-d90e1a9c57c3",
+          "timestamp": "2026-10-11T21:58:10.438Z",
+          "usage": {
+            "input_tokens": 39709,
+            "cached_input_tokens": 33152,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 111,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 39820
+          }
+        },
+        {
+          "response_id": "resp_005a88d6b490ea8d016acc0672d8c481989c4a72b4519e89cf",
+          "turn_id": "01a12cf8-77b4-7fe0-bc8b-d90e1a9c57c3",
+          "timestamp": "2026-10-11T21:58:16.837Z",
+          "usage": {
+            "input_tokens": 40087,
+            "cached_input_tokens": 39552,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 78,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 40165
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 308518,
+        "cached_input_tokens": 266496,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 535,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 309053
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 12062,
+          "monotonic_ns": 1648036279958500,
+          "pid": 44674,
+          "wrapper_ms": 5025.563916,
+          "timing": {
+            "imports_ms": 970.334,
+            "model_acquisition_ms": 1654.649,
+            "prompt_preparation_ms": 10.169,
+            "generation_ms": 2297,
+            "structured_call_total_ms": 4932.754,
+            "result_handling_ms": 0.602
+          },
+          "usage": {
+            "prompt_tokens": 999,
+            "completion_tokens": 25
+          },
+          "load": {
+            "actual_load": true,
+            "pid": 44674,
+            "call_started_monotonic_ns": 1648031346495041,
+            "model_load_ms": 1653.7935000378639
+          }
+        },
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 20385,
+          "monotonic_ns": 1648044603023958,
+          "pid": 44734,
+          "wrapper_ms": 4508.436167,
+          "timing": {
+            "imports_ms": 931.962,
+            "model_acquisition_ms": 992.82,
+            "prompt_preparation_ms": 9.02,
+            "generation_ms": 2415,
+            "structured_call_total_ms": 4349.412,
+            "result_handling_ms": 0.61
+          },
+          "usage": {
+            "prompt_tokens": 1042,
+            "completion_tokens": 28
+          },
+          "load": {
+            "actual_load": true,
+            "pid": 44734,
+            "call_started_monotonic_ns": 1648040253296916,
+            "model_load_ms": 991.9930419418961
+          }
+        },
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 29957,
+          "monotonic_ns": 1648054175670250,
+          "pid": 44757,
+          "wrapper_ms": 4121.341292,
+          "timing": {
+            "imports_ms": 871.087,
+            "model_acquisition_ms": 942.588,
+            "prompt_preparation_ms": 14.129,
+            "generation_ms": 2148,
+            "structured_call_total_ms": 3976.391,
+            "result_handling_ms": 0.587
+          },
+          "usage": {
+            "prompt_tokens": 874,
+            "completion_tokens": 32
+          },
+          "load": {
+            "actual_load": true,
+            "pid": 44757,
+            "call_started_monotonic_ns": 1648050198723750,
+            "model_load_ms": 941.7202919721603
+          }
+        },
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 40556,
+          "monotonic_ns": 1648064774029333,
+          "pid": 44844,
+          "wrapper_ms": 4068.954709,
+          "timing": {
+            "imports_ms": 801.488,
+            "model_acquisition_ms": 945.21,
+            "prompt_preparation_ms": 9.345,
+            "generation_ms": 2211,
+            "structured_call_total_ms": 3967.568,
+            "result_handling_ms": 0.525
+          },
+          "usage": {
+            "prompt_tokens": 931,
+            "completion_tokens": 27
+          },
+          "load": {
+            "actual_load": true,
+            "pid": 44844,
+            "call_started_monotonic_ns": 1648060805958125,
+            "model_load_ms": 944.7612080257386
+          }
+        }
+      ],
+      "tools": [
+        "observe",
+        "delegate",
+        "observe",
+        "delegate",
+        "observe",
+        "delegate",
+        "observe",
+        "delegate",
+        "observe",
+        "assess"
+      ],
+      "private_events_sha256": "5e464bd2dc3d986953f3cf52fd4f45fa1432997d8fdd1feb3e4f6beb1516674a",
+      "subtasks": [
+        {
+          "event": "subtask_started",
+          "elapsed_ms": 7028,
+          "step": 1,
+          "kind": "fill",
+          "target": "Search Wikipedia",
+          "value": "Ada Lovelace",
+          "outcome": "Fill the search box with Ada Lovelace.",
+          "monotonic_ns": 1648031246455208,
+          "browser_target": "C47B8E94A0D07BF8FED56C78A1D03DE6"
+        },
+        {
+          "event": "subtask_finished",
+          "elapsed_ms": 5178.821583,
+          "step": 1,
+          "result": {
+            "status": "success",
+            "evidence": {
+              "value": "Ada Lovelace",
+              "expanded": null,
+              "selected_text": null,
+              "option_nodes": []
+            },
+            "executed_actions": [
+              {
+                "action": "Search Wikipedia",
+                "kind": "fill",
+                "text": "Ada Lovelace",
+                "execution": "executed",
+                "page_changed": null
+              }
+            ],
+            "model_claims": [
+              {
+                "unmet": "Search box is empty and needs Ada Lovelace."
+              }
+            ],
+            "unresolved_execution": false,
+            "elapsed_ms": 5159,
+            "first_failure": null
+          },
+          "monotonic_ns": 1648036425276125,
+          "browser_target": "C47B8E94A0D07BF8FED56C78A1D03DE6"
+        },
+        {
+          "event": "subtask_started",
+          "elapsed_ms": 15866,
+          "step": 2,
+          "kind": "click",
+          "target": "Ada Lovelace English mathematician (1815\u20131852)",
+          "value": "",
+          "outcome": "Open the matching Ada Lovelace article.",
+          "monotonic_ns": 1648040083800541,
+          "browser_target": "C47B8E94A0D07BF8FED56C78A1D03DE6"
+        },
+        {
+          "event": "subtask_finished",
+          "elapsed_ms": 4684.444,
+          "step": 2,
+          "result": {
+            "status": "success",
+            "unresolved_execution": false,
+            "evidence": {
+              "before_url": "https://www.wikipedia.org/",
+              "after_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+              "changed": true,
+              "observed_href": "https://en.wikipedia.org/wiki/Ada_Lovelace"
+            }
+          },
+          "monotonic_ns": 1648044768244083,
+          "browser_target": "C47B8E94A0D07BF8FED56C78A1D03DE6"
+        },
+        {
+          "event": "subtask_started",
+          "elapsed_ms": 25817,
+          "step": 3,
+          "kind": "click",
+          "target": "analytical engine",
+          "value": "",
+          "outcome": "Follow the article link to the Analytical Engine.",
+          "monotonic_ns": 1648050035135541,
+          "browser_target": "C47B8E94A0D07BF8FED56C78A1D03DE6"
+        },
+        {
+          "event": "subtask_finished",
+          "elapsed_ms": 4328.720125,
+          "step": 3,
+          "result": {
+            "status": "success",
+            "unresolved_execution": false,
+            "evidence": {
+              "before_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+              "after_url": "https://en.wikipedia.org/wiki/Analytical_engine",
+              "changed": true,
+              "observed_href": "https://en.wikipedia.org/wiki/Analytical_engine"
+            }
+          },
+          "monotonic_ns": 1648054363855541,
+          "browser_target": "C47B8E94A0D07BF8FED56C78A1D03DE6"
+        },
+        {
+          "event": "subtask_started",
+          "elapsed_ms": 36476,
+          "step": 4,
+          "kind": "scroll",
+          "target": "Scroll down",
+          "value": "",
+          "outcome": "Scroll down to read the article introduction.",
+          "monotonic_ns": 1648060693710750,
+          "browser_target": "C47B8E94A0D07BF8FED56C78A1D03DE6"
+        },
+        {
+          "event": "subtask_finished",
+          "elapsed_ms": 4153.455541,
+          "step": 4,
+          "result": {
+            "status": "success",
+            "unresolved_execution": false,
+            "evidence": {
+              "before_url": "https://en.wikipedia.org/wiki/Analytical_engine",
+              "after_url": "https://en.wikipedia.org/wiki/Analytical_engine",
+              "changed": true,
+              "observed_href": null
+            }
+          },
+          "monotonic_ns": 1648064847166000,
+          "browser_target": "C47B8E94A0D07BF8FED56C78A1D03DE6"
+        }
+      ],
+      "actions": [
+        {
+          "event": "executed",
+          "elapsed_ms": 12160,
+          "step": 1,
+          "action": {
+            "node": 11,
+            "role": "searchbox",
+            "label": "Search Wikipedia",
+            "rect": {
+              "x": 334.8984375,
+              "y": 469.59375,
+              "w": 394.1953125,
+              "h": 44
+            },
+            "empty": "true",
+            "kind": "fill",
+            "value": "",
+            "id": "e11"
+          },
+          "text": "Ada Lovelace"
+        },
+        {
+          "event": "executed",
+          "elapsed_ms": 20410,
+          "action": {
+            "node": 32,
+            "role": "link",
+            "label": "Ada Lovelace English mathematician (1815\u20131852)",
+            "rect": {
+              "x": 335.8984375,
+              "y": 513.59375,
+              "w": 392.1953125,
+              "h": 70
+            },
+            "context": "Ada Lovelace English mathematician (1815\u20131852) Ada Lovelace (microarchitecture) ",
+            "kind": "click",
+            "value": "",
+            "id": "e13"
+          },
+          "href": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "from_url": "https://www.wikipedia.org/",
+          "monotonic_ns": 1648044628014666
+        },
+        {
+          "event": "executed",
+          "elapsed_ms": 30011,
+          "action": {
+            "node": 43,
+            "role": "link",
+            "label": "analytical engine",
+            "rect": {
+              "x": 264,
+              "y": 454.890625,
+              "w": 119.1953125,
+              "h": 18.5
+            },
+            "kind": "click",
+            "value": "",
+            "id": "e44"
+          },
+          "href": "https://en.wikipedia.org/wiki/Analytical_engine",
+          "from_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "monotonic_ns": 1648054228873958
+        },
+        {
+          "event": "executed",
+          "elapsed_ms": 40568,
+          "action": {
+            "id": "scroll_down",
+            "kind": "scroll",
+            "label": "Scroll down",
+            "delta": 560
+          },
+          "href": null,
+          "from_url": "https://en.wikipedia.org/wiki/Analytical_engine",
+          "monotonic_ns": 1648064786299000
+        }
+      ],
+      "first_failure": null,
+      "model_loads": [
+        {
+          "actual_load": true,
+          "pid": 44674,
+          "call_started_monotonic_ns": 1648031346495041,
+          "model_load_ms": 1653.7935000378639
+        },
+        {
+          "actual_load": true,
+          "pid": 44734,
+          "call_started_monotonic_ns": 1648040253296916,
+          "model_load_ms": 991.9930419418961
+        },
+        {
+          "actual_load": true,
+          "pid": 44757,
+          "call_started_monotonic_ns": 1648050198723750,
+          "model_load_ms": 941.7202919721603
+        },
+        {
+          "actual_load": true,
+          "pid": 44844,
+          "call_started_monotonic_ns": 1648060805958125,
+          "model_load_ms": 944.7612080257386
+        }
+      ],
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "d68f4953f7ef5ff620d2a3d0f5ed4ebec69dbbd49bf21c43a30cbed0e4778027",
+        "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "scripts/workflow_browser.py": "52e82e070f376987ea52febf4fce30faf0d3606d54e8458774b404074b68eb3b",
+        "scripts/workflow_session.py": "e48a5240768efc6b96ecf958ce497ea8b159ebe4053e4f495164261b10b092c8",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/workflow_worker.py": "e2337a05c5823922addf621dceef5daae877b248d11e2b3a44d5af321985179d",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    }
+  ]
+}

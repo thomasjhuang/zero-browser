@@ -1,0 +1,177 @@
+{
+  "source": "results/workflow-reuse.json",
+  "scope": "Retrospective outcome reassessment only. Original results unchanged.",
+  "corrections": [
+    "Use exact observed canonical article path Analytical_engine, not invented capitalization.",
+    "Count entered query followed by an observed autocomplete result as search-and-open, consistent with the frozen goal.",
+    "Accept an answer naming the inventor followed by supporting prose. Require independent ordered route and source passage.",
+    "Tie query fill and following search action to the actual preceding observed portal controls."
+  ],
+  "native_comparison": "Not run. User replaced the pending native pairs with one focused trial.",
+  "runs": [
+    {
+      "run": "1-reload",
+      "original_passed": false,
+      "reassessment": {
+        "passed": true,
+        "checks": {
+          "started_at_portal": true,
+          "query_entered": true,
+          "search_opened": true,
+          "ada_article_observed": true,
+          "article_link_followed": true,
+          "destination_observed": true,
+          "inventor_passage_observed": true,
+          "answer_correct": true,
+          "supporting_urls": true,
+          "no_uncertain_execution": true
+        },
+        "answer": "Charles Babbage. The Analytical engine article states: \u201cThe analytical engine was a proposed digital mechanical general-purpose computer designed by the English mathematician and computer pioneer Charles Babbage.\u201d I reached this article through the analytical engine link in the Ada Lovelace article.",
+        "urls": [
+          "https://www.wikipedia.org/",
+          "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "https://en.wikipedia.org/wiki/Analytical_engine"
+        ],
+        "supporting_passage": "Jump to content\nSearch\nDonate\nCreate account\nLog in\nContents\nhide\n(Top)\nDesign\nConstruction\nInstruction set\nInfluence\nToggle Influence subsection\nPredicted influence\nComputer science\nComparison to other early computers\nIn popular culture\nReferences\nBibliography\nExternal links\nAnalytical engine\nArticle\nTalk\nRead\nEdit\nView history\nAppearance\nhide\nFrom Wikipedia, the free encyclopedia\nPrinting mechanism from Babbage's analytical engine, as displayed at the\nScience Museum, London\n[\n1\n]\nHistory of computing\nHardware\nHardware 1960s to present\nThe\nanalytical engine\nwas a proposed\ndigital\nmechanical\ngeneral-purpose computer\ndesigned by the English mathematician and computer pioneer\nCharles Babbage\n.\n[\n2\n]\n[\n3\n]\nIt was first described in 1837 as the successor to Babbage's\ndifference engine\n, which was a design for a simpler\nmechanical calculator\n.\n[\n4\n]\nThe analytical engine incorporated an\narithmetic logic unit\n(ALU),\ncontrol flow\nin the form of\nconditional branching\nand\nloops\n, and\nintegrated memory\n, making it the first design for a general-purpose computer that could be described in modern terms as\nTuring-complete\n.\n[\n5\n]\n[\n6\n]\nIn other words, the structure of the analytical engine was essentially the same as that which has dominated computer design in the electronic era.\n[\n3\n]\nBabbage was never able to complete construction of any of his machines due to conflicts with his chief engineer and inadequate funding.",
+        "assessment_version": "ordered-observed-route-v4",
+        "observed_destination_url": "https://en.wikipedia.org/wiki/Analytical_engine",
+        "search_route": "observed result or submit control"
+      },
+      "browser_journal_sha256": "bbbc14106eedfb6cdc22cc4ce0f37a320ec039f36d1f048e788bf671d4b02165",
+      "total_ms": 39783.912625,
+      "actual_loads": 3,
+      "local_calls": 3,
+      "coordinator_tokens": {
+        "input_tokens": 236565,
+        "cached_input_tokens": 188416,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 436,
+        "reasoning_output_tokens": 29,
+        "total_tokens": 237001
+      }
+    },
+    {
+      "run": "2-persistent",
+      "original_passed": false,
+      "reassessment": {
+        "passed": true,
+        "checks": {
+          "started_at_portal": true,
+          "query_entered": true,
+          "search_opened": true,
+          "ada_article_observed": true,
+          "article_link_followed": true,
+          "destination_observed": true,
+          "inventor_passage_observed": true,
+          "answer_correct": true,
+          "supporting_urls": true,
+          "no_uncertain_execution": true
+        },
+        "answer": "Charles Babbage. The Analytical engine article states: \u201cThe analytical engine was a proposed digital mechanical general-purpose computer designed by the English mathematician and computer pioneer Charles Babbage.\u201d The observed route was Wikipedia home, the Ada Lovelace search result, then the analytical engine article link.",
+        "urls": [
+          "https://www.wikipedia.org/",
+          "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "https://en.wikipedia.org/wiki/Analytical_engine"
+        ],
+        "supporting_passage": "Jump to content\nSearch\nDonate\nCreate account\nLog in\nContents\nhide\n(Top)\nDesign\nConstruction\nInstruction set\nInfluence\nToggle Influence subsection\nPredicted influence\nComputer science\nComparison to other early computers\nIn popular culture\nReferences\nBibliography\nExternal links\nAnalytical engine\nArticle\nTalk\nRead\nEdit\nView history\nAppearance\nhide\nFrom Wikipedia, the free encyclopedia\nPrinting mechanism from Babbage's analytical engine, as displayed at the\nScience Museum, London\n[\n1\n]\nHistory of computing\nHardware\nHardware 1960s to present\nThe\nanalytical engine\nwas a proposed\ndigital\nmechanical\ngeneral-purpose computer\ndesigned by the English mathematician and computer pioneer\nCharles Babbage\n.\n[\n2\n]\n[\n3\n]\nIt was first described in 1837 as the successor to Babbage's\ndifference engine\n, which was a design for a simpler\nmechanical calculator\n.\n[\n4\n]\nThe analytical engine incorporated an\narithmetic logic unit\n(ALU),\ncontrol flow\nin the form of\nconditional branching\nand\nloops\n, and\nintegrated memory\n, making it the first design for a general-purpose computer that could be described in modern terms as\nTuring-complete\n.\n[\n5\n]\n[\n6\n]\nIn other words, the structure of the analytical engine was essentially the same as that which has dominated computer design in the electronic era.\n[\n3\n]\nBabbage was never able to complete construction of any of his machines due to conflicts with his chief engineer and inadequate funding.",
+        "assessment_version": "ordered-observed-route-v4",
+        "observed_destination_url": "https://en.wikipedia.org/wiki/Analytical_engine",
+        "search_route": "observed result or submit control"
+      },
+      "browser_journal_sha256": "87e5d05306181bbd9e4552555c3effb97544f80f50dc491a6b2af0e8beb5250d",
+      "total_ms": 39875.048541,
+      "actual_loads": 1,
+      "local_calls": 3,
+      "coordinator_tokens": {
+        "input_tokens": 236288,
+        "cached_input_tokens": 202368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 470,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 236758
+      }
+    },
+    {
+      "run": "3-persistent",
+      "original_passed": false,
+      "reassessment": {
+        "passed": true,
+        "checks": {
+          "started_at_portal": true,
+          "query_entered": true,
+          "search_opened": true,
+          "ada_article_observed": true,
+          "article_link_followed": true,
+          "destination_observed": true,
+          "inventor_passage_observed": true,
+          "answer_correct": true,
+          "supporting_urls": true,
+          "no_uncertain_execution": true
+        },
+        "answer": "Charles Babbage. The Analytical engine article states: \u201cThe analytical engine was a proposed digital mechanical general-purpose computer designed by the English mathematician and computer pioneer Charles Babbage.\u201d Followed the analytical engine link from the Ada Lovelace article.",
+        "urls": [
+          "https://www.wikipedia.org/",
+          "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "https://en.wikipedia.org/wiki/Analytical_engine"
+        ],
+        "supporting_passage": "Jump to content\nSearch\nDonate\nCreate account\nLog in\nContents\nhide\n(Top)\nDesign\nConstruction\nInstruction set\nInfluence\nToggle Influence subsection\nPredicted influence\nComputer science\nComparison to other early computers\nIn popular culture\nReferences\nBibliography\nExternal links\nAnalytical engine\nArticle\nTalk\nRead\nEdit\nView history\nAppearance\nhide\nFrom Wikipedia, the free encyclopedia\nPrinting mechanism from Babbage's analytical engine, as displayed at the\nScience Museum, London\n[\n1\n]\nHistory of computing\nHardware\nHardware 1960s to present\nThe\nanalytical engine\nwas a proposed\ndigital\nmechanical\ngeneral-purpose computer\ndesigned by the English mathematician and computer pioneer\nCharles Babbage\n.\n[\n2\n]\n[\n3\n]\nIt was first described in 1837 as the successor to Babbage's\ndifference engine\n, which was a design for a simpler\nmechanical calculator\n.\n[\n4\n]\nThe analytical engine incorporated an\narithmetic logic unit\n(ALU),\ncontrol flow\nin the form of\nconditional branching\nand\nloops\n, and\nintegrated memory\n, making it the first design for a general-purpose computer that could be described in modern terms as\nTuring-complete\n.\n[\n5\n]\n[\n6\n]\nIn other words, the structure of the analytical engine was essentially the same as that which has dominated computer design in the electronic era.\n[\n3\n]\nBabbage was never able to complete construction of any of his machines due to conflicts with his chief engineer and inadequate funding.",
+        "assessment_version": "ordered-observed-route-v4",
+        "observed_destination_url": "https://en.wikipedia.org/wiki/Analytical_engine",
+        "search_route": "observed result or submit control"
+      },
+      "browser_journal_sha256": "8d5beda02471a3f5cd1598ff064ec619258511702673d0edd55ebd9314c337d0",
+      "total_ms": 38704.062959,
+      "actual_loads": 1,
+      "local_calls": 3,
+      "coordinator_tokens": {
+        "input_tokens": 237013,
+        "cached_input_tokens": 208896,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 519,
+        "reasoning_output_tokens": 30,
+        "total_tokens": 237532
+      }
+    },
+    {
+      "run": "4-reload",
+      "original_passed": false,
+      "reassessment": {
+        "passed": true,
+        "checks": {
+          "started_at_portal": true,
+          "query_entered": true,
+          "search_opened": true,
+          "ada_article_observed": true,
+          "article_link_followed": true,
+          "destination_observed": true,
+          "inventor_passage_observed": true,
+          "answer_correct": true,
+          "supporting_urls": true,
+          "no_uncertain_execution": true
+        },
+        "answer": "Charles Babbage. The Analytical engine article states: \u201cThe analytical engine was a proposed digital mechanical general-purpose computer designed by the English mathematician and computer pioneer Charles Babbage.\u201d I reached this article through the analytical engine link in the Ada Lovelace article.",
+        "urls": [
+          "https://www.wikipedia.org/",
+          "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "https://en.wikipedia.org/wiki/Analytical_engine"
+        ],
+        "supporting_passage": "Jump to content\nSearch\nDonate\nCreate account\nLog in\nContents\nhide\n(Top)\nDesign\nConstruction\nInstruction set\nInfluence\nToggle Influence subsection\nPredicted influence\nComputer science\nComparison to other early computers\nIn popular culture\nReferences\nBibliography\nExternal links\nAnalytical engine\nArticle\nTalk\nRead\nEdit\nView history\nAppearance\nhide\nFrom Wikipedia, the free encyclopedia\nPrinting mechanism from Babbage's analytical engine, as displayed at the\nScience Museum, London\n[\n1\n]\nHistory of computing\nHardware\nHardware 1960s to present\nThe\nanalytical engine\nwas a proposed\ndigital\nmechanical\ngeneral-purpose computer\ndesigned by the English mathematician and computer pioneer\nCharles Babbage\n.\n[\n2\n]\n[\n3\n]\nIt was first described in 1837 as the successor to Babbage's\ndifference engine\n, which was a design for a simpler\nmechanical calculator\n.\n[\n4\n]\nThe analytical engine incorporated an\narithmetic logic unit\n(ALU),\ncontrol flow\nin the form of\nconditional branching\nand\nloops\n, and\nintegrated memory\n, making it the first design for a general-purpose computer that could be described in modern terms as\nTuring-complete\n.\n[\n5\n]\n[\n6\n]\nIn other words, the structure of the analytical engine was essentially the same as that which has dominated computer design in the electronic era.\n[\n3\n]\nBabbage was never able to complete construction of any of his machines due to conflicts with his chief engineer and inadequate funding.",
+        "assessment_version": "ordered-observed-route-v4",
+        "observed_destination_url": "https://en.wikipedia.org/wiki/Analytical_engine",
+        "search_route": "observed result or submit control"
+      },
+      "browser_journal_sha256": "196dd3897b4fd97680a780f3246fa9888a6d327ea2ba902b506dc44bfc437684",
+      "total_ms": 54303.750833,
+      "actual_loads": 4,
+      "local_calls": 4,
+      "coordinator_tokens": {
+        "input_tokens": 308518,
+        "cached_input_tokens": 266496,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 535,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 309053
+      }
+    }
+  ]
+}
