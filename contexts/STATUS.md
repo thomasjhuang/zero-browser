@@ -5,7 +5,7 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: IDLE, Codex task 16.** Series 3 finished all ten attempts: five direct and five delegated passes. Pair 4 timing is flagged for background indexing; primary timing analysis uses the other four pairs. Prior failed/incomplete series remain preserved. No supplemental trials are authorized.
+> **Current run state: IDLE, Codex task 16.** The authorized supplemental pair passed both outcomes. All 36 runtime hashes match the frozen original series. No benchmark or model run remains active. The original ten attempts remain unchanged. Evidence: `results/paired-browser-supplemental.json` and `results/paired-browser-comparison.json`. Required lint and all 135 tests passed. No further measurements are planned.
 > The coordinator released the hold after publishing `5799c81`. Task 16 owns the next run.
 > The next owner is Codex, **Improve zero-browser benchmarking**. Claude must not start browser runs, replay, cache probes, or model loads.
 >
@@ -35,7 +35,7 @@ The final cancellation pilot stopped during inference. The user reported normal 
 
 ## Open follow-up
 
-- **16, Improve zero-browser benchmarking:** bounded-worker proof delivered: three identical suites passed 27/27 requested outcomes and 6/6 safe stops. One live Wikipedia field task passed. Full local flight completion remains unresolved; no live flight run started. The shared-interface field comparison passed 10/10 outcomes; four pairs have no known indexing overlap. Native desktop CUA speed remains unproven. Next: a deterministic-helper baseline and a useful multi-step task.
+- **16, Improve zero-browser benchmarking:** bounded-worker proof delivered: three identical suites passed 27/27 requested outcomes and 6/6 safe stops. One live Wikipedia field task passed. Full local flight completion remains unresolved; no live flight run started. The shared-interface field comparison passed all ten original outcomes and both supplemental outcomes. The five-pair comparison set excludes the original pair with indexing overlap. Its median delegated time reduction is 1.90 seconds. Native desktop CUA speed remains unproven. Next: a deterministic-helper baseline and a useful multi-step task.
 
 ## Completed context work
 

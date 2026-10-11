@@ -1,0 +1,472 @@
+{
+  "goal": "On the starting Wikipedia page, enter Ada Lovelace in Search Wikipedia. Stop before submission.",
+  "order": [
+    "delegated",
+    "direct"
+  ],
+  "model": "gpt-6-astra",
+  "reasoning_effort": "high",
+  "instructions_sha256": "7c2c3df44925623a8c9c9f226593b5c5934ca0bde322f8a1bf20da501f1e98bc",
+  "source_sha256": {
+    "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+    "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+    "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+    "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+    "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+    "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+    "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+    "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+    "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+    "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+    "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+    "scripts/paired_browser_benchmark.py": "c1f3a020c89a633729642deb5451c9c5e61f8aaa32dcc6f7a6d90a143e58876a",
+    "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+    "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+    "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+    "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+    "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+    "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+    "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+    "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+    "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+    "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+    "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+    "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+    "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+    "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+    "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+    "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+    "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+    "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+    "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+    "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+    "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+    "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+    "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+    "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+  },
+  "revision": "f92b914594f375c7616dbd0dc3e4b73e2deb4cf8",
+  "scope": "Direct Codex versus local delegation over a shared observed-action MCP interface. Not the desktop native CUA tool stack. One real-site field task.",
+  "conditions": {
+    "browser": "fresh isolated Chrome, 1120x780, visible",
+    "coordinator": "fresh session, identical tools and instructions; mode differs",
+    "local_model": "fresh process per trial; no cache or weight download",
+    "tool_documentation": "Same schemas in both arms disclose both path behaviors",
+    "prompt_cache": "Provider caching is not controlled; report actual cached-input counters",
+    "timer": "Cold browser startup and coordinator dispatch through final verdict receipt",
+    "memory": "Sampled MCP browser/model process; excludes Chrome and coordinator client"
+  },
+  "runs": [
+    {
+      "run": "1-delegated",
+      "method": "delegated",
+      "error": null,
+      "exit_code": 0,
+      "passed": true,
+      "assessment": {
+        "passed": true,
+        "checks": {
+          "unique_field": true,
+          "exact_value": true,
+          "url_unchanged": true,
+          "execution_resolved": true
+        },
+        "observed": {
+          "value": "Ada Lovelace",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "url": "https://www.wikipedia.org/"
+      },
+      "verdict": "Verified: Search Wikipedia contains \u201cAda Lovelace\u201d. The URL is unchanged. Nothing was submitted.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1647365069831875,
+      "verdict_received_monotonic_ns": 1647382030074208,
+      "pre_coordinator_startup_ms": 275.8225,
+      "coordinator_dispatch_to_verdict_ms": 16684.419833,
+      "goal_dispatch_to_verdict_ms": 16960.242333,
+      "cleanup_ms": 1208.035292,
+      "runtime": {
+        "peak_worker_bytes": 3411168016,
+        "memory_samples": 168,
+        "worker_stopped_ms": 17507
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 78628,
+          "cached_input_tokens": 63744,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 133,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_0a8e46d155635414016acc03b306848199a641ef43296cd67d",
+          "turn_id": "01a12cee-6e0f-7cb2-a0c8-8de13a498a9e",
+          "timestamp": "2026-10-11T21:46:29.683Z",
+          "usage": {
+            "input_tokens": 12890,
+            "cached_input_tokens": 3456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 30,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 12920
+          }
+        },
+        {
+          "response_id": "resp_0a8e46d155635414016acc03b5ff64819981ed4a5596b6520e",
+          "turn_id": "01a12cee-6e0f-7cb2-a0c8-8de13a498a9e",
+          "timestamp": "2026-10-11T21:46:31.167Z",
+          "usage": {
+            "input_tokens": 13306,
+            "cached_input_tokens": 12672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13328
+          }
+        },
+        {
+          "response_id": "resp_0a8e46d155635414016acc03b7d8b88199971418e4de8169b1",
+          "turn_id": "01a12cee-6e0f-7cb2-a0c8-8de13a498a9e",
+          "timestamp": "2026-10-11T21:46:33.927Z",
+          "usage": {
+            "input_tokens": 17285,
+            "cached_input_tokens": 13184,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 34,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17319
+          }
+        },
+        {
+          "response_id": "resp_0a8e46d155635414016acc03bea2548199a1b99186d95032bc",
+          "turn_id": "01a12cee-6e0f-7cb2-a0c8-8de13a498a9e",
+          "timestamp": "2026-10-11T21:46:39.854Z",
+          "usage": {
+            "input_tokens": 17486,
+            "cached_input_tokens": 17152,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17509
+          }
+        },
+        {
+          "response_id": "resp_0a8e46d155635414016acc03c037a48199b6b6dd80db31a4a4",
+          "turn_id": "01a12cee-6e0f-7cb2-a0c8-8de13a498a9e",
+          "timestamp": "2026-10-11T21:46:41.672Z",
+          "usage": {
+            "input_tokens": 17661,
+            "cached_input_tokens": 17280,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 24,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17685
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 78628,
+        "cached_input_tokens": 63744,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 133,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 78761
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 12272,
+          "monotonic_ns": 1647378624623500,
+          "wrapper_ms": 4295.831917,
+          "timing": {
+            "imports_ms": 724.066,
+            "model_acquisition_ms": 1405.697,
+            "prompt_preparation_ms": 9.621,
+            "generation_ms": 2156,
+            "structured_call_total_ms": 4295.717,
+            "result_handling_ms": 0.333
+          },
+          "usage": {
+            "prompt_tokens": 1008,
+            "completion_tokens": 26
+          }
+        }
+      ],
+      "tools": [
+        "observe",
+        "delegate",
+        "assess"
+      ],
+      "private_events_sha256": "ad4966c800891032a3000ee21f0f1811957c0b206ee38bce09a4809611495cfc",
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "c1f3a020c89a633729642deb5451c9c5e61f8aaa32dcc6f7a6d90a143e58876a",
+        "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    },
+    {
+      "run": "2-direct",
+      "method": "direct",
+      "error": null,
+      "exit_code": 0,
+      "passed": true,
+      "assessment": {
+        "passed": true,
+        "checks": {
+          "unique_field": true,
+          "exact_value": true,
+          "url_unchanged": true,
+          "execution_resolved": true
+        },
+        "observed": {
+          "value": "Ada Lovelace",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "url": "https://www.wikipedia.org/"
+      },
+      "verdict": "Verified: \u201cAda Lovelace\u201d is in Search Wikipedia. The URL is unchanged. Nothing was submitted.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1647383250614833,
+      "verdict_received_monotonic_ns": 1647401819538333,
+      "pre_coordinator_startup_ms": 280.344292,
+      "coordinator_dispatch_to_verdict_ms": 18288.579208,
+      "goal_dispatch_to_verdict_ms": 18568.9235,
+      "cleanup_ms": 1423.872333,
+      "runtime": {
+        "peak_worker_bytes": 63865360,
+        "memory_samples": 186,
+        "worker_stopped_ms": 19323
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 120002,
+          "cached_input_tokens": 102272,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 189,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_095964abdc2c2327016acc03c54d7481989023add6bc05d4c9",
+          "turn_id": "01a12cee-b4ae-7732-ba36-0f882ba4e2d5",
+          "timestamp": "2026-10-11T21:46:47.540Z",
+          "usage": {
+            "input_tokens": 12888,
+            "cached_input_tokens": 3456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 26,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 12914
+          }
+        },
+        {
+          "response_id": "resp_095964abdc2c2327016acc03c7ef448198b0e7d5bafab23faf",
+          "turn_id": "01a12cee-b4ae-7732-ba36-0f882ba4e2d5",
+          "timestamp": "2026-10-11T21:46:49.109Z",
+          "usage": {
+            "input_tokens": 13300,
+            "cached_input_tokens": 12672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13322
+          }
+        },
+        {
+          "response_id": "resp_095964abdc2c2327016acc03c9d2948198991c740b0e0a12eb",
+          "turn_id": "01a12cee-b4ae-7732-ba36-0f882ba4e2d5",
+          "timestamp": "2026-10-11T21:46:51.560Z",
+          "usage": {
+            "input_tokens": 16811,
+            "cached_input_tokens": 13184,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 35,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 16846
+          }
+        },
+        {
+          "response_id": "resp_095964abdc2c2327016acc03cc03ec8198bccde2b66a6acf8c",
+          "turn_id": "01a12cee-b4ae-7732-ba36-0f882ba4e2d5",
+          "timestamp": "2026-10-11T21:46:53.232Z",
+          "usage": {
+            "input_tokens": 16923,
+            "cached_input_tokens": 16640,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 16945
+          }
+        },
+        {
+          "response_id": "resp_095964abdc2c2327016acc03cd91b081989e7b8c7d41ab518e",
+          "turn_id": "01a12cee-b4ae-7732-ba36-0f882ba4e2d5",
+          "timestamp": "2026-10-11T21:46:55.101Z",
+          "usage": {
+            "input_tokens": 19901,
+            "cached_input_tokens": 16768,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 35,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 19936
+          }
+        },
+        {
+          "response_id": "resp_095964abdc2c2327016acc03cf73a88198a34a2637685cffb0",
+          "turn_id": "01a12cee-b4ae-7732-ba36-0f882ba4e2d5",
+          "timestamp": "2026-10-11T21:46:56.836Z",
+          "usage": {
+            "input_tokens": 20002,
+            "cached_input_tokens": 19712,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 20025
+          }
+        },
+        {
+          "response_id": "resp_095964abdc2c2327016acc03d107008198a5dacabfd9d5b91e",
+          "turn_id": "01a12cee-b4ae-7732-ba36-0f882ba4e2d5",
+          "timestamp": "2026-10-11T21:47:01.448Z",
+          "usage": {
+            "input_tokens": 20177,
+            "cached_input_tokens": 19840,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 26,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 20203
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 120002,
+        "cached_input_tokens": 102272,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 189,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 120191
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [],
+      "tools": [
+        "observe",
+        "act",
+        "observe",
+        "act",
+        "assess"
+      ],
+      "private_events_sha256": "5ef0e39f58792f73309db4a19bb2bd1c17ee7be4ed62a8d2d4a669f47716bd3b",
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "c1f3a020c89a633729642deb5451c9c5e61f8aaa32dcc6f7a6d90a143e58876a",
+        "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    }
+  ]
+}

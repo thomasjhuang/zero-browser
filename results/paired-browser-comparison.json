@@ -339,16 +339,17 @@
     1,
     2,
     3,
-    5
+    5,
+    6
   ],
-  "median_paired_total_ms": -2061.296563500001,
+  "median_paired_total_ms": -1904.5377510000017,
   "paired_total_ms_range": [
     -2776.3422500000015,
     -404.1444999999985
   ],
-  "median_paired_coordinator_ms": -2032.9421460000003,
-  "median_paired_coordinator_total_tokens": -42637.5,
-  "median_paired_uncached_input_tokens": -4951.0,
+  "median_paired_coordinator_ms": -1905.9213340000006,
+  "median_paired_coordinator_total_tokens": -42212,
+  "median_paired_uncached_input_tokens": -3202,
   "all_five_pairs_median_total_ms": -1904.5377510000017,
   "all_five_pairs_median_total_tokens": -43063,
   "accounting": "Usage is summed once per response_id and reconciles with turn totals. Cached input is included in input. Reasoning output is included in output. Local counts remain separate; local response counts are retokenized output text, not billing.",
@@ -358,7 +359,8 @@
     "All direct trials recovered from one pre-input page change; advantage depends on this executor and page behavior",
     "Fresh processes and profiles; OS file caches, provider prompt caching, network conditions, and live-page content are not controlled",
     "Pair 4 has known background index interference; all original results retained",
-    "No deterministic-helper baseline, billing evidence, general reliability, or multi-step savings claim"
+    "No deterministic-helper baseline, billing evidence, general reliability, or multi-step savings claim",
+    "The supplemental pair ran later in delegated/direct order after explicit approval. Original pair 4 remains unchanged and excluded from the sensitivity set."
   ],
   "previous_series": [
     {
@@ -434,6 +436,28 @@
         "local_prompt_tokens": 3989,
         "local_response_tokens": 104
       }
+    },
+    "five_pair_sensitivity_set": {
+      "direct": {
+        "input_tokens": 604222,
+        "cached_input_tokens": 491520,
+        "uncached_input_tokens": 112702,
+        "output_tokens": 996,
+        "reasoning_output_tokens": 34,
+        "total_tokens": 605218,
+        "local_prompt_tokens": 0,
+        "local_response_tokens": 0
+      },
+      "delegated": {
+        "input_tokens": 395937,
+        "cached_input_tokens": 317184,
+        "uncached_input_tokens": 78753,
+        "output_tokens": 707,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 396644,
+        "local_prompt_tokens": 4997,
+        "local_response_tokens": 130
+      }
     }
   },
   "independent_audit": {
@@ -441,5 +465,98 @@
     "outcomes": "PASS: all initial fields empty, same starting URL, exact final text and unchanged URL; runs sequential",
     "source_integrity": "PASS: all 36 measured source hashes unchanged",
     "limits": "Pair 4 timing excluded. Shared MCP tools, stale-rejection recovery, uncontrolled caching and network preclude native/general speed claims."
+  },
+  "original_four_pair_summary": {
+    "primary_timing_pairs": [
+      1,
+      2,
+      3,
+      5
+    ],
+    "median_paired_total_ms": -2061.296563500001,
+    "paired_total_ms_range": [
+      -2776.3422500000015,
+      -404.1444999999985
+    ],
+    "median_paired_coordinator_ms": -2032.9421460000003,
+    "median_paired_coordinator_total_tokens": -42637.5,
+    "median_paired_uncached_input_tokens": -4951.0
+  },
+  "supplemental_source": "results/paired-browser-supplemental.json",
+  "supplemental_runs": [
+    {
+      "run": "supplemental-1-delegated",
+      "method": "delegated",
+      "passed": true,
+      "total_ms": 16960.242333,
+      "coordinator_ms": 16684.419833,
+      "startup_ms": 275.8225,
+      "cleanup_ms": 1208.035292,
+      "input_tokens": 78628,
+      "cached_input_tokens": 63744,
+      "output_tokens": 133,
+      "reasoning_output_tokens": 0,
+      "total_tokens": 78761,
+      "uncached_input_tokens": 14884,
+      "response_count": 5,
+      "local_calls": 1,
+      "local_prompt_tokens": 1008,
+      "local_response_tokens": 26,
+      "peak_worker_bytes": 3411168016,
+      "source_unchanged": true,
+      "usage_reconciles": true,
+      "error": null,
+      "pre_input_rejections": 0,
+      "executed_actions": 1,
+      "observations": 4,
+      "first_failure": null
+    },
+    {
+      "run": "supplemental-2-direct",
+      "method": "direct",
+      "passed": true,
+      "total_ms": 18568.9235,
+      "coordinator_ms": 18288.579208,
+      "startup_ms": 280.344292,
+      "cleanup_ms": 1423.872333,
+      "input_tokens": 120002,
+      "cached_input_tokens": 102272,
+      "output_tokens": 189,
+      "reasoning_output_tokens": 0,
+      "total_tokens": 120191,
+      "uncached_input_tokens": 17730,
+      "response_count": 7,
+      "local_calls": 0,
+      "local_prompt_tokens": 0,
+      "local_response_tokens": 0,
+      "peak_worker_bytes": 63865360,
+      "source_unchanged": true,
+      "usage_reconciles": true,
+      "error": null,
+      "pre_input_rejections": 1,
+      "executed_actions": 1,
+      "observations": 3,
+      "first_failure": null
+    }
+  ],
+  "supplemental_pair": {
+    "pair": 6,
+    "direct_run": "supplemental-2-direct",
+    "delegated_run": "supplemental-1-delegated",
+    "comparable_successes": true,
+    "timing_comparable": true,
+    "delegated_minus_direct_ms": -1608.6811670000025,
+    "delegated_minus_direct_coordinator_ms": -1604.1593749999993,
+    "delegated_minus_direct_total_tokens": -41430,
+    "delegated_minus_direct_uncached_input_tokens": -2846
+  },
+  "supplemental_authorization": "The user explicitly approved one extra sequential pair after the original series and its timing interference were disclosed.",
+  "primary_analysis_scope": "Sensitivity set: original pairs 1, 2, 3, 5 plus one later authorized supplemental pair. This is not one uninterrupted randomized series.",
+  "sensitivity_coordinator_total_reduction_percent": 34.46262338529257,
+  "all_completed_trials_including_supplemental": 12,
+  "all_passed_trials_including_supplemental": 12,
+  "supplemental_independent_audit": {
+    "outcomes_and_timing": "PASS: both independent field and URL outcomes, sequential timing, and unchanged 36 runtime hashes. Shared-interface and general-savings limits remain.",
+    "accounting": "PASS: 12 response records match two complete private sessions and cumulative totals. All 72 response IDs across original and supplemental series are unique. Instruction hash and all 36 runtime hashes match the frozen source."
   }
 }
