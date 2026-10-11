@@ -3,7 +3,7 @@
 import json
 import time
 
-from .local_model import PREFILL_CHUNK_TOKENS, check_prompt_size, get_model, score_decision
+from .local_model import PREFILL_CHUNK_TOKENS, begin_decision_group, check_prompt_size, get_model, score_decision
 from .model import action_space
 from .questions import NEXT_ACTION, TARGET, TEXT_VALUE
 
@@ -30,6 +30,7 @@ def _select(goal, observation, candidates, records):
 
 def local_choose(state, goal, history):
     started = time.perf_counter()
+    begin_decision_group()
     elements, targets, controls = action_space(state["actions"])
     labels = {
         "CLICK": "Click an observed element, button, suggestion, or calendar day.",

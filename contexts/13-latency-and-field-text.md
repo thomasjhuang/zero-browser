@@ -56,3 +56,29 @@ on the same goal if 12 has not landed):
 - Don't add site-specific rules. "Type what a person would type" is the whole fix.
 - Don't batch across decisions or change the agent loop.
 - Don't run your benchmark while Astra is running one. Coordinate in STATUS.md with a one-line note.
+
+## Step 0 landed 13:20 PT (Claude): replay harness and small-model test
+
+- `ZB_RECORD_PATH=/path.jsonl` makes `score_decision` append every scored menu (goal, observation,
+  candidates, pick, scores, tokens, latency). `local_choose` tags menus with a decision group id so replay
+  can share a KV prefix per decision. No behavior change when the env var is unset.
+- `scripts/replay.py --model <id> --records a.jsonl --cases b.json --variant plain|prefix --repeats N`.
+  One model per process. Sets the same 6GB MLX memory limit and 256MB cache limit as `local_model`.
+  Reports median/p90 latency, per-decision latency, agreement with the recorded pick, accuracy vs expected.
+- Prefill scaling on M4 Pro 24GB, 4B 4-bit: 1.6ms per token, ~670 tok/s, linear 250 to 2000 tokens.
+  `mx.compile` gave nothing. Last-token-only head saved 7 to 9% (Codex's bounded_prefill already does this).
+  A 60-token menu on a cached 1000-token prefix: 117ms. That is the prefix-cache win, ~13x per extra pass.
+- Smaller models on the 12 synthetic cases (quality 9 + smoke 3), `results/replay/quality-*.json`:
+
+  | Model | Median per menu | Accuracy | Failure mode |
+  |---|---|---|---|
+  | Qwen3-4B-Instruct-2507-4bit | 283ms | 11/12 | known filter miss |
+  | Qwen3-1.7B-4bit | 113ms | 5/12 | picks DONE (label D) on half the cases |
+  | Qwen3-0.6B-4bit | 41ms | 5/12 | picks A on most cases, pure position bias |
+
+  Verdict. Stay on 4B. The small checkpoints are not drop-in replacements for menu scoring. Latency comes
+  from prefix cache and prompt trimming, not from a smaller model or a custom kernel (prefill is already at
+  ~60% of the GPU's fp16 peak).
+- Not yet done: a live SFO to BOS recording with `ZB_RECORD_PATH` set, then `--variant prefix` on it.
+  Blocked at 13:20 by machine memory. Swap was 9.3 of 10GB with Codex's Chrome and MCP work running.
+  Run it when the machine has one job on it.

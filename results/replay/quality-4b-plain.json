@@ -1,0 +1,245 @@
+{
+  "summary": {
+    "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+    "variant": "plain",
+    "menus": 12,
+    "decision_groups": 12,
+    "model_load_ms": 1372.473374940455,
+    "repeats": 2,
+    "latency_ms_median": 283.02390599856153,
+    "latency_ms_p90": 284.1818960150704,
+    "latency_ms_total": 3316.8592487927526,
+    "decision_ms_median": 283.02390599856153,
+    "prompt_tokens_median": 169.0,
+    "agreement_with_recorded": null,
+    "accuracy_vs_expected": [
+      11,
+      12
+    ],
+    "peak_mlx_bytes": 2716319000,
+    "hardware": "Apple M4 Pro",
+    "notes": [
+      "Latency excludes tokenization. The prefix variant counts the shared prefill once per decision group.",
+      "Agreement compares against the label recorded during the original run, which may itself have been wrong.",
+      "Synthetic cases do not establish browser-task reliability."
+    ]
+  },
+  "results": [
+    {
+      "source": "decision_quality_cases.json",
+      "group": "case:completed_filter",
+      "prompt_tokens": 164,
+      "suffix_tokens": 0,
+      "latency_ms": 282.030145986937,
+      "selected_label": "D",
+      "selected_action": "done",
+      "agrees_with_recorded": null,
+      "correct": true,
+      "scores": {
+        "toggle_stock": 1.0815932351138091e-11,
+        "toggle_sale": 1.1399914215740048e-12,
+        "sort": 2.1297835457040337e-12,
+        "done": 1.0
+      },
+      "stable_across_repeats": true
+    },
+    {
+      "source": "decision_quality_cases.json",
+      "group": "case:wrong_filled_query",
+      "prompt_tokens": 160,
+      "suffix_tokens": 0,
+      "latency_ms": 241.9087499147281,
+      "selected_label": "A",
+      "selected_action": "fill_query",
+      "agrees_with_recorded": null,
+      "correct": true,
+      "scores": {
+        "fill_query": 0.9999998807907104,
+        "fill_author": 2.1724404219991555e-10,
+        "search": 7.734426787919801e-08,
+        "done": 6.691586729168364e-10
+      },
+      "stable_across_repeats": true
+    },
+    {
+      "source": "decision_quality_cases.json",
+      "group": "case:filled_form_search",
+      "prompt_tokens": 163,
+      "suffix_tokens": 0,
+      "latency_ms": 280.8737080777064,
+      "selected_label": "C",
+      "selected_action": "search",
+      "agrees_with_recorded": null,
+      "correct": true,
+      "scores": {
+        "fill_destination": 1.18611280797154e-08,
+        "fill_guests": 9.056071170743252e-11,
+        "search": 1.0,
+        "done": 2.061153470123145e-09
+      },
+      "stable_across_repeats": true
+    },
+    {
+      "source": "decision_quality_cases.json",
+      "group": "case:official_matching_result",
+      "prompt_tokens": 189,
+      "suffix_tokens": 0,
+      "latency_ms": 285.9484578948468,
+      "selected_label": "C",
+      "selected_action": "official_macos",
+      "agrees_with_recorded": null,
+      "correct": true,
+      "scores": {
+        "windows": 4.193792394521084e-13,
+        "third_party": 4.2777895808976396e-11,
+        "official_macos": 1.0,
+        "done": 4.5990586339250683e-10
+      },
+      "stable_across_repeats": true
+    },
+    {
+      "source": "decision_quality_cases.json",
+      "group": "case:loading_wait",
+      "prompt_tokens": 166,
+      "suffix_tokens": 0,
+      "latency_ms": 282.46972942724824,
+      "selected_label": "C",
+      "selected_action": "wait",
+      "agrees_with_recorded": null,
+      "correct": true,
+      "scores": {
+        "cancel": 5.384943792957619e-13,
+        "clear": 1.1399914215740048e-12,
+        "wait": 1.0,
+        "done": 4.847367646165779e-11
+      },
+      "stable_across_repeats": true
+    },
+    {
+      "source": "decision_quality_cases.json",
+      "group": "case:unsupported_upload",
+      "prompt_tokens": 173,
+      "suffix_tokens": 0,
+      "latency_ms": 283.1856874981895,
+      "selected_label": "C",
+      "selected_action": "blocked",
+      "agrees_with_recorded": null,
+      "correct": true,
+      "scores": {
+        "help": 2.1297835457040337e-12,
+        "about": 1.3887952420021943e-11,
+        "blocked": 1.0,
+        "done": 8.592169198351485e-10
+      },
+      "stable_across_repeats": true
+    },
+    {
+      "source": "decision_quality_cases.json",
+      "group": "case:native_select",
+      "prompt_tokens": 181,
+      "suffix_tokens": 0,
+      "latency_ms": 284.1818960150704,
+      "selected_label": "A",
+      "selected_action": "economy",
+      "agrees_with_recorded": null,
+      "correct": true,
+      "scores": {
+        "economy": 1.0,
+        "premium": 2.789469488728713e-10,
+        "blocked": 5.905308464448922e-10,
+        "done": 6.224152443445874e-11
+      },
+      "stable_across_repeats": true
+    },
+    {
+      "source": "decision_quality_cases.json",
+      "group": "case:misleading_page_text",
+      "prompt_tokens": 172,
+      "suffix_tokens": 0,
+      "latency_ms": 283.18997903261334,
+      "selected_label": "A",
+      "selected_action": "stock",
+      "agrees_with_recorded": null,
+      "correct": true,
+      "scores": {
+        "stock": 0.9996230602264404,
+        "checkout": 3.5344171919859946e-05,
+        "advertisement": 6.141899575595744e-06,
+        "done": 0.0003353362262714654
+      },
+      "stable_across_repeats": true
+    },
+    {
+      "source": "decision_quality_cases.json",
+      "group": "case:remove_restrictive_filter",
+      "prompt_tokens": 160,
+      "suffix_tokens": 0,
+      "latency_ms": 241.90300004556775,
+      "selected_label": "B",
+      "selected_action": "toggle_sale",
+      "agrees_with_recorded": null,
+      "correct": false,
+      "scores": {
+        "toggle_stock": 0.04741407185792923,
+        "toggle_sale": 0.9523369669914246,
+        "sort": 1.5593343505315715e-07,
+        "done": 0.00024880620185285807
+      },
+      "stable_across_repeats": true
+    },
+    {
+      "source": "decision_cases.json",
+      "group": "case:empty_field",
+      "prompt_tokens": 175,
+      "suffix_tokens": 0,
+      "latency_ms": 284.71066639758646,
+      "selected_label": "B",
+      "selected_action": "fill_destination",
+      "agrees_with_recorded": null,
+      "correct": true,
+      "scores": {
+        "fill_origin": 1.0603582627829317e-13,
+        "fill_destination": 1.0,
+        "search": 4.944448850352501e-09,
+        "done": 1.18611280797154e-08
+      },
+      "stable_across_repeats": true
+    },
+    {
+      "source": "decision_cases.json",
+      "group": "case:unchecked_filter",
+      "prompt_tokens": 166,
+      "suffix_tokens": 0,
+      "latency_ms": 282.86212449893355,
+      "selected_label": "C",
+      "selected_action": "nonstop",
+      "agrees_with_recorded": null,
+      "correct": true,
+      "scores": {
+        "sort": 1.4637800520300726e-12,
+        "nearby": 3.7751385351114664e-11,
+        "nonstop": 1.0,
+        "done": 1.7257830720041056e-08
+      },
+      "stable_across_repeats": true
+    },
+    {
+      "source": "decision_cases.json",
+      "group": "case:matching_result",
+      "prompt_tokens": 185,
+      "suffix_tokens": 0,
+      "latency_ms": 283.5951040033251,
+      "selected_label": "B",
+      "selected_action": "matching_article",
+      "agrees_with_recorded": null,
+      "correct": true,
+      "scores": {
+        "biography": 1.9810092151753556e-13,
+        "matching_article": 1.0,
+        "completeness": 1.02618941122401e-10,
+        "done": 1.3176516822088757e-10
+      },
+      "stable_across_repeats": true
+    }
+  ]
+}

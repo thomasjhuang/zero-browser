@@ -64,6 +64,28 @@ def make_prompt(tokenizer, goal, observation, candidates):
     return prompt_ids, labels, label_ids
 
 
+_RECORD_GROUP = [""]
+
+
+def begin_decision_group(name=None):
+    """Mark the start of one agent decision so recorded menus can share a KV prefix on replay."""
+    _RECORD_GROUP[0] = name or f"{time.time():.3f}"
+
+
+def record_decision(goal, observation, candidates, selected_label, scores, prompt_tokens, inference_ms):
+    """Append one scored menu to ZB_RECORD_PATH (JSONL) so scripts/replay.py can rerun it offline."""
+    path = os.environ.get("ZB_RECORD_PATH")
+    if not path:
+        return
+    row = {
+        "ts": time.time(), "group": _RECORD_GROUP[0], "goal": goal,
+        "observation": observation, "candidates": candidates, "selected_label": selected_label,
+        "scores": scores, "prompt_tokens": prompt_tokens, "inference_ms": inference_ms,
+    }
+    with open(path, "a", encoding="utf-8") as handle:
+        handle.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+
 def score_decision(model, tokenizer, mx, goal, observation, candidates):
     """One bounded prefill per menu. No cache reuse across decisions or menus."""
     from mlx_lm.models.cache import make_prompt_cache
@@ -85,6 +107,7 @@ def score_decision(model, tokenizer, mx, goal, observation, candidates):
     peak_bytes = mx.get_peak_memory()
     numbers = scores.tolist()
     selected = max(range(len(numbers)), key=numbers.__getitem__)
+    record_decision(goal, observation, candidates, labels[selected], numbers, len(prompt_ids), latency_ms)
     return {
         "selected_label": labels[selected],
         "selected_action": candidates[selected],

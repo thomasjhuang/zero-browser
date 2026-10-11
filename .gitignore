@@ -233,3 +233,6 @@ __marimo__/
 
 # Private baseline traces and session measurements
 artifacts/baselines/
+
+# Private run traces and live replay recordings
+artifacts/
