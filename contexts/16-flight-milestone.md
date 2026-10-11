@@ -252,3 +252,13 @@ Prior responsiveness and cancellation observations remain valid. No new user obs
 The exclusive run slot is idle. Required delivery checks and publication follow below.
 
 Final required checks passed: lint and 133 tests in 4.43 seconds. GitNexus rebuilt successfully; incomplete graph traces and a cross-language link remain index limits. No general completeness claim follows from the graph.
+
+
+### Renewed matched comparison
+
+Thomas renewed task 16 through the coordination chat, then explicitly approved sequential isolated Codex sessions as benchmark subjects. These sessions must not implement code or run concurrently. No new numeric budget was specified.
+Task 16 retains the runtime slot. At claim time no browser experiment or inference is active.
+First fix measurement: separate local imports/model acquisition, prompt preparation, generation, and result handling. Preserve current model decisions and safety.
+Use equivalent fresh coordinator context, the same model and reasoning setting, the same public field task, fixed supplied values, and independent final field/URL checks.
+Start timing before coordinator dispatch; end after independent assessment and the coordinator verdict. Keep cleanup separate. Preserve raw private events and publish only sanitized counters and outcome evidence.
+Exact request usage must be deduplicated by response ID. Do not double-count cached input or reasoning output.

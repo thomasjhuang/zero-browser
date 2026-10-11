@@ -5,7 +5,7 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: IDLE, Codex task 16.** Three bounded-worker repeat suites and one live Wikipedia field task ended. No inference or browser experiment is active. Task 16 retains runtime ownership.
+> **Current run state: RESERVED, Codex task 16.** No inference or browser experiment is active. Task 16 is preparing isolated sequential coordinator sessions for a matched real-site comparison.
 > The coordinator released the hold after publishing `5799c81`. Task 16 owns the next run.
 > The next owner is Codex, **Improve zero-browser benchmarking**. Claude must not start browser runs, replay, cache probes, or model loads.
 >
@@ -13,12 +13,12 @@
 > This context update does not reopen task 19. Do not create new task numbers.
 >
 > **Revised scope, authorized by Thomas:** prove a bounded local browser worker before coordinator or planning work.
-> Keep the shortened proof window, ending about 14:31 PT. Complete required checks before delivery.
+> The first shortened session is delivered. Thomas renewed work through the coordination chat and explicitly approved sequential isolated benchmark sessions at about 14:31 PT. No new numeric budget was specified. Complete required checks before delivery.
 > Accept one outcome, supplied values, allowed actions, stopping conditions, a deadline, and an action budget.
 > Return success/failure/uncertainty with observed evidence, actions, unresolved execution, timing, calls, and memory.
 > Test supplied field entry, dropdown selection, and autocomplete with reordered, distracting, ambiguous, and missing controls.
 > Pause caching, screenshots, desktop control, and long-task planning. The existing Codex chat delegated one live field task; multi-subtask integration remains untested.
-> No new task numbers or parallel agents. A valid direct/delegated comparison and savings remain untested.
+> No new task numbers or parallel runtime agents. Sequential Codex sessions are authorized only as benchmark subjects, with no implementation work. The accounting agent is read-only and has finished. A valid direct/delegated comparison and savings remain untested.
 >
 > **Test scope:** preserve existing tests and required delivery checks. Defer broad unit-test expansion until the flight demonstration works.
 > Add only small, deterministic tests for critical safeguards or repeatable bugs.
