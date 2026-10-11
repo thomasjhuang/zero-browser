@@ -1,5 +1,7 @@
 # 07 Google Flights stretch
 
+Current status: Superseded by task 16. Use its goals, safety boundaries, and completion gates.
+
 Priority P2. Timebox 45 min. Only after 06 passes twice. Whoever is free.
 
 ## Why

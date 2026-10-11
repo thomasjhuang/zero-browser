@@ -24,7 +24,7 @@ The parent process enforces the worker deadline, including model loading and bro
 The CLI stops on recognizable human verification and three consecutive rejected decisions.
 It monitors the worker memory footprint and refuses startup with insufficient memory headroom.
 Prompts above the safety limit fail before inference. See `results/cli-runtime-safety.json` for guard evidence.
-These changes lack a new Qwen run. Live speed and crash prevention remain unverified.
+Task 16 records subsequent local pilots and completion experiments. Live speed and prevention of the reported freeze remain unproven.
 
 Installation and browser outcome evidence lives in `results/install-cli-verification.json`.
 The simple fixture goal passes. Multi-step destination and filter goals remain incomplete.
@@ -118,83 +118,23 @@ The import omits demonstration images and videos.
 The CLI uses local decisions and field text. Jev's inherited demo still requires hosted services.
 The CLI does not load API credentials. Hosted examples need separate authorization and credentials.
 
-## Browser baselines
+## Current benchmark
 
-
-`scripts/baselines.py` measures Codex, Claude Code, and Jev on three shared local browser tasks.
-The tasks cover filters, a hotel search, and an article.
-`fixtures/browser_baselines.json` fixes each goal and its outcome criteria.
-These tasks measure the agent applications with their browser tools, not isolated model inference.
-The local Qwen scorer is not a browser baseline yet.
-
-Start the fixture server in a separate terminal:
+Task 16 uses `scripts/milestone.py`, `fixtures/milestone_tasks.json`, and `scripts/milestone_verify.py`.
+The runner preserves event records in ignored `artifacts/milestone/`.
+Read existing records without inference:
 
 ```bash
-uv run --offline --frozen python scripts/baselines.py serve
-uv run --offline --frozen python scripts/baselines.py tasks
+uv run --offline --frozen --extra local python scripts/milestone.py --report
 ```
 
-Use a fresh conversation and tab for each run.
-Keep the browser profile, viewport, permissions, and initial page constant.
-Record exact model and application versions, browser tools, and permission settings in `--environment`.
-Use three repeats per task. Rotate agent order between repeats.
-Keep manual desktop sessions and CLI sessions in separate comparisons.
+Read task 16 and STATUS before any experiment. Preserve the single-run guard and the user's action boundaries.
+Keep task conditions and source versions with each result. Never infer completion from DONE alone.
+The user supplied the initial pilot observations. A new owner must read the current handoff before further runs.
 
-For a desktop session, start the timer immediately before you give the printed prompt to the agent:
-
-```bash
-uv run --offline --frozen python scripts/baselines.py start \
-  --task filter-stays --agent codex --model MODEL \
-  --environment 'VERSION; BROWSER TOOLS; CLEAN PROFILE; VIEWPORT; PERMISSIONS' \
-  --billing-mode subscription
-uv run --offline --frozen python scripts/baselines.py finish RUN_FILE --status completed
-uv run --offline --frozen python scripts/baselines.py verify RUN_FILE --target-id CHROME_TARGET_ID
-uv run --offline --frozen python scripts/baselines.py import-usage RUN_FILE EXPORTED_TRACE
-uv run --offline --frozen python scripts/baselines.py report artifacts/baselines
-```
-
-Replace the uppercase arguments with actual values.
-Stop the timer as soon as the agent stops. Outcome verification has a separate timer.
-The verifier uses Browser Harness to read the agent's existing Chrome target.
-It does not accept the agent's success claim.
-A completed run remains unverified until the browser read passes every criterion.
-Get the target ID from Browser Harness's `cdp("Target.getTargets")` helper.
-Keep the tab open until verification finishes.
-
-`run` wraps a fresh Codex or Claude CLI invocation and captures its output.
-For Jev, it captures decisions and text calls, then reads the outcome before the tab closes.
-Live invocation requires `--live`. Browser tools and credentials must already be configured.
-No live run or spending is part of the offline setup.
-
-```bash
-uv run --offline --frozen python scripts/baselines.py run --live \
-  --task filter-stays --agent claude --model MODEL \
-  --environment 'VERSION; BROWSER TOOLS; CLEAN PROFILE; VIEWPORT; PERMISSIONS' \
-  --billing-mode subscription --timeout 120
-```
-
-The CLI timeout stops the owned Codex or Claude process group on Unix systems. Jev tests its deadline between agent steps.
-A slow Jev model call can exceed that deadline.
-For Codex and Claude CLI runs, perform the separate browser verification after the agent stops.
-CLI time includes application startup. Manual time includes the operator's handoff.
-Browser setup before `start` is outside the timer.
-Elapsed time uses the monotonic clock. Records also show system-clock disagreement.
-The reports show success rate, criterion scores, median elapsed time, tokens, and cost coverage.
-Missing usage stays unavailable. Failed and unverified runs remain in the success-rate denominator.
-
-Codex imports `turn.completed` JSONL usage. Claude imports one fresh-session `result` record.
-Do not import a resumed Claude conversation: its cost can include previous turns.
-Jev imports `decisions` and `text_calls`. These records include stale and terminal decisions.
-It ignores duplicated usage in action history.
-Interrupted runs preserve known subtotals but leave total coverage unavailable.
-Jev counts recorded model calls. Provider transport retries are not visible in its trace.
-Input totals include cached tokens once. Output totals do not add reasoning tokens twice.
-Provider-reported cost is separate from a price estimate and actual subscription charges.
-For an estimate, add `--prices PRICE_FILE` to `import-usage`.
-The JSON file must contain `as_of`, `currency: "USD"`, and `models` keyed by exact model names.
-Rates use `input_per_million`, `cached_input_per_million`, `cache_write_per_million`, and `output_per_million`.
-Missing model prices or cache data leave the estimate unavailable.
-Run records preserve dated prices and source hashes. Private traces stay in ignored `artifacts/baselines/`.
+The earlier commands for `scripts/baselines.py` were stale. That file is absent from this checkout.
+Task 21 defines the future native Codex comparison. No working native baseline is established.
+`scripts/decision_baselines.py` compares synthetic decisions only. It does not measure browser completion.
 
 ## Tests and delivery
 

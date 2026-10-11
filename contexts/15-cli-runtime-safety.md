@@ -1,5 +1,7 @@
 # 15 CLI runtime safety
 
+Current status: Implemented. Preserve the guards. Further runtime observations belong to task 16.
+
 Priority P0. Owner Codex. Timebox 60 minutes.
 
 ## Why

@@ -1,5 +1,7 @@
 # 06 End-to-end fixture run
 
+Current status: Superseded by task 16. Its local completion gate replaces this historical task.
+
 Priority P0. Timebox 60 min. Everyone joins once 01 and 02 land. This is the demo.
 
 ## Why

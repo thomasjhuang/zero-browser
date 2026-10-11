@@ -1,5 +1,7 @@
 # 13 Latency and field text
 
+Current status: Reservation retained for the existing model owner. Coordinate with task 16 before prompt edits or inference. Current priorities are in README.md.
+
 Priority P0. Timebox 75 min. Owner Sol. Runs in parallel with 12. Absorbs old tasks 04 and 14.
 
 ## Why

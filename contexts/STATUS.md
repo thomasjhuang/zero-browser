@@ -1,133 +1,109 @@
 # Project status
 
-Updated 2026-10-11 13:00 PT. This is the single shared state file. Edit it on every claim, finish, or block.
-Keep it short. Evidence lives in `results/` and is linked, never restated beyond one number.
+> **Read this banner first. 13:45 PT, set by Thomas via Claude.**
+> One agent works at a time. That agent is the task 16 chat. Everything below the banner is reference.
+>
+> **Cut as of 13:45.** 18 (MCP), 19 (context roadmap), 20, 21, 22. Do not resume them. Do not create new
+> task numbers. New work goes into the Result section of 16 or 13.
+>
+> **Task 16's next steps, one change per rerun of `scripts/milestone.py --task local_search`:**
+> 1. Finish the current crowded-page run. Commit the milestone code and the duplicate-target removal with
+>    its evidence. Nothing new starts before that commit is pushed.
+> 2. Joint menu. When the operation stage's candidates plus every target for every operation total 26 or
+>    fewer, skip the two-stage split and score one flat menu where each candidate is a concrete action,
+>    for example `TYPE_TEXT [1] Where from? (empty)`, `SELECT [3] Trip type: Round trip -> One way`,
+>    `CLICK [5] Search`, `DONE`. Keep the two-stage path for larger pages. This targets the observed
+>    failures (clicks a field instead of typing, premature DONE, reverses a dropdown) and makes small-page
+>    decisions one forward pass. Rerun. Keep the failed records.
+> 3. Prefix KV cache for the two-stage path. All menus within one decision share the prefix up to the
+>    candidate list. Prefill once, score suffixes from `copy.deepcopy` of the cache. Measured on this
+>    machine, a 60-token suffix on a cached 1000-token prefix is 117ms versus ~1600ms uncached. Verify
+>    identical picks against `scripts/replay.py --variant plain` on the same records before trusting it.
+>    Rerun the crowded page. Target under 2s per decision there.
+> 4. DONE confirmation. DONE stops the run only when it wins on two consecutive decisions, the second
+>    taken after a fresh observation. Generic, no site knowledge. Rerun.
+>
+> Then three consecutive local_search passes, then the two layout variations, then live Flights.
+> Record every rerun in `contexts/16-flight-milestone.md` Result with the first failed step and cause.
+> Set `ZB_RECORD_PATH=artifacts/replay/<run>.jsonl` on runs so prompts can be replayed offline.
+
+
+Reconciled October 11, 2026, at 13:40 PT. This file owns current state and reservations.
+[README.md](README.md) gives the engineering sequence. Task files preserve implementation history.
 
 ## Where we are
 
-Jev Ultrafast scaffolding imported. Local Qwen3-4B 4-bit scorer works offline on synthetic decisions.
-The new CLI forces local Qwen decisions and field text. It completes a simple local fixture goal.
-Multi-step goals remain incomplete. The inherited demo still uses hosted services.
-Tasks 01 and 02 must reconcile their work with the CLI adapter before changing shared interfaces.
-Plan and ranked tasks are in `README.md` here.
+The local CLI and Codex MCP connection work on a simple navigation goal.
+Reliable multi-step completion, useful time savings, and a native Codex speed comparison remain unproven.
+The active milestone now tests local task completion. The user reported a visible page, normal responsiveness, and clean closure during the pilot.
+That observation does not establish cancellation during inference or explain the earlier freeze.
 
 ## In progress
 
-- 19-context-roadmap (this chat). Reconcile task state and define the next engineering sequence. Documentation only. Preserve active task 16 and reserved task 13 files.
+- **16, Improve zero-browser benchmarking:** local completion remains unresolved. The owner awaits user observations from the latest cancellation pilot before longer runs. Preserve its unfinished changes.
 
+## Completed context work
 
-- 12-benchmark-loop (Astra). Owns bench.py, run_cli.py, bench_tasks.json, results/bench/, verify.py.
-- 13-latency-and-field-text (Sol). Owns local_policy.py, local_model.py, questions.py, browser timeout.
+- **19:** task state and the engineering sequence are reconciled. The isolated documentation candidate passed lint and all 118 tests. Publication remains pending.
 
-## Open, in priority order
+## Next, in order
 
-- 16-flight-milestone (Codex milestone chat). Preparation passed. Await user readiness for the bounded local pilot, then user observations before longer runs. [Evidence](../results/milestone-preparation.json).
-
-- 17-experiment-priority. Instructions updated locally. Delivery checks passed. Publication waits for unfinished shared changes.
-
-- iterate on next bench failure (both, after 12 and 13 land)
-- 09-fix-filter-miss (P3, slack only)
-- 10-trim-jev-scaffolding (P3, slack only)
-- 08-hygiene-and-readme (P3, last 20 min)
-
-## Cut 12:50 PT
-
-03, 05, 06, 07 replaced by the live bench loop. 04 absorbed into 13. 11 installer dropped, run_cli.py kept.
-
-## Done
-
-| Work | Outcome | Evidence |
+| Task | State | Entry requirement |
 | --- | --- | --- |
-| 18 Codex browser MCP | Codex called the local server with native browser tools disabled. The local fixture goal passed independent outcome tests | [Evidence](../results/codex-mcp.json) |
-| 15 CLI runtime safety | Model-free guards passed. Local challenge stopped before Qwen loaded. Live inference remains untested | [Evidence](../results/cli-runtime-safety.json) |
-| 11 Installer and local CLI | Setup and simple fixture goal passed. Multi-step goals failed | [Evidence](../results/install-cli-verification.json) |
-| 00 Shared local model | One cached model supports scoring and generation. Smoke: 12/12 | [Smoke](../results/shared-local-model-smoke.json), [tests and reuse](../results/shared-local-model-verification.json) |
-| Local scorer, pinned weights, offline rerun | 12/12 synthetic decisions, 48 forward passes, ~300ms warm | `results/decision-smoke.json`, `results/decision-smoke-rerun.json` |
-| Quality cases | 35/36. One candidate order picks the wrong filter, repeats 4/4 in that order | `results/decision-quality.json`, `results/decision-quality-filter-rerun.json` |
-| Synthetic comparison vs hosted CLIs | Qwen 47/48, Codex 48/48, Claude 48/48 on 12 cases x 4 orders. No browser execution | `results/decision-comparison.json`, `scripts/decision_baselines.py` |
-| Human demo recorder | Two human examples captured. The second saved without errors. Action mapping remains partial | `results/demo-capture-summary.json`, `scripts/record_demo.py` |
-| Repo on GitHub | Scaffolding, scorer, fixtures, results, recorder on `main`. PRs #1 to #4 merged | github.com/thomasjhuang/zero-browser |
-| Contexts folder committed | Plan, tasks, rules, status shared across agents | this folder |
-| 00 shared model | `local_model.get_model()` cached per process | `results/shared-local-model-smoke.json` |
-| 01 + 02 local policy | `local_policy.py`, operation then target scoring, local field text, `JEV_LOCAL=1` dispatch | Codex live run 12:3x |
-| First live comparison, SFO to BOS | Qwen 6 actions then browser timeout, 4.16s median decision. Jev+local text picked dates, failed destination at 123ms. Both typed "Boston Logan (BOS)" | Codex session, to be reproduced by 12 |
+| [20 Multi-step MCP outcomes](20-mcp-task-outcomes.md) | Planned, unassigned | Task 16 demonstrates repeated local completion and the MCP owner hands off files |
+| [21 Delegation comparison](21-delegation-comparison.md) | Planned, unassigned | Task 20 passes and a working native browser baseline is available |
+| [22 Model reuse](22-model-reuse.md) | Deferred, unassigned | Measurements establish startup overhead and acceptable task reliability |
+| [08 Evidence and README](08-hygiene-and-readme.md) | Deferred | Each public claim has a result file |
 
-## Blocked
+## Reservations and retired work
 
-(none)
+- **13:** preserve the existing model owner's reservation and recording hook. Replay work landed. Further latency work needs coordination with task 16.
+- **12:** task 16 supersedes its separate benchmark plan. Its earlier file reservation remains until the owner releases it. No second benchmark runner is planned.
+- **03, 05, 06, 07:** superseded by task 16. **04:** absorbed into task 13.
+- **09:** deferred synthetic filter miss. **10:** deferred scaffolding removal. Neither is on the current completion path.
+- **00, 01, 02, 11:** implemented. The installer was not dropped. Multi-step reliability belongs to task 16.
+- **17:** instruction changes are committed and present on origin/main. Its old publication note is historical.
+- **18:** connection milestone completed. MCP multi-step work is task 20, not a completed result of task 18.
+
+## Evidence
+
+| Work | Evidence and limit |
+| --- | --- |
+| Local model and adapters | [Shared model](../results/shared-local-model-verification.json), [installation](../results/install-cli-verification.json). Simple completion does not establish general reliability |
+| Runtime safety | [Guard tests](../results/cli-runtime-safety.json). The freeze cause remains unknown |
+| Milestone preparation | [Preparation](../results/milestone-preparation.json). Scripted controls and outcome tests, not model performance |
+| Current local experiments | [Reconciliation snapshot](../results/context-reconciliation.json). Completed records only, with differing source versions. No combined success-rate claim |
+| MCP connection | [Codex run](../results/codex-mcp.json). Simple navigation only |
+| Smaller models | [4B](../results/replay/quality-4b-plain.json), [1.7B](../results/replay/quality-1.7B-plain.json), [0.6B](../results/replay/quality-0.6B-plain.json). Synthetic cases only |
+| Scoring and recorder history | [Decision comparison](../results/decision-comparison.json), [filter failure](../results/decision-quality-filter-rerun.json), [recordings](../results/demo-capture-summary.json) |
 
 ## Known limits
 
-Task 16 has no model-performance result. Its local browser checks use scripted actions.
-The live flight verifier and unfamiliar action labels remain untested. See `results/milestone-preparation.json`.
+DONE can precede completion. The loop stops unchanged actions but does not detect all repeated state cycles.
+The MCP interface tests text and URL fragments rather than every task requirement.
+Each MCP goal starts a fresh browser and model worker. Login state is not preserved.
+The native Codex CLI attempt exposed no browser tools. No valid native speed baseline exists.
+Crowded pages, unfamiliar live controls, and other machines need separate evidence. Scores are uncalibrated.
+The inherited demo retains hosted paths. The local worker must not use them.
 
-The user reported a freeze during a Google CLI task. Its cause remains unconfirmed.
-Task 15 adds runtime guards. Qwen correctness and live speed after those changes remain untested.
+## Coordination and publication
 
-The CLI can stop at DONE before the entire goal succeeds. Final-page assertions detect this problem.
-Destination submission and requested filters failed in local multi-step attempts.
-Task 06 remains open. The new simple-goal result does not establish general browser reliability.
+Task 16 owns the active experiment. Task 13 retains its shared model reservation.
+Task 16's recorded exception permits prompt experiments in `local_policy.py`; preserve task 13's recording hook.
+Task 18's retest encountered the single-run lock. Schedule inference rather than bypassing the lock.
+Keep raw records in ignored `artifacts/`. Publish only sanitized evidence in `results/`.
+Do not erase the recorder or decision baseline tools during cleanup.
 
-Human recordings expose unsupported clicks and manual scrolls. The largest observation contains 74 actions.
-Resolve recording coverage and candidate scaling before longer demonstrations or training. Human completion
-reports do not establish model performance or a completed purchase. Private recordings remain ignored.
-
-Synthetic decisions do not establish browser reliability. Restricted scores are uncalibrated. The 16GB
-memory target is untested. The browser guard check passed only in an isolated headless Chrome profile; the
-default profile lacked remote debugging. Jev's per-step timeout can be exceeded by a slow local call.
-
-## Coordination
-
-- Task 18 owns `scripts/mcp_server.py`, `scripts/codex_mcp_smoke.py`, MCP dependencies, and `results/codex-mcp.json`.
-  The user requests an immediate test. Run one bounded local fixture goal through Codex with native browser tools disabled.
-  Preserve task 16 files and the existing runtime guards. The single-run lock prevents concurrent inference.
-
-- Task 17 changes instructions only. It prioritizes end-to-end experiments and permits new unit tests only for safeguards or repeatable bugs.
-  Existing delivery checks and the task 16 readiness requirement remain in effect.
-
-- Task 16 uses separate milestone files and preserves tasks 12 and 13 ownership.
-  The user selected the flight demonstration and two variations in task 16.
-  Task 16 can extend the completed task 15 guard for durable stop evidence and cancellation.
-  No benchmark or Qwen run occurs before the user's readiness response and a single-run lock.
-
-- Task 15 adds safety guards to task 12's `run_cli.py` and task 13's `local_model.py`.
-  The user reported a computer freeze. Changes cover limits and shutdown, not benchmark or prompt optimization.
-  No Qwen or live browser benchmark runs occur during this repair. Preserve these guards in tasks 12 and 13.
-
-- Task 11 owns `install.sh`, `zero-browser`, `scripts/run_cli.py`, `jev_ultrafast/local_policy.py`, and setup tests.
-  It adds local dispatch to `model.py` and a read-only lock option to the downloader.
-  It preserves task 00 files and the separate temporary single-task pilot.
-  Tasks 01, 02, and 10 must reuse or reconcile the local CLI adapter before changing these interfaces.
-
-- Two agents work this repo. Codex sessions previously used branch plus PR plus self-merge and kept
-  contexts local. As of 12:25 PT the rules in `AGENT-RULES.md` and `AGENTS.md` apply to everyone. Commit to
-  `main`, pull before push, contexts is committed.
-- `scripts/decision_baselines.py` and the recorder are Codex's. Nobody deletes them in task 10.
+The final task 18 evidence commit `a232d80` is local. Automatic approval review rejected its push under the prior README publication rule.
+This cleanup does not lift that hold or grant authority to publish unrelated changes.
+Other chats have unfinished changes in the shared checkout. Preserve them and do not stage them with this cleanup.
 
 ## Log
 
-- 2026-10-11 13:12 PT. Task 16 completed model-free preparation. The pilot awaits user readiness. Evidence: `results/milestone-preparation.json`.
+- 2026-10-11. Task 16 recorded failed local runs and stopped inference on cancellation. The milestone remains open. Evidence: `results/milestone-local-runs.json`.
 
-- 2026-10-11. Task 18 completed the Codex-to-MCP fixture experiment and registered `zero_browser` in Codex. Evidence: `results/codex-mcp.json`.
+- October 11, task 19: reconciled stale task state, preserved owner reservations, and defined stages 16 → 20 → 21 → 22.
+- Task 16: the user supplied the earlier pilot observations. The latest cancellation observation remains pending. Its owner maintains the final sanitized results.
+- Task 18: the MCP retest stopped at the run lock. The native CLI supplied no browser tool. Neither attempt establishes a speed result.
 
-- Task 17 updated the experiment and unit-test policy. No unit tests were added. Delivery checks passed. Publication remains pending.
-
-- 2026-10-11 13:00 PT. Task 15 guard tests and the local challenge stop passed. No Qwen run occurred. Evidence: `results/cli-runtime-safety.json`.
-
-- 2026-10-11 12:50 PT. Rescoped after the first live run. Tasks 12 and 13 written, 03/04/05/06/07/11 cut.
-  Two agents only, Astra on 12, Sol on 13.
-
-- 2026-10-11 12:44 PT. Task 11 shell retest passed. The installer and independently tested CLI goal both returned exit code 0. Evidence: `shell_retest` in the installation record.
-
-- 2026-10-11 12:40 PT. Codex completed task 11. Installation and the simple CLI goal passed. Multi-step failures remain in the evidence.
-
-- 2026-10-11 12:30 PT. Codex completed task 00 within its timebox. Evidence is linked in Done. Stopped after task 00.
-- 2026-10-11 12:27 PT. Codex claimed task 00. Main matched origin before the claim.
-- 2026-10-11. Added aggregate evidence for two human recordings. The second save completed without errors.
-  The save fix is on main. Raw recordings remain private.
-
-- 2026-10-11 12:25 PT. Reconciled local and remote histories. Folded `PROGRESS.md` into this file. Rewrote
-  `AGENTS.md`. Contexts un-ignored and committed.
-- 2026-10-11 12:13 PT. Codex merged PR #2 (scorer publication) and PR #3 (recorder).
-- 2026-10-11 12:07 PT. Codex merged PR #1 (delivery rules).
-- 2026-10-11 12:10 PT. Plan written, contexts folder created. No code work started.
+Earlier implementation details and evidence remain in the numbered task files and Git history.

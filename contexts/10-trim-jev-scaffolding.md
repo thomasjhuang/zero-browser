@@ -1,5 +1,7 @@
 # 10 Trim Jev scaffolding
 
+Current status: Deferred. Do not execute the historical deletion list. Preserve current CLI, fixtures, recorder, attribution, and evidence.
+
 Priority P0. Two phases. Phase 1 timebox 40 min at 0:00, Lane D (separate agent). Phase 2 timebox 15 min
 after 01 and 02 merge. Phase 1 must not touch files owned by 00, 01, 02.
 

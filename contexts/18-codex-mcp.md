@@ -40,3 +40,12 @@ The earlier [working-tree run](../results/codex-mcp-working-tree.json) and
 The MCP server loads the model for each goal. Persistent browser sessions, field entry, multi-step goals, and Claude remain untested through MCP.
 GitNexus query, context, impact, index refresh, and change analysis ran. The graph reports omitted dynamic callers and truncated execution flows.
 Source inspection and the actual browser outcome support this result. Other chats own the existing local model and runtime edits.
+
+Publication status: final evidence commit `a232d80` remains local. Automatic approval review rejected its GitHub push.
+It requires explicit user approval under the repository README, despite the standing delivery authorization.
+
+The requested retest reached the MCP tool, but its single-run lock rejected execution because another experiment was active.
+See [the retest](../results/codex-mcp-retest.json). No new inference ran in that attempt.
+The native Codex CLI attempt exposed no browser tools despite enabled browser features.
+See [the native attempt](../results/codex-native-attempt.json). It provides no browser outcome or valid speed comparison.
+Remaining work includes persistent model and browser reuse, normal-session tool routing, multi-step outcome evidence, and a comparable native-browser baseline.

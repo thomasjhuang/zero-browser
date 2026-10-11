@@ -1,5 +1,7 @@
 # 03 Label scaling eval
 
+Current status: Superseded by task 16. Do not start this historical plan.
+
 Priority P1. Timebox 45 min. Lane C after 05. Informs 01.
 
 ## Why

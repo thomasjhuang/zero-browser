@@ -1,5 +1,7 @@
 # 02 Local TYPE_TEXT
 
+Current status: Implemented through task 11. The plan below is historical. Reliability follows task 16.
+
 Priority P0. Timebox 60 min. Lane B. Blocks 06.
 
 ## Why

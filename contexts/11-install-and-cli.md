@@ -1,5 +1,7 @@
 # 11 Install and CLI
 
+Current status: Implemented, including the installer. The old cut note below is historical. Reliability follows task 16.
+
 Priority P1. Timebox 60 minutes. Owner Codex.
 
 ## Why

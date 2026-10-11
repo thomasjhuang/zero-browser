@@ -7,9 +7,9 @@ project state. Chat history, memory, and your own assumptions are not.
 
 1. `git pull --rebase origin main`. Other agents push to the same branch and update these files.
 2. Read `contexts/STATUS.md`. It says what is done, what is in progress, who owns it, and what is blocked.
-3. Read `contexts/README.md` for the plan, ranking, lanes, timeline, and cut lines. `contexts/PROJECT.md`
+3. Read `contexts/README.md` for the sequence, reservations, and time limits. `contexts/PROJECT.md`
    has the setup and run commands.
-4. Read the task file for the task you are taking. Each `contexts/NN-*.md` has Why, Do, Verify, Don't.
+4. Read the current status banner and task file before taking work. Historical task bodies do not grant execution authority.
 5. Claim the task. Edit `STATUS.md`, move the task to In progress with your lane or name, commit, push.
    If the push is rejected because someone else pushed first, pull, re-read STATUS.md, and check the task
    is still free before retrying.
@@ -19,9 +19,9 @@ project state. Chat history, memory, and your own assumptions are not.
 - Prioritize end-to-end experiments. Follow [Experimental validation](../AGENTS.md#experimental-validation) for new unit tests.
 - Stay inside the task's file ownership listed in `contexts/README.md`. If you must touch a file another
   lane owns, write a note in STATUS.md under Coordination and keep the change minimal.
-- Respect the timebox. When it runs out, ship what passes and record what did not in the task file.
-- Do not start Google Flights work until `06` passes twice. Do not add site-specific rules or hardcoded
-  values to the policy.
+- Respect the timebox. At its end, record completed and incomplete work. Follow publication holds and the delivery procedure.
+- Before live Google Flights runs, require three consecutive independently successful local runs in task 16, then its local layout variations.
+  Task 06 is historical. Preserve task 16 action boundaries. Do not add site-specific rules or hardcoded values to the policy.
 - Run `uv run --offline --frozen --extra local ruff check .` and
   `BH_HOME=/private/tmp/zero-browser-tests uv run --offline --frozen --extra local pytest` before every commit.
 

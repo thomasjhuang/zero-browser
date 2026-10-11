@@ -1,5 +1,7 @@
 # 00 Shared local model
 
+Current status: Implemented. Keep the result below as history. Current work is listed in STATUS.md.
+
 Priority P0. Timebox 20 min. Lane A. Blocks 01 and 02.
 
 ## Why

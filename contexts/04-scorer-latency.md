@@ -1,5 +1,7 @@
 # 04 Scorer latency
 
+Current status: Absorbed into task 13. Do not start this historical plan.
+
 Priority P2. Timebox 45 min. Lane B after 02. Only start if 01 reports per-step latency above ~1.5s.
 
 ## Why

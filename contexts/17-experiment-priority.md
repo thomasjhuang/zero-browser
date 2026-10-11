@@ -1,5 +1,7 @@
 # 17 Experiment priority
 
+Current status: Implemented and present on origin/main. The publication note in the original result is historical.
+
 Owner Codex. Scope: repository instructions only.
 
 ## Why

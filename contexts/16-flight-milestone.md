@@ -35,24 +35,26 @@ Do not add site-specific decision rules, hardcoded field answers, or a separate 
 
 ## Result
 
-The fixed runner, durable records, outcome tests, and local layouts are ready.
-Model-free delivery checks and scripted browser experiments passed. These are not agent-performance results.
-Evidence: [preparation](../results/milestone-preparation.json).
+Model-free preparation passed. Evidence: [preparation](../results/milestone-preparation.json).
+The user then reported a visible page, a responsive computer, and clean browser closure.
 
-One verifier error occurred before search submission. The correction passed the same test.
-The live flight verifier and unfamiliar action labels remain untested. The freeze cause remains unknown.
-Task 13 still owns prompt changes. No cache optimization was added to this milestone runner.
+The runner now removes unused startup tabs and shows the task page. It fixes the local starting address.
+The local prompt omits duplicate targets and separates current dropdown values from available changes.
+Failed prompt experiments were removed. No cache optimization was added.
 
-After the user gives readiness, run:
+[Run evidence](../results/milestone-local-runs.json) preserves the pilots and failed local experiments.
+The normal task skipped the origin. The reversed task submitted two adults instead of one.
+DONE did not establish success. The crowded run reached its external deadline with an unfinished model call.
+Earlier runs used random local ports, so their comparisons are exploratory.
 
-```bash
-uv run --offline --frozen --extra local python scripts/milestone.py --task local_search --pilot --ready
-```
+The last pilot cancelled during inference. The worker stopped 36 milliseconds after the cancellation request.
+The user still needs to report responsiveness and browser closure for that cancellation test.
+The runner retains partial records under ignored `artifacts/milestone/`. `--report` reads them without inference.
 
-The pilot cancels after ten seconds, permits two decisions, and has a twenty-second worker deadline.
-Chrome startup has a separate twenty-second deadline. Cleanup adds time after cancellation.
-Ask the user to observe pointer movement, application switching, scrolling, cancellation, and browser closure.
-Obtain their observations before longer runs. No model run occurred during preparation.
+The milestone remains open. No live flight task passed, and the flight variations remain untested.
+Next: resolve omitted requirements and premature completion, then obtain repeated local and primary successes.
+The live flight verifier remains untested. The freeze cause remains unknown.
 
-Private event records remain in ignored `artifacts/milestone/`. Use `--report` to compare saved runs without inference.
-Interrupted runs remain failures in comparisons. A code change resets the consecutive-success count.
+Use `--pilot --ready` only after user readiness. The pilot permits two decisions and cancels after three seconds.
+The worker deadline is twenty seconds. Browser startup has a separate twenty-second deadline.
+Cleanup adds time after cancellation. Do not start longer runs before the pending user observations.

@@ -1,5 +1,7 @@
 # 01 Local choose adapter
 
+Current status: Implemented through task 11. The design below is historical, not a request to change current scoring. Reliability follows task 16.
+
 Priority P0. Timebox 90 min. Lane A. Blocks 06. This is the critical path.
 
 ## Why

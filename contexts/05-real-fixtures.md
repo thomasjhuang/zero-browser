@@ -1,5 +1,7 @@
 # 05 Real fixtures
 
+Current status: Superseded by task 16. Do not start this historical plan.
+
 Priority P1. Timebox 45 min. Lane C first. Feeds 01 and 03.
 
 ## Why

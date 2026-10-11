@@ -1,5 +1,7 @@
 # 12 Benchmark loop
 
+Current status: Superseded by task 16. Do not build a second runner or start this historical hosted comparison. Retain existing owner reservations until handoff.
+
 Priority P0. Timebox 60 min. Owner Astra. Runs in parallel with 13.
 
 ## Why

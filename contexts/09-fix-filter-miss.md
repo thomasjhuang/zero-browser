@@ -1,5 +1,7 @@
 # 09 Fix the remove_restrictive_filter miss
 
+Current status: Deferred. Preserve the failed-case evidence. This historical tuning plan is not on the current completion path.
+
 Priority P3. Timebox 20 min. Anyone with spare time. Fully independent.
 
 ## Why
