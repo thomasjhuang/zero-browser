@@ -1,0 +1,527 @@
+{
+  "schema_version": 1,
+  "scope": "Development of one coordinator-controlled SFO-JFK round-trip search.",
+  "fixed_task": {
+    "origin": "SFO",
+    "destination": "JFK",
+    "departure": "2026-11-12",
+    "return": "2026-11-16",
+    "adults": 1,
+    "cabin": "Economy",
+    "trip_type": "Round trip",
+    "stop": "Matching flight options, before flight selection or booking."
+  },
+  "starting_conditions": {
+    "url": "https://www.google.com/travel/flights?hl=en",
+    "visible": true,
+    "viewport": [
+      1120,
+      780
+    ],
+    "browser": "Fresh isolated browser per attempt.",
+    "coordinator": "Existing Codex engineering chat. One request at a time.",
+    "worker": "Local Qwen with deterministic execution for exact supplied actions."
+  },
+  "runs": [
+    {
+      "run": "flights-round-trip-01",
+      "source_commit": "1b65d584bfbbb39398be6ccf3e9ece6876e46afe",
+      "started_utc": "2026-10-11T23:04:25.179621+00:00",
+      "outcome": "FAIL",
+      "exit_code": 1,
+      "parent_stop": null,
+      "independent_checks": {
+        "results_page": false,
+        "origin_SFO": false,
+        "destination_JFK": false,
+        "round_trip": true,
+        "departure_date_and_year": false,
+        "return_date_and_year": false,
+        "one_adult": false,
+        "economy": false,
+        "actual_flight_options": false
+      },
+      "first_unsuccessful_request": {
+        "sequence": 2,
+        "category": "pre_input_stale",
+        "cause": "The local selection observation is stale before inference",
+        "action_executed": false,
+        "recovered_by_new_coordinator_request": true
+      },
+      "terminal_failure": {
+        "event": "failure",
+        "elapsed_ms": 90777,
+        "step": 15,
+        "category": "ValueError",
+        "cause": "no_progress"
+      },
+      "metrics": {
+        "total_including_startup_and_cleanup_ms": 92156.9955,
+        "dispatch_to_final_outcome_return_ms": 91404.484834,
+        "browser_startup_ms": 275.326709,
+        "worker_and_worker_cleanup_ms": 91453.894667,
+        "browser_cleanup_ms": 409.732541,
+        "coordinator_requests": 15,
+        "coordinator_wait_ms": 84787.798709,
+        "executed_actions": 10,
+        "execution_sources": {
+          "deterministic": 9,
+          "local_model": 1
+        },
+        "read_only_observations": 0,
+        "pre_input_stale_returns": 5,
+        "model_loads": 1,
+        "model_load_ms": 1916.4918749593198,
+        "local_model_calls": 1,
+        "model_call_latency_ms": [
+          521
+        ],
+        "decision_latency_ms": [
+          522
+        ],
+        "local_prompt_tokens": 239,
+        "local_generated_tokens": 0,
+        "token_method": "One menu-scoring forward pass per call. No autoregressive output generation.",
+        "coordinator_tokens": null,
+        "peak_worker_bytes": 3172764432,
+        "peak_mlx_bytes": 2819325228,
+        "memory_limit_bytes": 6442450944
+      },
+      "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "actions": [
+        {
+          "request": 1,
+          "kind": "fill",
+          "label": "Where from?",
+          "text": "SFO",
+          "source": "deterministic"
+        },
+        {
+          "request": 3,
+          "kind": "click",
+          "label": "San Francisco International Airport (SFO)",
+          "text": null,
+          "source": "local_model"
+        },
+        {
+          "request": 5,
+          "kind": "fill",
+          "label": "Where to? ",
+          "text": "JFK",
+          "source": "deterministic"
+        },
+        {
+          "request": 6,
+          "kind": "click",
+          "label": "John F. Kennedy International Airport (JFK)",
+          "text": null,
+          "source": "deterministic"
+        },
+        {
+          "request": 8,
+          "kind": "click",
+          "label": "1 passenger",
+          "text": null,
+          "source": "deterministic"
+        },
+        {
+          "request": 9,
+          "kind": "click",
+          "label": "Done",
+          "text": null,
+          "source": "deterministic"
+        },
+        {
+          "request": 10,
+          "kind": "click",
+          "label": "Open Departure",
+          "text": null,
+          "source": "deterministic"
+        },
+        {
+          "request": 12,
+          "kind": "click",
+          "label": "Thursday, November 12, 2026 , 407 US dollars, Cheapest price",
+          "text": null,
+          "source": "deterministic"
+        },
+        {
+          "request": 14,
+          "kind": "click",
+          "label": "Monday, November 16, 2026 , 398 US dollars, Cheapest price",
+          "text": null,
+          "source": "deterministic"
+        },
+        {
+          "request": 15,
+          "kind": "click",
+          "label": "Done. Search for round trip flights, departing on November 12, 2026 and returning on November 16, 2026",
+          "text": null,
+          "source": "deterministic"
+        }
+      ],
+      "safety": {
+        "no_flight_selected": true,
+        "no_uncertain_mutation": true,
+        "model_done": false,
+        "shared_deadline_seconds": 300,
+        "shared_request_budget": 60,
+        "source_unchanged_before_after": true,
+        "owned_cleanup_completed": true
+      },
+      "source_sha256": {
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "008742becc08c3551caaee02dd37515f775f80ad338d534dc44176b68d6ea8a8",
+        "jev_ultrafast/workflow_worker.py": "d63cedf767c62bb18f61659d0e2343eb986a1a17c44d25105a3e423115326e11",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "scripts/milestone.py": "0e3db1d295dc96238aad00f96f06e1284e95bbde84a92e6bc4aeef6b57f076b1",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "041913c76b130e33055f8793f5023050c5e5c9feecbc869571e2f0c6e8abba95",
+        "scripts/coordinator_handoff.py": "443f4108ca5932e44afce7e98819cae5fcfe35f0433bb2ccc32d3f638fe24d6f",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8",
+        "scripts/single_action_worker.py": "eb6d5ee05419482e34955a8332c7536a1c52416a9334521e0bc888efcd47d1fb"
+      },
+      "private_evidence_sha256": {
+        "artifacts/flights-round-trip-01/action-1.json": "2ae1b719b15f8326b41e60f06ceecc098e8d49ff73067ee22451beee5077a925",
+        "artifacts/flights-round-trip-01/action-10.json": "5e346e6076cb3d83478246fed49b5935d60289b92e8f8cdbfb4db609ca5aaae3",
+        "artifacts/flights-round-trip-01/action-11.json": "1fd46944b1583720036a19a43616cc9e84b5ab04996d9579a6bddcb7cfe80be6",
+        "artifacts/flights-round-trip-01/action-12.json": "7e4b5b48153949853e9417a6f9c06b25bce2fee495cfec9c1935aace80b99909",
+        "artifacts/flights-round-trip-01/action-13.json": "b0b969a25f784edf7131d2fb4e17a510a0fee28bdd5224f28795cb5014a6389f",
+        "artifacts/flights-round-trip-01/action-14.json": "703242aaad6dbb661328756c5abea3060f9e14583706c36aab90f5e72cd7a29b",
+        "artifacts/flights-round-trip-01/action-15.json": "8d2c00e280c0f9acf89aace5727ee61929a2090add729de1bfb3ac60f770b78f",
+        "artifacts/flights-round-trip-01/action-2.json": "4278ec9f49bfeb3eba54e8de22f07c7ae56bf8cadb5f2d19f89f18de7bb33fdd",
+        "artifacts/flights-round-trip-01/action-3.json": "ec1c30c4f83d7ec49558568f4249b52154a2a4c9f3d01360b83fe75bd0cb4cc2",
+        "artifacts/flights-round-trip-01/action-4.json": "f7935e7b0262c6055db9de25d29141033cbab7cdbcf3ea553edaa6dad0777ee4",
+        "artifacts/flights-round-trip-01/action-5.json": "e9a6c2e564e02fb46c5ee49fc3a2a10b72d63404a52673d2aef3e1bce3549a72",
+        "artifacts/flights-round-trip-01/action-6.json": "ca3c0a2226acda0272aca97b1bbbf681bb0d992d5dbc3091b233d02eea962aa2",
+        "artifacts/flights-round-trip-01/action-7.json": "c918bd67b6b4b40cb2a73024febe887d3a9753c5f3be66c8fcaec79ad3afd9c8",
+        "artifacts/flights-round-trip-01/action-8.json": "b463bc6790ef0ce9127b93d744e114ecd8c2fb1cbe816f99a1fa4894738d560b",
+        "artifacts/flights-round-trip-01/action-9.json": "36a52beb0f8b9b6a5217546159b0e3e3bb710918a887c3c55addf93bd3577945",
+        "artifacts/flights-round-trip-01/attempt-started.json": "78d1c9be1805fb10be8c0b1f1c092de65fb1760c5ee284edd20ad941aac0f881",
+        "artifacts/flights-round-trip-01/conditions.json": "e2de15fd2979da250ed6c9ac202808412e2d2563c5b9b6c267ead6b52acf0e5b",
+        "artifacts/flights-round-trip-01/console.log": "82fda6694db5130c8e5cce83a2f94bca41036d6aebca1d8e2c40513ece7591df",
+        "artifacts/flights-round-trip-01/events.jsonl": "149e998b47b03bef4a57393ff189263cfdaa211f49db9dac25f8520986511449",
+        "artifacts/flights-round-trip-01/launch.py": "e460a9625aa42620081fb771b32125d0f59774cee1f479edf533bba0dfb6da9b",
+        "artifacts/flights-round-trip-01/prepared.json": "d90de0a94c0f2883ece5b45c11a4832005412091836277d729ef0a54deda3fbb",
+        "artifacts/flights-round-trip-01/ready.json": "e5b713b421745591faa472458af5b198c1ad1b5bc2fc7f911ba66371a8f2a0ae",
+        "artifacts/flights-round-trip-01/request.json": "a6853d4bf59a343ca260ac4121b1f278fa9e859d7ca65a81025de89167892bbb",
+        "artifacts/flights-round-trip-01/result-1.json": "0f54b6e8ffaeb246bc6b41684d1b2756214f553fbc6f5001b4ec0184d10f314b",
+        "artifacts/flights-round-trip-01/result-10.json": "1e080a7113dbf157fb91858237b0e556a1cc5d95ba32b52dd8608c386d46ccb4",
+        "artifacts/flights-round-trip-01/result-11.json": "78ca03b17f4f23c1c945137aa3cad47d8273171cda62bd0194670f2ca72c3a16",
+        "artifacts/flights-round-trip-01/result-12.json": "2fcc6be34daf9c56bf2a64446e1654e7708d2a6b545311d5cb1fb478d870f94a",
+        "artifacts/flights-round-trip-01/result-13.json": "7c635a0542db9e790ac981cd931e91aff86d65b776e96b934fff429713544e6c",
+        "artifacts/flights-round-trip-01/result-14.json": "0445c3a10a8bcee3419ad068df521eab2a1322635ec443ffae40917fc6a8a094",
+        "artifacts/flights-round-trip-01/result-15.json": "956c3cd121a455d2168fbd0554d8ebc12bdc9d9f7051ac12aca54a449fea8094",
+        "artifacts/flights-round-trip-01/result-2.json": "68d6c9f88dc1520b773ca8eca2fd825cb64e3220702d84f427e9a1d95eb93ff9",
+        "artifacts/flights-round-trip-01/result-3.json": "ac7363e21e9ed43d1f9c532a623aa7f57e7335a55f1d48621fed7a4316f79296",
+        "artifacts/flights-round-trip-01/result-4.json": "341de11a2c8b37788226014f2c85cc6963ed2a6dc537f68d880dd70dfe03ce44",
+        "artifacts/flights-round-trip-01/result-5.json": "033e7cf28c8f99e3be9050ff3809c079524c89eb59927c4a324ee222d7ffd38f",
+        "artifacts/flights-round-trip-01/result-6.json": "e1b7466815e01ae58a6bfde7541e12399c2d9e7045ce4c30d7cc934b52586ef9",
+        "artifacts/flights-round-trip-01/result-7.json": "ab8c4e28ba960265bb0b7b42374a2760064404bd02019d24dd3cada42d7105af",
+        "artifacts/flights-round-trip-01/result-8.json": "342b707d94e990473622eb6d6e0aa98ea7f859e8d1a169e6204a4f6934df3e4a",
+        "artifacts/flights-round-trip-01/result-9.json": "087416d0a27bf6774b110aa6dcb5128ddb6e210e36bf489b135703d3c3c6813c",
+        "artifacts/flights-round-trip-01/stopped.json": "93403d27ba81f8fc88cc45114f3cce43722e4cd34b32cd7cec7070df43f8d773",
+        "artifacts/flights-round-trip-01/summary.json": "82fda6694db5130c8e5cce83a2f94bca41036d6aebca1d8e2c40513ece7591df",
+        "artifacts/flights-round-trip-01/worker-request.json": "e2aa0f1111eb8e6858a5ad5a0883a58cdf458d3a45e69a765b9788e68b2a3f67",
+        "artifacts/replay/flights-round-trip-01.jsonl": "6126cebc2c90e0c5f442095ade972d5ec8e223a0d3528f9f59fc4e5197fa8dd8"
+      },
+      "failure_assessment": "Calendar Done executed at request 15. Its immediate observation remained unchanged, and the old runner stopped before asynchronous settlement. No mutation was replayed."
+    },
+    {
+      "run": "flights-round-trip-02",
+      "source_commit": "c88b4d5561ab9e2330c8ac96a4261171fa783df7",
+      "started_utc": "2026-10-11T23:08:25.466562+00:00",
+      "outcome": "PASS",
+      "exit_code": 0,
+      "parent_stop": null,
+      "independent_checks": {
+        "results_page": true,
+        "origin_SFO": true,
+        "destination_JFK": true,
+        "round_trip": true,
+        "departure_date_and_year": true,
+        "return_date_and_year": true,
+        "one_adult": true,
+        "economy": true,
+        "actual_flight_options": true
+      },
+      "first_unsuccessful_request": {
+        "sequence": 3,
+        "category": "pre_input_stale",
+        "cause": "The request observation is stale before input",
+        "action_executed": false,
+        "recovered_by_new_coordinator_request": true
+      },
+      "terminal_failure": null,
+      "metrics": {
+        "total_including_startup_and_cleanup_ms": 54759.09675,
+        "dispatch_to_final_outcome_return_ms": 54049.084459,
+        "browser_startup_ms": 323.655916,
+        "worker_and_worker_cleanup_ms": 54039.64575,
+        "browser_cleanup_ms": 374.056417,
+        "coordinator_requests": 17,
+        "coordinator_wait_ms": 47404.105084,
+        "executed_actions": 11,
+        "execution_sources": {
+          "deterministic": 10,
+          "local_model": 1
+        },
+        "read_only_observations": 2,
+        "pre_input_stale_returns": 4,
+        "model_loads": 1,
+        "model_load_ms": 1666.8320000171661,
+        "local_model_calls": 1,
+        "model_call_latency_ms": [
+          471
+        ],
+        "decision_latency_ms": [
+          472
+        ],
+        "local_prompt_tokens": 230,
+        "local_generated_tokens": 0,
+        "token_method": "One menu-scoring forward pass per call. No autoregressive output generation.",
+        "coordinator_tokens": null,
+        "peak_worker_bytes": 3167439632,
+        "peak_mlx_bytes": 2800123180,
+        "memory_limit_bytes": 6442450944
+      },
+      "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "actions": [
+        {
+          "request": 1,
+          "kind": "fill",
+          "label": "Where from?",
+          "text": "SFO",
+          "source": "deterministic"
+        },
+        {
+          "request": 2,
+          "kind": "click",
+          "label": "San Francisco International Airport (SFO)",
+          "text": null,
+          "source": "local_model"
+        },
+        {
+          "request": 4,
+          "kind": "fill",
+          "label": "Where to? ",
+          "text": "JFK",
+          "source": "deterministic"
+        },
+        {
+          "request": 5,
+          "kind": "click",
+          "label": "John F. Kennedy International Airport (JFK)",
+          "text": null,
+          "source": "deterministic"
+        },
+        {
+          "request": 7,
+          "kind": "click",
+          "label": "1 passenger",
+          "text": null,
+          "source": "deterministic"
+        },
+        {
+          "request": 8,
+          "kind": "click",
+          "label": "Done",
+          "text": null,
+          "source": "deterministic"
+        },
+        {
+          "request": 9,
+          "kind": "click",
+          "label": "Open Departure",
+          "text": null,
+          "source": "deterministic"
+        },
+        {
+          "request": 11,
+          "kind": "click",
+          "label": "Thursday, November 12, 2026 , 407 US dollars, Cheapest price",
+          "text": null,
+          "source": "deterministic"
+        },
+        {
+          "request": 13,
+          "kind": "click",
+          "label": "Monday, November 16, 2026 , 398 US dollars, Cheapest price",
+          "text": null,
+          "source": "deterministic"
+        },
+        {
+          "request": 14,
+          "kind": "click",
+          "label": "Done. Search for round trip flights, departing on November 12, 2026 and returning on November 16, 2026",
+          "text": null,
+          "source": "deterministic"
+        },
+        {
+          "request": 16,
+          "kind": "click",
+          "label": "Search",
+          "text": null,
+          "source": "deterministic"
+        }
+      ],
+      "safety": {
+        "no_flight_selected": true,
+        "no_uncertain_mutation": true,
+        "model_done": false,
+        "shared_deadline_seconds": 300,
+        "shared_request_budget": 60,
+        "source_unchanged_before_after": true,
+        "owned_cleanup_completed": true
+      },
+      "source_sha256": {
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "008742becc08c3551caaee02dd37515f775f80ad338d534dc44176b68d6ea8a8",
+        "jev_ultrafast/workflow_worker.py": "d63cedf767c62bb18f61659d0e2343eb986a1a17c44d25105a3e423115326e11",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "scripts/milestone.py": "0e3db1d295dc96238aad00f96f06e1284e95bbde84a92e6bc4aeef6b57f076b1",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "00e8cd05dfa6be59c15203ddd33a9199d5222ba5fc50e7ff6aea73edeb02d82d",
+        "scripts/coordinator_handoff.py": "443f4108ca5932e44afce7e98819cae5fcfe35f0433bb2ccc32d3f638fe24d6f",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8",
+        "scripts/single_action_worker.py": "1cb5ba35ee988c45f6949c9cc95d23e62f29c9dc3b43f29827f2334ec65e299c"
+      },
+      "private_evidence_sha256": {
+        "artifacts/flights-round-trip-02/action-1.json": "778dbc0ec9ddfef460d8f3aa87ef09b57a4def9a49d2ec2db3649605e224fb87",
+        "artifacts/flights-round-trip-02/action-10.json": "ea998855256fb6f7a32507a4f07c5c74ac60afc15bc33f29726b85b88e66e6fb",
+        "artifacts/flights-round-trip-02/action-11.json": "f9ded551bc6570f62521d01a30e7082d3d4856340f53bbb51659bad8099f012c",
+        "artifacts/flights-round-trip-02/action-12.json": "bc288488170a2866179603fd098284c07379868b4b370b3b265b31a90bcfacbb",
+        "artifacts/flights-round-trip-02/action-13.json": "601e455c9e747bc97f27a8723380a574afa3e7bfdcf3664b7126364b6aae1196",
+        "artifacts/flights-round-trip-02/action-14.json": "0368e670fbbb80d75b78249169898fd649427470f8eba04a1c76ef3aa265d0fb",
+        "artifacts/flights-round-trip-02/action-15.json": "4e47795e056d5bf449cfac0c22cde520fbe7f84be26af7c695b2159cb306ed1b",
+        "artifacts/flights-round-trip-02/action-16.json": "6e8dfa313a9785028556f9a530c8cfcf6ac47200bd329ebe8efd4c371603c56b",
+        "artifacts/flights-round-trip-02/action-17.json": "52e73e9008cdc1b09aae7fde24f465bf29560008e58cb8dabb801e474e2bf2f4",
+        "artifacts/flights-round-trip-02/action-2.json": "effa06d08b8add1a3e7499b042902997aa285d4a966c7d734d45c630712c4d5a",
+        "artifacts/flights-round-trip-02/action-3.json": "ed389b35c9e72fd8c7f4ad85c9662847aba78459c32fd29a8794f420cbb6ef3a",
+        "artifacts/flights-round-trip-02/action-4.json": "d4e341f9f81acd5c05dc376dfe2f046715835d8fbca9d3b21d9897b8b9747161",
+        "artifacts/flights-round-trip-02/action-5.json": "15f603c2d3f2de24971d151c684e5a4724113a62b31d3e5314037ba5e5f6e932",
+        "artifacts/flights-round-trip-02/action-6.json": "494cf5499faa6e73143fc9a886b087afa0a204bd1f9da328df1188c9fcc6f3c0",
+        "artifacts/flights-round-trip-02/action-7.json": "c801fc54fa1275bb29e2de24f3a59073e8345d0010fd829d146db34dc9fca559",
+        "artifacts/flights-round-trip-02/action-8.json": "d2acccc9418f7413fe8c8a0cce0cbe8950bac744331a469d8064d0d89c52ea51",
+        "artifacts/flights-round-trip-02/action-9.json": "43d98626c08040d52fe4b621943053756ecc4b00f8d751edda0f90fa54717464",
+        "artifacts/flights-round-trip-02/attempt-started.json": "c6322a189f7651ea91875a39f46f7937b92782b1d18bd11db141eb2fd4effcf9",
+        "artifacts/flights-round-trip-02/conditions.json": "11922d2c05e8ea6cbd1e5f10363cd8b4e870b9042c2c869d981186672791f891",
+        "artifacts/flights-round-trip-02/console.log": "da38cee5f0581832cb3eb59bc6b3298bad1d6c6206291e1488c5af0e133d9a66",
+        "artifacts/flights-round-trip-02/events.jsonl": "ed117b6c6c09705626f9233e8fa58cba46325b5519db40d608ac1431d62c37f6",
+        "artifacts/flights-round-trip-02/launch.py": "427f704e291bc628d9b385808a8bda85765dfcc2e315a7f09b0054b87b15d918",
+        "artifacts/flights-round-trip-02/prepared.json": "8fa31d50a9cc9884075cda5b02f220d72969a03e702a40183822c3dd81419783",
+        "artifacts/flights-round-trip-02/ready.json": "89eb35d2ba3c423bb9da0ee3b5fd6b235caef8271c1deac814fb93caad941c19",
+        "artifacts/flights-round-trip-02/request.json": "432f1ebcdd431ec7269ab98f77357e238f935530ed8dc672c6b708bc93b3a516",
+        "artifacts/flights-round-trip-02/result-1.json": "995fd8f68cfa2da492c83009efceef1872e01ece43a61bb2930ccf82dc0d85e6",
+        "artifacts/flights-round-trip-02/result-10.json": "c394765f850c1a6b6cc9e6fd28e4c1854b04de8c2df47d4120af31ea697a556d",
+        "artifacts/flights-round-trip-02/result-11.json": "816bc2ac606247cbb8a6083098e544aebc8f278dc53caf449775f0e571b517c4",
+        "artifacts/flights-round-trip-02/result-12.json": "ab4b75abb8cdc7bf28cb972ff0da292b540137984125450b33f1d3d20b557e60",
+        "artifacts/flights-round-trip-02/result-13.json": "2330458bb94eea0ce9a3ccd44018abcb5983a939568d8315c1e05c5e73d43e78",
+        "artifacts/flights-round-trip-02/result-14.json": "d36856a92d986a0292475376bcbb81df63bec1bdc1f87989e4dd4bff0305edc0",
+        "artifacts/flights-round-trip-02/result-15.json": "352c1c8f3cb1c383beb2f48be7fe253df0c1b74746a4826932f365afa8910a82",
+        "artifacts/flights-round-trip-02/result-16.json": "f29eb975489c0a902a740685cbbcce1238987384272b67ae66ee95fa4e093778",
+        "artifacts/flights-round-trip-02/result-17.json": "4792dff50fc7985b5306af61ff57bda728be5337693d5a68754dff1944e816b3",
+        "artifacts/flights-round-trip-02/result-2.json": "1201dfa11f2cd426165171b8cbd0f4227dfcb67900e096ef7a415c39d94bdfa7",
+        "artifacts/flights-round-trip-02/result-3.json": "e4fcb07e462b5dca33bd5ebcd70360a0f22487e7d3508193daa81ad7311b941d",
+        "artifacts/flights-round-trip-02/result-4.json": "3640074ab31ae6925bcfdabfbc688dd8d3e37a64781bbcb64bc522280e3a2ed5",
+        "artifacts/flights-round-trip-02/result-5.json": "bd1917fdf0b65f91deb1c78e5f282d5999eed4fcfa12b1686f4234634018560c",
+        "artifacts/flights-round-trip-02/result-6.json": "529e4e8d69e4e5f7204e437f3d7cf6934eb37824856a76562145d839854cc603",
+        "artifacts/flights-round-trip-02/result-7.json": "a3d4e1dcfd764700cdb07ff0068d895342e509fc1e397f2773fef65ab3ee9547",
+        "artifacts/flights-round-trip-02/result-8.json": "2aad48cd3640e697190dacfc3d34aaa96e3fa7cd9639b0fa9bbc84dd408486ea",
+        "artifacts/flights-round-trip-02/result-9.json": "508bb17b3688cfe777e02a344be05b9600a96be68c98fc79237e36cde1b91837",
+        "artifacts/flights-round-trip-02/summary.json": "da38cee5f0581832cb3eb59bc6b3298bad1d6c6206291e1488c5af0e133d9a66",
+        "artifacts/flights-round-trip-02/worker-request.json": "989603a34009e423bcdadc6a2f5015fc38045e2e7d9c96d8c95d42fa265bc7d8",
+        "artifacts/replay/flights-round-trip-02.jsonl": "bf0f02b389d5d80489949a2b5290d0774515a176afea06584253157ebe0e9c83"
+      },
+      "completion_evidence": {
+        "reported_result_count": 27,
+        "directly_visible_options": 3,
+        "flight_options": [
+          "From 428 US dollars round trip total. Nonstop flight with JetBlue. Leaves San Francisco International Airport at 6:00 AM on Thursday, November 12 and arrives at John F. Kennedy International Airport at 2:30 PM on Thursday, November 12. Total duration 5 hr 30 min.   Select flight",
+          "From 428 US dollars round trip total. Nonstop flight with Delta. Leaves San Francisco International Airport at 7:00 AM on Thursday, November 12 and arrives at John F. Kennedy International Airport at 3:31 PM on Thursday, November 12. Total duration 5 hr 31 min.   Select flight",
+          "From 473 US dollars round trip total. Nonstop flight with Alaska. Leaves San Francisco International Airport at 7:00 AM on Thursday, November 12 and arrives at John F. Kennedy International Airport at 3:35 PM on Thursday, November 12. Total duration 5 hr 35 min.   Select flight"
+        ],
+        "fields": {
+          "origin": {
+            "node": 105,
+            "role": "combobox",
+            "label": "Where from? San Francisco SFO",
+            "value": "San Francisco",
+            "expanded": "false"
+          },
+          "destination": {
+            "node": 107,
+            "role": "combobox",
+            "label": "Where to? New York JFK",
+            "value": "New York",
+            "expanded": "false"
+          },
+          "departure": {
+            "node": 108,
+            "role": "textbox",
+            "label": "Departure",
+            "value": "Thu, Nov 12"
+          },
+          "return": {
+            "node": 109,
+            "role": "textbox",
+            "label": "Return",
+            "value": "Mon, Nov 16"
+          }
+        },
+        "adult_evidence": [
+          {
+            "step": 7,
+            "count": 1,
+            "text": "Adults\n1"
+          }
+        ],
+        "year_and_route_text": "Track prices from San Francisco to New York departing 2026-11-12 and returning 2026-11-16",
+        "adult_result_text": "Prices include required taxes + fees for 1 adult.",
+        "trip_type": "Round trip",
+        "cabin": "Economy (include Basic)"
+      }
+    }
+  ],
+  "demonstrated_change": "An unchanged post-action observation returns control and requires an explicit read-only observation request. The assessor accepts the observed Economy (include Basic) value.",
+  "limits": [
+    "Two development runs used different source versions. They are not a controlled speed comparison.",
+    "One successful live run does not establish general reliability or three consecutive successes.",
+    "Qwen selected one airport suggestion per run. Most actions used exact coordinator-supplied targets.",
+    "The comparison with native Desktop and JEV is pending. No time, cost, or token savings claim follows.",
+    "Coordinator tokens are not separately attributable within this mixed engineering chat.",
+    "Worker memory excludes browser and parent.",
+    "Elapsed time includes startup, model loading, coordinator waits, all requests, and cleanup.",
+    "Flight counts and prices describe the saved observations, not current availability.",
+    "No new responsiveness observation was requested. The earlier freeze cause remains unknown."
+  ],
+  "delivery_checks": {
+    "ruff": "PASS",
+    "pytest": "PASS",
+    "tests_passed": 184,
+    "pytest_seconds": 4.52,
+    "new_tests": 0
+  }
+}

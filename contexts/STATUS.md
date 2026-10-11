@@ -5,10 +5,9 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: IDLE, task 16 prepares full-task attempt 02.** Thomas authorized iterative fixes and reruns for SFO–JFK, November 12–16, 2026, one adult, economy, until matching flight results appear. Root controls every action and is the sole launcher.
-> Preserve the single-action boundary, persistent browser/model, target freshness, and safe pre-input stale return. Stop before flight selection, booking, identity, payment, login, or reservation. No new unit tests, test expansion, broad review, indexing, or framework changes.
-> Preserve every raw failed attempt, then batch delivery at meaningful milestones. After full success, freeze the task for sequential native Desktop, system, and JEV comparisons. Task 16 does not launch comparisons.
-> The preceding JFK-only attempt passed independent assessment but failed automatic assessment because the field label changed. [Evidence](../results/flights-target-freshness-once.json) preserves both verdicts and coordinator cancellation with exit 130.
+> **Current run state: IDLE. Full-task development attempt 02 passed all nine outcome checks.** Root controlled every request. The observed results match SFO–JFK round trip, November 12–16, 2026, one adult, economy. No flight was selected. Cleanup completed with exit 0.
+> [Development evidence](../results/flights-round-trip-development.json) preserves failed attempt 01 and successful attempt 02. The successful run took 54.76 seconds with seventeen coordinator requests, eleven executed actions, two read-only observations, four safe stale returns, and one local inference call.
+> Runtime is frozen for sequential comparisons: native Desktop first, then system, then JEV. Root remains the sole launcher. Task 16 prepares the system comparison but does not launch it. No general reliability, token savings, cost savings, or speed superiority is established.
 >
 > **Current scope:** task 16, with supporting notes in task 13. Tasks 18–22 remain cut from the active plan.
 > This context update does not reopen task 19. Do not create new task numbers.
@@ -30,13 +29,13 @@ Reconciled October 11, 2026. This file owns current state and reservations.
 ## Where we are
 
 The local CLI and Codex MCP connection work on a simple navigation goal.
-Reliable multi-step completion, useful time savings, and a native Codex speed comparison remain unproven.
+General multi-step reliability, useful time savings, and a controlled native Codex speed comparison remain unproven.
 The active milestone now tests local task completion. The user reported a visible page, normal responsiveness, and clean closure during the pilot.
 The final cancellation pilot stopped during inference. The user reported normal responsiveness and clean closure. The earlier freeze remains unexplained.
 
 ## Open follow-up
 
-- **16, Improve zero-browser benchmarking:** bounded-worker proof delivered: three identical suites passed 27/27 requested outcomes and 6/6 safe stops. One live Wikipedia field task passed. Full local flight completion remains unresolved. The one-off general-agent live Flights attempt failed before destination selection and date entry. The shared-interface field comparison passed all ten original outcomes and both supplemental outcomes. The five-pair comparison set excludes the original pair with indexing overlap. Its median delegated time reduction is 1.90 seconds. Native desktop CUA speed remains unproven. One additional workflow attempt passed in 29.90 seconds, without invoking recovery. One separately authorized sequential native workflow passed in 33.05 seconds, with product-comparison limits. The later JFK-only attempt failed after one coordinator correction in 22.70 seconds. Live flight recovery and general efficiency remain unproven. The single-action demonstration also failed at the second request because its observation was stale. The later freshness attempt selected JFK by independent assessment, but the automatic assessor missed the changed label. Root cancelled after that assessment. Iterative full-task work is now authorized under the current banner.
+- **16, Improve zero-browser benchmarking:** full SFO–JFK round-trip development attempt 02 passed all nine independent outcome checks in 54.76 seconds. Attempt 01 remains preserved as a failure. One live success does not establish general reliability. Sequential native Desktop, system, and JEV comparisons remain pending under root launch ownership. Earlier local-worker, coordinator, and native results retain their recorded limits.
 
 ## Completed context work
 
@@ -78,6 +77,7 @@ Existing task numbers identify work. They do not override this ownership table.
 | JFK-only handoff attempt | [Failed selection](../results/flights-handoff-once.json). One actual correction retained the browser and model. The next decision violated the boundary and stopped before execution |
 | Single-action attempt | [Failed destination selection](../results/flights-single-action-once.json). Exact fill produced the JFK suggestion. The second exact request stopped before execution because its observation was stale. No Qwen inference occurred |
 | Target freshness attempt | [Separate verdicts](../results/flights-target-freshness-once.json). Independent JFK selection passed after one pre-input stale return. Automatic assessment failed. Coordinator cancellation and exit 130 remain preserved |
+| Full round-trip development | [Both attempts](../results/flights-round-trip-development.json). Attempt 02 passed all nine conditions. Attempt 01 stopped after an unchanged immediate calendar observation. No comparative savings claim |
 | Current local experiments | [Measured runs](../results/milestone-local-runs.json). Failed tasks, interrupted records, source versions, and cancellation observations |
 | MCP connection | [Codex run](../results/codex-mcp.json). Simple navigation only |
 | Smaller models | [4B](../results/replay/quality-4b-plain.json), [1.7B](../results/replay/quality-1.7B-plain.json), [0.6B](../results/replay/quality-0.6B-plain.json). Synthetic cases only |
@@ -140,3 +140,5 @@ Earlier implementation details and evidence remain in the numbered task files an
 - October 11: task 16 prepared the minimal target freshness fix. Lint and 184 existing tests passed. Root owns the one pending attempt.
 
 - October 11: task 16 preserved independent JFK selection, the automatic assessment failure, and coordinator cancellation. One safe stale continuation occurred. Runtime is idle.
+
+- October 11: task 16 preserved full-task development attempts 01 and 02. Attempt 02 passed all nine conditions with clean exit 0. Runtime is frozen for sequential comparisons under root ownership.

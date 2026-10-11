@@ -2,7 +2,7 @@
 
 Priority P0. Owner Codex milestone chat.
 
-Current scope: Thomas authorized iterative full-task development after the independently successful JFK selection. Continue SFO–JFK round trip, November 12–16, 2026, one adult, economy, until matching flight results appear. Codex controls every action. Root is the sole launcher. Stop before flight selection, booking, identity, payment, login, or reservation. No new tests or reporting pause after each failed development run. Preserve raw evidence and freeze source during each attempt.
+Current scope: full SFO–JFK round-trip development attempt 02 passed all nine outcome checks. Preserve attempts 01 and 02, then prepare the system comparison. Root launches native Desktop first, then system, then JEV. Runtime remains frozen. No flight selection or booking is permitted. One live success does not establish general reliability.
 
 ## Why
 
@@ -612,3 +612,20 @@ ZB_RECORD_PATH=artifacts/replay/flights-round-trip-01.jsonl uv run --offline --f
 
 
 Full-task development attempt 01 stopped after request 15 executed calendar Done. Its immediate observation remained unchanged. Raw evidence remains in `artifacts/flights-round-trip-01`. The next candidate adds coordinator-requested read-only observation, with no automatic repeated mutation. An unchanged result requires observation before further input. Three consecutive unchanged read-only observations stop under the existing shared limits. The independent assessor accepts the observed `Economy (include Basic)` variant only for the Economy requirement. Attempt 02 uses a fresh folder and marker. Raw prior assessments remain unchanged. Public results will be delivered together at the next meaningful milestone.
+
+
+### Full round-trip development outcome
+
+[Development evidence](../results/flights-round-trip-development.json) preserves both fixed-task attempts. Attempt 01 used `1b65d584bfbbb39398be6ccf3e9ece6876e46afe` and failed after an executed calendar Done action showed no immediate change. It took 92,157.00 ms, with fifteen requests, ten executed actions, five pre-input stale returns, and one local call. The call used 239 prompt tokens. Its raw failure and source hashes remain unchanged.
+
+Attempt 02 used `c88b4d5561ab9e2330c8ac96a4261171fa783df7` and passed all nine independent outcome checks at result 17. Evidence shows SFO–JFK, round trip, November 12–16, 2026, one adult, economy, and actual flight options. The page reported 27 results. Three options were directly visible. No flight was selected. The parent exited 0 and completed cleanup.
+
+Total startup-through-cleanup time was 54,759.10 ms. Browser startup took 323.66 ms, worker plus process cleanup took 54,039.65 ms, and browser cleanup took 374.06 ms. Seventeen coordinator requests produced eleven executed actions and two explicit read-only observations. Four pre-input stale returns required new coordinator requests. Ten actions used deterministic execution. Qwen selected one airport suggestion from two permitted observed choices.
+
+The one local call took 471 ms, with a 472 ms decision record and 230 prompt tokens. Menu scoring generated no output tokens. One model load took 1,666.83 ms. Peak sampled worker memory was 3,167,439,632 bytes, excluding browser and parent. Coordinator token usage cannot be separated from the engineering chat. All twenty-one runtime source hashes remained unchanged during each attempt.
+
+Both attempts retain durable events, requests, results, replay records, and failed-run evidence. The runtime change addressed delayed observation and an observed economy-label variant. The two different code versions prevent a controlled speed comparison. The successful outcome proves one full-task completion with a coordinator, not general local-agent reliability or savings.
+
+The next comparison uses the same full task and frozen successful runtime. Root launches native Desktop, then system, then JEV sequentially. Task 16 prepares a fresh system folder only. No comparison ran during this preservation step.
+
+Preservation checks passed: lint and all 184 existing tests in 4.52 seconds. Public evidence passed the private-path and credential scan. Earlier public results and private run evidence remain unchanged.
