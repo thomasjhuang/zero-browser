@@ -102,7 +102,7 @@ section.ev2 > p{color:var(--mute);margin:0 0 14px;font-size:13.5px;max-width:760
 .card{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:16px}
 .card h4{margin:0;font-size:14px;font-weight:600}
 .card .sub{color:var(--mute);font-size:12px;margin:3px 0 14px}
-.cmp{display:grid;grid-template-columns:120px 1fr 92px;gap:8px 10px;align-items:center;font-family:var(--mono);font-size:12px}
+.cmp{display:grid;grid-template-columns:150px 1fr 72px;gap:8px 10px;align-items:center;font-family:var(--mono);font-size:12px}
 .cmp .lab{color:var(--mute)}
 .track{height:12px;background:#1b1d22;border-radius:3px;overflow:hidden}
 .fill{height:100%;border-radius:3px;transition:width .8s ease}
@@ -443,13 +443,13 @@ async function loadHistory(){
       <div class="cmp">
         <div class="metric">Frontier tokens</div>
         ${bar('Codex alone', a.median_total_tokens, mt, 'f', kfmt(a.median_total_tokens))}
-        ${bar('+ zero-browser', b.median_total_tokens, mt, 'l', kfmt(b.median_total_tokens))}
+        ${bar('Codex + zero-browser', b.median_total_tokens, mt, 'l', kfmt(b.median_total_tokens))}
         <div class="metric">Frontier calls</div>
         ${bar('Codex alone', a.median_requests, mr, 'f', a.median_requests)}
-        ${bar('+ zero-browser', b.median_requests, mr, 'l', b.median_requests)}
+        ${bar('Codex + zero-browser', b.median_requests, mr, 'l', b.median_requests)}
         <div class="metric">Dispatch to verdict</div>
         ${bar('Codex alone', a.median_ms, ms, 'f', secs(a.median_ms))}
-        ${bar('+ zero-browser', b.median_ms, ms, 'l', secs(b.median_ms))}
+        ${bar('Codex + zero-browser', b.median_ms, ms, 'l', secs(b.median_ms))}
       </div>
       <div class="callout"><b>−${Math.round((1 - b.median_total_tokens / a.median_total_tokens) * 100)}%</b> frontier tokens. The local model read ${fmt(b.local_prompt_tokens)} prompt tokens for free.</div>`;
   }
@@ -462,10 +462,10 @@ async function loadHistory(){
       <div class="cmp">
         <div class="metric">Frontier tokens</div>
         ${bar('Codex Desktop', n.tokens, mt, 'f', kfmt(n.tokens))}
-        ${bar('+ zero-browser', z.tokens, mt, 'l', kfmt(z.tokens))}
+        ${bar('Codex + zero-browser', z.tokens, mt, 'l', kfmt(z.tokens))}
         <div class="metric">Dispatch to verdict</div>
         ${bar('Codex Desktop', n.ms, ms, 'f', secs(n.ms))}
-        ${bar('+ zero-browser', z.ms, ms, 'l', secs(z.ms))}
+        ${bar('Codex + zero-browser', z.ms, ms, 'l', secs(z.ms))}
       </div>
       <div class="callout"><b>${(n.tokens / z.tokens).toFixed(1)}×</b> fewer frontier tokens. ${z.local_calls} local decisions, ${fmt(z.local_prompt_tokens)} local prompt tokens.</div>`;
   }
