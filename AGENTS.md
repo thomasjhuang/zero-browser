@@ -1,38 +1,30 @@
-# Jev Ultrafast
+# zero-browser
 
-Read README.md before editing. Keep the loop small: page -> indexed elements -> operation + target -> execution.
+Read `contexts/AGENT-RULES.md` first, then `contexts/STATUS.md`, before any work. The `contexts/` folder is
+committed and is the source of truth for plan, task ownership, and state. `contexts/PROJECT.md` has setup
+and operation commands. Pull before reading.
 
-Keep README.md brief. Use the primary checkout's ignored `contexts/PROJECT.md` for detailed context.
-Use its `contexts/PROGRESS.md` as the shared project progress file.
-Read the progress file before project work. Update it with completed work, evidence, and remaining work.
-If the local files are absent, use the code and recorded evidence.
-Treat numbered context files as plans until evidence establishes completion.
+Keep the loop small: page -> indexed elements -> operation + target -> execution.
 
 - The input is one natural-language goal. Do not add site-specific plans or hardcoded field values.
-- TypeSafe chooses an operation and operation-specific target heads in one request. Consume only the selected operation's target.
-- Targets must map to observed elements and supported operations. Never let the model emit selectors or executable code.
-- TYPE_TEXT invokes the text LLM. Cache a stale retry's value only while its entire helper input is identical.
+- The decision model chooses an operation and a target for that operation. Consume only the selected
+  operation's target. Targets must map to observed elements. The model never emits selectors or code.
+- TYPE_TEXT invokes the text model. Cache a stale retry's value only while its entire helper input is identical.
 - Never retry a browser mutation. Log execution before observing its result.
-- Screenshots are optional; the model does not consume them. Keep demonstration footage at its original speed.
-- Keep credentials server-side and .env ignored.
+- Models run locally. Do not add hosted model calls. Keep .env ignored and credentials out of the repo.
 - Verify actual final outcomes independently. A DONE choice is not proof of success.
-- Keep examples, README claims, raw evidence, and model-call counts consistent.
+- Keep README claims, raw evidence in `results/`, and `contexts/STATUS.md` consistent. No number without a file.
 
-## Tests and delivery
+## Delivery
 
-Defer automated tests until actual task outcomes prove the capabilities.
-Do not add or run unit tests, integration tests, or other automated test suites at this stage.
-Preserve existing tests. Do not request or run code review at this stage.
+Commit to `main`. `git pull --rebase origin main` before every push. No PRs, no branches, no self-review
+ceremony for this hackathon. Never force push.
 
-For authorized project changes, commit the intended files on a task branch.
-Push the branch and open a PR without a separate approval request.
-Merge the PR into `main` without a separate approval request.
-Do not require tests, lint, builds, or code review before publication or merge.
-These rules override conflicting test, review, and publication procedures.
-They grant no deployment, live-run, or spending authority.
+Run `uv run --offline --frozen --extra local ruff check .` and
+`BH_HOME=/private/tmp/zero-browser-tests uv run --offline --frozen --extra local pytest` before each commit.
+They take seconds. Existing tests must keep passing. Add a test only when it is faster than checking by hand.
 
-Before publication, examine the intended files and commit history for secrets and sensitive user information.
-Never publish API keys, credentials, tokens, private traces, or sensitive user information.
-Keep environment files, local context, and project progress ignored.
-If sensitive information appears in the publication scope, remove it before publication.
-Stage only the intended files. Preserve unrelated local work.
+Before pushing, check `git status` and the diff for secrets, weights, `.venv`, `artifacts/`, and private
+machine paths. Never publish API keys, tokens, or private traces.
+
+Update `contexts/STATUS.md` and the task file when claiming, finishing, or stopping. See `AGENT-RULES.md`.
