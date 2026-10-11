@@ -1,6 +1,6 @@
 # Project status
 
-Updated 2026-10-11 12:44 PT. This is the single shared state file. Edit it on every claim, finish, or block.
+Updated 2026-10-11 13:00 PT. This is the single shared state file. Edit it on every claim, finish, or block.
 Keep it short. Evidence lives in `results/` and is linked, never restated beyond one number.
 
 ## Where we are
@@ -13,7 +13,6 @@ Plan and ranked tasks are in `README.md` here.
 
 ## In progress
 
-- 15-cli-runtime-safety (Codex). Emergency safeguards after the user reported a freeze.
 
 - 12-benchmark-loop (Astra). Owns bench.py, run_cli.py, bench_tasks.json, results/bench/, verify.py.
 - 13-latency-and-field-text (Sol). Owns local_policy.py, local_model.py, questions.py, browser timeout.
@@ -33,6 +32,7 @@ Plan and ranked tasks are in `README.md` here.
 
 | Work | Outcome | Evidence |
 | --- | --- | --- |
+| 15 CLI runtime safety | Model-free guards passed. Local challenge stopped before Qwen loaded. Live inference remains untested | [Evidence](../results/cli-runtime-safety.json) |
 | 11 Installer and local CLI | Setup and simple fixture goal passed. Multi-step goals failed | [Evidence](../results/install-cli-verification.json) |
 | 00 Shared local model | One cached model supports scoring and generation. Smoke: 12/12 | [Smoke](../results/shared-local-model-smoke.json), [tests and reuse](../results/shared-local-model-verification.json) |
 | Local scorer, pinned weights, offline rerun | 12/12 synthetic decisions, 48 forward passes, ~300ms warm | `results/decision-smoke.json`, `results/decision-smoke-rerun.json` |
@@ -50,6 +50,9 @@ Plan and ranked tasks are in `README.md` here.
 (none)
 
 ## Known limits
+
+The user reported a freeze during a Google CLI task. Its cause remains unconfirmed.
+Task 15 adds runtime guards. Qwen correctness and live speed after those changes remain untested.
 
 The CLI can stop at DONE before the entire goal succeeds. Final-page assertions detect this problem.
 Destination submission and requested filters failed in local multi-step attempts.
@@ -80,6 +83,8 @@ default profile lacked remote debugging. Jev's per-step timeout can be exceeded 
 - `scripts/decision_baselines.py` and the recorder are Codex's. Nobody deletes them in task 10.
 
 ## Log
+
+- 2026-10-11 13:00 PT. Task 15 guard tests and the local challenge stop passed. No Qwen run occurred. Evidence: `results/cli-runtime-safety.json`.
 
 - 2026-10-11 12:50 PT. Rescoped after the first live run. Tasks 12 and 13 written, 03/04/05/06/07/11 cut.
   Two agents only, Astra on 12, Sol on 13.

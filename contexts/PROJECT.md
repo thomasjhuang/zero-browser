@@ -12,7 +12,7 @@ It installs missing dependencies, downloads the pinned Qwen weights, and prepare
 
 ```bash
 ./zero-browser --doctor
-./zero-browser --url https://www.google.com "Your browser goal"
+./zero-browser --url https://YOUR_START_PAGE "Your browser goal"
 ./zero-browser --fixture --expect-url '#casa-flora' --expect-text 'Casa Flora' "Open Casa Flora."
 ```
 
@@ -20,7 +20,11 @@ The CLI forces local inference through `JEV_LOCAL=1`. The inherited hosted runne
 It uses a temporary Chrome profile and closes that browser after the run.
 Use `--expect-text` and `--expect-url` for independent final-page assertions.
 Without assertions, model completion does not establish outcome success.
-The time budget applies between model calls. It cannot interrupt a slow call.
+The parent process enforces the worker deadline, including model loading and browser calls.
+The CLI stops on recognizable human verification and three consecutive rejected decisions.
+It monitors the worker memory footprint and refuses startup with insufficient memory headroom.
+Prompts above the safety limit fail before inference. See `results/cli-runtime-safety.json` for guard evidence.
+These changes lack a new Qwen run. Live speed and crash prevention remain unverified.
 
 Installation and browser outcome evidence lives in `results/install-cli-verification.json`.
 The simple fixture goal passes. Multi-step destination and filter goals remain incomplete.

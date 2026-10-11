@@ -18,6 +18,15 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from scripts.runtime_guard import (  # noqa: E402
+    challenge_reason,
+    cleanup_signals,
+    single_run,
+    stop_process_group,
+    supervise,
+    worker_memory_limit,
+)
+
 CACHED_CHROME = (ROOT / ".zero-browser/browser/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS"
                  / "Google Chrome for Testing")
 CHROME_CANDIDATES = (
@@ -79,7 +88,7 @@ def isolated_browser(headless=False):
         if headless:
             command.insert(1, "--headless=new")
         with (base / "chrome.log").open("w") as log:
-            process = subprocess.Popen(command, stdout=log, stderr=log)
+            process = subprocess.Popen(command, stdout=log, stderr=log, start_new_session=True)
             try:
                 deadline = time.monotonic() + 20
                 port_file = profile / "DevToolsActivePort"
@@ -91,18 +100,16 @@ def isolated_browser(headless=False):
                 os.environ["BU_CDP_URL"] = f"http://127.0.0.1:{port}"
                 yield
             finally:
-                try:
-                    if "browser_harness.admin" in sys.modules:
-                        from browser_harness.admin import restart_daemon
-
-                        restart_daemon(name="zero_browser")
-                finally:
-                    process.terminate()
+                with cleanup_signals():
                     try:
-                        process.wait(timeout=5)
-                    except subprocess.TimeoutExpired:
-                        process.kill()
-                        process.wait(timeout=5)
+                        # The worker owns the daemon. Keep its shutdown outside the inference process.
+                        supervise([sys.executable, "-c", "from browser_harness.admin import restart_daemon; "
+                                   "restart_daemon(name='zero_browser')"],
+                                  timeout=2, memory_limit=256 * 2**20)
+                    except (RuntimeError, OSError):
+                        pass
+                    finally:
+                        stop_process_group(process)
 
 
 class FixtureHandler(SimpleHTTPRequestHandler):
@@ -143,18 +150,40 @@ def run_goal(args, url):
     from jev_ultrafast.agent import Agent
     from jev_ultrafast.local_model import get_model
 
-    print("Loading local Qwen.", flush=True)
-    get_model()
     started = time.monotonic()
     with Agent(url, args.goal) as agent:
+        stop_reason = challenge_reason(agent.state["page"])
+        if stop_reason:
+            agent.state["status"] = "blocked"
+        else:
+            print("Loading local Qwen.", flush=True)
+            get_model()
+        executed_count, rejected_count = 0, 0
         for state in agent.run():
             history = state["history"]
             decision = state["decisions"][-1]
-            print(f"{len(history)}: {decision['operation']} ({decision['latency_ms']} ms)", flush=True)
-            if state["status"] in {"done", "blocked"}:
-                break
-            if len(state["decisions"]) >= args.max_decisions or time.monotonic() - started >= args.timeout:
+            timing = f"model {decision['latency_ms']} ms"
+            if len(history) > executed_count:
+                executed_count = len(history)
+                rejected_count = 0
+                print(f"Action {executed_count}: executed {decision['operation']} ({timing})", flush=True)
+            elif state["status"] not in {"done", "blocked"}:
+                rejected_count += 1
+                print(f"Decision {len(state['decisions'])}: skipped before execution ({timing})", flush=True)
+            else:
+                print(f"Decision {len(state['decisions'])}: {state['status']} ({timing})", flush=True)
+            stop_reason = challenge_reason(state["page"])
+            if not stop_reason and rejected_count >= 3:
+                stop_reason = "Three consecutive decisions did not execute. The CLI stopped."
+            running = state["status"] not in {"done", "blocked"}
+            if not stop_reason and running and len(state["decisions"]) >= args.max_decisions:
+                stop_reason = "Decision budget reached. The CLI stopped."
+            if not stop_reason and running and time.monotonic() - started >= args.timeout:
+                stop_reason = "Run deadline reached. The CLI stopped."
+            if stop_reason:
                 agent.state["status"] = "blocked"
+                break
+            if state["status"] in {"done", "blocked"}:
                 break
         # Read the browser again. A DONE decision alone is not outcome evidence.
         final = agent.browser.evaluate("({url:location.href,title:document.title,text:document.body.innerText})")
@@ -163,6 +192,7 @@ def run_goal(args, url):
             assertions[f"url:{args.expect_url}"] = args.expect_url in final["url"]
         summary = {
             "status": agent.state["status"], "outcome_verified": bool(assertions) and all(assertions.values()),
+            "stop_reason": stop_reason,
             "assertions": assertions, "actions": len(agent.state["history"]),
             "decisions": len(agent.state["decisions"]), "text_calls": len(agent.state["text_calls"]),
             "elapsed_ms": round((time.monotonic() - started) * 1000),
@@ -177,6 +207,30 @@ def run_goal(args, url):
         return 0 if summary["status"] == "done" and (not assertions or summary["outcome_verified"]) else 1
 
 
+def supervised_worker(args):
+    request = {**vars(args), "output": str(args.output) if args.output else None}
+    limit = worker_memory_limit()
+    print(f"Worker memory budget: {limit / 2**30:.1f} GiB. Run deadline: {args.timeout:g} s.", flush=True)
+    with tempfile.TemporaryDirectory(prefix="zero-browser-worker-") as directory:
+        path = Path(directory) / "request.json"
+        path.write_text(json.dumps(request))
+        return supervise([sys.executable, str(Path(__file__).resolve()), "--_worker", str(path)],
+                         timeout=args.timeout, memory_limit=limit)
+
+
+def execute_worker(path):
+    os.environ["JEV_LOCAL"] = "1"
+    args = argparse.Namespace(**json.loads(path.read_text()))
+    args.output = Path(args.output) if args.output else None
+    if args.doctor:
+        doctor()
+        return 0
+    if args.fixture:
+        with fixture_url() as url:
+            return run_goal(args, url)
+    return run_goal(args, args.url)
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("goal", nargs="?", help="One natural-language browser goal.")
@@ -186,19 +240,20 @@ def main(argv=None):
     parser.add_argument("--install-browser", action="store_true", help="Download Chrome if it is absent.")
     parser.add_argument("--offline", action="store_true", help="Do not download Chrome.")
     parser.add_argument("--headless", action="store_true", help="Run Chrome without a window.")
-    parser.add_argument("--max-decisions", type=int, default=60)
+    parser.add_argument("--max-decisions", type=int, default=20)
     parser.add_argument("--timeout", type=float, default=180,
-                        help="Time budget in seconds, tested between model calls.")
+                        help="Worker deadline in seconds, including model loading and browser calls.")
     parser.add_argument("--expect-text", action="append", default=[],
                         help="Test final page text. Repeat for each requirement.")
     parser.add_argument("--expect-url", help="Test that the final URL contains this text.")
     parser.add_argument("--output", type=Path, help="Save the final page and summary. Keep private pages outside Git.")
+    parser.add_argument("--_worker", type=Path, help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
     if platform.system() != "Darwin" or platform.machine() != "arm64":
         parser.error("This version needs an Apple Silicon Mac with Metal.")
     if args.max_decisions < 1 or args.timeout <= 0:
         parser.error("The decision and time budgets must be positive.")
-    if not args.doctor and not args.install_browser:
+    if not args.doctor and not args.install_browser and not args._worker:
         if args.goal is None:
             args.goal = input("Browser goal: ")
         if not args.goal.strip():
@@ -206,17 +261,13 @@ def main(argv=None):
         if urlparse(args.url).scheme not in {"http", "https"}:
             parser.error("The initial URL must use http or https.")
     try:
+        if args._worker:
+            return execute_worker(args._worker)
         if args.install_browser:
             install_browser(args.offline)
             return 0
-        with isolated_browser(headless=args.headless or args.doctor):
-            if args.doctor:
-                doctor()
-                return 0
-            if args.fixture:
-                with fixture_url() as url:
-                    return run_goal(args, url)
-            return run_goal(args, args.url)
+        with single_run(), isolated_browser(headless=args.headless or args.doctor):
+            return supervised_worker(args)
     except KeyboardInterrupt:
         print("Stopped.", file=sys.stderr)
         return 130

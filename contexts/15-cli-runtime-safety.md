@@ -25,3 +25,14 @@ Record evidence in results/cli-runtime-safety.json. Do not claim a crash cause o
 
 Do not stop unrelated processes or change the benchmark task.
 Do not bypass CAPTCHA or publish private page contents.
+
+## Result
+
+Prompt, cache, prefill, worker deadline, memory footprint, and shutdown guards landed.
+The CLI stops on recognizable human verification and three consecutive rejected decisions.
+It reports executed actions separately from rejected decisions.
+
+The model-free suite passes. A real CLI run against a local challenge page stops before loading Qwen.
+Evidence: [runtime safety](../results/cli-runtime-safety.json).
+Qwen correctness, live speed, and prevention of the reported freeze remain unverified.
+Tasks 12 and 13 retain benchmark and latency ownership. Preserve these guards during their work.

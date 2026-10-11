@@ -3,7 +3,7 @@
 import json
 import time
 
-from .local_model import get_model, score_decision
+from .local_model import PREFILL_CHUNK_TOKENS, check_prompt_size, get_model, score_decision
 from .model import action_space
 from .questions import NEXT_ACTION, TARGET, TEXT_VALUE
 
@@ -111,8 +111,11 @@ def local_field_text(context):
             [{"role": "system", "content": TEXT_VALUE}, {"role": "user", "content": content}],
             tokenize=False, add_generation_prompt=True, enable_thinking=False,
         )
-        prompt_tokens += len(tokenizer.encode(prompt, add_special_tokens=False))
-        output = generate(model, tokenizer, prompt=prompt, max_tokens=128, sampler=make_sampler(temp=0), verbose=False)
+        prompt_ids = tokenizer.encode(prompt, add_special_tokens=False)
+        check_prompt_size(prompt_ids)
+        prompt_tokens += len(prompt_ids)
+        output = generate(model, tokenizer, prompt=prompt, max_tokens=128, sampler=make_sampler(temp=0),
+                          prefill_step_size=PREFILL_CHUNK_TOKENS, verbose=False)
         completion_tokens += len(tokenizer.encode(output, add_special_tokens=False))
         try:
             data = json.loads(output.strip())

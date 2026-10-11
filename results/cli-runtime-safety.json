@@ -1,0 +1,90 @@
+{
+  "recorded_at": "2026-10-11T13:00:02-07:00",
+  "base_commit": "8fd5266c3e89620c71f2ad8310eac21d480e74a4",
+  "reported_problem": "The user reported slow Google decisions, CAPTCHA, a computer freeze, and delayed Ctrl-C shutdown.",
+  "crash_cause": "Unconfirmed. No matching new Python or panic report appeared in the inspected diagnostic filenames.",
+  "pipeline": "Existing Agent.run, Browser.observe, Browser.act, and model dispatch. One cached Qwen tuple per worker.",
+  "source_sha256": {
+    "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+    "scripts/runtime_guard.py": "0a277ea180e85fb07d7ef2cc7fada62e4004ae28813571d7edcfcfb216267d3d",
+    "jev_ultrafast/local_model.py": "b6089b150f3f3a261cd312d25ea8d0e697914c5350108e698e24249efdea4c17",
+    "jev_ultrafast/local_policy.py": "7612c3a8b06fc4c1fd4c5866413340859b24509dea239ff36408d1da7db704a4",
+    "tests/test_cli_runtime.py": "f8878cf144615a66bb210081813d0ae21c587eff4b2e869a2c702df9825f84bb"
+  },
+  "limits": {
+    "prompt_tokens": 4096,
+    "prefill_chunk_tokens": 256,
+    "mlx_allocator_cache_bytes": 268435456,
+    "mlx_memory_limit": "Advisory: minimum of 6 GiB and one third of physical memory.",
+    "cli_worker_budget": "Minimum of 6 GiB, one third of physical memory, and reported free memory minus 2 GiB.",
+    "minimum_worker_budget_bytes": 3221225472,
+    "memory_poll_seconds": 0.1,
+    "budget_scope": "Worker physical footprint. This does not cap every browser subprocess or total system memory.",
+    "default_decisions": 20,
+    "consecutive_rejected_decisions": 3,
+    "deadline_scope": "External worker deadline includes model loading and browser calls. Chrome startup has a separate deadline."
+  },
+  "tests": {
+    "command": "BH_HOME=/private/tmp/zero-browser-tests uv run --offline --frozen --extra local pytest",
+    "passed": 83,
+    "result": "83 passed in 3.77s",
+    "local_inference": false,
+    "coverage": [
+      "Prompt size rejection before inference",
+      "Bounded prefill preserves token order and cache state",
+      "Field text rejects an oversized prompt",
+      "Live macOS process footprint read",
+      "Low memory refuses startup",
+      "Watchdog kills a dummy worker that ignores SIGTERM",
+      "Simulated memory budget stop",
+      "Repeated SIGINT cleanup returns 130 without traceback",
+      "One CLI run lock",
+      "Initial and newly observed challenge stops",
+      "Three stale decisions stop with no execution claims"
+    ]
+  },
+  "lint": {
+    "command": "uv run --offline --frozen --extra local ruff check .",
+    "result": "All checks passed"
+  },
+  "cli_local_challenge": {
+    "command": "./zero-browser --headless --url http://127.0.0.1:57546 --timeout 15 --output TEMP_OUTPUT \"Open the documentation.\"",
+    "exit_code": 1,
+    "parent_elapsed_ms": 1496,
+    "agent_elapsed_ms": 447,
+    "actions": 0,
+    "decisions": 0,
+    "text_calls": 0,
+    "qwen_loaded": false,
+    "stop_reason": "Human verification is required. The CLI stopped.",
+    "stderr": "",
+    "owned_workers_or_browsers_remaining": []
+  },
+  "gitnexus": {
+    "used": [
+      "list_repos",
+      "context resource",
+      "query",
+      "symbol context",
+      "impact",
+      "detect_changes"
+    ],
+    "index_refreshed": true,
+    "shared_model_impact": "Critical",
+    "limits": [
+      "Incomplete process traversal",
+      "Cross-language field inference omitted",
+      "MCP initially retained an older snapshot",
+      "Untracked guard and test sources inspected directly"
+    ]
+  },
+  "not_tested": [
+    "Qwen inference after the changes",
+    "Numerical equivalence of chunked Qwen scores",
+    "Google search success",
+    "Live latency improvement",
+    "MLX GPU allocation accounting in the footprint watchdog",
+    "Prevention of every system freeze",
+    "16 GB device behavior"
+  ]
+}

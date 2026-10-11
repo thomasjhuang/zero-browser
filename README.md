@@ -1,7 +1,7 @@
 # zero-browser
 
 Run browser goals with local Qwen on an Apple Silicon Mac with Metal.
-This is a prototype. Simple browser execution works. Longer tasks still need reliability work.
+This is a prototype. Live browser reliability and resource use remain unverified.
 
 With Git installed, run:
 
@@ -16,21 +16,23 @@ If `uv` is absent, the installer installs it. It installs locked Python dependen
 The model download is about 2.3 GB. The installer reuses cached weights and preserves repository locks.
 If Chrome is absent, it downloads Chrome for Testing. Setup tests the model, Metal, and the browser connection.
 
-Give the CLI one goal:
-
-```bash
-./zero-browser --url https://www.google.com "Find the official Python downloads page for macOS."
-```
+Give the CLI one goal and a starting page with `--url`.
 
 Each run uses local model calls and an isolated Chrome profile. It needs no API keys.
 If you omit the goal, the CLI asks for it.
 Use `./zero-browser --doctor` to test setup. Use `bash install.sh --offline` after the required downloads finish.
 
-Try the tested local fixture:
+The local fixture is a fake hotel page. Casa Flora is one of its sample hotels:
 
 ```bash
 ./zero-browser --fixture --expect-url '#casa-flora' --expect-text 'Casa Flora' "Open Casa Flora."
 ```
+
+The CLI stops on recognizable human-verification text and three consecutive decisions without execution.
+A separate worker enforces a deadline and monitors its memory footprint. The CLI permits one run at a time.
+Prompt and cache limits reduce inference work. These safeguards do not establish live speed or prevent every system freeze.
+[Safety evidence](results/cli-runtime-safety.json) records model-free tests and a local challenge stop.
+Qwen inference after these changes remains untested.
 
 The CLI reads the final page independently. Supplied expectations determine `outcome_verified`.
 Without expectations, a DONE choice remains unverified. Failed expectations return a nonzero exit code.
