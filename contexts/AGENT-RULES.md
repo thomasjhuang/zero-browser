@@ -16,6 +16,7 @@ project state. Chat history, memory, and your own assumptions are not.
 
 ## While working
 
+- Prioritize end-to-end experiments. Follow [Experimental validation](../AGENTS.md#experimental-validation) for new unit tests.
 - Stay inside the task's file ownership listed in `contexts/README.md`. If you must touch a file another
   lane owns, write a note in STATUS.md under Coordination and keep the change minimal.
 - Respect the timebox. When it runs out, ship what passes and record what did not in the task file.

@@ -13,13 +13,14 @@ Plan and ranked tasks are in `README.md` here.
 
 ## In progress
 
-- 17-experiment-priority (Codex). Update the testing policy and shared instruction references. Preserve task 16 edits.
 - 16-flight-milestone (Codex milestone chat). Model-free safety, durable records, and fixed completion tests. Local inference waits for user readiness.
 
 - 12-benchmark-loop (Astra). Owns bench.py, run_cli.py, bench_tasks.json, results/bench/, verify.py.
 - 13-latency-and-field-text (Sol). Owns local_policy.py, local_model.py, questions.py, browser timeout.
 
 ## Open, in priority order
+
+- 17-experiment-priority. Instructions updated locally. Delivery checks passed. Publication waits for unfinished shared changes.
 
 - iterate on next bench failure (both, after 12 and 13 land)
 - 09-fix-filter-miss (P3, slack only)
@@ -93,6 +94,8 @@ default profile lacked remote debugging. Jev's per-step timeout can be exceeded 
 - `scripts/decision_baselines.py` and the recorder are Codex's. Nobody deletes them in task 10.
 
 ## Log
+
+- Task 17 updated the experiment and unit-test policy. No unit tests were added. Delivery checks passed. Publication remains pending.
 
 - 2026-10-11 13:00 PT. Task 15 guard tests and the local challenge stop passed. No Qwen run occurred. Evidence: `results/cli-runtime-safety.json`.
 

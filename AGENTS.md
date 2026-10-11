@@ -15,6 +15,15 @@ Keep the loop small: page -> indexed elements -> operation + target -> execution
 - Verify actual final outcomes independently. A DONE choice is not proof of success.
 - Keep README claims, raw evidence in `results/`, and `contexts/STATUS.md` consistent. No number without a file.
 
+## Experimental validation
+
+- Prioritize controlled end-to-end experiments through the actual browser and model pipeline.
+- Use fixed goals and assess final outcomes independently of the model's completion choice.
+- Record outcomes, latency, and memory use in `results/`.
+- Add unit tests only for critical safeguards or repeatable bugs. Keep these tests small and deterministic.
+- Defer broader unit-test coverage until the behavior stabilizes.
+- Preserve existing tests and required delivery checks. Passing unit tests do not establish end-to-end reliability.
+
 ## Delivery
 
 Commit to `main`. `git pull --rebase origin main` before every push. No PRs, no branches, no self-review
@@ -22,7 +31,7 @@ ceremony for this hackathon. Never force push.
 
 Run `uv run --offline --frozen --extra local ruff check .` and
 `BH_HOME=/private/tmp/zero-browser-tests uv run --offline --frozen --extra local pytest` before each commit.
-They take seconds. Existing tests must keep passing. Add a test only when it is faster than checking by hand.
+Existing tests must keep passing. Follow the experimental validation policy above for new unit tests.
 
 Before pushing, check `git status` and the diff for secrets, weights, `.venv`, `artifacts/`, and private
 machine paths. Never publish API keys, tokens, or private traces.
