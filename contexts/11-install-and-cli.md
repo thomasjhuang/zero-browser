@@ -40,3 +40,11 @@ The CLI adapter overlaps tasks 01 and 02. Those tasks remain open for integratio
 Task 10 can remove the inherited hosted paths after it reconciles this adapter.
 Task 06 must resolve and independently test the full fixture goal.
 The 16 GB memory target and other machines remain untested.
+
+## Status 12:50 PT
+
+Cut or superseded. See README ranking. 03/05/06/07 are replaced by the live bench loop in 12. 04 is absorbed into 13. 11 keeps run_cli.py and drops the installer.
+
+Shell retest 2026-10-11 12:44 PT: `bash install.sh` and the CLI fixture goal passed with exit code 0.
+The final page met both supplied assertions. This run reused cached weights.
+See the `shell_retest` record in the evidence file.

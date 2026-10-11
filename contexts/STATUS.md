@@ -1,6 +1,6 @@
 # Project status
 
-Updated 2026-10-11 12:40 PT. This is the single shared state file. Edit it on every claim, finish, or block.
+Updated 2026-10-11 12:44 PT. This is the single shared state file. Edit it on every claim, finish, or block.
 Keep it short. Evidence lives in `results/` and is linked, never restated beyond one number.
 
 ## Where we are
@@ -13,21 +13,19 @@ Plan and ranked tasks are in `README.md` here.
 
 ## In progress
 
-(none)
+- 12-benchmark-loop (Astra). Owns bench.py, run_cli.py, bench_tasks.json, results/bench/, verify.py.
+- 13-latency-and-field-text (Sol). Owns local_policy.py, local_model.py, questions.py, browser timeout.
 
 ## Open, in priority order
 
-- 10-trim-jev-scaffolding phase 1 (P0, Lane D, do first)
-- 01-local-choose-adapter (P0, Lane A, after 00)
-- 02-local-type-text (P0, Lane B, after 00)
-- 05-real-fixtures (P1, Lane C)
-- 06-end-to-end-fixture-run (P0, all, after 01 and 02)
-- 03-label-scaling-eval (P1, Lane C, after 05)
-- 04-scorer-latency (P2, Lane B, only if 01 reports slow)
-- 10-trim-jev-scaffolding phase 2 (P0, Lane D, after 01 and 02)
-- 07-google-flights-stretch (P2, after 06 passes twice)
-- 09-fix-filter-miss (P3)
-- 08-hygiene-and-readme (P3, final 15 min)
+- iterate on next bench failure (both, after 12 and 13 land)
+- 09-fix-filter-miss (P3, slack only)
+- 10-trim-jev-scaffolding (P3, slack only)
+- 08-hygiene-and-readme (P3, last 20 min)
+
+## Cut 12:50 PT
+
+03, 05, 06, 07 replaced by the live bench loop. 04 absorbed into 13. 11 installer dropped, run_cli.py kept.
 
 ## Done
 
@@ -41,6 +39,9 @@ Plan and ranked tasks are in `README.md` here.
 | Human demo recorder | Two human examples captured. The second saved without errors. Action mapping remains partial | `results/demo-capture-summary.json`, `scripts/record_demo.py` |
 | Repo on GitHub | Scaffolding, scorer, fixtures, results, recorder on `main`. PRs #1 to #4 merged | github.com/thomasjhuang/zero-browser |
 | Contexts folder committed | Plan, tasks, rules, status shared across agents | this folder |
+| 00 shared model | `local_model.get_model()` cached per process | `results/shared-local-model-smoke.json` |
+| 01 + 02 local policy | `local_policy.py`, operation then target scoring, local field text, `JEV_LOCAL=1` dispatch | Codex live run 12:3x |
+| First live comparison, SFO to BOS | Qwen 6 actions then browser timeout, 4.16s median decision. Jev+local text picked dates, failed destination at 123ms. Both typed "Boston Logan (BOS)" | Codex session, to be reproduced by 12 |
 
 ## Blocked
 
@@ -62,7 +63,7 @@ default profile lacked remote debugging. Jev's per-step timeout can be exceeded 
 
 ## Coordination
 
-- Task 11 owns `install.sh`, `zero-browser`, `jev_ultrafast/cli.py`, `local_policy.py`, and setup tests.
+- Task 11 owns `install.sh`, `zero-browser`, `scripts/run_cli.py`, `jev_ultrafast/local_policy.py`, and setup tests.
   It adds local dispatch to `model.py` and a read-only lock option to the downloader.
   It preserves task 00 files and the separate temporary single-task pilot.
   Tasks 01, 02, and 10 must reuse or reconcile the local CLI adapter before changing these interfaces.
@@ -73,6 +74,11 @@ default profile lacked remote debugging. Jev's per-step timeout can be exceeded 
 - `scripts/decision_baselines.py` and the recorder are Codex's. Nobody deletes them in task 10.
 
 ## Log
+
+- 2026-10-11 12:50 PT. Rescoped after the first live run. Tasks 12 and 13 written, 03/04/05/06/07/11 cut.
+  Two agents only, Astra on 12, Sol on 13.
+
+- 2026-10-11 12:44 PT. Task 11 shell retest passed. The installer and independently tested CLI goal both returned exit code 0. Evidence: `shell_retest` in the installation record.
 
 - 2026-10-11 12:40 PT. Codex completed task 11. Installation and the simple CLI goal passed. Multi-step failures remain in the evidence.
 

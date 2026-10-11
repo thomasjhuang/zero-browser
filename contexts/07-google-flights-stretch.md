@@ -22,3 +22,7 @@ have far more candidates and autocomplete timing, so expect failures.
 
 - Don't spend more than the timebox. Don't modify the policy for Flights specifically.
 - Don't book or select a flight. `verify()` already guards this.
+
+## Status 12:50 PT
+
+Cut or superseded. See README ranking. 03/05/06/07 are replaced by the live bench loop in 12. 04 is absorbed into 13. 11 keeps run_cli.py and drops the installer.

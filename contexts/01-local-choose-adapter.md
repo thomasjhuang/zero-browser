@@ -43,3 +43,7 @@ and the `elements` list rendered as `[index] role label value=... checked=...`. 
 - Don't add a KV cache here. That is 04.
 - Don't tune prompts beyond what is needed to get sensible picks on the travel fixture.
 - Don't touch `agent.py`.
+
+## Result
+
+Done by Codex in `jev_ultrafast/local_policy.py` (local_choose and local_field_text) under task 11, dispatched from `model.py` when `JEV_LOCAL=1`. Landed with the 12:4x commit. Quality and latency follow-ups are in 13.

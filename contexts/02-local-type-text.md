@@ -30,3 +30,7 @@ This is the only place the local model generates tokens, so it is the only place
 
 - Don't build grammar-constrained decoding. JSON parse plus one retry is enough today.
 - Don't try to also generate the operation. Scoring handles that.
+
+## Result
+
+Done by Codex in `jev_ultrafast/local_policy.py` (local_choose and local_field_text) under task 11, dispatched from `model.py` when `JEV_LOCAL=1`. Landed with the 12:4x commit. Quality and latency follow-ups are in 13.

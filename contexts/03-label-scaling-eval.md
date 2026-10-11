@@ -25,3 +25,7 @@ answer. How many numeric labels can the scorer handle before accuracy falls apar
 
 - Don't go past 24 candidates. Don't try alternative label schemes beyond letters and numbers.
 - Don't spend time on calibration or score analysis. Only accuracy and position bias.
+
+## Status 12:50 PT
+
+Cut or superseded. See README ranking. 03/05/06/07 are replaced by the live bench loop in 12. 04 is absorbed into 13. 11 keeps run_cli.py and drops the installer.

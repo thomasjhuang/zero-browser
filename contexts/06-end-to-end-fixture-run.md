@@ -35,3 +35,7 @@ This is the whole point of the day. One goal, local model, fixture page, status 
 
 - Don't add site-specific rules or hardcoded values to the policy. That violates AGENTS.md and the demo claim.
 - Don't start Google Flights until this passes at least twice.
+
+## Status 12:50 PT
+
+Cut or superseded. See README ranking. 03/05/06/07 are replaced by the live bench loop in 12. 04 is absorbed into 13. 11 keeps run_cli.py and drops the installer.

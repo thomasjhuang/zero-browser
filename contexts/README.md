@@ -20,65 +20,51 @@ does not move the end-to-end demo forward.
 - Reuse `scripts/decision_smoke.py` logic by moving it, not rewriting it.
 - Commit at the end of every task. Nothing is pushed unless Thomas says so.
 
-## Ranked tasks
+## Ranked tasks (rescoped 12:50 PT after the first live run)
 
-| Rank | Task | Priority | Timebox | Lane | Blocks |
+The first live SFO to BOS run happened at 12:3x. Local Qwen got six actions in at 4.16s median per decision
+and hit a browser timeout. Both backends typed "Boston Logan (BOS)" and autocomplete found nothing.
+The fixture-first plan is retired. The loop is now: fix, rerun the same live task, compare.
+
+| Rank | Task | Priority | Timebox | Owner | Notes |
 |---|---|---|---|---|---|
-| 1 | 00-shared-local-model | P0 | 20 min | A | 01, 02 |
-| 2 | 01-local-choose-adapter | P0 | 90 min | A | 06 |
-| 3 | 02-local-type-text | P0 | 60 min | B | 06 |
-| 4 | 05-real-fixtures | P1 | 45 min | C | 03 |
-| 5 | 06-end-to-end-fixture-run | P0 | 60 min | A (all join) | demo |
-| 6 | 03-label-scaling-eval | P1 | 45 min | C | informs 01 |
-| 7 | 04-scorer-latency | P2 | 45 min | B | nothing |
-| 8 | 07-google-flights-stretch | P2 | 45 min | whoever is free | nothing |
-| 9 | 10-trim-jev-scaffolding | P0 phase 1 at 0:00, phase 2 at the end | 40 + 15 min | D | phase 2 waits on 01, 02 |
-| 10 | 08-hygiene-and-readme | P3 | 20 min | anyone | nothing |
-| 11 | 09-fix-filter-miss | P3 | 20 min | anyone | nothing |
-| 12 | 11-install-and-cli | P1 | 60 min | Codex | local CLI |
+| 1 | 12-benchmark-loop | P0 | 60 min | Astra | Fixed task, backend switch, per-step records, repeat runs |
+| 2 | 13-latency-and-field-text | P0 | 75 min | Sol | Under 1s per decision, plain field values, browser timeout |
+| 3 | iterate on the next bench failure | P0 | rest of day | both | One fix per rerun |
+| 4 | 09-fix-filter-miss | P3 | 20 min | slack only | |
+| 5 | 10-trim-jev-scaffolding | P3 | 40 min | slack only | |
+| 6 | 08-hygiene-and-readme | P3 | 20 min | last 20 min | Numbers from results/bench/summary.json only |
 
-## Lanes (four parallel workers)
+Done. 00 (shared model), 01 and 02 (local_policy.py, by Codex). Cut. 03, 05, 06, 07, 04 (into 13), 11
+installer (run_cli.py stays).
+
+## Two agents, disjoint files
 
 ```
-Lane A  00 shared model (20m) -> 01 adapter (90m) -> 06 end-to-end (60m) -> 07 flights stretch
-Lane B  02 local text (60m)   -> 04 latency (45m)  -> join 06
-Lane C  05 real fixtures (45m) -> 03 label eval (45m) -> 09 filter miss -> 08 hygiene -> join 06
-Lane D  10 trim phase 1 (40m) -> help 05 or 03 -> 10 trim phase 2 (15m, after 01 and 02 merge)
+Astra  12  owns scripts/bench.py, scripts/run_cli.py, fixtures/bench_tasks.json, results/bench/, jev_ultrafast/verify.py
+Sol    13  owns jev_ultrafast/local_policy.py, local_model.py, questions.py, browser timeout wherever it lives
 ```
 
-File ownership during the parallel window, to avoid merge pain.
-Lane A owns `local_model.py` scoring and `model.choose()`. Lane B owns `local_field_text` and
-`model.field_text()`. Lane C owns `fixtures/` and `scripts/capture_observation.py`. Lane D owns deletions,
-`scripts/serve_fixture.py`, `AGENTS.md`, `upstream-lock.json`, `pyproject.toml`. Nobody edits `agent.py`,
-`browser.py`, or `snapshot.js`.
+Nobody edits agent.py, browser.py, snapshot.js, model.py dispatch. One benchmark at a time on the machine.
+Say so in STATUS.md Coordination before starting a run.
 
-Dependencies. 00 is a 20 minute prerequisite for 01 and 02 and should be done first by Lane A while
-B and C read code. 05 feeds 01 with real candidate counts, so Lane C shares findings in the first hour.
-Everything else is independent.
-
-## Timeline
+## Timeline from 12:50
 
 ```
-0:00  Lane A does 00. Lane D starts 10 phase 1. Lanes B and C read model.py, agent.py, decision_smoke.py.
-0:40  10 phase 1 done. Fixture served by scripts/serve_fixture.py. Lane D helps C.
-0:20  01, 02, 05 start in parallel.
-1:05  05 done. Lane C reports real candidate counts to Lane A, starts 03.
-1:20  02 done. Lane B starts 04 only if 01 reports latency is a problem, else helps 01.
-1:50  01 done. Lane D runs 10 phase 2 (hosted paths removed). Everyone else joins 06.
-2:50  End-to-end on fixture.html works or is being debugged. Hard stop on new features.
-3:30  Decide on 07. Only attempt if fixture run is clean.
-4:15  08 README update with real numbers. Record demo.
-5:00  Done.
+12:50  Astra starts 12, Sol starts 13 part B (text prompt, 20 min) then part A.
+13:20  Astra has baseline 3 runs on current code. Sol has text fix pushed. Astra reruns.
+14:00  Sol has latency steps 1 and 2 pushed. Astra reruns. Decide whether step 3 (KV cache) is needed.
+14:30  Hard stop on new features. Whatever fails next gets one fix each.
+15:30  08. README numbers from summary.json. Done by 16:00.
 ```
 
 ## Cut lines
 
-If behind at 2:50, drop 04, 07, 09. If behind at 3:30, drop Google Flights entirely and demo the fixture.
-If 02 is not working by 2:00, allow TYPE_TEXT to fall back to an env-provided literal for the demo and say so.
+If the qwen backend has not passed the bench task once by 14:30, stop optimizing and ship the comparison
+as is with honest numbers. A clean negative result with latency and failure step beats a half fix.
 
 ## Definition of done
 
-- `TYPESAFE_API_KEY` and `TEXT_MODEL_API_KEY` unset. `scripts/smoke.py` (or a local variant) completes the
-  travel fixture goal with status `done` and the final page shows Casa Flora.
-- `results/local-e2e.json` records steps, per-decision latency, and text helper latency.
-- README has one short section with the real numbers. No claims beyond what the JSON shows.
+- `results/bench/summary.json` has at least 3 qwen runs and 1 jev run on the same task, same verifier.
+- Per-decision latency, pass count, and failure step for each backend.
+- README states those numbers and nothing more.

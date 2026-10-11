@@ -29,3 +29,7 @@ browser-harness. No API keys.
 ## Don't
 
 - Don't record video or screenshots. Don't run the agent loop. Observation only.
+
+## Status 12:50 PT
+
+Cut or superseded. See README ranking. 03/05/06/07 are replaced by the live bench loop in 12. 04 is absorbed into 13. 11 keeps run_cli.py and drops the installer.
