@@ -12,7 +12,7 @@
   "platform": {
     "system": "Darwin",
     "architecture": "arm64",
-    "python": "3.13.3"
+    "python": "3.14.2"
   },
   "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
   "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
@@ -236,5 +236,53 @@
     "Timings are run records, not isolated performance benchmarks.",
     "The timeout applies between model calls.",
     "The inherited hosted demo remains separate. The CLI forces local inference."
-  ]
+  ],
+  "shell_retest": {
+    "recorded_at": "2026-10-11 12:44 PT",
+    "tested_commit": "e3359d41b2fd351c5b55638e5a3d11b33ffa9390",
+    "installer": {
+      "command": "bash install.sh",
+      "exit_code": 0,
+      "model_cache_reused": true,
+      "ready": true,
+      "local_model": true,
+      "browser_connection": true
+    },
+    "shell_syntax": {
+      "command": "bash -n install.sh zero-browser",
+      "exit_code": 0
+    },
+    "cli_help": {
+      "command": "./zero-browser --help",
+      "exit_code": 0
+    },
+    "cli": {
+      "command": "./zero-browser --headless --fixture --expect-url '#casa-flora' --expect-text 'Casa Flora' 'Open Casa Flora.'",
+      "exit_code": 0,
+      "result": {
+        "status": "done",
+        "outcome_verified": true,
+        "assertions": {
+          "text:Casa Flora": true,
+          "url:#casa-flora": true
+        },
+        "actions": 1,
+        "decisions": 2,
+        "text_calls": 0,
+        "elapsed_ms": 5448,
+        "decision_latency_ms": [
+          3964,
+          1182
+        ],
+        "text_latency_ms": [],
+        "final_page": {
+          "url": "http://127.0.0.1:55766/fixture.html?scenario=travel#casa-flora",
+          "title": "Casa Flora \u00b7 Forma",
+          "text": "forma.\nFind a stay\nReading room\nPLACES WITH CHARACTER\n\u2190 All stays\nLISBON \u00b7 DESIGN\nCasa Flora\n\nA quiet courtyard, warm terracotta, and light that stays all afternoon.\n\n\u20ac145 / night \u00b7 2 guests\nFree cancellation included\n\nYour filters: all \u00b7 Free cancellation off \u00b7 Destination anywhere\n\nLocal demo property. No reservation has been made."
+        }
+      }
+    },
+    "repository_locks_unchanged": true,
+    "runtime_python": "3.14.2"
+  }
 }
