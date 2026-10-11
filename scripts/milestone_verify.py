@@ -91,3 +91,32 @@ def verify_flights(page, expected):
     }
     return {"passed": all(checks.values()), "checks": checks, "visible_result_count": len(flights),
             "limitations": "Unknown control labels fail closed. Live adapter validation is pending."}
+
+
+def verify_selection(page, events, expected):
+    """Require an observed option click followed by a closed, populated target field."""
+    target = expected["target_label"].strip().casefold()
+    token = re.compile(r"(?<!\w)" + re.escape(expected["option_text"]) + r"(?!\w)", re.I)
+    fields = [a for a in page.get("actions", []) if a.get("kind") == "fill"
+              and a.get("label", "").strip().casefold() == target]
+    mutations = [(i, e) for i, e in enumerate(events)
+                 if e.get("event") == "executed" and e["action"]["kind"] not in {"wait", "scroll"}]
+    selection = None
+    if mutations:
+        index, last = mutations[-1]
+        action = last["action"]
+        before = next((e["page"] for e in reversed(events[:index]) if e.get("event") == "observation"), {})
+        observed = any(all(a.get(k) == action.get(k) for k in ("node", "id", "kind", "label"))
+                       for a in before.get("actions", []))
+        if (observed and action.get("kind") == "click" and action.get("role") == "option"
+                and token.search(action.get("label", ""))):
+            selection = {"step": last.get("step"), "label": action["label"]}
+    checks = {
+        "matching_observed_option_clicked": selection is not None,
+        "unique_target_field": len(fields) == 1,
+        "selected_field_populated": len(fields) == 1 and bool(str(fields[0].get("value", "")).strip()),
+        "selection_dialog_closed": len(fields) == 1 and fields[0].get("expanded") == "false",
+    }
+    return {"passed": all(checks.values()), "checks": checks, "selected_option": selection,
+            "observed_field": fields[0] if len(fields) == 1 else None,
+            "limitations": "Typed text alone is insufficient. Unrecognized option semantics fail closed."}

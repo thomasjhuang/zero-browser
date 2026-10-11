@@ -16,8 +16,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from scripts.coordinator_handoff import CoordinatorHandoff, CoordinatorStop  # noqa: E402
 from scripts.milestone_record import Journal, compare_runs, read_events, save_json, summarize  # noqa: E402
-from scripts.milestone_verify import LOCAL_READ, diagnose_local, verify_flights, verify_local  # noqa: E402
+from scripts.milestone_verify import (  # noqa: E402
+    LOCAL_READ,
+    diagnose_local,
+    verify_flights,
+    verify_local,
+    verify_selection,
+)
 from scripts.run_cli import FixtureHandler, isolated_browser  # noqa: E402
 from scripts.runtime_guard import (  # noqa: E402
     cancellation_signals,
@@ -51,6 +58,32 @@ def require_page(page):
         raise HumanRequired(reason)
     if any(a.get("type") == "password" for a in page.get("actions", [])):
         raise HumanRequired("Login requires human involvement.")
+
+
+def require_selection_action(action, page, events, expected):
+    """Keep a supplied field-selection task inside that field and its option dialog."""
+    target = expected["target_label"].strip().casefold()
+    fields = [a for a in page.get("actions", []) if a.get("kind") == "fill"]
+    targets = [a for a in fields if a.get("label", "").strip().casefold() == target]
+    started, target_nodes = False, set()
+    for event in events:
+        if event.get("event") == "observation":
+            target_nodes = {a.get("node") for a in event["page"].get("actions", [])
+                            if a.get("kind") == "fill" and a.get("label", "").strip().casefold() == target}
+        elif event.get("event") == "executed":
+            prior = event["action"]
+            started |= (prior.get("label", "").strip().casefold() == target
+                        or prior.get("node") in target_nodes)
+    same_field = len(targets) == 1 and action.get("node") == targets[0].get("node")
+    popup_field = started and not targets and len(fields) == 1 and action.get("node") == fields[0].get("node")
+    matching_option = (started and action.get("role") == "option"
+                       and re.search(r"(?<!\w)" + re.escape(expected["option_text"]) + r"(?!\w)",
+                                     action.get("label", ""), re.I))
+    permitted = (action.get("kind") in {"wait", "scroll"}
+                 or (action.get("kind") == "fill" and (same_field or popup_field))
+                 or (action.get("kind") == "click" and (same_field or matching_option)))
+    if not permitted:
+        raise HumanRequired("The action is outside the supplied field-selection boundary.")
 
 
 @contextmanager
@@ -141,7 +174,7 @@ def show_task_tab(browser):
     return closed
 
 
-def run_task(task, url, journal, max_decisions, *, visible=False):
+def run_task(task, url, journal, max_decisions, *, visible=False, coordinator=None):
     from jev_ultrafast.agent import Agent
     from jev_ultrafast.browser import StalePage
     from jev_ultrafast.local_model import get_model, get_model_info
@@ -153,14 +186,20 @@ def run_task(task, url, journal, max_decisions, *, visible=False):
         journal.write("observation", step=0, page=agent.state["page"])
         require_page(agent.state["page"])
         instrument_browser(agent.browser, journal, step)
+        handoff = CoordinatorHandoff(coordinator, journal, agent.state["page"]) if coordinator else None
+        if handoff:
+            handoff.check_deadline()
         journal.write("model_loading", step=0)
         get_model()
-        journal.write("model_loaded", **get_model_info())
+        loaded_at = time.monotonic()
+        journal.write("model_loaded", **get_model_info(), monotonic=loaded_at, worker_pid=os.getpid())
         rejected = 0
         with measured_model(journal, step):
             for number in range(1, max_decisions + 1):
                 step[0] = number
                 try:
+                    if handoff:
+                        handoff.check_deadline()
                     agent.command("predict")
                     decision = agent.state["decisions"][-1]
                     journal.write("decision", step=number, **decision)
@@ -172,9 +211,27 @@ def run_task(task, url, journal, max_decisions, *, visible=False):
                                           cause="The selected target is absent from the observed actions.")
                             break
                         require_allowed(action)
+                        if task["kind"] == "selection":
+                            require_selection_action(action, agent.state["page"],
+                                                     read_events(journal.path), task["expected"])
                     agent.command("act", {"fingerprint": agent.state["page"]["fingerprint"]})
                     rejected = 0
+                    if task["kind"] == "selection":
+                        result = verify_selection(agent.state["page"], read_events(journal.path), task["expected"])
+                        if result["passed"]:
+                            journal.write("outcome", step=number, result=result)
+                            return 0
+                    if handoff:
+                        handoff.after_step(agent, number, max_decisions, loaded_at)
+                except CoordinatorStop as error:
+                    journal.write("failure", step=number, category=error.category, cause=str(error))
+                    break
                 except StalePage as error:
+                    if (handoff and agent.state["history"]
+                            and agent.state["history"][-1].get("page_changed") is None):
+                        journal.write("failure", step=number, category="unresolved_observation",
+                                      cause="Input executed but its resulting observation failed. Stop without replay.")
+                        break
                     rejected += 1
                     journal.write("rejected", step=number, category="stale_decision", cause=str(error))
                     if rejected >= 3:
@@ -196,6 +253,9 @@ def run_task(task, url, journal, max_decisions, *, visible=False):
         # Read again independently. Never use the model's request or DONE as proof.
         if task["kind"] == "local":
             result = verify_local(agent.browser.evaluate(LOCAL_READ), task["expected"])
+        elif task["kind"] == "selection":
+            result = verify_selection(agent.browser.observe(screenshot=False),
+                                      read_events(journal.path), task["expected"])
         else:
             result = verify_flights(agent.browser.observe(screenshot=False), task["expected"])
         journal.write("outcome", step=step[0], result=result)
@@ -211,7 +271,8 @@ def worker(request_path):
         if task["kind"] == "local":
             with local_page(task["layout"]) as url:
                 return run_task(task, url, journal, request["max_decisions"], visible=request.get("visible", False))
-        return run_task(task, task["url"], journal, request["max_decisions"], visible=request.get("visible", False))
+        return run_task(task, task["url"], journal, request["max_decisions"], visible=request.get("visible", False),
+                        coordinator=request.get("coordinator"))
     except HumanRequired as error:
         events = read_events(journal.path)
         step = max((e.get("step", 0) for e in events), default=0)

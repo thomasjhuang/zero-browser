@@ -5,10 +5,9 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: IDLE, task16 evidence delivery.** The root coordination chat completed the one authorized visible Google Flights attempt. The general local Qwen runner stopped at 20 decisions before destination selection or date entry. Total time, including startup and cleanup, was 39.50 seconds. Evidence: `results/flights-demo-once.json`.
-> The page returned no matching locations for the supplied full airport name. The model then changed to multiple-airport mode and failed to recover. The provider cause remains unknown. No flight options or prices were observed.
-> The existing guarded runtime stayed unchanged. This failed run does not measure the demonstrated bounded coordinator path. The old one-way verifier is not applicable to the complete round-trip request. Independent saved observations establish failure.
-> No further browser run, inference experiment, comparison, or optimization is authorized. Source editing and the compactor remain outside this delivery. The root execution slot is released.
+> **Current run state: IDLE, task16 prepares the one authorized JFK-only attempt.** Root coordination is the sole launcher after acknowledgment. The pending task replaces the complete itinerary: select JFK as destination, then stop. No trial started during preparation.
+> The candidate permits one natural-language coordinator correction after observed error or nonprogress. The same browser and loaded model persist. Both segments and coordinator wait share 90 seconds and 20 local decisions. Further failure or uncertain execution stops.
+> Destination selection requires a matching observed option click and a fresh closed populated destination field. Other fields and search submission remain outside the task boundary. No dates, comparisons, or optimization are included. The prior failed attempt remains unchanged.
 >
 > **Current scope:** task 16, with supporting notes in task 13. Tasks 18–22 remain cut from the active plan.
 > This context update does not reopen task 19. Do not create new task numbers.

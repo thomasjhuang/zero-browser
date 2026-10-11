@@ -2,7 +2,7 @@
 
 Priority P0. Owner Codex milestone chat.
 
-Current scope: the one separately authorized visible Google Flights attempt is complete and failed. Task16 assesses saved evidence and delivers records only. The root chat was the sole launcher. No runtime source changed, and no replacement or further experiment is authorized. This general autonomous Qwen run does not measure the successful bounded coordinator workflow.
+Current scope: one authorized JFK-only destination selection with one bounded coordinator correction. Root is sole launcher. Task16 implements, tests, and prepares only. Dates and the complete itinerary are deferred. The browser and loaded model remain alive across the single handoff. No new attempt started during preparation.
 
 ## Why
 
@@ -474,3 +474,18 @@ All nineteen recorded source hashes remained unchanged before and after the atte
 Runtime is idle. No replacement, comparison, or optimization follows this attempt. The demonstrated problem is failure to respond effectively to observed no-match feedback. Resolve that behavior before presenting a complete flight-search demonstration. This record does not authorize that future work.
 
 Final delivery checks passed: lint and 159 tests in 4.92 seconds. Public evidence passed the private-path and credential scan. Earlier comparison results and all nineteen runtime source hashes remain unchanged.
+
+
+### JFK-only coordinator handoff candidate
+
+Thomas authorized one correction and then narrowed the pending attempt to selecting JFK as destination. Root coordination is the sole launcher. The candidate adds an optional error/nonprogress handoff to the existing guarded runner. It returns current observations and remaining budgets through `handoff.json`. Root supplies one natural-language `correction.json` with the matching `handoff_id`. No correction is preloaded. The worker reobserves, retains its original goal and boundaries, clears old text-helper reuse, and resumes the same Agent, browser, and loaded model. Further error or nonprogress stops. Human verification and unknown input never reach this handoff.
+
+Both segments and coordinator wait share a 90-second external deadline and twenty local decisions. A generic field-selection guard prevents unrelated field changes, search submission, and nonmatching option clicks. Independent success requires a matching observed option click followed by a unique closed populated destination field. Typed text and DONE are insufficient. Unknown option semantics fail closed.
+
+Prepared command, for root only after source freeze and acknowledgment:
+
+```sh
+ZB_RECORD_PATH=artifacts/replay/flights-handoff-once.jsonl uv run --offline --frozen --extra local python artifacts/flights-handoff-once/launch.py > artifacts/flights-handoff-once/console.log 2>&1
+```
+
+The ignored folder contains launcher, request, prepared hashes, live handoff/reply, and durable evidence. The launcher refuses a second attempt. It verifies source hashes and computes one shared deadline before browser startup. The full-flight failed evidence remains unchanged. No browser or model ran in preparation. GitNexus refreshed the main index and found low direct impact for run_task; aggregate shared-runner impact is high. Truncated flows limit graph completeness. Source inspection and focused model-free regressions cover the changed path.
