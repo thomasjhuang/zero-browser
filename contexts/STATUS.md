@@ -5,9 +5,10 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: IDLE. Full-task development attempt 02 passed all nine outcome checks.** Root controlled every request. The observed results match SFO–JFK round trip, November 12–16, 2026, one adult, economy. No flight was selected. Cleanup completed with exit 0.
-> [Development evidence](../results/flights-round-trip-development.json) preserves failed attempt 01 and successful attempt 02. The successful run took 54.76 seconds with seventeen coordinator requests, eleven executed actions, two read-only observations, four safe stale returns, and one local inference call.
-> Runtime is frozen for sequential comparisons: native Desktop first, then system, then JEV. Root remains the sole launcher. Task 16 prepares the system comparison but does not launch it. No general reliability, token savings, cost savings, or speed superiority is established.
+> **Current run state: IDLE.** Root reported END for the direct-action attempt. The worker and browser closed. No further experiment is active.
+> Task 16 completed the callable adapter and preserved every comparison. Final lint and all 184 existing tests passed. Publication follows the repository procedure.
+> Latest measured results: native PASS in 46.22 seconds, prior Qwen PASS in 140.80 seconds, direct-action Qwen PASS in 123.14 seconds. Context and timing boundaries differ. Funded JEV failed after 7.14 seconds.
+> [Evidence](../results/flights-sequential-comparison.json) contains usage, memory, source hashes, and failed-run records. No general reliability or savings claim follows.
 >
 > **Current scope:** task 16, with supporting notes in task 13. Tasks 18–22 remain cut from the active plan.
 > This context update does not reopen task 19. Do not create new task numbers.
@@ -35,7 +36,7 @@ The final cancellation pilot stopped during inference. The user reported normal 
 
 ## Open follow-up
 
-- **16, Improve zero-browser benchmarking:** full SFO–JFK round-trip development attempt 02 passed all nine independent outcome checks in 54.76 seconds. Attempt 01 remains preserved as a failure. One live success does not establish general reliability. Sequential native Desktop, system, and JEV comparisons remain pending under root launch ownership. Earlier local-worker, coordinator, and native results retain their recorded limits.
+- **16, Improve zero-browser benchmarking:** the callable adapter completed one full flight search with seven local choices. Native Desktop remains faster in the recorded attempts. Preserve the earlier failures and successful recoveries. General reliability, controlled savings, and a native MCP transport remain unproven. No runtime work remains active.
 
 ## Completed context work
 
@@ -78,6 +79,7 @@ Existing task numbers identify work. They do not override this ownership table.
 | Single-action attempt | [Failed destination selection](../results/flights-single-action-once.json). Exact fill produced the JFK suggestion. The second exact request stopped before execution because its observation was stale. No Qwen inference occurred |
 | Target freshness attempt | [Separate verdicts](../results/flights-target-freshness-once.json). Independent JFK selection passed after one pre-input stale return. Automatic assessment failed. Coordinator cancellation and exit 130 remain preserved |
 | Full round-trip development | [Both attempts](../results/flights-round-trip-development.json). Attempt 02 passed all nine conditions. Attempt 01 stopped after an unchanged immediate calendar observation. No comparative savings claim |
+| Final sequential comparison and recovery | [All separate attempts](../results/flights-sequential-comparison.json). Native and zero-Qwen baseline passed. Delegated comparisons failed. Separate Qwen recovery passed. JEV is blocked on account funding |
 | Current local experiments | [Measured runs](../results/milestone-local-runs.json). Failed tasks, interrupted records, source versions, and cancellation observations |
 | MCP connection | [Codex run](../results/codex-mcp.json). Simple navigation only |
 | Smaller models | [4B](../results/replay/quality-4b-plain.json), [1.7B](../results/replay/quality-1.7B-plain.json), [0.6B](../results/replay/quality-0.6B-plain.json). Synthetic cases only |
@@ -142,3 +144,7 @@ Earlier implementation details and evidence remain in the numbered task files an
 - October 11: task 16 preserved independent JFK selection, the automatic assessment failure, and coordinator cancellation. One safe stale continuation occurred. Runtime is idle.
 
 - October 11: task 16 preserved full-task development attempts 01 and 02. Attempt 02 passed all nine conditions with clean exit 0. Runtime is frozen for sequential comparisons under root ownership.
+
+- October 11: task 16 completed comparison preservation and separate Qwen recovery evidence. JEV remains blocked on account funding. All runtimes are idle. No further live tests ran.
+
+- October 11, 2026: Task 16 preserved isolated usage comparisons and the funded JEV failure. The direct-action helper passed one full flight search. Runtime slot idle.

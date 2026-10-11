@@ -114,4 +114,16 @@ The [single-action demonstration](results/flights-single-action-once.json) retur
 
 After the minimal freshness fix, [one attempt selected JFK by independent assessment](results/flights-target-freshness-once.json). A pre-input rejection returned fresh evidence, and a new coordinator request clicked the matching airport. The automatic assessor missed the changed destination label. The coordinator saved its separate verdict and cancelled, with exit 130 and completed cleanup. Independent assessment took 50.90 seconds from dispatch; total time was 51.49 seconds. Three requests produced two deterministic actions, one stale return, zero inference calls, and one model load. This does not establish Qwen value or reliable automatic completion.
 
-The [full round-trip development run](results/flights-round-trip-development.json) passed all nine independent checks for SFO–JFK, November 12–16, 2026, one adult, economy. The page reported 27 results, with three flight options directly visible. The run took 54.76 seconds including startup and cleanup. Codex issued seventeen requests. Ten actions executed directly, and one used a local Qwen choice. The local call used 230 prompt tokens. The earlier failed development attempt is preserved. One live success does not prove general reliability or savings. Sequential native Desktop, system, and JEV comparisons remain pending.
+The [full round-trip development run](results/flights-round-trip-development.json) passed all nine independent checks for SFO–JFK, November 12–16, 2026, one adult, economy. The page reported 27 results, with three flight options directly visible. The run took 54.76 seconds including startup and cleanup. Codex issued seventeen requests. Ten actions executed directly, and one used a local Qwen choice. The local call used 230 prompt tokens. The earlier failed development attempt is preserved. One live success does not prove general reliability or savings. The subsequent sequential comparisons and separate recovery are recorded below.
+
+The [sequential comparison](results/flights-sequential-comparison.json) preserves successful, failed, and interrupted attempts. The latest direct-action helper returns an action result and its next observation in one call. It performs at most one required read-only observation and never repeats a mutation.
+
+| Latest measured method | Outcome | Dispatch to final verdict | Coordinator tokens | Local calls |
+| --- | --- | --- | --- | --- |
+| Native Codex Desktop | PASS | 46.22 seconds | 1,287,557 | 0 |
+| Qwen through separate file exchanges | PASS | 140.80 seconds | 1,759,285 | 7 |
+| Qwen through the direct-action helper | PASS | 123.14 seconds | 1,498,156 | 7 |
+
+All three passed the SFO–JFK round-trip requirements for November 12–16, 2026, one adult, economy. Token totals include cached input. Session context, browser state, and cleanup timing differ. These single attempts do not establish causal improvement, general reliability, or billed-cost savings. The helper uses shell transport over the persistent worker, not a native MCP endpoint.
+
+The funded JEV follow-up failed after 7.14 seconds. Its text helper entered SFO in the departure-date field. It later repeated an unchanged return-calendar action and stopped. The earlier funding failure and all delegated failures remain preserved. No new user responsiveness observation is required.

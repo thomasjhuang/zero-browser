@@ -1,0 +1,990 @@
+{
+  "schema_version": 1,
+  "status": "Complete. All runs stopped and cleanup finished. No further experiment is active.",
+  "task": {
+    "origin": "SFO",
+    "destination": "JFK",
+    "departure": "2026-11-12",
+    "return": "2026-11-16",
+    "trip_type": "Round trip",
+    "adults": 1,
+    "cabin": "Economy",
+    "outcome": "Matching flight options visible. Stop before selecting flights or booking."
+  },
+  "run_order": [
+    "native-flights-comparison",
+    "flights-system-comparison-01",
+    "flights-qwen-comparison-01",
+    "flights-qwen-comparison-02",
+    "jev-flights-comparison-01"
+  ],
+  "runtime_sha256_for_custom_browser_runs": {
+    "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+    "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+    "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+    "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+    "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+    "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+    "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+    "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+    "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+    "jev_ultrafast/structured_policy.py": "008742becc08c3551caaee02dd37515f775f80ad338d534dc44176b68d6ea8a8",
+    "jev_ultrafast/workflow_worker.py": "d63cedf767c62bb18f61659d0e2343eb986a1a17c44d25105a3e423115326e11",
+    "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+    "scripts/milestone.py": "0e3db1d295dc96238aad00f96f06e1284e95bbde84a92e6bc4aeef6b57f076b1",
+    "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+    "scripts/milestone_verify.py": "00e8cd05dfa6be59c15203ddd33a9199d5222ba5fc50e7ff6aea73edeb02d82d",
+    "scripts/coordinator_handoff.py": "443f4108ca5932e44afce7e98819cae5fcfe35f0433bb2ccc32d3f638fe24d6f",
+    "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+    "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+    "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+    "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8",
+    "scripts/single_action_worker.py": "1cb5ba35ee988c45f6949c9cc95d23e62f29c9dc3b43f29827f2334ec65e299c"
+  },
+  "runs": [
+    {
+      "id": "native-flights-comparison",
+      "method": "Native Codex Desktop",
+      "outcome": "PASS",
+      "assessment_basis": "Root inspected saved native accessibility observations and browser action calls, not only the task verdict.",
+      "independent_checks": {
+        "SFO": true,
+        "JFK": true,
+        "round_trip": true,
+        "departure_2026_11_12": true,
+        "return_2026_11_16": true,
+        "one_adult": true,
+        "economy": true,
+        "actual_results": true,
+        "stopped_before_selection": true
+      },
+      "metrics": {
+        "dispatch_to_original_final_verdict_ms": 58679.768798828125,
+        "browser_actions": 12,
+        "browser_tool_calls": 15,
+        "coordinator_responses": 17,
+        "coordinator_usage": {
+          "input_tokens": 1199260,
+          "cached_input_tokens": 1118080,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1046,
+          "reasoning_output_tokens": 107,
+          "total_tokens": 1200306
+        },
+        "uncached_input_tokens": 81180,
+        "local_model_calls": 0,
+        "peak_memory_bytes": null,
+        "cleanup_time_ms": null
+      },
+      "model": "gpt-6-astra",
+      "reasoning": "high",
+      "usage_attribution": "Exact original session only. Final totals match the sum of 17 per-response usage records. Cleanup usage is excluded.",
+      "timing_boundary": "Before task creation through original final verdict. Startup and tool initialization included. Cleanup separate.",
+      "limitations": [
+        "Fresh tab in native in-app browser. Browser profile and cache are not equivalent to a fresh isolated Chrome profile.",
+        "Native context is fresh; the system coordinator has development history.",
+        "One preliminary product comparison."
+      ],
+      "private_evidence_sha256": {
+        "artifacts/native-flights-comparison/dispatch.json": "5b4c705caaa44b06fd4098dec0af7f7cef99aabeb8745a3bde5e5038272464a1",
+        "artifacts/native-flights-comparison/measurement.json": "493b089af94b1db083e27c28f9e3f328d644bc13d53e26109cee638c998c0368",
+        "artifacts/native-flights-comparison/calls.json": "088abd7a94ae40417c6ede24d152e8732c3fc24f459c60b72045be0357244fe3",
+        "artifacts/native-flights-comparison/observations.json": "cde9e9efd4e40ff76571f298e338fea2736df8fa1b970773b3e858ecc8632a33",
+        "artifacts/native-flights-comparison/session.jsonl": "7a9e898bf81fec4ed1311b871ea68c05c3755e7b9040d4123c5d3b755cf59f01"
+      }
+    },
+    {
+      "id": "flights-system-comparison-01",
+      "method": "Codex + custom browser baseline",
+      "outcome": "PASS",
+      "prepared_revision": "0b655fe91d259ce325c03062f1196e95f4f36eea",
+      "runtime_source_commit": "c88b4d5561ab9e2330c8ac96a4261171fa783df7",
+      "started_utc": "2026-10-11T23:13:45.547610+00:00",
+      "exit_code": 0,
+      "parent_stop": null,
+      "independent_checks": {
+        "results_page": true,
+        "origin_SFO": true,
+        "destination_JFK": true,
+        "round_trip": true,
+        "departure_date_and_year": true,
+        "return_date_and_year": true,
+        "one_adult": true,
+        "economy": true,
+        "actual_flight_options": true
+      },
+      "metrics": {
+        "dispatch_to_last_recorded_result_ms": 62061.813167,
+        "last_recorded_result_request": 18,
+        "last_recorded_result_is_terminal": true,
+        "dispatch_to_worker_stop_ms": 62355.771917,
+        "browser_cleanup_ms": 373.808875,
+        "total_including_startup_and_cleanup_ms": 62729.587417,
+        "browser_startup_ms": 319.939958,
+        "coordinator_requests": 18,
+        "coordinator_wait_total_ms": 56748.733749,
+        "largest_coordinator_wait_ms": 5045.628292,
+        "executed_inputs": 11,
+        "execution_sources": {
+          "deterministic": 11
+        },
+        "read_only_observations": 2,
+        "pre_input_stale_returns": 5,
+        "local_model_calls": 0,
+        "local_input_tokens": 0,
+        "local_generated_output_tokens": 0,
+        "model_call_latency_total_ms": 0,
+        "decision_latency_ms": [],
+        "model_loads": 1,
+        "model_load_ms": 1466.914625139907,
+        "peak_worker_bytes": 2566687144,
+        "peak_mlx_bytes": null,
+        "memory_limit_bytes": 6442450944,
+        "coordinator_usage": null
+      },
+      "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "local_usage_method": "Menu scoring uses one forward pass per call and generates no output tokens.",
+      "first_stale_return": {
+        "request": 2,
+        "reason": "Page changed since this decision. Observe again."
+      },
+      "terminal_failure": null,
+      "safety": {
+        "no_uncertain_execution": true,
+        "no_flight_selected": true,
+        "owned_cleanup_completed": true,
+        "source_hashes_unchanged": true
+      },
+      "private_evidence_sha256": {
+        "artifacts/flights-system-comparison-01/attempt-started.json": "0bd96faa40cc6bbbef92ce0c5583b759168e6cd4207aa0106c28732c1a2ab377",
+        "artifacts/flights-system-comparison-01/prepared.json": "b70d2506dd8654348ea9547527ac30a49537178a551dbab30083d8cdf3a8950e",
+        "artifacts/flights-system-comparison-01/conditions.json": "89d05f5de85993475dc8dd5458926cd6de1026a018450f02a9409f407fe4964b",
+        "artifacts/flights-system-comparison-01/summary.json": "236e6b7ca4b909ecf3f9bbac96080ed2a3e580fbbbfbe942f0ee6f066ad6d3cb",
+        "artifacts/flights-system-comparison-01/events.jsonl": "501a79a633e59695d95a0c32ffd2ad8061f0769ffc0da372714252e2560ba1ac",
+        "artifacts/flights-system-comparison-01/result-18.json": "778634370459acbded0eab3f19e6b9afe8e2dfd04d47e4dbb95e04426f99000f",
+        "artifacts/flights-system-comparison-01/launch.py": "85f6c6854708d2ef136e416bd4891b8e692023879138602e62e4dc5e03ab7a9e",
+        "artifacts/flights-system-comparison-01/request.json": "30d70cc523377aa3309ee625267b63c1c2191d142ef3790b9714523ca6b0f17e"
+      },
+      "interpretation": "All actions used exact coordinator-supplied targets. Qwen loaded but made zero decisions. This baseline does not demonstrate local-model delegation."
+    },
+    {
+      "id": "flights-qwen-comparison-01",
+      "method": "Codex + Qwen delegated controls",
+      "outcome": "FAIL",
+      "prepared_revision": "3a1664c2a5be3042bdf65feb29ace06283808d22",
+      "runtime_source_commit": "c88b4d5561ab9e2330c8ac96a4261171fa783df7",
+      "started_utc": "2026-10-11T23:16:40.536180+00:00",
+      "exit_code": 1,
+      "parent_stop": null,
+      "independent_checks": {
+        "results_page": false,
+        "origin_SFO": true,
+        "destination_JFK": true,
+        "round_trip": true,
+        "departure_date_and_year": true,
+        "return_date_and_year": true,
+        "one_adult": true,
+        "economy": true,
+        "actual_flight_options": false
+      },
+      "metrics": {
+        "dispatch_to_last_recorded_result_ms": 163846.418875,
+        "last_recorded_result_request": 18,
+        "last_recorded_result_is_terminal": false,
+        "dispatch_to_worker_stop_ms": 166993.36,
+        "browser_cleanup_ms": 376.884542,
+        "total_including_startup_and_cleanup_ms": 167370.251583,
+        "browser_startup_ms": 316.859542,
+        "coordinator_requests": 19,
+        "coordinator_wait_total_ms": 152069.253,
+        "largest_coordinator_wait_ms": 88477.058708,
+        "executed_inputs": 11,
+        "execution_sources": {
+          "local_model": 10,
+          "deterministic": 1
+        },
+        "read_only_observations": 3,
+        "pre_input_stale_returns": 4,
+        "local_model_calls": 10,
+        "local_input_tokens": 6021,
+        "local_generated_output_tokens": 0,
+        "model_call_latency_total_ms": 9504,
+        "decision_latency_ms": [
+          806,
+          2235,
+          1967,
+          768,
+          704,
+          656,
+          706,
+          527,
+          659,
+          478
+        ],
+        "model_loads": 1,
+        "model_load_ms": 1383.6921250913292,
+        "peak_worker_bytes": 3550710592,
+        "peak_mlx_bytes": 2962783544,
+        "memory_limit_bytes": 6442450944,
+        "coordinator_usage": null
+      },
+      "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "local_usage_method": "Menu scoring uses one forward pass per call and generates no output tokens.",
+      "first_stale_return": {
+        "request": 8,
+        "reason": "The request observation is stale before input"
+      },
+      "terminal_failure": {
+        "event": "failure",
+        "elapsed_ms": 166302,
+        "step": 19,
+        "category": "ValueError",
+        "cause": "Search requires an observed search button"
+      },
+      "safety": {
+        "no_uncertain_execution": true,
+        "no_flight_selected": true,
+        "owned_cleanup_completed": true,
+        "source_hashes_unchanged": true
+      },
+      "private_evidence_sha256": {
+        "artifacts/flights-qwen-comparison-01/attempt-started.json": "af8c7b03209d06b1c128f7c7b97dc53ec3e76526b184e57f3da7fbcd0c6fba34",
+        "artifacts/flights-qwen-comparison-01/prepared.json": "5713fd7e9d54dfd3c4c2406fb39bfbbb45b992dd29baa5650e5c45490e304872",
+        "artifacts/flights-qwen-comparison-01/conditions.json": "6281187c49b635ef6a7819a4f132f7c992396807bc7fe6809fd7d9e89623c783",
+        "artifacts/flights-qwen-comparison-01/summary.json": "221484b87520305ab1c4455bf61d238168b0c6bf4571345c5d7205ee91ee572d",
+        "artifacts/flights-qwen-comparison-01/events.jsonl": "f23a3d58983e18a23546adf64c67d1a1a5f091c18e80f18fa2bb2457f0b6e36c",
+        "artifacts/flights-qwen-comparison-01/result-18.json": "71a8e6214eae47daaf6470a1bd07223baa9aec36bf3afbf66fe7528aa14b49b3",
+        "artifacts/flights-qwen-comparison-01/launch.py": "92b987d04a9279f4cf72c089b0ac4c7a762cda0f1940e65bc8b1d537ee78a2ab",
+        "artifacts/flights-qwen-comparison-01/request.json": "13536d08ae807769eaf19a92c212cc7ca45d2929bd84f180da9713b7666506a0",
+        "artifacts/replay/flights-qwen-comparison-01.jsonl": "46eef743852467d0297db7bb5362619d3fdd2d52158168f642b13ecbd924a784"
+      },
+      "first_failed_step": {
+        "request": 1,
+        "category": "wrong_decision",
+        "instruction": "Open the departure airport selector so the SFO origin can be selected. Perform one action only.",
+        "selected_action": "Open Departure",
+        "effect": "Opened the date calendar instead of the origin selector."
+      },
+      "terminal_failure_assessment": "At request 19 the coordinator included non-search controls in the search candidate list. The guard rejected the request before inference or input.",
+      "timing_excluded_from_comparison": true,
+      "timing_exclusion_reason": "The coordinator reported a context-compaction pause. One measured coordinator wait was 88477.06 ms. Do not use this run for speed claims."
+    },
+    {
+      "id": "flights-qwen-comparison-02",
+      "method": "Codex + Qwen delegated controls",
+      "outcome": "FAIL",
+      "prepared_revision": "b8f4f804cd6dade9ce1e4673cebead9c56e66668",
+      "runtime_source_commit": "c88b4d5561ab9e2330c8ac96a4261171fa783df7",
+      "started_utc": "2026-10-11T23:19:55.135532+00:00",
+      "exit_code": 1,
+      "parent_stop": null,
+      "independent_checks": {
+        "results_page": true,
+        "origin_SFO": true,
+        "destination_JFK": true,
+        "round_trip": true,
+        "departure_date_and_year": true,
+        "return_date_and_year": true,
+        "one_adult": true,
+        "economy": true,
+        "actual_flight_options": false
+      },
+      "metrics": {
+        "dispatch_to_last_recorded_result_ms": 72453.893167,
+        "last_recorded_result_request": 21,
+        "last_recorded_result_is_terminal": true,
+        "dispatch_to_worker_stop_ms": 72724.001375,
+        "browser_cleanup_ms": 373.174167,
+        "total_including_startup_and_cleanup_ms": 73097.18225,
+        "browser_startup_ms": 275.059834,
+        "coordinator_requests": 21,
+        "coordinator_wait_total_ms": 56014.39171,
+        "largest_coordinator_wait_ms": 4572.48875,
+        "executed_inputs": 12,
+        "execution_sources": {
+          "local_model": 10,
+          "deterministic": 2
+        },
+        "read_only_observations": 6,
+        "pre_input_stale_returns": 3,
+        "local_model_calls": 10,
+        "local_input_tokens": 7164,
+        "local_generated_output_tokens": 0,
+        "model_call_latency_total_ms": 11273,
+        "decision_latency_ms": [
+          675,
+          656,
+          668,
+          493,
+          713,
+          3312,
+          2787,
+          808,
+          672,
+          492
+        ],
+        "model_loads": 1,
+        "model_load_ms": 1634.8923339974135,
+        "peak_worker_bytes": 3775417152,
+        "peak_mlx_bytes": 3127934276,
+        "memory_limit_bytes": 6442450944,
+        "coordinator_usage": null
+      },
+      "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "local_usage_method": "Menu scoring uses one forward pass per call and generates no output tokens.",
+      "first_stale_return": {
+        "request": 4,
+        "reason": "The local selection observation is stale before inference"
+      },
+      "terminal_failure": {
+        "event": "failure",
+        "elapsed_ms": 72017,
+        "step": 21,
+        "category": "ValueError",
+        "cause": "something went wrong"
+      },
+      "safety": {
+        "no_uncertain_execution": true,
+        "no_flight_selected": true,
+        "owned_cleanup_completed": true,
+        "source_hashes_unchanged": true
+      },
+      "private_evidence_sha256": {
+        "artifacts/flights-qwen-comparison-02/attempt-started.json": "5086f3f819430070016de5877930966ce1171ec56b1cf14ea9d2077cffea16a0",
+        "artifacts/flights-qwen-comparison-02/prepared.json": "9ddf0e64cbbabb2c6d30d4f8a0355a97b3ab8a18f2c618549108d7beb084d947",
+        "artifacts/flights-qwen-comparison-02/conditions.json": "a0ddc93d1b5dc0e29bbbcdc2ccba16f4a535ac03ce9534e406a813d48f97aed2",
+        "artifacts/flights-qwen-comparison-02/summary.json": "674a818be5542c1c2fc69e1dfbe27ba329b0f2fba2c1bf9af15dc797bbcab0eb",
+        "artifacts/flights-qwen-comparison-02/events.jsonl": "10eadd938a80916f64bf3caf95884c07389ee68a15e9d79f99141ee81e8ed2cf",
+        "artifacts/flights-qwen-comparison-02/result-21.json": "6330632924212ff61303077cc0a19040734170cec4d45d88db6f4c8923921a9e",
+        "artifacts/flights-qwen-comparison-02/launch.py": "6572a6a98be15d3a9c0f2150c7f4ad4a8821202df84678d5155ee3c938f8983c",
+        "artifacts/flights-qwen-comparison-02/request.json": "ab62c1ea3af29e5e5df067a66c5b665ec9c84bc92b75674cb62915b8dd1edf55",
+        "artifacts/replay/flights-qwen-comparison-02.jsonl": "264205882e8672d3fff239a9ea9e7283b4c1196b551212305ec694208d9f169a"
+      },
+      "first_failed_step": {
+        "request": 21,
+        "category": "website_error_after_search",
+        "observed_text": "No results returned. Oops, something went wrong.",
+        "itinerary_fields_correct": true,
+        "search_executed_once": true,
+        "underlying_cause": "Unknown. The trace does not establish the cause of the website error."
+      },
+      "timing_limit": "The last observation return, journal failure event, worker stop, and browser cleanup are separate boundaries. Worker stop is not exact verdict time."
+    },
+    {
+      "id": "jev-flights-comparison-01",
+      "method": "Pinned upstream JEV",
+      "outcome": "FAIL",
+      "upstream_revision": "1231850a0bf1a0c0341fe408ef1668dbbfdfac46",
+      "source_sha256": {
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/model.py": "a85ada8458d23642c5c8a4095acf0565e6268f81dcda26f6308942b653e9c9f3",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/snapshot.js": "e50473501c8fb8e70f3b21866d987393e3f2315c639d638bd477d170e81ed78d",
+        "jev_ultrafast/agent.py": "aaf8b271cb0ee6643fe7beb525328ab80de8568c7ac044d02b9c6721161e7c8b",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4"
+      },
+      "source_unchanged": true,
+      "requested_models": [
+        "jev-latest",
+        "inception/mercury-2.5"
+      ],
+      "text_reasoning": "none",
+      "adaptation": "External timing, evidence, independent assessment, and stop-before-booking boundary. Upstream files unchanged.",
+      "exit_code": 1,
+      "independent_checks": {
+        "results_page": false,
+        "origin_SFO": false,
+        "destination_JFK": false,
+        "round_trip": true,
+        "departure_date_and_year": false,
+        "return_date_and_year": false,
+        "one_adult": false,
+        "economy": true,
+        "actual_flight_options": false
+      },
+      "first_failed_step": {
+        "category": "text_provider_error_before_input",
+        "cause": "OpenRouter returned HTTP 402 before the first browser action.",
+        "underlying_cause": "Subsequent read-only diagnostics recognized the key and showed zero account credits. JEV remains blocked on funding.",
+        "browser_actions": 0
+      },
+      "metrics": {
+        "dispatch_to_verdict_ms": 2110.723375,
+        "total_including_cleanup_ms": 2607.259875,
+        "browser_startup_ms": 269.55625,
+        "browser_cleanup_ms": 363.305667,
+        "peak_worker_bytes": 37405200,
+        "provider_requests": 2,
+        "browser_actions": 0
+      },
+      "provider_calls": [
+        {
+          "host": "api.typesafe.ai",
+          "status": 200,
+          "model": "jev-1.13.0",
+          "latency_ms": 216.820291,
+          "usage": {
+            "input_tokens": 4268,
+            "output_tokens": 321
+          }
+        },
+        {
+          "host": "openrouter.ai",
+          "status": 402,
+          "model": null,
+          "latency_ms": 180.080583,
+          "usage": null
+        }
+      ],
+      "limitations": [
+        "The failed text-provider request returned no usage. Treat it as unavailable, not zero.",
+        "This provider-blocked run does not establish JEV task quality or speed.",
+        "Native and local-worker memory scopes differ.",
+        "Credential values and lookup details are excluded."
+      ],
+      "private_evidence_sha256": {
+        "artifacts/jev-flights-comparison-01/conditions.json": "b870fb3f7d532ebf204f33b1a594fb7c7bff3562e53663bc88b293afbe6d0422",
+        "artifacts/jev-flights-comparison-01/summary.json": "2d6c63d4cbc7bddb8d4943e13b500983ebb590db48f818749c887fe3bcaa3faa",
+        "artifacts/jev-flights-comparison-01/events.jsonl": "d596cc3c2645bbdb3fe3f70cb9f831d6a46291d9b5117e093bcfc572e43f6b09",
+        "artifacts/jev-flights-comparison-01/api-usage.json": "fb3bc38ab6c813b5efad06fed67438a4787bc7087fcbfddb531f6b5192619dcf",
+        "artifacts/jev-flights-comparison-01/verdict.json": "0a4949e7169bc5550205b5955791bee997062e184fea9a762649decea83580f1",
+        "artifacts/jev-flights-comparison-01/worker-cleanup.json": "536c9ec9fd5784fb974cfc1fad42329305b7b152620a2ad986c0ee912229c1a0",
+        "artifacts/jev-flights-comparison-01/launch.py": "6d34ae105da9dc53c68b05c1a605059080a3bf8404e36f72ddde69bc9557669a",
+        "artifacts/jev-flights-comparison-01/worker.py": "b0b5b8ce264d1898c829a0dc0ffe0cca5eaddcc9745836d6bcd594ee5d6782f5"
+      },
+      "funding_diagnosis": {
+        "key_lookup_http_status": 200,
+        "credits_lookup_http_status": 200,
+        "recognized_key": true,
+        "account_has_zero_credits": true,
+        "blocked_on_account_funding": true,
+        "settings_changed": false,
+        "additional_JEV_attempts": 0,
+        "usage_limit_is_not_credit_balance": true,
+        "account_totals_are_not_benchmark_tokens": true,
+        "private_evidence_sha256": {
+          "artifacts/jev-flights-comparison-01/key-diagnostic.json": "1205e446aea7d56239586f90d4840064ae09db994e36efc4b68e1a1183cd69d8",
+          "artifacts/jev-flights-comparison-01/credit-diagnostic.json": "fb999b079bc2dfdab23943584a69d61ce6aaefcc6c60e27569d8c3e4e2eb6c9d"
+        }
+      }
+    }
+  ],
+  "comparison_limits": [
+    "Attempts remain separate from prior development evidence.",
+    "Native used a fresh task and in-app browser tab. Other runs used the ongoing coordinator chat and fresh isolated browser profiles.",
+    "Native timing ends at its original final verdict and excludes cleanup. Other timings retain their explicit result, worker-stop, and cleanup boundaries.",
+    "Native exact usage includes cached input. The mixed coordinator chat has no separately attributable token total. No token or billing savings comparison is possible.",
+    "The zero-Qwen baseline passed. Neither delegated-Qwen comparison produced matching results. Do not present baseline success as Qwen success.",
+    "Qwen01 contains a large context-compaction pause and is excluded from speed comparisons.",
+    "Qwen02 reached correct itinerary settings but the website returned an error. No root cause is established.",
+    "JEV stopped at a provider error before browser input. Its short elapsed time is not task-completion speed.",
+    "Single sequential attempts with differing browser state and coordinator context do not establish general speed superiority or reliability.",
+    "All local-worker inference remained local. JEV used its separately authorized external providers."
+  ],
+  "development_recovery": {
+    "id": "flights-qwen-development-03",
+    "purpose": "Separate development recovery. Does not replace either failed Qwen comparison.",
+    "outcome": "PASS",
+    "prepared_revision": "b8f4f804cd6dade9ce1e4673cebead9c56e66668",
+    "runtime_source_commit": "c88b4d5561ab9e2330c8ac96a4261171fa783df7",
+    "runtime_unchanged": true,
+    "started_utc": "2026-10-11T23:22:51.387743+00:00",
+    "exit_code": 0,
+    "independent_checks": {
+      "results_page": true,
+      "origin_SFO": true,
+      "destination_JFK": true,
+      "round_trip": true,
+      "departure_date_and_year": true,
+      "return_date_and_year": true,
+      "one_adult": true,
+      "economy": true,
+      "actual_flight_options": true
+    },
+    "assessment_basis": "Original airport labels, both dates and year, observed adult count and cabin, and three actual flight descriptions.",
+    "reported_result_count": 27,
+    "directly_visible_flight_options": [
+      "From 428 US dollars round trip total. Nonstop flight with JetBlue. Leaves San Francisco International Airport at 6:00 AM on Thursday, November 12 and arrives at John F. Kennedy International Airport at 2:30 PM on Thursday, November 12. Total duration 5 hr 30 min.   Select flight",
+      "From 428 US dollars round trip total. Nonstop flight with Delta. Leaves San Francisco International Airport at 7:00 AM on Thursday, November 12 and arrives at John F. Kennedy International Airport at 3:31 PM on Thursday, November 12. Total duration 5 hr 31 min.   Select flight",
+      "From 473 US dollars round trip total. Nonstop flight with Alaska. Leaves San Francisco International Airport at 7:00 AM on Thursday, November 12 and arrives at John F. Kennedy International Airport at 3:35 PM on Thursday, November 12. Total duration 5 hr 35 min.   Select flight"
+    ],
+    "metrics": {
+      "dispatch_to_successful_result_return_ms": 83041.789709,
+      "dispatch_to_worker_stop_ms": 83274.897584,
+      "browser_cleanup_ms": 395.252666,
+      "total_including_startup_and_cleanup_ms": 83670.156542,
+      "browser_startup_ms": 218.493125,
+      "model_load_ms": 1682.2694579605013,
+      "model_loads": 1,
+      "coordinator_requests": 21,
+      "coordinator_wait_total_ms": 66542.60904,
+      "executed_inputs": 12,
+      "execution_sources": {
+        "local_model": 10,
+        "deterministic": 2
+      },
+      "read_only_observations": 9,
+      "pre_input_stale_returns": 0,
+      "local_model_calls": 10,
+      "local_prompt_tokens": 7164,
+      "local_generated_output_tokens": 0,
+      "model_call_latency_total_ms": 11169,
+      "decision_latency_ms": [
+        645,
+        577,
+        667,
+        571,
+        719,
+        3288,
+        2765,
+        802,
+        659,
+        483
+      ],
+      "peak_worker_bytes": 3768732480,
+      "peak_mlx_bytes": 3127934276,
+      "coordinator_usage": null
+    },
+    "safety": {
+      "no_flight_selected": true,
+      "no_uncertain_execution": true,
+      "owned_cleanup_completed": true
+    },
+    "recovery_conditions": "Fresh isolated browser, same runtime hashes, explicit read-only observations before dependent actions. No runtime fix.",
+    "causal_limit": "The earlier Google error cause remains unknown. Recovery success does not establish a root-cause fix.",
+    "private_evidence_sha256": {
+      "artifacts/flights-qwen-development-03/conditions.json": "1d03c186e0711c2aee9f80ecb32c9b89367471cebf8ad86b65e9862cd06f24e3",
+      "artifacts/flights-qwen-development-03/prepared.json": "3cfe9506886b686687a6c9ec89192b80b0eef17e2cce1d4189ce6c5a94a9633c",
+      "artifacts/flights-qwen-development-03/summary.json": "c0e18dc46c3cfc028860b5dba477cc4583bd9b4f452c17964cae148aa06084ae",
+      "artifacts/flights-qwen-development-03/events.jsonl": "1a2a6cdc4f41272bd1ee3b017384fb34c475511a7dc9754b2f8482584ee9b574",
+      "artifacts/flights-qwen-development-03/coordinator-assessment.json": "4badaf9ab78d835d6b8f8dd5a36cf27606ddb094672e556050fa872bccf815bf",
+      "artifacts/flights-qwen-development-03/result-21.json": "a4b26fef224043d2050119819412df1b605b513ca0609959e9a9768b43e51d7f",
+      "artifacts/flights-qwen-development-03/attempt-started.json": "24a356bb6424f187392e480e9e84104720ad405fc53f8f69eb563c1555ae787a",
+      "artifacts/flights-qwen-development-03/launch.py": "b3220d8380e442d92d740774aec58ac78f45648629fd74656886f81349697773",
+      "artifacts/flights-qwen-development-03/request.json": "9f22c08b0827d3abdf9694b455f6e6f86dbfcd9d9b4894b62346977e91f5966c",
+      "artifacts/replay/flights-qwen-development-03.jsonl": "ef0da9f7e2bcb4a5976734899ee7f0005b5a733900cf0b41f6b63aded1c08dc5"
+    }
+  },
+  "development_recovery_does_not_replace_comparison": true,
+  "isolated_usage_pair": {
+    "native": {
+      "verdict": "PASS",
+      "dispatch_to_task_complete_ms": 46221.94,
+      "finished_utc": "2026-10-11T23:27:40.720Z",
+      "totals": {
+        "input_tokens": 1286590,
+        "cached_input_tokens": 1227008,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 967,
+        "reasoning_output_tokens": 14,
+        "total_tokens": 1287557
+      },
+      "uncached_input_tokens": 59582,
+      "cumulative_crosscheck": true,
+      "response_count": 19,
+      "browser_tool_calls": 18,
+      "all_function_calls": [
+        {
+          "name": "js",
+          "call_id": "call_5d779cca3eaf443e8d96ad5fd2822c31"
+        },
+        {
+          "name": "js",
+          "call_id": "call_6cffc154f2c94462beb24e3708b9324b"
+        },
+        {
+          "name": "js",
+          "call_id": "call_3e590de58f714c2aae15538be426d6e7"
+        },
+        {
+          "name": "js",
+          "call_id": "call_2c2678e6b12a4954b40e31457ed57a97"
+        },
+        {
+          "name": "js",
+          "call_id": "call_538263562a21419199a80f1e6f2658e0"
+        },
+        {
+          "name": "js",
+          "call_id": "call_7e1d940e1678471c9bde6f4306c873ca"
+        },
+        {
+          "name": "js",
+          "call_id": "call_ac9438483a3b4e3c8f6618e2e1d163a2"
+        },
+        {
+          "name": "js",
+          "call_id": "call_ba3bda22f8b440ebbbcd637f5d1bd8ab"
+        },
+        {
+          "name": "js",
+          "call_id": "call_df6f81b538c04b4bac8cdbe83073439f"
+        },
+        {
+          "name": "js",
+          "call_id": "call_489fe887929d488fb68721bd37b9987c"
+        },
+        {
+          "name": "js",
+          "call_id": "call_28a1c0f6ba814dbb81b8aaf22081c21a"
+        },
+        {
+          "name": "js",
+          "call_id": "call_da908d0035524e80a2e91896407b9b70"
+        },
+        {
+          "name": "js",
+          "call_id": "call_fd0187e26fd14fc38ad268fb134701e6"
+        },
+        {
+          "name": "js",
+          "call_id": "call_2758575ad70d46c6ac3fc640e7ca70d6"
+        },
+        {
+          "name": "js",
+          "call_id": "call_a1728fb9de18403b9499b0225e4b0a3b"
+        },
+        {
+          "name": "js",
+          "call_id": "call_3a5453b39445458eb834775e3e71f719"
+        },
+        {
+          "name": "js",
+          "call_id": "call_6811f5080bc74260aa45d5043b2aee2f"
+        },
+        {
+          "name": "js",
+          "call_id": "call_575e15b876a04f9694bacc29f1c5d815"
+        }
+      ],
+      "standard_api_equivalent_usd": 1.871178,
+      "service_tier": "unavailable",
+      "pricing_source": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "pricing_date": "2026-10-11",
+      "billing_limit": "API-equivalent estimate only, not subscription billing",
+      "assessment": {
+        "independent_reviewer": "root",
+        "matching_results": 27,
+        "origin": "SFO",
+        "destination": "JFK",
+        "departure": "2026-11-12",
+        "return": "2026-11-16",
+        "adults": 1,
+        "cabin": "Economy",
+        "trip_type": "Round trip",
+        "selected_flight": false
+      },
+      "cleanup_separate": true,
+      "deduplication": "Unique session record ordinals, cumulative delta crosscheck; response IDs not exposed by token_count.",
+      "browser_actions": 13,
+      "usage_record_count": 19,
+      "usage_sum_independently_checked": true,
+      "reasoning_tokens_are_subset_of_output": true,
+      "private_measurement_sha256": "36e94d1021a046c9892a5e54ff6aa0cedcc03d6931d23a9bed42aa7857d6dedc",
+      "private_measurement_path": "artifacts/flights-usage-pair-01/native-measurement.json"
+    },
+    "qwen_failed_startup": {
+      "verdict": "FAIL_BEFORE_STARTUP",
+      "reason": "Projectless chat filesystem permissions blocked the repository console log. No worker, browser, or model started. A later authorized recovery is recorded separately.",
+      "elapsed_to_failure_ms": 16103.249936,
+      "totals": {
+        "input_tokens": 122120,
+        "cached_input_tokens": 117504,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 513,
+        "reasoning_output_tokens": 73,
+        "total_tokens": 122633
+      },
+      "uncached_input_tokens": 4616,
+      "cumulative_crosscheck": true,
+      "local_model_calls": 0,
+      "model_loads": 0,
+      "browser_actions": 0,
+      "standard_api_equivalent_usd": 0.189314,
+      "service_tier": "unavailable",
+      "timing_comparable": false,
+      "usage_record_count": 3,
+      "usage_sum_independently_checked": true,
+      "reasoning_tokens_are_subset_of_output": true,
+      "private_measurement_sha256": "dbe1fb131622669b098460c011bc44070f8272b2ba4bab9e773fe33bc844cd57",
+      "private_measurement_path": "artifacts/flights-usage-pair-01/qwen-measurement.json"
+    },
+    "qwen_authorized_recovery": {
+      "verdict": "PASS",
+      "dispatch_to_task_complete_ms": 140801.84,
+      "finished_utc": "2026-10-11T23:33:47.636Z",
+      "totals": {
+        "input_tokens": 1755146,
+        "cached_input_tokens": 1693056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4139,
+        "reasoning_output_tokens": 55,
+        "total_tokens": 1759285
+      },
+      "response_count": 25,
+      "uncached_input_tokens": 62090,
+      "cumulative_crosscheck": true,
+      "standard_api_equivalent_usd": 2.520906,
+      "service_tier": "unavailable",
+      "context_difference": "Same isolated chat reused after failed startup and access probe. Native chat did not have these turns.",
+      "timing_limit": "Qwen final verdict follows automatic cleanup. Native cleanup was after final verdict. Both reported dispatch through task_complete.",
+      "pricing_source": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "pricing_date": "2026-10-11",
+      "billing_limit": "Standard API-equivalent estimate only, not subscription billing; local compute excluded and unknown.",
+      "local": {
+        "model_calls": 7,
+        "prompt_tokens": 4730,
+        "generated_tokens": 0,
+        "token_limit": "Label scoring, not generative output.",
+        "model_call_ms": 7591,
+        "model_loads": 1,
+        "model_load_ms": [
+          1621.9644581433386
+        ],
+        "coordinator_wait_ms": 106745.877999,
+        "actions_executed": 11,
+        "request_count": 17,
+        "stale_not_executed_count": 2,
+        "peak_worker_bytes": 3534719688,
+        "peak_mlx_bytes": 3016523052,
+        "source_unchanged": true,
+        "browser_cleanup_ms": 401.281292,
+        "worker_start_to_success_ms": 120841.601792,
+        "worker_start_through_cleanup_ms": 121590.752417
+      },
+      "assessment": {
+        "reviewer": "root",
+        "passed": true,
+        "checks": {
+          "results_page": true,
+          "origin_SFO": true,
+          "destination_JFK": true,
+          "round_trip": true,
+          "departure_date_and_year": true,
+          "return_date_and_year": true,
+          "one_adult": true,
+          "economy": true,
+          "actual_flight_options": true
+        },
+        "evidence": "qwen-runtime-02/result-17.json",
+        "actual_options": [
+          "From 428 US dollars round trip total. Nonstop flight with JetBlue. Leaves San Francisco International Airport at 6:00 AM on Thursday, November 12 and arrives at John F. Kennedy International Airport at 2:30 PM on Thursday, November 12. Total duration 5 hr 30 min.   Select flight",
+          "From 428 US dollars round trip total. Nonstop flight with Delta. Leaves San Francisco International Airport at 7:00 AM on Thursday, November 12 and arrives at John F. Kennedy International Airport at 3:31 PM on Thursday, November 12. Total duration 5 hr 31 min.   Select flight",
+          "From 473 US dollars round trip total. Nonstop flight with Alaska. Leaves San Francisco International Airport at 7:00 AM on Thursday, November 12 and arrives at John F. Kennedy International Airport at 3:35 PM on Thursday, November 12. Total duration 5 hr 35 min.   Select flight"
+        ],
+        "no_booking_or_flight_selection": true
+      },
+      "usage_record_count": 25,
+      "usage_sum_independently_checked": true,
+      "reasoning_tokens_are_subset_of_output": true,
+      "private_measurement_sha256": "27e15be6230fa0176f24fb8dc1492000ed908788ab29491244481219e0e9353f",
+      "private_measurement_path": "artifacts/flights-usage-pair-01/qwen-retry-measurement.json"
+    },
+    "limits": [
+      "Main-turn usage only. Setup, access probes, cleanup turns, and earlier failures remain separate.",
+      "The successful Qwen chat retained the failed-startup and access-probe history. Native did not.",
+      "Cached input remains part of total usage. Reasoning output is already included in output.",
+      "Recorded standard API-equivalent estimates are not subscription charges. Service tier and local compute cost are unavailable."
+    ]
+  },
+  "jev_funded_followup": {
+    "id": "jev-flights-comparison-02",
+    "outcome": "FAIL",
+    "source_commit": "1231850a0bf1a0c0341fe408ef1668dbbfdfac46",
+    "requested_model": "jev-latest",
+    "text_model": "inception/mercury-2.5",
+    "source_unchanged": true,
+    "exit_code": 1,
+    "elapsed_to_verdict_ms": 7144.625834,
+    "total_including_cleanup_ms": 7711.142084,
+    "phases": {
+      "browser_startup_ms": 275.764667,
+      "browser_cleanup_ms": 504.140125
+    },
+    "runtime": {
+      "peak_worker_bytes": 40124992,
+      "memory_samples": 67,
+      "worker_stopped_ms": 6931
+    },
+    "independent_checks": {
+      "results_page": false,
+      "origin_SFO": false,
+      "destination_JFK": false,
+      "round_trip": true,
+      "departure_date_and_year": false,
+      "return_date_and_year": false,
+      "one_adult": false,
+      "economy": false,
+      "actual_flight_options": false
+    },
+    "first_failed_step": {
+      "executed_step": 4,
+      "category": "incorrect_field_text",
+      "evidence": "The text helper supplied SFO for the Departure date field."
+    },
+    "terminal_failure": "Upstream agent entered blocked state after repeated Open Return actions without page changes. Return date was empty and matching results were absent.",
+    "executed_actions": [
+      {
+        "label": "Where to? ",
+        "kind": "fill",
+        "page_changed": true
+      },
+      {
+        "label": "John F. Kennedy International Airport (JFK)",
+        "kind": "click",
+        "page_changed": true
+      },
+      {
+        "label": "Open Departure",
+        "kind": "click",
+        "page_changed": true
+      },
+      {
+        "label": "Departure",
+        "kind": "fill",
+        "page_changed": true
+      },
+      {
+        "label": "Thursday, November 12, 2026 , 407 US dollars, Cheapest price",
+        "kind": "click",
+        "page_changed": true
+      },
+      {
+        "label": "Open Return",
+        "kind": "click",
+        "page_changed": false
+      },
+      {
+        "label": "Open Return",
+        "kind": "click",
+        "page_changed": false
+      },
+      {
+        "label": "Open Return",
+        "kind": "click",
+        "page_changed": false
+      }
+    ],
+    "provider_usage": {
+      "openrouter.ai": {
+        "calls": 3,
+        "input": 1565,
+        "output": 318,
+        "reported_cost_usd": 0.0001103
+      },
+      "api.typesafe.ai": {
+        "calls": 12,
+        "input": 65480,
+        "output": 4294,
+        "reported_cost_usd": null
+      }
+    },
+    "cost_limit": "Only OpenRouter reports cost. TypeSafe cost unavailable. Failed run is not speed-comparable with completed searches.",
+    "private_evidence_sha256": {
+      "artifacts/jev-flights-comparison-02/summary.json": "74877c33c382b2b54cad0a3a6478bebd267bb71f5911f49124d14bee0ec15481",
+      "artifacts/jev-flights-comparison-02/coordinator-assessment.json": "36b79e9082d4f66e6f0f3502daefc466f772959210f12b1ea1ad021026f46b21",
+      "artifacts/jev-flights-comparison-02/api-usage.json": "6f17777ac9cb2352a9280f2d10f3fe3627f51621d18f905a2eef6ecd3c139ef6"
+    }
+  },
+  "direct_action_followup": {
+    "verdict": "PASS",
+    "dispatch_to_task_complete_ms": 123135.874936,
+    "finished_utc": "2026-10-11T23:40:11.161Z",
+    "totals": {
+      "input_tokens": 1493957,
+      "cached_input_tokens": 1450752,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 4199,
+      "reasoning_output_tokens": 36,
+      "total_tokens": 1498156
+    },
+    "response_count": 23,
+    "uncached_input_tokens": 43205,
+    "cumulative_crosscheck": true,
+    "standard_api_equivalent_usd": 2.092752,
+    "service_tier": "unavailable",
+    "pricing_source": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+    "pricing_date": "2026-10-11",
+    "billing_limit": "Standard API-equivalent estimate, not subscription billing. Local compute cost unknown.",
+    "local": {
+      "model_calls": 7,
+      "prompt_tokens": 3218,
+      "generated_tokens": 0,
+      "model_call_ms": 5309,
+      "model_loads": 1,
+      "model_load_ms": [
+        1713.48233288154
+      ],
+      "coordinator_wait_ms": 95080.137835,
+      "actions_executed": 11,
+      "request_count": 18,
+      "stale_not_executed_count": 4,
+      "peak_worker_bytes": 3450768192,
+      "peak_mlx_bytes": 2900393208,
+      "browser_cleanup_ms": 398.51075,
+      "worker_start_through_cleanup_ms": 107141.875667
+    },
+    "source_unchanged": true,
+    "assessment": {
+      "reviewer": "root",
+      "passed": true,
+      "checks": {
+        "results_page": true,
+        "origin_SFO": true,
+        "destination_JFK": true,
+        "round_trip": true,
+        "departure_date_and_year": true,
+        "return_date_and_year": true,
+        "one_adult": true,
+        "economy": true,
+        "actual_flight_options": true
+      },
+      "actual_options": [
+        "From 428 US dollars round trip total. Nonstop flight with JetBlue. Leaves San Francisco International Airport at 6:00 AM on Thursday, November 12 and arrives at John F. Kennedy International Airport at 2:30 PM on Thursday, November 12. Total duration 5 hr 30 min.   Select flight",
+        "From 428 US dollars round trip total. Nonstop flight with Delta. Leaves San Francisco International Airport at 7:00 AM on Thursday, November 12 and arrives at John F. Kennedy International Airport at 3:31 PM on Thursday, November 12. Total duration 5 hr 31 min.   Select flight",
+        "From 473 US dollars round trip total. Nonstop flight with Alaska. Leaves San Francisco International Airport at 7:00 AM on Thursday, November 12 and arrives at John F. Kennedy International Airport at 3:35 PM on Thursday, November 12. Total duration 5 hr 35 min.   Select flight"
+      ]
+    },
+    "caveats": [
+      "One preliminary product trial; no causal architecture claim.",
+      "Fresh repository chat, different instructions/context than native projectless chat and previous Qwen recovery chat.",
+      "Native uses in-app browser, Qwen isolated Chrome with custom observation/execution. Browser state and caches differ.",
+      "Qwen main time includes automatic cleanup before final verdict. Native cleanup occurs separately afterward.",
+      "Only successful measured turn usage included. Setup and prior failures remain separate.",
+      "180second worker cap; previous successful Qwen used300seconds.",
+      "Helper uses shell transport over existing persistent worker, not a new native MCP endpoint."
+    ],
+    "usage_record_count": 23,
+    "usage_sum_independently_checked": true,
+    "reasoning_tokens_are_subset_of_output": true,
+    "private_measurement_sha256": "5d802ce56e0b8518244649f6bfa9d6a3de97564693829e7fd5d6b88a3cfe7636",
+    "private_measurement_path": "artifacts/flights-direct-action-01/measurement.json",
+    "adapter_sha256": "c78eec9b4f5b8f1ce4fefc46be5b4806d2d47a25c491eea999ae4f14f9c2db4f",
+    "first_rejected_request": {
+      "sequence": 3,
+      "category": "stale_before_input",
+      "action_executed": false,
+      "unresolved_execution": false,
+      "reason": "The request observation is stale before input",
+      "terminal_failure": false
+    },
+    "implementation_limit": "One shell call wraps the existing file protocol. It is not a native MCP endpoint. The worker executor and policy are unchanged.",
+    "private_evidence_sha256": {
+      "artifacts/flights-direct-action-01/summary.json": "6c969f68cbe64fe199a2ab1db312732423b5d8ba073e60d70f67add52371e84c",
+      "artifacts/flights-direct-action-01/events.jsonl": "810f3587efaee5440bbb8265fcf2a475761e5a5686fd89dc099b6157d339a4a2",
+      "artifacts/flights-direct-action-01/prepared.json": "fd287aa5964cee87fc9f19b814e9514cfbe83d851bdbd78f645b75ed680f4135",
+      "artifacts/flights-direct-action-01/result-18.json": "8e0a9b09a1eef26600ec60107b800bd37ba8435ff54e017dc90d3597f7223d90"
+    }
+  },
+  "delivery_checks": {
+    "ruff": "passed",
+    "pytest": {
+      "passed": 184,
+      "elapsed_seconds": 4.55
+    },
+    "new_tests_added": false,
+    "live_observation_needed": false,
+    "limit": "Existing checks passed after the measured run. No new tests were added. A stale GitNexus index limits graph coverage."
+  }
+}

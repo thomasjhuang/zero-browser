@@ -10,7 +10,6 @@ Replay mode re-streams a recorded passing run from artifacts/paired with its ori
 
 import argparse
 import json
-import os
 import statistics
 import subprocess
 import sys

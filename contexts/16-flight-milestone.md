@@ -2,7 +2,7 @@
 
 Priority P0. Owner Codex milestone chat.
 
-Current scope: full SFO–JFK round-trip development attempt 02 passed all nine outcome checks. Preserve attempts 01 and 02, then prepare the system comparison. Root launches native Desktop first, then system, then JEV. Runtime remains frozen. No flight selection or booking is permitted. One live success does not establish general reliability.
+Current scope: deliver the callable action adapter and preserved comparison evidence. All measured attempts ended. The worker and browser closed. No further runtime work is active. General reliability and savings remain unproven.
 
 ## Why
 
@@ -629,3 +629,58 @@ Both attempts retain durable events, requests, results, replay records, and fail
 The next comparison uses the same full task and frozen successful runtime. Root launches native Desktop, then system, then JEV sequentially. Task 16 prepares a fresh system folder only. No comparison ran during this preservation step.
 
 Preservation checks passed: lint and all 184 existing tests in 4.52 seconds. Public evidence passed the private-path and credential scan. Earlier public results and private run evidence remain unchanged.
+
+
+### Sequential comparison and separate recovery
+
+[Sanitized evidence](../results/flights-sequential-comparison.json) preserves each attempt. Runtime sources stayed unchanged. The full task remained SFO–JFK, November 12–16, 2026, round trip, one adult, economy, with a stop before flight selection.
+
+| Attempt | Outcome | Recorded time and boundary |
+| --- | --- | --- |
+| Native Codex Desktop | PASS | 58.68 seconds from dispatch to original final verdict, excluding cleanup |
+| Codex + custom browser baseline | PASS, zero Qwen calls | 62.06 seconds to successful result, 62.73 seconds through cleanup |
+| Qwen comparison 01 | FAIL | Timing excluded because of a coordinator compaction pause |
+| Qwen comparison 02 | FAIL, website error | 72.45 seconds to the failed observation, 73.10 seconds through cleanup |
+| Qwen development recovery 03 | PASS, separate recovery | 83.04 seconds to successful result, 83.67 seconds through cleanup |
+| Pinned upstream JEV | FAIL, provider blocked | 2.11 seconds to failure verdict, 2.61 seconds through cleanup |
+
+Native used `gpt-6-astra` with high reasoning in a fresh task. Exact original-session usage was 1,199,260 input tokens, including 1,118,080 cached input, and 1,046 output tokens. Total usage was 1,200,306 tokens. Its 107 reasoning tokens are included in output. Totals match seventeen per-response usage records. Cleanup usage is excluded. The other coordinator runs share a mixed engineering chat, so their exact coordinator usage is unavailable. No coordinator-token or billing comparison follows.
+
+The zero-Qwen baseline used eleven deterministic inputs and made no local model call. It proves the custom browser path, not delegation. Qwen comparison 01 made ten calls with 6,021 prompt tokens and 9,504 ms of model-call time. Its first choice opened dates despite an origin-selector instruction. At request 19, the coordinator supplied non-search candidates under the search purpose. The guard rejected that request before inference or input. Its largest coordinator wait was 88,477.06 ms during the reported compaction pause.
+
+Qwen comparison 02 made ten calls with 7,164 prompt tokens and 11,273 ms of model-call time. Twenty-one requests produced twelve inputs, six read-only observations, and three pre-input stale returns. All itinerary settings passed. Search executed once, but the website reported “No results returned. Oops, something went wrong.” The underlying website error remains unknown. Its journal failure event, returned observation, worker stop, and cleanup retain separate timing boundaries.
+
+Development recovery 03 used a fresh browser and the same runtime, with explicit observations before dependent actions. It passed all nine requirements and showed 27 reported results with three directly visible options. Twenty-one requests produced twelve inputs and nine read-only observations, with no stale returns. Ten inputs used local choices. Exact entry and Search supplied the other two. Ten calls used 7,164 prompt tokens and 11,169 ms of model-call time. Menu scoring generated no output tokens. One load took 1,682.27 ms. Coordinator waits totaled 66,542.61 ms. Peak worker memory was 3,768,732,480 bytes, excluding browser and parent. This recovery does not replace either failed comparison or establish a root-cause fix.
+
+JEV used pinned upstream `1231850a0bf1a0c0341fe408ef1668dbbfdfac46`, requested `jev-latest`, and configured Mercury 2.5 for text. Typesafe returned HTTP 200 with 4,268 input and 321 output tokens. OpenRouter returned HTTP 402 with usage unavailable. No browser input occurred. Later read-only diagnostics recognized the key and showed zero account credits. A key usage limit does not supply credits. That diagnostic changed no setting. A later funded attempt appears below. Account totals are not benchmark token usage.
+
+Native and custom-browser profile state, tool interfaces, and coordinator context differ. These sequential attempts do not establish general speed superiority or savings. All raw sessions, images, credentials, and private paths remain outside the repository. Public evidence contains only necessary measurements, sanitized observations, and source/evidence hashes. No runtime implementation changed during preservation.
+
+
+### Direct action adapter preparation
+
+`scripts/worker_call.py` sends one issued request and returns its result with the next observation. It preserves request identity and refuses duplicate submission. A timeout reports unresolved execution and forbids replay. The existing worker retains all browser and inference safeguards. Root owns the launch in `artifacts/flights-direct-action-01/launch.py`. No runtime experiment started during implementation. Final existing tests passed: 184 in 4.27 seconds. Full lint passed after the authorized unused-import cleanup. The helper performs at most one additional read-only observation when the worker requires it. It preserves the mutation result separately. Adapter SHA256: `c78eec9b4f5b8f1ce4fefc46be5b4806d2d47a25c491eea999ae4f14f9c2db4f`. GitNexus queries used an older index. No index refresh ran during the short preparation.
+
+
+### Isolated usage measurements and direct-action result
+
+[The same result file](../results/flights-sequential-comparison.json) preserves all later attempts with independent usage sums and evidence hashes.
+
+| Attempt | Outcome | Main duration | Coordinator total tokens | Recorded API-equivalent estimate |
+| --- | --- | --- | --- | --- |
+| Fresh native Desktop | PASS | 46.22 seconds | 1,287,557 | $1.871178 |
+| Qwen startup failure | FAIL before browser/model startup | 16.10 seconds | 122,633 | $0.189314 |
+| Authorized Qwen recovery | PASS | 140.80 seconds | 1,759,285 | $2.520906 |
+| Direct-action Qwen | PASS | 123.14 seconds | 1,498,156 | $2.092752 |
+
+Main durations run from dispatch through the final task event. The Qwen durations include automatic cleanup. Native cleanup follows its final verdict. Recovery retained earlier failed-startup and access-probe context. The direct-action attempt used a fresh repository chat and a 180-second worker limit. The previous Qwen limit was 300 seconds. Standard API-equivalent estimates are not subscription charges. Service tier and local compute cost are unavailable. Cached input is included in totals. Reasoning tokens are a subset of output.
+
+The direct-action attempt passed all nine independent requirements and showed actual JetBlue, Delta, and Alaska options. Seven local calls used 3,218 prompt tokens and 5,309 ms. One model load took 1,713.48 ms. Eleven inputs came from eighteen requests. Four stale requests stopped before input. The first rejection occurred at request 3. The coordinator issued new requests without replaying uncertain execution. Peak sampled worker memory was 3,450,768,192 bytes, excluding browser and parent. Coordinator waiting totaled 95,080.14 ms. Total worker-launch-through-cleanup time was 107,141.88 ms. Source hashes stayed unchanged.
+
+The adapter uses the existing file protocol through one shell call. It returns the original mutation result and performs at most one required read-only observation. It does not provide a native MCP endpoint. The earlier 140.80-second run used seven local calls with 4,730 prompt tokens and 7,591 ms. Different context and observations prevent attribution of the timing difference to the adapter alone.
+
+After funding, JEV attempt 02 failed in 7,144.63 ms to its independent verdict and 7,711.14 ms through cleanup. Its first observed error was incorrect text at executed step 4: SFO entered the Departure date field. It later clicked Open Return three times without a page change and stopped. Eight actions executed. TypeSafe made twelve calls with 65,480 input and 4,294 output tokens. OpenRouter made three calls with 1,565 input and 318 output tokens. Only OpenRouter reported cost: $0.0001103. Total JEV cost is unavailable. Failed-run time is not comparable with completed search time.
+
+The adapter passed lint and all 184 existing tests before measurement. No new tests or review cycle ran. GitNexus discovery, query, context, and change detection used the existing stale index. The graph omitted the new untracked helper and does not establish complete impact coverage. Source inspection and existing tests supplied the delivery checks. No index refresh interrupted measurement. The earlier freeze remains unexplained. Existing responsiveness observations remain applicable.
+
+Final delivery checks passed: lint and all 184 existing tests in 4.55 seconds. Added evidence passed JSON, private-path, and credential-pattern checks. Runtime sources stayed frozen through measurement. No new responsiveness observation is needed.
