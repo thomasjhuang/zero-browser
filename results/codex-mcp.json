@@ -13,13 +13,13 @@
     "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
     "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
     "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
-    "scripts/runtime_guard.py": "0a277ea180e85fb07d7ef2cc7fada62e4004ae28813571d7edcfcfb216267d3d",
+    "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
     "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
     "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8",
     "jev_ultrafast/static/fixture.html": "e48e7d7b6225b215060692e0a28c3d0b59e465e4b94c1bc510d5f37ff0b8bfbe"
   },
   "codex_exit_code": 0,
-  "codex_elapsed_ms": 17340,
+  "codex_elapsed_ms": 15960,
   "native_browser_tools_disabled": true,
   "disabled_features": [
     "shell_tool",
@@ -48,7 +48,7 @@
       "tool": "run_browser_goal",
       "arguments": {
         "goal": "Open Casa Flora.",
-        "url": "http://127.0.0.1:59822/fixture.html?scenario=travel",
+        "url": "http://127.0.0.1:59934/fixture.html?scenario=travel",
         "expect_url": "#casa-flora",
         "expect_text": [
           "Casa Flora"
@@ -60,7 +60,7 @@
         "content": [
           {
             "type": "text",
-            "text": "{\n  \"status\": \"done\",\n  \"outcome_verified\": true,\n  \"stop_reason\": null,\n  \"assertions\": {\n    \"text:Casa Flora\": true,\n    \"url:#casa-flora\": true\n  },\n  \"actions\": 1,\n  \"decisions\": 2,\n  \"text_calls\": 0,\n  \"elapsed_ms\": 6758,\n  \"decision_latency_ms\": [\n    3594,\n    1027\n  ],\n  \"text_latency_ms\": [],\n  \"final_page\": {\n    \"url\": \"http://127.0.0.1:59822/fixture.html?scenario=travel#casa-flora\",\n    \"title\": \"Casa Flora \u00b7 Forma\",\n    \"text\": \"forma.\\nFind a stay\\nReading room\\nPLACES WITH CHARACTER\\n\u2190 All stays\\nLISBON \u00b7 DESIGN\\nCasa Flora\\n\\nA quiet courtyard, warm terracotta, and light that stays all afternoon.\\n\\n\u20ac145 / night \u00b7 2 guests\\nFree cancellation included\\n\\nYour filters: all \u00b7 Free cancellation off \u00b7 Destination anywhere\\n\\nLocal demo property. No reservation has been made.\"\n  },\n  \"exit_code\": 0,\n  \"error\": null,\n  \"runtime\": {\n    \"peak_worker_bytes\": 3605334728,\n    \"memory_samples\": 66,\n    \"memory_limit_bytes\": 6442450944\n  },\n  \"total_elapsed_ms\": 7636,\n  \"memory_scope\": \"Sampled inference worker footprint. Browser and MCP memory are excluded.\",\n  \"successful_run\": true\n}"
+            "text": "{\n  \"status\": \"done\",\n  \"outcome_verified\": true,\n  \"stop_reason\": null,\n  \"assertions\": {\n    \"text:Casa Flora\": true,\n    \"url:#casa-flora\": true\n  },\n  \"actions\": 1,\n  \"decisions\": 2,\n  \"text_calls\": 0,\n  \"elapsed_ms\": 6532,\n  \"decision_latency_ms\": [\n    3600,\n    1029\n  ],\n  \"text_latency_ms\": [],\n  \"final_page\": {\n    \"url\": \"http://127.0.0.1:59934/fixture.html?scenario=travel#casa-flora\",\n    \"title\": \"Casa Flora \u00b7 Forma\",\n    \"text\": \"forma.\\nFind a stay\\nReading room\\nPLACES WITH CHARACTER\\n\u2190 All stays\\nLISBON \u00b7 DESIGN\\nCasa Flora\\n\\nA quiet courtyard, warm terracotta, and light that stays all afternoon.\\n\\n\u20ac145 / night \u00b7 2 guests\\nFree cancellation included\\n\\nYour filters: all \u00b7 Free cancellation off \u00b7 Destination anywhere\\n\\nLocal demo property. No reservation has been made.\"\n  },\n  \"exit_code\": 0,\n  \"error\": null,\n  \"runtime\": {\n    \"peak_worker_bytes\": 3606235824,\n    \"memory_samples\": 65,\n    \"memory_limit_bytes\": 6442450944\n  },\n  \"total_elapsed_ms\": 7592,\n  \"memory_scope\": \"Sampled inference worker footprint. Browser and MCP memory are excluded.\",\n  \"successful_run\": true\n}"
           }
         ],
         "structured_content": null
@@ -76,11 +76,27 @@
   ],
   "usage": [
     {
-      "input_tokens": 39550,
-      "cached_input_tokens": 29056,
+      "input_tokens": 26230,
+      "cached_input_tokens": 16128,
       "cache_write_input_tokens": 0,
-      "output_tokens": 150,
+      "output_tokens": 139,
       "reasoning_output_tokens": 0
     }
-  ]
+  ],
+  "tested_commit": "146a4efcf496cb9d40eca7d427701c4653e0ca63",
+  "checks": {
+    "ruff": "passed",
+    "pytest_passed": 118,
+    "review": {
+      "model": "gpt-6-astra",
+      "reasoning_effort": "high",
+      "candidate": "146a4efcf496cb9d40eca7d427701c4653e0ca63",
+      "target": "e0327750fd710b85398a94a205815e53676858d2",
+      "result": "No new code blockers. Cancellation fix resolved the prior finding.",
+      "limitations": [
+        "GitNexus symbol metadata remained stale after index refresh.",
+        "Field entry and multi-step browser goals were not tested through MCP."
+      ]
+    }
+  }
 }
