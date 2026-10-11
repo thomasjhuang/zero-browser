@@ -2,7 +2,7 @@
 
 Priority P0. Owner Codex milestone chat.
 
-Current scope: the bounded-worker proof and authorized shared-interface coordinator comparison are delivered. Runtime is idle. Native desktop CUA comparison, multi-step efficiency, and the original flight milestone remain open. The original plan below is historical; the latest Result entries and STATUS banner control current work. The browser worker remains local. The comparison used explicitly authorized Codex CLI coordinators through the existing login, with no hosted model client added to the repository.
+Current scope: the focused bounded-delegation change and exactly one live workflow attempt are complete. The attempt failed safely after search-and-open succeeded. Runtime is idle. No retry or replacement ran. Native workflow pairs remain unrun after the user's scope change. General reliability, efficiency, and the original flight milestone remain unresolved. The original plan below is historical. Latest Result entries and STATUS govern current work.
 
 ## Why
 
@@ -365,3 +365,18 @@ The next run is exactly one attempt: `ZB_RECORD_PATH=artifacts/replay/workflow-f
 Thomas separately assigned an optional deterministic observation compactor in another worktree from `3fd3936`. Reserved supporting files: `jev_ultrafast/observation_compactor.py`, `tests/test_observation_compactor.py`, `scripts/assess_observation_compactor.py`, and `results/observation-compactor.json`. No active-runtime integration or browser/model run is permitted. Its owner received an idle slot for required checks and must report completion before the one live trial.
 
 Focused review corrections are complete. The worker requires an exact observed main heading for search result identity. Redirects require observed article identity and canonical destination evidence. Missing controls remain known no-input failures. Failed subtasks preserve earlier execution and page-change facts. The independent evaluator ties each search action to observed controls, preserves ordered route evidence, accepts affirmative inventor answers, and rejects negation. Lint and 151 tests passed in 4.64 seconds. The compactor owner confirmed idle and holds all resource-intensive work. The single attempt starts only after the final narrow assessment review, with no broader review gate.
+
+Both focused reviewers passed the exact final candidate. Frozen source: `9a47df995003c16ac5cedcc9aec7562f2e84e6bf`. The previously recorded one-attempt command starts now. All reviewed runtime hashes match. No background indexing, tests, compactor work, or other inference runs during measurement.
+
+
+### Single focused workflow result
+
+Exactly one attempt ran at `9a47df995003c16ac5cedcc9aec7562f2e84e6bf`. Evidence: `results/workflow-focused.json` and `results/workflow-focused-summary.json`. The independent outcome failed. The worker searched and opened Ada Lovelace in one 10,256.51 ms subtask. It returned the actual page and the analytical engine link. The coordinator used that observation without an extra observe call.
+The next subtask requested the observed link. Its fresh observation contained donation controls and omitted that link from the visible action list. Two common controls moved down 549 pixels. This supports viewport displacement, but the target rectangle after the change was not recorded. The worker returned `missing_target` in 22.59 ms, with no input and no unresolved execution. The coordinator stopped without asserting an inventor.
+The earliest guard rejection occurred during search: the first Qwen decision failed a pre-input freshness check. A fresh local observation and decision then opened the correct article. The saved rejection does not identify the exact changed marker component. This differs from the terminal missing-control failure.
+Full startup-to-verdict time was 29,287.12 ms, with 1,231.87 ms cleanup separately. Six coordinator responses used 129,796 input tokens, including 73,856 cached tokens, plus 286 output tokens. Total: 130,082. Uncached input: 55,940. Two local calls used 4,219 prompt tokens and 55 retokenized response tokens. One model process loaded once. The actual weight load took 1,432.005 ms inside the larger acquisition interval.
+The run executed two mutations: deterministic query entry and a Qwen-selected search result click. Sampled combined MCP/model memory peaked at 3,808,529,624 bytes. Browser and coordinator-client memory are excluded. Model timing combines prompt processing and token generation. No phase medians or nested durations are added together.
+Independent audits passed exact token reconciliation, all 39 unchanged source hashes, action accounting, and correct failed-outcome reporting. Earlier raw runs remain unchanged. Their different prompts, action counts, and verdicts prevent a direct savings claim. Native desktop workflow comparison remains unrun.
+The next proposed build is bounded recovery for a previously observed control that leaves the visible action set. Use observed scrolling and unchanged freshness safeguards. This delivery does not implement or test that recovery. No additional trial ran. No new user responsiveness observation is required.
+
+Final delivery checks passed: lint and 151 tests in 4.45 seconds. Public evidence passed the private-path and credential scan. Prior raw result hashes remain unchanged. The runtime is idle.

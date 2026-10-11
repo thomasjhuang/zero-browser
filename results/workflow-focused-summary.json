@@ -1,0 +1,122 @@
+{
+  "source": "results/workflow-focused.json",
+  "revision": "9a47df995003c16ac5cedcc9aec7562f2e84e6bf",
+  "attempts": 1,
+  "retries_or_replacements": 0,
+  "outcome": "failed",
+  "independent_checks": {
+    "started_at_portal": true,
+    "query_entered": true,
+    "search_opened": true,
+    "ada_article_observed": true,
+    "article_link_followed": false,
+    "destination_observed": false,
+    "inventor_passage_observed": false,
+    "answer_correct": false,
+    "supporting_urls": false,
+    "no_uncertain_execution": true
+  },
+  "total_ms": 29287.120417,
+  "cleanup_ms": 1231.8735,
+  "delegated_subtasks": 2,
+  "subtask_ms": [
+    10256.514042,
+    22.593166
+  ],
+  "browser_actions": {
+    "deterministic": 1,
+    "qwen": 1
+  },
+  "first_rejected_step": {
+    "subtask": 1,
+    "decision": 1,
+    "category": "pre_input_freshness_rejection",
+    "raw_event": {
+      "event": "rejected",
+      "elapsed_ms": 13968,
+      "execution": "not_executed",
+      "cause": "Page changed since this decision. Observe again.",
+      "monotonic_ns": 1648801069278291
+    }
+  },
+  "terminal_failure": {
+    "subtask": 2,
+    "category": "missing_target",
+    "action_executed": false,
+    "unresolved_execution": false,
+    "evidence": "The returned Ada observation contained the analytical engine link at node 43. The fresh next-step observation contained new donation controls and omitted that link from visible actions.",
+    "cause_limit": "New donation controls and a 549-pixel downward shift of common controls support viewport displacement. The target rectangle after the change was not recorded.",
+    "supporting_layout_evidence": {
+      "new_controls": [
+        "Close",
+        "Maybe later"
+      ],
+      "common_controls_vertical_change_px": 549,
+      "target_rectangle_after_change": "not recorded"
+    }
+  },
+  "coordinator": {
+    "responses": 6,
+    "usage": {
+      "input_tokens": 129796,
+      "cached_input_tokens": 73856,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 286,
+      "reasoning_output_tokens": 0,
+      "total_tokens": 130082
+    },
+    "uncached_input_tokens": 55940,
+    "usage_reconciles": true
+  },
+  "local": {
+    "calls": 2,
+    "actual_loads": 1,
+    "prompt_tokens": 4219,
+    "retokenized_response_tokens": 55,
+    "call_wrapper_ms": [
+      6114.110667,
+      3869.91575
+    ],
+    "timing": [
+      {
+        "imports_ms": 891.956,
+        "model_acquisition_ms": 1433.077,
+        "prompt_preparation_ms": 10.444,
+        "generation_ms": 3683,
+        "structured_call_total_ms": 6020.052,
+        "result_handling_ms": 1.575
+      },
+      {
+        "imports_ms": 0.029,
+        "model_acquisition_ms": 0.002,
+        "prompt_preparation_ms": 2.219,
+        "generation_ms": 3866,
+        "structured_call_total_ms": 3869.33,
+        "result_handling_ms": 1.08
+      }
+    ],
+    "actual_weight_load_ms": [
+      1432.0048750378191
+    ]
+  },
+  "memory": {
+    "peak_bytes": 3808529624,
+    "scope": "Summed sampled MCP and local decision process footprint. Excludes browser and coordinator client."
+  },
+  "source_unchanged": true,
+  "limits": [
+    "One failed attempt is not a reliability or efficiency result.",
+    "No native desktop workflow attempt ran. The user replaced the pending paired comparison.",
+    "Earlier totals include different prompts, outcomes, and extra actions. Do not claim speed or token savings from them.",
+    "Generation timing combines prompt processing and token generation. Weight-load time is nested inside acquisition.",
+    "Per-subtask coordinator tokens are not allocated. Full-attempt totals use unique response IDs."
+  ],
+  "next_build": "Generic bounded recovery when a previously observed control leaves the visible action set, with observed actions and unchanged execution safeguards.",
+  "user_observation_needed": false,
+  "independent_audit": {
+    "accounting": "PASS: six unique response IDs reconcile with raw session and completed turn totals. Local calls and one actual load match the journal.",
+    "outcome": "FAILED correctly: search-and-open passed, the next observed target disappeared before input, and no inventor claim passed.",
+    "source_integrity": "PASS: all 39 source hashes unchanged.",
+    "mutation_safety": "Two executed actions, one known pre-input rejection, zero uncertain mutations. No run retry or replacement."
+  }
+}

@@ -1,0 +1,1761 @@
+{
+  "goal": "Start at https://www.wikipedia.org/. Search for Ada Lovelace, open the matching article, follow its article link to the Analytical Engine, and return its inventor with supporting article URLs. Use only observed controls and source text. Do not use prior knowledge as evidence. Do not log in, edit articles, or leave Wikipedia. Stop for human verification or uncertain execution.",
+  "order": [
+    "persistent"
+  ],
+  "model": "gpt-6-astra",
+  "reasoning_effort": "high",
+  "instructions_sha256": "96ac337c4967217fe032761d4f1782de048d27f582048e11b6de6482aa7a0c09",
+  "source_sha256": {
+    "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+    "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+    "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+    "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+    "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+    "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+    "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+    "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+    "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+    "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+    "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+    "scripts/paired_browser_benchmark.py": "58abd1bac92d062e9e00a0eeba9c95eec19895b59e19fbe0c4448c242d58aa11",
+    "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+    "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+    "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+    "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+    "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+    "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+    "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+    "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+    "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+    "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+    "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+    "scripts/workflow_browser.py": "b644a44a775fde2ed9376f83f8bbf0156c37703f6a4c30eb0a205d8835341581",
+    "scripts/workflow_session.py": "e48a5240768efc6b96ecf958ce497ea8b159ebe4053e4f495164261b10b092c8",
+    "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+    "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+    "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+    "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+    "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+    "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+    "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+    "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+    "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+    "jev_ultrafast/structured_policy.py": "008742becc08c3551caaee02dd37515f775f80ad338d534dc44176b68d6ea8a8",
+    "jev_ultrafast/workflow_worker.py": "b80acc7fcc86ceb2157722b79cf6af25fb1920becd093b0429a7ee6fbbdf63cd",
+    "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+    "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+    "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+  },
+  "revision": "9a47df995003c16ac5cedcc9aec7562f2e84e6bf",
+  "scope": "Bounded multi-step workflow attempts. Interpret only the recorded order and outcome evidence.",
+  "conditions": {
+    "browser": "fresh isolated Chrome, 1120x780, visible",
+    "coordinator": "fresh session, identical tools and instructions; mode differs",
+    "local_model": "Reload per subtask or persistent per workflow. Initial load included. No prompt cache reuse.",
+    "tool_documentation": "Same schemas in both arms disclose both path behaviors",
+    "prompt_cache": "Provider caching is not controlled; report actual cached-input counters",
+    "timer": "Cold browser startup and coordinator dispatch through final verdict receipt",
+    "memory": "Summed MCP and local decision process footprint. Excludes browser and coordinator client."
+  },
+  "runs": [
+    {
+      "run": "1-persistent",
+      "method": "persistent",
+      "error": null,
+      "exit_code": 0,
+      "passed": false,
+      "assessment": {
+        "passed": false,
+        "checks": {
+          "started_at_portal": true,
+          "query_entered": true,
+          "search_opened": true,
+          "ada_article_observed": true,
+          "article_link_followed": false,
+          "destination_observed": false,
+          "inventor_passage_observed": false,
+          "answer_correct": false,
+          "supporting_urls": false,
+          "no_uncertain_execution": true
+        },
+        "answer": "Stopped without verifying the inventor. The Ada Lovelace article opened, but the analytical engine link click failed because the control was not uniquely observed. No retry was attempted.",
+        "urls": [
+          "https://en.wikipedia.org/wiki/Ada_Lovelace"
+        ],
+        "supporting_passage": null,
+        "assessment_version": "ordered-observed-route-v4",
+        "observed_destination_url": null,
+        "search_route": "observed result or submit control"
+      },
+      "verdict": "Verification failed. The [Ada Lovelace article](https://en.wikipedia.org/wiki/Ada_Lovelace) opened, but the Analytical Engine link could not be uniquely identified. I stopped without retrying. The inventor remains unverified.\n\nASD-STE100 guidance was unavailable through the permitted tools.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1648785639100083,
+      "verdict_received_monotonic_ns": 1648814926220500,
+      "pre_coordinator_startup_ms": 491.153167,
+      "coordinator_dispatch_to_verdict_ms": 28795.96725,
+      "goal_dispatch_to_verdict_ms": 29287.120417,
+      "cleanup_ms": 1231.8735,
+      "runtime": {
+        "peak_worker_bytes": 3808529624,
+        "memory_samples": 283,
+        "worker_stopped_ms": 29602
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 129796,
+          "cached_input_tokens": 73856,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 286,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_083beff92b322d9a016acc093fb71881999bcb08cc78eac680",
+          "turn_id": "01a12d04-1b85-79f1-983b-f21a9fe13ab2",
+          "timestamp": "2026-10-11T22:10:09.364Z",
+          "usage": {
+            "input_tokens": 13007,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 25,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13032
+          }
+        },
+        {
+          "response_id": "resp_083beff92b322d9a016acc0941ce088199a89da9157355d601",
+          "turn_id": "01a12d04-1b85-79f1-983b-f21a9fe13ab2",
+          "timestamp": "2026-10-11T22:10:11.438Z",
+          "usage": {
+            "input_tokens": 13385,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13407
+          }
+        },
+        {
+          "response_id": "resp_083beff92b322d9a016acc09444ba48199974b8d20d029eb99",
+          "turn_id": "01a12d04-1b85-79f1-983b-f21a9fe13ab2",
+          "timestamp": "2026-10-11T22:10:14.469Z",
+          "usage": {
+            "input_tokens": 18275,
+            "cached_input_tokens": 13184,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 55,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 18330
+          }
+        },
+        {
+          "response_id": "resp_083beff92b322d9a016acc0950fc388199b8b5e8ea87887ca7",
+          "turn_id": "01a12d04-1b85-79f1-983b-f21a9fe13ab2",
+          "timestamp": "2026-10-11T22:10:27.407Z",
+          "usage": {
+            "input_tokens": 24807,
+            "cached_input_tokens": 18048,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 46,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 24853
+          }
+        },
+        {
+          "response_id": "resp_083beff92b322d9a016acc0953c7808199a45aa3689cb466d9",
+          "turn_id": "01a12d04-1b85-79f1-983b-f21a9fe13ab2",
+          "timestamp": "2026-10-11T22:10:32.057Z",
+          "usage": {
+            "input_tokens": 29989,
+            "cached_input_tokens": 12800,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 73,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 30062
+          }
+        },
+        {
+          "response_id": "resp_083beff92b322d9a016acc095876f081999a2ceadf71683ebd",
+          "turn_id": "01a12d04-1b85-79f1-983b-f21a9fe13ab2",
+          "timestamp": "2026-10-11T22:10:34.504Z",
+          "usage": {
+            "input_tokens": 30333,
+            "cached_input_tokens": 29824,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 65,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 30398
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 129796,
+        "cached_input_tokens": 73856,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 286,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 130082
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 13962,
+          "monotonic_ns": 1648801063394833,
+          "pid": 69384,
+          "wrapper_ms": 6114.110667,
+          "timing": {
+            "imports_ms": 891.956,
+            "model_acquisition_ms": 1433.077,
+            "prompt_preparation_ms": 10.444,
+            "generation_ms": 3683,
+            "structured_call_total_ms": 6020.052,
+            "result_handling_ms": 1.575
+          },
+          "usage": {
+            "prompt_tokens": 1935,
+            "completion_tokens": 27
+          },
+          "load": {
+            "actual_load": true,
+            "pid": 69384,
+            "call_started_monotonic_ns": 1648795042587958,
+            "model_load_ms": 1432.0048750378191
+          }
+        },
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 17844,
+          "monotonic_ns": 1648804945538041,
+          "pid": 69384,
+          "wrapper_ms": 3869.91575,
+          "timing": {
+            "imports_ms": 0.029,
+            "model_acquisition_ms": 0.002,
+            "prompt_preparation_ms": 2.219,
+            "generation_ms": 3866,
+            "structured_call_total_ms": 3869.33,
+            "result_handling_ms": 1.08
+          },
+          "usage": {
+            "prompt_tokens": 2284,
+            "completion_tokens": 28
+          },
+          "load": {
+            "actual_load": false,
+            "pid": 69384,
+            "call_started_monotonic_ns": 1648801076019708,
+            "model_load_ms": 0
+          }
+        }
+      ],
+      "tools": [
+        "observe",
+        "delegate",
+        "delegate",
+        "assess"
+      ],
+      "private_events_sha256": "97f86c148bc7951ae4aa7346f0b3a60e3dc847b0cf7bc6718f4cef2a776c9639",
+      "subtasks": [
+        {
+          "event": "subtask_started",
+          "elapsed_ms": 7790,
+          "step": 1,
+          "kind": "search_open",
+          "target": "Search Wikipedia",
+          "value": "Ada Lovelace",
+          "outcome": "Search for Ada Lovelace and open the matching Wikipedia article.",
+          "monotonic_ns": 1648794891816791,
+          "browser_target": "57993FB284BFEC2B5B4FA97CE05057D2"
+        },
+        {
+          "event": "subtask_finished",
+          "elapsed_ms": 10256.514042,
+          "step": 1,
+          "result": {
+            "status": "success",
+            "action_executed": true,
+            "page_changed": true,
+            "outcome_achieved": true,
+            "unresolved_execution": false,
+            "observation": {
+              "url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+              "title": "Ada Lovelace - Wikipedia",
+              "text": "Jump to content\nSearch\nDonate\nCreate account\nLog in\nContents\nhide\n(Top)\nBiography\nToggle Biography subsection\nWork\nToggle Work subsection\nCommemoration\nToggle Commemoration subsection\nIn popular culture\nToggle In popular culture subsection\nPublications\nToggle Publications subsection\nSee also\nExplanatory notes\nReferences\nToggle References subsection\nFurther reading\nExternal links\nAda Lovelace\nArticle\nTalk\nRead\nView source\nView history\nAppearance\nhide\nFrom Wikipedia, the free encyclopedia\nFor the computer microarchitecture, see\nAda Lovelace (microarchitecture)\n.\nThe Right Honourable\nThe Countess of Lovelace\nDaguerreotype\nof Lovelace (\nc.\n1843\n)\n[\n1\n]\nBorn\nAugusta Ada Byron\n10 December 1815\nLondon, England\nDied\n27 November 1852\n(aged\n36)\nMarylebone\n, London, England\nResting place\nChurch of St Mary Magdalene, Hucknall\nAugusta Ada King, Countess of Lovelace\n(\nn\u00e9e\nByron\n; 10 December 1815 \u2013 27 November 1852), also known as\nAda Lovelace\n, was an English\nmathematician\nand\nwriter\nchiefly known for work on\nCharles Babbage\n's proposed mechanical general-purpose\ncomputer\n, the\nanalytical engine\n. She was the first to recognise the machine had applications beyond pure calculation. Lovelace is often considered the first\ncomputer programmer\n.\nLovelace was the only\nlegitimate child\nof poet\nLord Byron\nand reformer\nAnne Isabella Milbanke\n.\n[\n2\n]\nLord Byron separated from his wife a month after Ada was born, and died when she was eight. Although often ill in childhood, Lovelace pursued her studies",
+              "actions": [
+                {
+                  "node": 1,
+                  "role": "link",
+                  "label": "Wikipedia \n\t\t The Free Encyclopedia",
+                  "rect": {
+                    "x": 84,
+                    "y": 14,
+                    "w": 140,
+                    "h": 38
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e1"
+                },
+                {
+                  "node": 2,
+                  "role": "searchbox",
+                  "label": "Search Wikipedia",
+                  "rect": {
+                    "x": 266,
+                    "y": 17,
+                    "w": 404.296875,
+                    "h": 32
+                  },
+                  "empty": "true",
+                  "placeholder": "Search Wikipedia",
+                  "kind": "fill",
+                  "value": "",
+                  "id": "e2"
+                },
+                {
+                  "node": 2,
+                  "role": "searchbox",
+                  "label": "Open Search Wikipedia",
+                  "rect": {
+                    "x": 266,
+                    "y": 17,
+                    "w": 404.296875,
+                    "h": 32
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e3"
+                },
+                {
+                  "node": 3,
+                  "role": "button",
+                  "label": "Search",
+                  "rect": {
+                    "x": 669.296875,
+                    "y": 17,
+                    "w": 70.703125,
+                    "h": 32
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e4"
+                },
+                {
+                  "node": 4,
+                  "role": "link",
+                  "label": "Donate",
+                  "rect": {
+                    "x": 877.7578125,
+                    "y": 25,
+                    "w": 45.1484375,
+                    "h": 16
+                  },
+                  "context": "Donate Create account Log in",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e5"
+                },
+                {
+                  "node": 5,
+                  "role": "link",
+                  "label": "Create account",
+                  "rect": {
+                    "x": 930.90625,
+                    "y": 25,
+                    "w": 94.9453125,
+                    "h": 16
+                  },
+                  "context": "Donate Create account Log in",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e6"
+                },
+                {
+                  "node": 6,
+                  "role": "link",
+                  "label": "Log in",
+                  "rect": {
+                    "x": 1033.8515625,
+                    "y": 25,
+                    "w": 38.1484375,
+                    "h": 16
+                  },
+                  "context": "Donate Create account Log in",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e7"
+                },
+                {
+                  "node": 7,
+                  "role": "button",
+                  "label": "Hide Contents",
+                  "rect": {
+                    "x": 132.5546875,
+                    "y": 136.84375,
+                    "w": 38.6875,
+                    "h": 22
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e8"
+                },
+                {
+                  "node": 8,
+                  "role": "link",
+                  "label": "(Top)",
+                  "rect": {
+                    "x": 60,
+                    "y": 172.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e9"
+                },
+                {
+                  "node": 9,
+                  "role": "link",
+                  "label": "1 \n\t\t\t\t Biography",
+                  "rect": {
+                    "x": 60,
+                    "y": 200.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "context": "Biography Toggle Biography subsection",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e10"
+                },
+                {
+                  "node": 10,
+                  "role": "button",
+                  "label": "Toggle Biography subsection",
+                  "rect": {
+                    "x": 37,
+                    "y": 201.375,
+                    "w": 22,
+                    "h": 22
+                  },
+                  "context": "Biography Toggle Biography subsection",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e11"
+                },
+                {
+                  "node": 11,
+                  "role": "link",
+                  "label": "2 \n\t\t\t\t Work",
+                  "rect": {
+                    "x": 60,
+                    "y": 228.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e12"
+                },
+                {
+                  "node": 12,
+                  "role": "button",
+                  "label": "Toggle Work subsection",
+                  "rect": {
+                    "x": 37,
+                    "y": 229.375,
+                    "w": 22,
+                    "h": 22
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e13"
+                },
+                {
+                  "node": 13,
+                  "role": "link",
+                  "label": "3 \n\t\t\t\t Commemoration",
+                  "rect": {
+                    "x": 60,
+                    "y": 256.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "context": "Commemoration Toggle Commemoration subsection",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e14"
+                },
+                {
+                  "node": 14,
+                  "role": "button",
+                  "label": "Toggle Commemoration subsection",
+                  "rect": {
+                    "x": 37,
+                    "y": 257.375,
+                    "w": 22,
+                    "h": 22
+                  },
+                  "context": "Commemoration Toggle Commemoration subsection",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e15"
+                },
+                {
+                  "node": 15,
+                  "role": "link",
+                  "label": "4 \n\t\t\t\t In popular culture",
+                  "rect": {
+                    "x": 60,
+                    "y": 284.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e16"
+                },
+                {
+                  "node": 16,
+                  "role": "button",
+                  "label": "Toggle In popular culture subsection",
+                  "rect": {
+                    "x": 37,
+                    "y": 285.375,
+                    "w": 22,
+                    "h": 22
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e17"
+                },
+                {
+                  "node": 17,
+                  "role": "link",
+                  "label": "5 \n\t\t\t\t Publications",
+                  "rect": {
+                    "x": 60,
+                    "y": 312.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "context": "Publications Toggle Publications subsection",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e18"
+                },
+                {
+                  "node": 18,
+                  "role": "button",
+                  "label": "Toggle Publications subsection",
+                  "rect": {
+                    "x": 37,
+                    "y": 313.375,
+                    "w": 22,
+                    "h": 22
+                  },
+                  "context": "Publications Toggle Publications subsection",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e19"
+                },
+                {
+                  "node": 19,
+                  "role": "link",
+                  "label": "6 \n\t\t\t\t See also",
+                  "rect": {
+                    "x": 60,
+                    "y": 340.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e20"
+                },
+                {
+                  "node": 20,
+                  "role": "link",
+                  "label": "7 \n\t\t\t\t Explanatory notes",
+                  "rect": {
+                    "x": 60,
+                    "y": 368.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e21"
+                },
+                {
+                  "node": 21,
+                  "role": "link",
+                  "label": "8 \n\t\t\t\t References",
+                  "rect": {
+                    "x": 60,
+                    "y": 396.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "context": "References Toggle References subsection",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e22"
+                },
+                {
+                  "node": 22,
+                  "role": "button",
+                  "label": "Toggle References subsection",
+                  "rect": {
+                    "x": 37,
+                    "y": 397.375,
+                    "w": 22,
+                    "h": 22
+                  },
+                  "context": "References Toggle References subsection",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e23"
+                },
+                {
+                  "node": 23,
+                  "role": "link",
+                  "label": "9 \n\t\t\t\t Further reading",
+                  "rect": {
+                    "x": 60,
+                    "y": 424.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e24"
+                },
+                {
+                  "node": 24,
+                  "role": "link",
+                  "label": "10 \n\t\t\t\t External links",
+                  "rect": {
+                    "x": 60,
+                    "y": 452.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e25"
+                },
+                {
+                  "node": 25,
+                  "role": "link",
+                  "label": "Article",
+                  "rect": {
+                    "x": 264,
+                    "y": 129.640625,
+                    "w": 38.8984375,
+                    "h": 32
+                  },
+                  "context": "Article Talk",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e26"
+                },
+                {
+                  "node": 26,
+                  "role": "link",
+                  "label": "Talk",
+                  "rect": {
+                    "x": 318.8984375,
+                    "y": 129.640625,
+                    "w": 24.8984375,
+                    "h": 32
+                  },
+                  "context": "Article Talk",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e27"
+                },
+                {
+                  "node": 27,
+                  "role": "link",
+                  "label": "Read",
+                  "rect": {
+                    "x": 607.2890625,
+                    "y": 129.640625,
+                    "w": 33.46875,
+                    "h": 32
+                  },
+                  "context": "Read View source View history",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e28"
+                },
+                {
+                  "node": 28,
+                  "role": "link",
+                  "label": "View source",
+                  "rect": {
+                    "x": 656.7578125,
+                    "y": 129.640625,
+                    "w": 76.015625,
+                    "h": 32
+                  },
+                  "context": "Read View source View history",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e29"
+                },
+                {
+                  "node": 29,
+                  "role": "link",
+                  "label": "View history",
+                  "rect": {
+                    "x": 748.7734375,
+                    "y": 129.640625,
+                    "w": 75.2265625,
+                    "h": 32
+                  },
+                  "context": "Read View source View history",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e30"
+                },
+                {
+                  "node": 30,
+                  "role": "button",
+                  "label": "Hide Appearance",
+                  "rect": {
+                    "x": 988.0390625,
+                    "y": 136.84375,
+                    "w": 38.6875,
+                    "h": 22
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e31"
+                },
+                {
+                  "node": 31,
+                  "role": "link",
+                  "label": "Page semi-protected",
+                  "rect": {
+                    "x": 836,
+                    "y": 173.640625,
+                    "w": 20,
+                    "h": 16
+                  },
+                  "context": "From Wikipedia, the free encyclopedia",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e32"
+                },
+                {
+                  "node": 32,
+                  "role": "link",
+                  "label": "Ada Lovelace (microarchitecture)",
+                  "rect": {
+                    "x": 577.265625,
+                    "y": 212.890625,
+                    "w": 234.328125,
+                    "h": 18.5
+                  },
+                  "context": "For the computer microarchitecture, see Ada Lovelace (microarchitecture).",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e33"
+                },
+                {
+                  "node": 33,
+                  "role": "link",
+                  "label": "The Right Honourable",
+                  "rect": {
+                    "x": 632.2421875,
+                    "y": 260.7421875,
+                    "w": 137.7578125,
+                    "h": 16
+                  },
+                  "context": "The Right Honourable The Countess of Lovelace",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e34"
+                },
+                {
+                  "node": 34,
+                  "role": "link",
+                  "label": "Augusta Ada King, Countess of Lovelace, daguerrotype portrait circa 1843",
+                  "rect": {
+                    "x": 576.1171875,
+                    "y": 458.15625,
+                    "w": 250,
+                    "h": 16
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e35"
+                },
+                {
+                  "node": 35,
+                  "role": "link",
+                  "label": "Daguerreotype",
+                  "rect": {
+                    "x": 581.546875,
+                    "y": 631.9765625,
+                    "w": 93.1484375,
+                    "h": 16
+                  },
+                  "context": "Daguerreotype of Lovelace (c. 1843)[1]",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e36"
+                },
+                {
+                  "node": 36,
+                  "role": "link",
+                  "label": "[ 1 ]",
+                  "rect": {
+                    "x": 808.1640625,
+                    "y": 629.7890625,
+                    "w": 12.53125,
+                    "h": 12.5
+                  },
+                  "context": "Daguerreotype of Lovelace (c. 1843)[1]",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e37"
+                },
+                {
+                  "node": 37,
+                  "role": "link",
+                  "label": "Marylebone",
+                  "rect": {
+                    "x": 637.78125,
+                    "y": 747.5625,
+                    "w": 73.5703125,
+                    "h": 16
+                  },
+                  "context": "Marylebone, London, England",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e38"
+                },
+                {
+                  "node": 38,
+                  "role": "link",
+                  "label": "n\u00e9e",
+                  "rect": {
+                    "x": 342.2578125,
+                    "y": 272.890625,
+                    "w": 26.6953125,
+                    "h": 18.5
+                  },
+                  "context": "n\u00e9e Byron",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e39"
+                },
+                {
+                  "node": 39,
+                  "role": "link",
+                  "label": "mathematician",
+                  "rect": {
+                    "x": 320.921875,
+                    "y": 350.890625,
+                    "w": 104.046875,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e40"
+                },
+                {
+                  "node": 40,
+                  "role": "link",
+                  "label": "writer",
+                  "rect": {
+                    "x": 460.5546875,
+                    "y": 350.890625,
+                    "w": 39.109375,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e41"
+                },
+                {
+                  "node": 41,
+                  "role": "link",
+                  "label": "Charles Babbage",
+                  "rect": {
+                    "x": 264,
+                    "y": 376.890625,
+                    "w": 239.2109375,
+                    "h": 44.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e42"
+                },
+                {
+                  "node": 42,
+                  "role": "link",
+                  "label": "computer",
+                  "rect": {
+                    "x": 384.96875,
+                    "y": 428.890625,
+                    "w": 66.2578125,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e43"
+                },
+                {
+                  "node": 43,
+                  "role": "link",
+                  "label": "analytical engine",
+                  "rect": {
+                    "x": 264,
+                    "y": 454.890625,
+                    "w": 119.1953125,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e44"
+                },
+                {
+                  "node": 44,
+                  "role": "link",
+                  "label": "computer programmer",
+                  "rect": {
+                    "x": 264,
+                    "y": 558.890625,
+                    "w": 157.8359375,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e45"
+                },
+                {
+                  "node": 45,
+                  "role": "link",
+                  "label": "legitimate child",
+                  "rect": {
+                    "x": 425.875,
+                    "y": 600.890625,
+                    "w": 105.828125,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e46"
+                },
+                {
+                  "node": 46,
+                  "role": "link",
+                  "label": "Lord Byron",
+                  "rect": {
+                    "x": 317.375,
+                    "y": 626.890625,
+                    "w": 78.265625,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e47"
+                },
+                {
+                  "node": 47,
+                  "role": "link",
+                  "label": "Anne Isabella Milbanke",
+                  "rect": {
+                    "x": 264,
+                    "y": 652.890625,
+                    "w": 165.4375,
+                    "h": 18.5
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e48"
+                },
+                {
+                  "node": 48,
+                  "role": "link",
+                  "label": "[ 2 ]",
+                  "rect": {
+                    "x": 433.8828125,
+                    "y": 650.0625,
+                    "w": 14.25,
+                    "h": 15
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e49"
+                },
+                {
+                  "id": "scroll_down",
+                  "kind": "scroll",
+                  "label": "Scroll down",
+                  "delta": 560
+                },
+                {
+                  "id": "wait",
+                  "kind": "wait",
+                  "label": "Wait for the page to update"
+                }
+              ],
+              "identity": {
+                "page_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+                "headings": [
+                  "Ada Lovelace"
+                ],
+                "canonical_url": "https://en.wikipedia.org/wiki/Ada_Lovelace"
+              }
+            },
+            "evidence": {
+              "predicate": "new_page_exact_visible_heading",
+              "query": "Ada Lovelace",
+              "before_url": "https://www.wikipedia.org/",
+              "after_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+              "identity": {
+                "page_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+                "headings": [
+                  "Ada Lovelace"
+                ],
+                "canonical_url": "https://en.wikipedia.org/wiki/Ada_Lovelace"
+              }
+            }
+          },
+          "monotonic_ns": 1648805148330708,
+          "browser_target": "57993FB284BFEC2B5B4FA97CE05057D2"
+        },
+        {
+          "event": "subtask_started",
+          "elapsed_ms": 20698,
+          "step": 2,
+          "kind": "click",
+          "target": "analytical engine",
+          "value": "",
+          "outcome": "Follow the observed analytical engine article link.",
+          "monotonic_ns": 1648807800127000,
+          "browser_target": "57993FB284BFEC2B5B4FA97CE05057D2"
+        },
+        {
+          "event": "subtask_finished",
+          "elapsed_ms": 22.593166,
+          "step": 2,
+          "result": {
+            "status": "uncertainty",
+            "action_executed": false,
+            "page_changed": false,
+            "outcome_achieved": false,
+            "unresolved_execution": false,
+            "first_failure": {
+              "category": "missing_target",
+              "cause": "The requested control is not uniquely observed"
+            },
+            "observation": {
+              "url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+              "title": "Ada Lovelace - Wikipedia",
+              "text": "Jump to content\nSearch\nDonate\nCreate account\nLog in\nThe internet is changing.\nOctober 11\n: An important update for readers\nin the United States\n.\nThank you for visiting Wikipedia this\nSunday\n,\nOctober 11\n. This year, Wikipedia has seen fewer visitors and fewer new supporters, so your visit today means a lot. You only had a small chance of seeing our message. We don't take your attention for granted, but today we're asking you to give\n$2.75\nif you can.\nLike public libraries and food banks, we exist to serve everyone, not profit from your attention. That's why we don't run ads or put knowledge behind a paywall. Wikipedia's here to satisfy your curiosity and give you the facts you need.\nWikipedia is free to use, but not free to provide. An unprecedented rise in hardware costs is making the essential equipment needed to keep Wikipedia available to everyone much more expensive. Your donation helps our nonprofit meet those costs while keeping Wikipedia free and independent. Please donate\n$2.75\ntoday. Thank you.\nProud host of Wikipedia and other free knowledge projects\nPlease select an amount (\nUSD\n)\n.\nThe average donation in\nthe United States\nis around\n$13\n. Many first-time donors give\n$2.75\n. If you've never given, all that matters is that you're choosing to stand up for free, open information. For that, you have our gratitude.\n$2.75\n$15\n$25\n$50\n$100\n$250\n$500\nOther\nMaybe later\nProblems donating?\nFrequently asked questions\nWhere your donation goes\nOther ways to give\nI already donated\nWe never sell your information. By submitting, you are agreeing to our\ndonor privacy policy\n. The Wikimedia Foundation is a nonprofit,\ntax-exempt organization\n.\nIf you make a recurring donation, you will be debited by the Wikimedia Foundation until you notify us to stop. We\u2019ll send you an email which will include a link to\neasy cancellation instructions\n.\nContents\nhide\n(Top)\nBiography\nToggle Biography subsection\nToggle Work subsection\nToggle Commemoration subsection\nToggle In popular culture subsection\nToggle Publications subsection\nAda Lovelace\nArticle\nTalk\nRead\nView source\nView history\nAppearance\nhide\nText\nSmall\nFrom Wikipedia, the free encyclopedia\nFor the computer microarchitecture, see\nAda Lovelace (microarchitecture)\n.",
+              "actions": [
+                {
+                  "node": 1,
+                  "role": "link",
+                  "label": "Wikipedia \n\t\t The Free Encyclopedia",
+                  "rect": {
+                    "x": 84,
+                    "y": 14,
+                    "w": 140,
+                    "h": 38
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e1"
+                },
+                {
+                  "node": 2,
+                  "role": "searchbox",
+                  "label": "Search Wikipedia",
+                  "rect": {
+                    "x": 266,
+                    "y": 17,
+                    "w": 404.296875,
+                    "h": 32
+                  },
+                  "empty": "true",
+                  "placeholder": "Search Wikipedia",
+                  "kind": "fill",
+                  "value": "",
+                  "id": "e2"
+                },
+                {
+                  "node": 2,
+                  "role": "searchbox",
+                  "label": "Open Search Wikipedia",
+                  "rect": {
+                    "x": 266,
+                    "y": 17,
+                    "w": 404.296875,
+                    "h": 32
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e3"
+                },
+                {
+                  "node": 3,
+                  "role": "button",
+                  "label": "Search",
+                  "rect": {
+                    "x": 669.296875,
+                    "y": 17,
+                    "w": 70.703125,
+                    "h": 32
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e4"
+                },
+                {
+                  "node": 4,
+                  "role": "link",
+                  "label": "Donate",
+                  "rect": {
+                    "x": 877.7578125,
+                    "y": 25,
+                    "w": 45.1484375,
+                    "h": 16
+                  },
+                  "context": "Donate Create account Log in",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e5"
+                },
+                {
+                  "node": 5,
+                  "role": "link",
+                  "label": "Create account",
+                  "rect": {
+                    "x": 930.90625,
+                    "y": 25,
+                    "w": 94.9453125,
+                    "h": 16
+                  },
+                  "context": "Donate Create account Log in",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e6"
+                },
+                {
+                  "node": 6,
+                  "role": "link",
+                  "label": "Log in",
+                  "rect": {
+                    "x": 1033.8515625,
+                    "y": 25,
+                    "w": 38.1484375,
+                    "h": 16
+                  },
+                  "context": "Donate Create account Log in",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e7"
+                },
+                {
+                  "node": 58,
+                  "role": "button",
+                  "label": "Close",
+                  "rect": {
+                    "x": 1046,
+                    "y": 75.046875,
+                    "w": 45,
+                    "h": 45
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e8"
+                },
+                {
+                  "node": 59,
+                  "role": "button",
+                  "label": "$2.75",
+                  "rect": {
+                    "x": 770,
+                    "y": 234.828125,
+                    "w": 147,
+                    "h": 48
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e9"
+                },
+                {
+                  "node": 60,
+                  "role": "button",
+                  "label": "$15",
+                  "rect": {
+                    "x": 929,
+                    "y": 234.828125,
+                    "w": 147,
+                    "h": 48
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e10"
+                },
+                {
+                  "node": 61,
+                  "role": "button",
+                  "label": "$25",
+                  "rect": {
+                    "x": 770,
+                    "y": 294.828125,
+                    "w": 147,
+                    "h": 48
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e11"
+                },
+                {
+                  "node": 62,
+                  "role": "button",
+                  "label": "$50",
+                  "rect": {
+                    "x": 929,
+                    "y": 294.828125,
+                    "w": 147,
+                    "h": 48
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e12"
+                },
+                {
+                  "node": 63,
+                  "role": "button",
+                  "label": "$100",
+                  "rect": {
+                    "x": 770,
+                    "y": 354.828125,
+                    "w": 147,
+                    "h": 48
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e13"
+                },
+                {
+                  "node": 64,
+                  "role": "button",
+                  "label": "$250",
+                  "rect": {
+                    "x": 929,
+                    "y": 354.828125,
+                    "w": 147,
+                    "h": 48
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e14"
+                },
+                {
+                  "node": 65,
+                  "role": "button",
+                  "label": "$500",
+                  "rect": {
+                    "x": 770,
+                    "y": 414.828125,
+                    "w": 147,
+                    "h": 48
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e15"
+                },
+                {
+                  "node": 66,
+                  "role": "button",
+                  "label": "Other",
+                  "rect": {
+                    "x": 929,
+                    "y": 414.828125,
+                    "w": 147,
+                    "h": 48
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e16"
+                },
+                {
+                  "node": 67,
+                  "role": "button",
+                  "label": "Maybe later",
+                  "rect": {
+                    "x": 877.359375,
+                    "y": 474.828125,
+                    "w": 91.2734375,
+                    "h": 48
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e17"
+                },
+                {
+                  "node": 68,
+                  "role": "link",
+                  "label": "Problems donating?",
+                  "rect": {
+                    "x": 44,
+                    "y": 518.046875,
+                    "w": 143.359375,
+                    "h": 21
+                  },
+                  "context": "Problems donating? Frequently asked questions Where your donation goes Other way",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e18"
+                },
+                {
+                  "node": 69,
+                  "role": "link",
+                  "label": "Frequently asked questions",
+                  "rect": {
+                    "x": 201.359375,
+                    "y": 518.046875,
+                    "w": 192.3828125,
+                    "h": 21
+                  },
+                  "context": "Problems donating? Frequently asked questions Where your donation goes Other way",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e19"
+                },
+                {
+                  "node": 70,
+                  "role": "link",
+                  "label": "Where your donation goes",
+                  "rect": {
+                    "x": 407.7421875,
+                    "y": 518.046875,
+                    "w": 185.09375,
+                    "h": 21
+                  },
+                  "context": "Problems donating? Frequently asked questions Where your donation goes Other way",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e20"
+                },
+                {
+                  "node": 71,
+                  "role": "link",
+                  "label": "Other ways to give",
+                  "rect": {
+                    "x": 44,
+                    "y": 539.046875,
+                    "w": 134.9296875,
+                    "h": 21
+                  },
+                  "context": "Problems donating? Frequently asked questions Where your donation goes Other way",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e21"
+                },
+                {
+                  "node": 72,
+                  "role": "link",
+                  "label": "I already donated",
+                  "rect": {
+                    "x": 192.9296875,
+                    "y": 539.046875,
+                    "w": 125.7265625,
+                    "h": 21
+                  },
+                  "context": "Problems donating? Frequently asked questions Where your donation goes Other way",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e22"
+                },
+                {
+                  "node": 73,
+                  "role": "link",
+                  "label": "donor privacy policy",
+                  "rect": {
+                    "x": 383.5234375,
+                    "y": 571.546875,
+                    "w": 97.03125,
+                    "h": 11.5
+                  },
+                  "context": "We never sell your information. By submitting, you are agreeing to our donor pri",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e23"
+                },
+                {
+                  "node": 74,
+                  "role": "link",
+                  "label": "tax-exempt organization",
+                  "rect": {
+                    "x": 44,
+                    "y": 571.546875,
+                    "w": 697.515625,
+                    "h": 26.5
+                  },
+                  "context": "We never sell your information. By submitting, you are agreeing to our donor pri",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e24"
+                },
+                {
+                  "node": 75,
+                  "role": "link",
+                  "label": "easy cancellation instructions",
+                  "rect": {
+                    "x": 200.9453125,
+                    "y": 601.546875,
+                    "w": 143.1171875,
+                    "h": 11.5
+                  },
+                  "context": "If you make a recurring donation, you will be debited by the Wikimedia Foundatio",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e25"
+                },
+                {
+                  "node": 7,
+                  "role": "button",
+                  "label": "Hide Contents",
+                  "rect": {
+                    "x": 132.5546875,
+                    "y": 685.84375,
+                    "w": 38.6875,
+                    "h": 22
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e26"
+                },
+                {
+                  "node": 8,
+                  "role": "link",
+                  "label": "(Top)",
+                  "rect": {
+                    "x": 60,
+                    "y": 721.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "kind": "click",
+                  "value": "",
+                  "id": "e27"
+                },
+                {
+                  "node": 9,
+                  "role": "link",
+                  "label": "1 \n\t\t\t\t Biography",
+                  "rect": {
+                    "x": 60,
+                    "y": 749.375,
+                    "w": 164,
+                    "h": 28
+                  },
+                  "context": "Biography Toggle Biography subsection",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e28"
+                },
+                {
+                  "node": 10,
+                  "role": "button",
+                  "label": "Toggle Biography subsection",
+                  "rect": {
+                    "x": 37,
+                    "y": 750.375,
+                    "w": 22,
+                    "h": 22
+                  },
+                  "context": "Biography Toggle Biography subsection",
+                  "expanded": "false",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e29"
+                },
+                {
+                  "node": 25,
+                  "role": "link",
+                  "label": "Article",
+                  "rect": {
+                    "x": 264,
+                    "y": 678.640625,
+                    "w": 38.8984375,
+                    "h": 32
+                  },
+                  "context": "Article Talk",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e30"
+                },
+                {
+                  "node": 26,
+                  "role": "link",
+                  "label": "Talk",
+                  "rect": {
+                    "x": 318.8984375,
+                    "y": 678.640625,
+                    "w": 24.8984375,
+                    "h": 32
+                  },
+                  "context": "Article Talk",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e31"
+                },
+                {
+                  "node": 27,
+                  "role": "link",
+                  "label": "Read",
+                  "rect": {
+                    "x": 607.2890625,
+                    "y": 678.640625,
+                    "w": 33.46875,
+                    "h": 32
+                  },
+                  "context": "Read View source View history",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e32"
+                },
+                {
+                  "node": 28,
+                  "role": "link",
+                  "label": "View source",
+                  "rect": {
+                    "x": 656.7578125,
+                    "y": 678.640625,
+                    "w": 76.015625,
+                    "h": 32
+                  },
+                  "context": "Read View source View history",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e33"
+                },
+                {
+                  "node": 29,
+                  "role": "link",
+                  "label": "View history",
+                  "rect": {
+                    "x": 748.7734375,
+                    "y": 678.640625,
+                    "w": 75.2265625,
+                    "h": 32
+                  },
+                  "context": "Read View source View history",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e34"
+                },
+                {
+                  "node": 30,
+                  "role": "button",
+                  "label": "Hide Appearance",
+                  "rect": {
+                    "x": 988.0390625,
+                    "y": 685.84375,
+                    "w": 38.6875,
+                    "h": 22
+                  },
+                  "context": "Appearance hide Text Small Standard Large Width Standard Wide Color Automatic Li",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e35"
+                },
+                {
+                  "node": 31,
+                  "role": "link",
+                  "label": "Page semi-protected",
+                  "rect": {
+                    "x": 836,
+                    "y": 722.640625,
+                    "w": 20,
+                    "h": 16
+                  },
+                  "context": "From Wikipedia, the free encyclopedia",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e36"
+                },
+                {
+                  "node": 32,
+                  "role": "link",
+                  "label": "Ada Lovelace (microarchitecture)",
+                  "rect": {
+                    "x": 577.265625,
+                    "y": 761.890625,
+                    "w": 234.328125,
+                    "h": 18.5
+                  },
+                  "context": "For the computer microarchitecture, see Ada Lovelace (microarchitecture).",
+                  "kind": "click",
+                  "value": "",
+                  "id": "e37"
+                },
+                {
+                  "id": "scroll_down",
+                  "kind": "scroll",
+                  "label": "Scroll down",
+                  "delta": 560
+                },
+                {
+                  "id": "wait",
+                  "kind": "wait",
+                  "label": "Wait for the page to update"
+                }
+              ],
+              "identity": {
+                "page_url": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+                "headings": [
+                  "Ada Lovelace"
+                ],
+                "canonical_url": "https://en.wikipedia.org/wiki/Ada_Lovelace"
+              }
+            }
+          },
+          "monotonic_ns": 1648807822720000,
+          "browser_target": "57993FB284BFEC2B5B4FA97CE05057D2"
+        }
+      ],
+      "actions": [
+        {
+          "event": "executed",
+          "elapsed_ms": 7814,
+          "action": {
+            "node": 11,
+            "role": "searchbox",
+            "label": "Search Wikipedia",
+            "rect": {
+              "x": 334.8984375,
+              "y": 469.59375,
+              "w": 394.1953125,
+              "h": 44
+            },
+            "empty": "true",
+            "kind": "fill",
+            "value": "",
+            "id": "e11"
+          },
+          "text": "Ada Lovelace",
+          "href": null,
+          "from_url": "https://www.wikipedia.org/",
+          "source": "deterministic",
+          "monotonic_ns": 1648794915225125
+        },
+        {
+          "event": "rejected",
+          "elapsed_ms": 13968,
+          "execution": "not_executed",
+          "cause": "Page changed since this decision. Observe again.",
+          "monotonic_ns": 1648801069278291
+        },
+        {
+          "event": "executed",
+          "elapsed_ms": 17886,
+          "action": {
+            "node": 32,
+            "role": "link",
+            "label": "Ada Lovelace English mathematician (1815\u20131852)",
+            "rect": {
+              "x": 335.8984375,
+              "y": 513.59375,
+              "w": 392.1953125,
+              "h": 70
+            },
+            "context": "Ada Lovelace English mathematician (1815\u20131852) Ada Lovelace (microarchitecture) ",
+            "kind": "click",
+            "value": "",
+            "id": "e13"
+          },
+          "text": null,
+          "href": "https://en.wikipedia.org/wiki/Ada_Lovelace",
+          "from_url": "https://www.wikipedia.org/",
+          "source": "qwen",
+          "monotonic_ns": 1648804987160458
+        }
+      ],
+      "first_failure": {
+        "category": "missing_target",
+        "cause": "The requested control is not uniquely observed"
+      },
+      "model_loads": [
+        {
+          "actual_load": true,
+          "pid": 69384,
+          "call_started_monotonic_ns": 1648795042587958,
+          "model_load_ms": 1432.0048750378191
+        }
+      ],
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "58abd1bac92d062e9e00a0eeba9c95eec19895b59e19fbe0c4448c242d58aa11",
+        "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "scripts/workflow_browser.py": "b644a44a775fde2ed9376f83f8bbf0156c37703f6a4c30eb0a205d8835341581",
+        "scripts/workflow_session.py": "e48a5240768efc6b96ecf958ce497ea8b159ebe4053e4f495164261b10b092c8",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "008742becc08c3551caaee02dd37515f775f80ad338d534dc44176b68d6ea8a8",
+        "jev_ultrafast/workflow_worker.py": "b80acc7fcc86ceb2157722b79cf6af25fb1920becd093b0429a7ee6fbbdf63cd",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    }
+  ]
+}
