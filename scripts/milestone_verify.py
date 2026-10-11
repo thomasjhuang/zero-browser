@@ -192,7 +192,9 @@ def verify_round_trip(page, events, expected):
         "departure_date_and_year": date_matches(departure, expected["departure"]),
         "return_date_and_year": date_matches(returning, expected["return"]),
         "one_adult": bool(adults),
-        "economy": any(a.get("value") == expected["cabin"] for a in actions),
+        "economy": any(a.get("value") in ({"Economy", "Economy (include Basic)"}
+                                         if expected["cabin"] == "Economy" else {expected["cabin"]})
+                       for a in actions),
         "actual_flight_options": bool(options),
     }
     return {"passed": all(checks.values()), "checks": checks, "visible_result_count": len(options),

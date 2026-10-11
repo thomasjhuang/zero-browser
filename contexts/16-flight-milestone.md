@@ -609,3 +609,6 @@ Root launch command after source freeze:
 ```sh
 ZB_RECORD_PATH=artifacts/replay/flights-round-trip-01.jsonl uv run --offline --frozen --extra local python artifacts/flights-round-trip-01/launch.py > artifacts/flights-round-trip-01/console.log 2>&1
 ```
+
+
+Full-task development attempt 01 stopped after request 15 executed calendar Done. Its immediate observation remained unchanged. Raw evidence remains in `artifacts/flights-round-trip-01`. The next candidate adds coordinator-requested read-only observation, with no automatic repeated mutation. An unchanged result requires observation before further input. Three consecutive unchanged read-only observations stop under the existing shared limits. The independent assessor accepts the observed `Economy (include Basic)` variant only for the Economy requirement. Attempt 02 uses a fresh folder and marker. Raw prior assessments remain unchanged. Public results will be delivered together at the next meaningful milestone.

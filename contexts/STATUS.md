@@ -5,7 +5,7 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: IDLE, task 16 prepares the full round-trip task.** Thomas authorized iterative fixes and reruns for SFO–JFK, November 12–16, 2026, one adult, economy, until matching flight results appear. Root controls every action and is the sole launcher.
+> **Current run state: IDLE, task 16 prepares full-task attempt 02.** Thomas authorized iterative fixes and reruns for SFO–JFK, November 12–16, 2026, one adult, economy, until matching flight results appear. Root controls every action and is the sole launcher.
 > Preserve the single-action boundary, persistent browser/model, target freshness, and safe pre-input stale return. Stop before flight selection, booking, identity, payment, login, or reservation. No new unit tests, test expansion, broad review, indexing, or framework changes.
 > Preserve every raw failed attempt, then batch delivery at meaningful milestones. After full success, freeze the task for sequential native Desktop, system, and JEV comparisons. Task 16 does not launch comparisons.
 > The preceding JFK-only attempt passed independent assessment but failed automatic assessment because the field label changed. [Evidence](../results/flights-target-freshness-once.json) preserves both verdicts and coordinator cancellation with exit 130.

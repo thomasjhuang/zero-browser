@@ -152,6 +152,7 @@ def run(request):
         raise ValueError("Use a fresh request folder")
     journal, step = Journal(request["journal"]), [0]
     browser = None
+    observation_required, unchanged_observations = False, 0
     try:
         check_deadline(deadline)
         browser = Browser(request["task"]["url"])
@@ -168,7 +169,8 @@ def run(request):
                 request_id = uuid.uuid4().hex
                 ready = {"request_id": request_id, "sequence": number, "observation": page,
                          "actions_remaining": budget-number+1, "seconds_remaining": deadline-time.monotonic(),
-                         "worker_pid": os.getpid(), "browser_target": browser.target}
+                         "worker_pid": os.getpid(), "browser_target": browser.target,
+                         "observation_required": observation_required}
                 journal.write("coordinator_ready", **ready, monotonic_ns=time.monotonic_ns())
                 save_json(folder / "ready.json", ready)
                 path = folder / f"action-{number}.json"
@@ -183,8 +185,18 @@ def run(request):
                     raise ValueError("The request does not match the current observation")
                 journal.write("coordinator_request", step=number, request=command, monotonic_ns=time.monotonic_ns())
                 before = page
+                read_only = command.get("mode") == "observe"
+                if observation_required and not read_only:
+                    raise ValueError("Observe the known executed action before another mutation")
                 try:
-                    page = dispatch_one(browser, page, command, request["task"], journal, number, deadline)
+                    if read_only:
+                        if (set(command) != {"request_id", "fingerprint", "mode"}
+                                or command["fingerprint"] != page["fingerprint"]):
+                            raise ValueError("Bind the observation request to the issued observation")
+                        page = browser.observe(screenshot=False)
+                        check_deadline(deadline)
+                    else:
+                        page = dispatch_one(browser, page, command, request["task"], journal, number, deadline)
                 except PreInputStale as error:
                     # This catch excludes failures in the observation after completed input.
                     page = browser.observe(screenshot=False)
@@ -202,12 +214,18 @@ def run(request):
                     continue
                 outcome = assess(page, read_events(journal.path), request["task"])
                 error = ERROR_TEXT.search(page.get("text", ""))
-                stopped = bool(error or visible_state(page) == visible_state(before))
-                response = {"request_id": request_id, "sequence": number, "action_executed": True,
+                unchanged = visible_state(page) == visible_state(before)
+                unchanged_observations = unchanged_observations + 1 if read_only and unchanged else 0
+                observation_required = unchanged
+                stopped = bool(error or unchanged_observations >= 3)
+                response = {"request_id": request_id, "sequence": number, "action_executed": not read_only,
+                            "read_only": read_only, "observation_required": observation_required,
+                            "unchanged_observations": unchanged_observations,
                             "unresolved_execution": False, "observation": page, "outcome": outcome,
                             "stop": stopped or outcome["passed"],
                             "reason": error.group(0) if error else "no_progress" if stopped else None}
-                journal.write("action_returned", **response, monotonic_ns=time.monotonic_ns())
+                journal.write("observation_returned" if read_only else "action_returned",
+                              **response, monotonic_ns=time.monotonic_ns())
                 save_json(folder / f"result-{number}.json", response)
                 if outcome["passed"]:
                     journal.write("outcome", step=number, result=outcome)
