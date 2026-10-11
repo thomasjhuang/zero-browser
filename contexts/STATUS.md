@@ -7,11 +7,12 @@ Keep it short. Evidence lives in `results/` and is linked, never restated beyond
 
 Jev Ultrafast scaffolding imported. Local Qwen3-4B 4-bit scorer works offline on synthetic decisions.
 The agent loop still calls TypeSafe for decisions and OpenRouter for field text. No local end-to-end browser
-run exists. Task 00 is in progress. Plan and ranked tasks are in `README.md` here.
+run exists. Task 00 is complete. Tasks 01 and 02 can use the shared model.
+Plan and ranked tasks are in `README.md` here.
 
 ## In progress
 
-- 00-shared-local-model — Codex, Lane A. Claimed at 12:30 PT. Timebox: 20 minutes from 12:26 PT.
+(none)
 
 ## Open, in priority order
 
@@ -31,6 +32,7 @@ run exists. Task 00 is in progress. Plan and ranked tasks are in `README.md` her
 
 | Work | Outcome | Evidence |
 | --- | --- | --- |
+| 00 Shared local model | One cached model supports scoring and generation. Smoke: 12/12 | [Smoke](../results/shared-local-model-smoke.json), [tests and reuse](../results/shared-local-model-verification.json) |
 | Local scorer, pinned weights, offline rerun | 12/12 synthetic decisions, 48 forward passes, ~300ms warm | `results/decision-smoke.json`, `results/decision-smoke-rerun.json` |
 | Quality cases | 35/36. One candidate order picks the wrong filter, repeats 4/4 in that order | `results/decision-quality.json`, `results/decision-quality-filter-rerun.json` |
 | Synthetic comparison vs hosted CLIs | Qwen 47/48, Codex 48/48, Claude 48/48 on 12 cases x 4 orders. No browser execution | `results/decision-comparison.json`, `scripts/decision_baselines.py` |
@@ -61,7 +63,8 @@ default profile lacked remote debugging. Jev's per-step timeout can be exceeded 
 
 ## Log
 
-- 2026-10-11 12:30 PT. Codex claimed task 00. Main matched origin before the claim.
+- 2026-10-11 12:30 PT. Codex completed task 00 within its timebox. Evidence is linked in Done. Stopped after task 00.
+- 2026-10-11 12:27 PT. Codex claimed task 00. Main matched origin before the claim.
 - 2026-10-11. Added aggregate evidence for two human recordings. The second save completed without errors.
   The save fix is on main. Raw recordings remain private.
 

@@ -1,0 +1,66 @@
+{
+  "timestamp_utc": "2026-10-11T19:29:01.308286+00:00",
+  "status": "passed",
+  "checks": {
+    "make_prompt_ast_unchanged": true,
+    "score_decision_ast_unchanged": true,
+    "SYSTEM_unchanged": true,
+    "LABELS_unchanged": true,
+    "snapshot_download_arguments_unchanged": true,
+    "load_arguments_unchanged": true,
+    "cached_tuple_identity": true,
+    "decision_correct": true,
+    "generation_returns_text": true,
+    "same_tuple_after_generation": true,
+    "one_model_load_for_scoring_and_generation": true,
+    "offline_environment": true
+  },
+  "model_load_count": 1,
+  "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "generation_max_tokens": 8,
+  "generation_text": "OK",
+  "generation_ms": 530.8676660060883,
+  "decision_inference_ms": 401.92091604694724,
+  "notes": [
+    "This test covers shared model reuse. It does not test browser execution or the field text helper."
+  ],
+  "suite_timestamp_utc": "2026-10-11T19:29:51.597846+00:00",
+  "suite_results": [
+    {
+      "command": "uv run --offline --frozen --extra local ruff check .",
+      "exit_code": 0,
+      "elapsed_seconds": 0.14292737492360175
+    },
+    {
+      "command": "uv run --offline --frozen --extra local pytest",
+      "exit_code": 0,
+      "elapsed_seconds": 0.4690175000578165,
+      "passed_tests": 50,
+      "pytest_seconds": 0.24
+    },
+    {
+      "command": "uv run --offline --frozen pytest",
+      "exit_code": 0,
+      "elapsed_seconds": 0.3767633750103414,
+      "passed_tests": 50,
+      "pytest_seconds": 0.19
+    }
+  ],
+  "browser_harness_home_isolated": true,
+  "gitnexus": {
+    "calls": [
+      "list_repos",
+      "query",
+      "context",
+      "impact",
+      "detect_changes"
+    ],
+    "index_refresh": "completed",
+    "limitations": [
+      "The MCP freshness hint remains stale after the index refresh.",
+      "Flow extraction omitted five entry points and 200 callees.",
+      "The index cannot link one cross-language field named done."
+    ],
+    "source_and_test_checks": "Prompt and scoring AST comparisons passed. Existing baseline tests passed."
+  }
+}
