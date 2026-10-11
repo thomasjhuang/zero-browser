@@ -2,7 +2,7 @@
 
 Priority P0. Owner Codex milestone chat.
 
-Current scope: the one authorized JFK-only attempt finished with failure. One coordinator correction retained the browser and loaded model. The next decision violated the field-selection boundary and stopped before execution. Runtime is idle. No further attempt or implementation change is authorized. Dates and the complete itinerary remain deferred.
+Current scope: prepare one newly authorized JFK-only demonstration with Codex control between individual actions. Root is the sole launcher. Task 16 implements and prepares only. Preserve previous failures. No new tests or browser/model activity during preparation.
 
 ## Why
 
@@ -510,3 +510,24 @@ All twenty runtime source hashes remained unchanged before and after the attempt
 The handoff mechanism worked, but live airport selection and recovery failed. No retry, optimization, or implementation change followed. Existing earlier evidence remains unchanged. Runtime is idle.
 
 Delivery checks passed: lint and all 184 tests in 4.59 seconds. Public evidence passed the private-path and credential scan.
+
+
+### Single-action candidate
+
+Thomas authorized one new JFK-only attempt with Codex control between individual actions. Root is the sole launcher. `scripts/single_action_worker.py` exposes one observation and waits for a matching request. Exact requests use supplied values and uniquely observed targets. Local selection requests contain at most twenty permitted observed clicks. The existing selection boundary filters every candidate before inference.
+
+`dispatch_one` calls the guarded executor at most once. It observes and returns without a retry or another decision. The outer transport loop requires a new request ID before each action. Stale or ambiguous targets, uncertain execution, observed errors, and unchanged visible state stop the run. Typed airport text does not establish selection. The existing independent selection assessment remains unchanged.
+
+The parent retains the exclusive lock, memory limit, cancellation, one-use marker, and shared 90-second deadline. Startup, model loading, coordinator waits, and actions consume the same deadline. One browser and model persist. No model or browser ran during preparation. No new tests were added.
+
+Root launch command after the frozen handoff:
+
+```sh
+ZB_RECORD_PATH=artifacts/replay/flights-single-action-once.jsonl uv run --offline --frozen --extra local python artifacts/flights-single-action-once/launch.py > artifacts/flights-single-action-once/console.log 2>&1
+```
+
+The private folder exposes `ready.json` with a random request ID, sequence, observation, and remaining budgets. Root writes `action-N.json` atomically. Exact requests contain `request_id`, `fingerprint`, `mode="exact"`, `target={id,node,kind,label}`, and `value`. Selection requests contain `request_id`, `fingerprint`, `mode="choose"`, `instruction`, and a `permitted` list of those target objects. The worker writes `result-N.json` after one action. Errors produce `stopped.json`. A fresh `ready.json` permits the next request only after the previous result.
+
+GitNexus query, context, and impact calls examined the reused executor. The index refresh succeeded, but MCP symbol responses retained a stale warning. Truncated flows also limit graph coverage. Existing execution code remains unchanged. Source inspection covers the new request boundary. Live outcome and timing remain pending.
+
+Required lint and 184 existing tests passed in 4.57 seconds. Change detection reported low impact but did not map the new unindexed worker. No passing graph result proves that new path. Static inspection found one executor call in `dispatch_one`, no recursive dispatch, and no full-goal Agent command.

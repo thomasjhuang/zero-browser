@@ -5,9 +5,9 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: IDLE. The one authorized JFK-only attempt failed.** Root launched once and completed browser cleanup. No further attempt is authorized.
-> The worker entered the full airport name and observed no matching locations. Codex supplied one correction to enter JFK. The worker then chose the multiple-airport button. The boundary guard stopped that click before execution.
-> The handoff retained the same worker process and browser target, with one model load. Total time was 22.70 seconds, with two decisions and four local calls. [Evidence](../results/flights-handoff-once.json) records the failure and limits. Dates, full search, and successful live recovery remain unproven.
+> **Current run state: IDLE, task 16 prepares one authorized single-action JFK demonstration.** Root is the sole launcher. Thomas confirmed this new attempt in the coordination chat.
+> Codex supplies each bounded request. The worker executes at most one observed permitted action, returns fresh evidence, and waits for a new request. Exact supplied actions use deterministic execution. Qwen can select only among permitted observed actions. The browser and loaded model persist under shared limits.
+> Previous failed evidence remains unchanged. No inference or browser activity occurs during preparation. No new tests, optimization, or broad review is included.
 >
 > **Current scope:** task 16, with supporting notes in task 13. Tasks 18–22 remain cut from the active plan.
 > This context update does not reopen task 19. Do not create new task numbers.
@@ -35,7 +35,7 @@ The final cancellation pilot stopped during inference. The user reported normal 
 
 ## Open follow-up
 
-- **16, Improve zero-browser benchmarking:** bounded-worker proof delivered: three identical suites passed 27/27 requested outcomes and 6/6 safe stops. One live Wikipedia field task passed. Full local flight completion remains unresolved. The one-off general-agent live Flights attempt failed before destination selection and date entry. The shared-interface field comparison passed all ten original outcomes and both supplemental outcomes. The five-pair comparison set excludes the original pair with indexing overlap. Its median delegated time reduction is 1.90 seconds. Native desktop CUA speed remains unproven. One additional workflow attempt passed in 29.90 seconds, without invoking recovery. One separately authorized sequential native workflow passed in 33.05 seconds, with product-comparison limits. The later JFK-only attempt failed after one coordinator correction in 22.70 seconds. Live flight recovery and general efficiency remain unproven. No further run is authorized.
+- **16, Improve zero-browser benchmarking:** bounded-worker proof delivered: three identical suites passed 27/27 requested outcomes and 6/6 safe stops. One live Wikipedia field task passed. Full local flight completion remains unresolved. The one-off general-agent live Flights attempt failed before destination selection and date entry. The shared-interface field comparison passed all ten original outcomes and both supplemental outcomes. The five-pair comparison set excludes the original pair with indexing overlap. Its median delegated time reduction is 1.90 seconds. Native desktop CUA speed remains unproven. One additional workflow attempt passed in 29.90 seconds, without invoking recovery. One separately authorized sequential native workflow passed in 33.05 seconds, with product-comparison limits. The later JFK-only attempt failed after one coordinator correction in 22.70 seconds. Live flight recovery and general efficiency remain unproven. One new single-action demonstration is authorized under the current banner.
 
 ## Completed context work
 
@@ -129,3 +129,5 @@ Do not alter the shared Git index while another owner prepares a commit.
 Earlier implementation details and evidence remain in the numbered task files and Git history.
 
 - October 11: task 16 recorded the failed JFK-only attempt. One correction retained the browser and model but did not recover. Runtime is idle. No retry is authorized.
+
+- October 11: task 16 prepared the separate single-action path. Lint and 184 existing tests passed. Root owns the one pending launch.
