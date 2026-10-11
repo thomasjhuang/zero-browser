@@ -2,7 +2,7 @@
 
 Priority P0. Owner Codex milestone chat.
 
-Current scope: one authorized JFK-only destination selection with one bounded coordinator correction. Root is sole launcher. Task16 implements, tests, and prepares only. Dates and the complete itinerary are deferred. The browser and loaded model remain alive across the single handoff. No new attempt started during preparation.
+Current scope: the one authorized JFK-only attempt finished with failure. One coordinator correction retained the browser and loaded model. The next decision violated the field-selection boundary and stopped before execution. Runtime is idle. No further attempt or implementation change is authorized. Dates and the complete itinerary remain deferred.
 
 ## Why
 
@@ -489,3 +489,24 @@ ZB_RECORD_PATH=artifacts/replay/flights-handoff-once.jsonl uv run --offline --fr
 ```
 
 The ignored folder contains launcher, request, prepared hashes, live handoff/reply, and durable evidence. The launcher refuses a second attempt. It verifies source hashes and computes one shared deadline before browser startup. The full-flight failed evidence remains unchanged. No browser or model ran in preparation. GitNexus refreshed the main index and found low direct impact for run_task; aggregate shared-runner impact is high. Truncated flows limit graph completeness. Source inspection and focused model-free regressions cover the changed path.
+
+
+### JFK-only handoff result
+
+[Saved evidence](../results/flights-handoff-once.json) records one failed attempt on `2f1b5234294aa9cef5f04e87502a286c30353930`. Root launched the prepared command once. No runtime source changed during the attempt.
+
+Step 1 filled the destination field with `John F. Kennedy International Airport (JFK)`. The page returned “No matching locations found.” The trace does not establish why that query produced no matches. The worker returned early with the observed field and error. Codex supplied one correction: replace the observed destination query with JFK, then select the matching airport suggestion.
+
+The worker reobserved before resumption. Step 2 selected `Destination, Select multiple airports` instead of typing into the available `Where else?` field. The field-selection guard stopped that click before execution. This was an incorrect decision with sufficient observed controls for the correction. It was not a missing-control problem, an execution failure, or premature DONE. The model's internal cause remains unknown.
+
+Independent assessment of the saved observations and actions found no selected JFK airport. Only the first field fill executed. No matching suggestion was clicked, and the corrective JFK query did not execute. The boundary stop preceded the automatic final verifier, so its result is absent. There were no uncertain mutations or DONE choices. The parent returned exit code 1 and completed browser cleanup.
+
+Total startup-through-cleanup time was 22,699.69 ms. Browser startup took 439.10 ms, worker plus process cleanup took 21,867.60 ms, and browser cleanup took 364.10 ms. Two decisions took 4,486 and 1,109 ms. Four local calls comprised three menu calls and one field-text call. One physical model load took 1,320.05 ms. Peak sampled worker memory was 3,825,847,032 bytes, excluding the browser and parent.
+
+The handoff began 5.61 seconds after model loading finished. The correction arrived after 10,015.28 ms, and resumption followed after 10,019.57 ms. The worker PID and browser target stayed identical. The record contains one model load. Nineteen decisions remained at both handoff and resumption. The shared deadline decreased from 79.01 to 68.99 seconds remaining. The budgets did not reset.
+
+All twenty runtime source hashes remained unchanged before and after the attempt and during assessment. Private events, replay, request, and correction remain preserved with public hashes. Root reported unrelated user applications active during preflight. This is one functional demonstration, not an isolated timing comparison. Coordinator tokens are not separately attributable to this attempt. Field-text token totals are unavailable. No new user observation was requested. The earlier computer freeze remains unexplained.
+
+The handoff mechanism worked, but live airport selection and recovery failed. No retry, optimization, or implementation change followed. Existing earlier evidence remains unchanged. Runtime is idle.
+
+Delivery checks passed: lint and all 184 tests in 4.59 seconds. Public evidence passed the private-path and credential scan.

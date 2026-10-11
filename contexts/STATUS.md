@@ -5,9 +5,9 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: IDLE, task16 prepares the one authorized JFK-only attempt.** Root coordination is the sole launcher after acknowledgment. The pending task replaces the complete itinerary: select JFK as destination, then stop. No trial started during preparation.
-> The candidate permits one natural-language coordinator correction after observed error or nonprogress. The same browser and loaded model persist. Both segments and coordinator wait share 90 seconds and 20 local decisions. Further failure or uncertain execution stops.
-> Destination selection requires a matching observed option click and a fresh closed populated destination field. Other fields and search submission remain outside the task boundary. No dates, comparisons, or optimization are included. The prior failed attempt remains unchanged.
+> **Current run state: IDLE. The one authorized JFK-only attempt failed.** Root launched once and completed browser cleanup. No further attempt is authorized.
+> The worker entered the full airport name and observed no matching locations. Codex supplied one correction to enter JFK. The worker then chose the multiple-airport button. The boundary guard stopped that click before execution.
+> The handoff retained the same worker process and browser target, with one model load. Total time was 22.70 seconds, with two decisions and four local calls. [Evidence](../results/flights-handoff-once.json) records the failure and limits. Dates, full search, and successful live recovery remain unproven.
 >
 > **Current scope:** task 16, with supporting notes in task 13. Tasks 18–22 remain cut from the active plan.
 > This context update does not reopen task 19. Do not create new task numbers.
@@ -35,7 +35,7 @@ The final cancellation pilot stopped during inference. The user reported normal 
 
 ## Open follow-up
 
-- **16, Improve zero-browser benchmarking:** bounded-worker proof delivered: three identical suites passed 27/27 requested outcomes and 6/6 safe stops. One live Wikipedia field task passed. Full local flight completion remains unresolved. The one-off general-agent live Flights attempt failed before destination selection and date entry. The shared-interface field comparison passed all ten original outcomes and both supplemental outcomes. The five-pair comparison set excludes the original pair with indexing overlap. Its median delegated time reduction is 1.90 seconds. Native desktop CUA speed remains unproven. One additional workflow attempt passed in 29.90 seconds, without invoking recovery. One separately authorized sequential native workflow passed in 33.05 seconds, with product-comparison limits. Live flight recovery and general efficiency remain unproven. No further run is authorized.
+- **16, Improve zero-browser benchmarking:** bounded-worker proof delivered: three identical suites passed 27/27 requested outcomes and 6/6 safe stops. One live Wikipedia field task passed. Full local flight completion remains unresolved. The one-off general-agent live Flights attempt failed before destination selection and date entry. The shared-interface field comparison passed all ten original outcomes and both supplemental outcomes. The five-pair comparison set excludes the original pair with indexing overlap. Its median delegated time reduction is 1.90 seconds. Native desktop CUA speed remains unproven. One additional workflow attempt passed in 29.90 seconds, without invoking recovery. One separately authorized sequential native workflow passed in 33.05 seconds, with product-comparison limits. The later JFK-only attempt failed after one coordinator correction in 22.70 seconds. Live flight recovery and general efficiency remain unproven. No further run is authorized.
 
 ## Completed context work
 
@@ -74,6 +74,7 @@ Existing task numbers identify work. They do not override this ownership table.
 | Controlled coordinator comparison | [Five-pair evidence](../results/paired-browser-five-pairs-v3.json), [summary](../results/paired-browser-comparison.json). One field task, shared custom executor; pair 4 latency flagged. No native-CUA or billing claim |
 | Bounded worker | [Repeat summary](../results/bounded-worker-summary.json), [live assessment](../results/bounded-worker-live-assessment.json). Fixed field contracts only; no general reliability or savings claim |
 | Live Flights attempt | [Independent failure assessment](../results/flights-demo-once.json). General local runner, no matching airport selection or dates, decision budget stop |
+| JFK-only handoff attempt | [Failed selection](../results/flights-handoff-once.json). One actual correction retained the browser and model. The next decision violated the boundary and stopped before execution |
 | Current local experiments | [Measured runs](../results/milestone-local-runs.json). Failed tasks, interrupted records, source versions, and cancellation observations |
 | MCP connection | [Codex run](../results/codex-mcp.json). Simple navigation only |
 | Smaller models | [4B](../results/replay/quality-4b-plain.json), [1.7B](../results/replay/quality-1.7B-plain.json), [0.6B](../results/replay/quality-0.6B-plain.json). Synthetic cases only |
@@ -126,3 +127,5 @@ Do not alter the shared Git index while another owner prepares a commit.
 - Task 18: the MCP retest stopped at the run lock. The native CLI supplied no browser tool. Neither attempt establishes a speed result.
 
 Earlier implementation details and evidence remain in the numbered task files and Git history.
+
+- October 11: task 16 recorded the failed JFK-only attempt. One correction retained the browser and model but did not recover. Runtime is idle. No retry is authorized.

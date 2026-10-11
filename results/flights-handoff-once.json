@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "attempt": "flights-handoff-once",
+  "source_commit": "2f1b5234294aa9cef5f04e87502a286c30353930",
+  "scope": {
+    "goal": "Select John F. Kennedy International Airport (JFK) as the destination in Google Flights. Stop once the destination airport is selected. Do not change the origin, dates, passengers, or cabin. Do not submit a search, select a flight, book, pay, or log in. Stop for human verification or uncertain execution.",
+    "attempts": 1,
+    "deadline_seconds": 90,
+    "decision_budget": 20,
+    "coordinator_corrections_allowed": 1,
+    "inference": "Local Qwen worker. Existing Codex chat supplies the correction.",
+    "starting_url": "https://www.google.com/travel/flights?hl=en",
+    "visible": true
+  },
+  "outcome": {
+    "independent_assessment": "FAIL",
+    "method": "Assess saved observations and executed actions against the requested airport selection.",
+    "matching_airport_option_clicked": false,
+    "selected_destination_observed": false,
+    "corrective_JFK_text_executed": false,
+    "model_done": false,
+    "automated_final_verifier_ran": false,
+    "automated_verifier_limit": "The boundary guard stopped execution before the final verifier.",
+    "exit_code": 1,
+    "parent_stop": null
+  },
+  "failure": {
+    "first_unsuccessful_step": 1,
+    "classification": "Field text produced no matching suggestion.",
+    "executed_text": "John F. Kennedy International Airport (JFK)",
+    "observed_response": "No matching locations found",
+    "cause_limit": "The trace does not establish why the website rejected this query.",
+    "terminal_step": 2,
+    "terminal_classification": "Incorrect decision after coordinator correction.",
+    "selected_action": "CLICK Destination, Select multiple airports",
+    "correct_action_available": "TYPE_TEXT in the observed Where else? field.",
+    "observation_sufficient_for_correction": true,
+    "guard_result": "Stopped before execution because the action was outside the supplied field-selection boundary.",
+    "missing_control": false,
+    "execution_failure": false,
+    "false_completion": false,
+    "model_internal_cause": "Unknown."
+  },
+  "handoff": {
+    "reason": {
+      "category": "observed_error",
+      "evidence": "No matching locations found"
+    },
+    "correction": "The page reports no matching locations for the full airport name. Replace the text in the observed Where else? destination field with JFK. Then select the observed airport suggestion that identifies John F. Kennedy International Airport and JFK. Stop after that destination is selected. Keep all original boundaries.",
+    "corrections_received": 1,
+    "resumes": 1,
+    "same_worker_pid": true,
+    "same_browser_target": true,
+    "model_load_events": 1,
+    "seconds_after_model_load": 5.608491874998435,
+    "handoff_to_correction_ms": 10015.28425,
+    "handoff_to_resume_ms": 10019.573208,
+    "decisions_remaining_at_handoff": 19,
+    "decisions_remaining_at_resume": 19,
+    "seconds_remaining_at_handoff": 79.01223058416508,
+    "seconds_remaining_at_resume": 68.99264870909974,
+    "budgets_reset": false,
+    "fresh_observation_before_resume": true
+  },
+  "metrics": {
+    "total_including_startup_and_cleanup_ms": 22699.6905,
+    "browser_startup_ms": 439.097291,
+    "worker_and_worker_cleanup_ms": 21867.602625,
+    "browser_cleanup_ms": 364.10075,
+    "decision_count": 2,
+    "decision_latency_ms": [
+      4486,
+      1109
+    ],
+    "model_calls": 4,
+    "model_call_types": {
+      "decision_menu": 3,
+      "field_text": 1
+    },
+    "executed_mutations": 1,
+    "uncertain_mutations": 0,
+    "model_load_ms": 1320.0536251533777,
+    "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+    "peak_worker_bytes": 3825847032,
+    "memory_limit_bytes": 6442450944,
+    "peak_mlx_bytes": 3188227364,
+    "memory_scope": "Sampled inference worker only. Browser and parent excluded.",
+    "decision_prompt_tokens": 3908,
+    "field_text_tokens": null,
+    "coordinator_tokens": null
+  },
+  "safety": {
+    "out_of_boundary_action_executed": false,
+    "search_submitted": false,
+    "uncertain_mutation_replayed": false,
+    "owned_browser_cleanup_completed": true,
+    "single_run_lock_preserved": true,
+    "deadline_and_memory_guards_preserved": true
+  },
+  "limits": [
+    "One failed functional demonstration, not an isolated timing comparison.",
+    "The launcher reported unrelated user applications active during preflight.",
+    "Coordinator usage is not separately attributable within the existing engineering chat.",
+    "Field-text token counts were not recorded.",
+    "Event elapsed_ms values use different timer origins. Handoff intervals use monotonic_ns.",
+    "The trace establishes one model load and the same process and browser target across the handoff.",
+    "No new user responsiveness observation was requested. The earlier freeze cause remains unknown.",
+    "Dates, full flight search, reliable live recovery, speed, and cost savings remain unproven."
+  ],
+  "source_sha256": {
+    "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+    "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+    "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+    "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+    "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+    "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+    "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+    "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+    "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+    "jev_ultrafast/structured_policy.py": "008742becc08c3551caaee02dd37515f775f80ad338d534dc44176b68d6ea8a8",
+    "jev_ultrafast/workflow_worker.py": "d63cedf767c62bb18f61659d0e2343eb986a1a17c44d25105a3e423115326e11",
+    "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+    "scripts/milestone.py": "0e3db1d295dc96238aad00f96f06e1284e95bbde84a92e6bc4aeef6b57f076b1",
+    "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+    "scripts/milestone_verify.py": "ccd87bfaadaeb1d06aad4d3e4388f5249d2fbc6b0ae38dceae23d35da862b369",
+    "scripts/coordinator_handoff.py": "443f4108ca5932e44afce7e98819cae5fcfe35f0433bb2ccc32d3f638fe24d6f",
+    "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+    "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+    "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+    "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+  },
+  "source_unchanged_before_after_and_assessment": true,
+  "private_evidence_sha256": {
+    "artifacts/flights-handoff-once/launch.py": "adaba612ba8047e9e22764b24ac03e5b0a66480aeedd9566ca4cc2babd55851f",
+    "artifacts/flights-handoff-once/request.json": "cb5fcd9be8dd07c1b9ef132cfac685b7625f0d273fc7aa777dae8e759c4115e4",
+    "artifacts/flights-handoff-once/prepared.json": "05f05a06b6627e5dbe2cdc2641f572bbc42aa0263fdc1121c4a26f083327a1c9",
+    "artifacts/flights-handoff-once/worker-request.json": "2f174e8c21ad21f8dc150aa824f861d58e75b2d1f8e6bb32f4be43cd69009dd5",
+    "artifacts/flights-handoff-once/conditions.json": "c5e142a64b37fa025018bc9a89a9f6daf19b4be4b02fc26aa539a63082d3e19a",
+    "artifacts/flights-handoff-once/events.jsonl": "ba9dd69bbb0a67aa90f48e2511bb075d701877450a84b6970cce57afac432e23",
+    "artifacts/flights-handoff-once/handoff.json": "88214893e1c347701376b24becf766533e17f6a9fec06559b23668e2b54572b9",
+    "artifacts/flights-handoff-once/correction.json": "5f41dbe86415de23dde06c5155c104c7b17d884c0551718166b074759340d125",
+    "artifacts/flights-handoff-once/summary.json": "51f1a6d676476bba92c8f104a349be1ca4d90a597b74f39357e62022fad0d953",
+    "artifacts/flights-handoff-once/console.log": "1571c1272d7ced1d21abb6d12e95e1de7ce3ae5a219f0c33b4bd752ef64e3384",
+    "artifacts/replay/flights-handoff-once.jsonl": "eb3eed5d734b7782f7bbd1b9370148a06763695b2f816a2cf248fb90b103423b"
+  },
+  "delivery_checks": {
+    "ruff": "PASS",
+    "pytest": "PASS",
+    "tests_passed": 184,
+    "pytest_seconds": 4.59,
+    "new_tests_in_evidence_delivery": 0
+  }
+}
