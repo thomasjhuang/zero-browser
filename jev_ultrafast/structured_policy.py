@@ -43,10 +43,13 @@ def parse_decision(output, actions):
 
 
 def structured_choose(state, goal, history):
+    entered = time.perf_counter()
     from mlx_lm import generate
     from mlx_lm.sample_utils import make_sampler
 
+    imported = time.perf_counter()
     model, tokenizer, mx = get_model()
+    loaded = time.perf_counter()
     request = decision_request(state, goal, history)
     prompt = tokenizer.apply_chat_template(
         [{"role": "system", "content": SYSTEM + "\n" + NEXT_ACTION},
@@ -78,10 +81,19 @@ def structured_choose(state, goal, history):
     for op, action in controls.items():
         if action["id"] == choice:
             operation = op
+    usage = {"prompt_tokens": len(tokens),
+             "completion_tokens": len(tokenizer.encode(output, add_special_tokens=False))}
+    finished = time.perf_counter()
+    timing = {"imports_ms": round((imported-entered)*1000, 3),
+              "model_acquisition_ms": round((loaded-imported)*1000, 3),
+              "prompt_preparation_ms": round((started-loaded)*1000, 3),
+              "generation_ms": elapsed,
+              "structured_call_total_ms": round((finished-entered)*1000, 3)}
+    timing["result_handling_ms"] = round(timing["structured_call_total_ms"] - sum(
+        timing[k] for k in ("imports_ms", "model_acquisition_ms", "prompt_preparation_ms", "generation_ms")), 3)
     return {"choice": choice, "operation": operation, "target": target, "confidence": 1.0,
             "probabilities": {choice: 1.0}, "confidence_kind": "unscored_selection",
             "model_claims": {"unmet": data["unmet"]}, "decision_path": "structured",
             "latency_ms": elapsed, "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
-            "usage": {"prompt_tokens": len(tokens),
-                      "completion_tokens": len(tokenizer.encode(output, add_special_tokens=False))},
+            "usage": usage, "timing": timing,
             "request": request, "peak_mlx_bytes": record["peak_mlx_bytes"]}

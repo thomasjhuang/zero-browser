@@ -262,3 +262,22 @@ First fix measurement: separate local imports/model acquisition, prompt preparat
 Use equivalent fresh coordinator context, the same model and reasoning setting, the same public field task, fixed supplied values, and independent final field/URL checks.
 Start timing before coordinator dispatch; end after independent assessment and the coordinator verdict. Keep cleanup separate. Preserve raw private events and publish only sanitized counters and outcome evidence.
 Exact request usage must be deduplicated by response ID. Do not double-count cached input or reasoning output.
+
+Five matched pairs authorized through the coordination chat: A/B, B/A, A/B, B/A, A/B. A is direct Codex over the shared observed-action MCP interface. B delegates that field contract to local Qwen. This does not measure the desktop native CUA stack.
+Coordinator: installed Codex CLI, gpt-6-astra, high effort, fresh session and identical instructions/tools. Local inference remains pinned Qwen3-4B and sequential.
+Timing instrumentation adds imports, model acquisition, prompt preparation, generation, and result handling. No model behavior or cache policy changes.
+Required checks before source freeze: lint and 133 tests passed. GitNexus reports shared worker/diagnostic callers; the cached MCP index remains behind the local rebuild.
+Measured command: `ZB_RECORD_PATH=artifacts/replay/paired-series.jsonl uv run --offline --frozen --extra local python scripts/paired_browser_benchmark.py --output results/paired-browser-five-pairs.json`.
+The harness sets a distinct per-run replay path and records each private journal hash. Deadline: 90 seconds per coordinator after browser startup; local delegation has an external 30-second deadline. Parent cleanup owns the isolated browser and coordinator process group.
+The runner includes source commit and full source hashes, and verifies them after each trial. Freeze measured files through the series. Preparation hashes:
+
+- `scripts/paired_browser_benchmark.py`: `a54d53ca84d0c556ce4f39d981a98b5502b89eaf6e6f5667d4e89af45a26c9a6`.
+- `scripts/paired_browser_server.py`: `74878b941b7f90477c03e50cd00e5c24a7afe83ed4bcf85abecbb82df436194a`.
+- `jev_ultrafast/structured_policy.py`: `0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2`.
+
+Final freeze hashes after preflight evidence corrections:
+
+- `scripts/paired_browser_benchmark.py`: `17fa29fe6f81cb12d03f1de7641561c05a6c83b46ccd813fc13d20b73cacf229`.
+- `scripts/paired_browser_server.py`: `74878b941b7f90477c03e50cd00e5c24a7afe83ed4bcf85abecbb82df436194a`.
+- `jev_ultrafast/structured_policy.py`: `0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2`.
+All script imports and the dependency lock are included in the measured manifest. Both pre-coordinator startup and coordinator-dispatch-to-verdict are reported; their sum is the cold goal-dispatch-to-verdict interval.
