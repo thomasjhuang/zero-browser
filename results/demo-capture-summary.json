@@ -1,0 +1,35 @@
+{
+  "scope": "Two human demonstrations. This is capture evidence, not model accuracy or completed purchases.",
+  "recordings": [
+    {
+      "example": 1,
+      "save_status": "incomplete",
+      "events": 17,
+      "matched_actions": 10,
+      "unsupported_events": {
+        "click": 3,
+        "scroll": 4
+      },
+      "trace_archive_intact": true,
+      "max_observed_actions": 74,
+      "outcome_independently_verified": false
+    },
+    {
+      "example": 2,
+      "save_status": "saved",
+      "events": 22,
+      "matched_actions": 14,
+      "unsupported_events": {
+        "scroll": 4,
+        "click": 4
+      },
+      "trace_archive_intact": true,
+      "max_observed_actions": 74,
+      "outcome_independently_verified": false
+    }
+  ],
+  "total_events": 39,
+  "total_matched_actions": 24,
+  "model_inference_ran": false,
+  "private_trace_data_included": false
+}

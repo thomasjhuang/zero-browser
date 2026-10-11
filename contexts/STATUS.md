@@ -35,8 +35,8 @@ run exists. No work on tasks 00 through 10 has started. Plan and ranked tasks ar
 | Local scorer, pinned weights, offline rerun | 12/12 synthetic decisions, 48 forward passes, ~300ms warm | `results/decision-smoke.json`, `results/decision-smoke-rerun.json` |
 | Quality cases | 35/36. One candidate order picks the wrong filter, repeats 4/4 in that order | `results/decision-quality.json`, `results/decision-quality-filter-rerun.json` |
 | Synthetic comparison vs hosted CLIs | Qwen 47/48, Codex 48/48, Claude 48/48 on 12 cases x 4 orders. No browser execution | `results/decision-comparison.json`, `scripts/decision_baselines.py` |
-| Human demo recorder | Source landed, isolated Chromium session starts, Google Flights loads. No capture saved yet | `scripts/record_demo.py`, `scripts/recorder/` |
-| Repo on GitHub | Scaffolding, scorer, fixtures, results, recorder on `main`. PRs #1 to #3 merged | github.com/thomasjhuang/zero-browser |
+| Human demo recorder | Two human examples captured. The second saved without errors. Action mapping remains partial | `results/demo-capture-summary.json`, `scripts/record_demo.py` |
+| Repo on GitHub | Scaffolding, scorer, fixtures, results, recorder on `main`. PRs #1 to #4 merged | github.com/thomasjhuang/zero-browser |
 | Contexts folder committed | Plan, tasks, rules, status shared across agents | this folder |
 
 ## Blocked
@@ -44,6 +44,10 @@ run exists. No work on tasks 00 through 10 has started. Plan and ranked tasks ar
 (none)
 
 ## Known limits
+
+Human recordings expose unsupported clicks and manual scrolls. The largest observation contains 74 actions.
+Resolve recording coverage and candidate scaling before longer demonstrations or training. Human completion
+reports do not establish model performance or a completed purchase. Private recordings remain ignored.
 
 Synthetic decisions do not establish browser reliability. Restricted scores are uncalibrated. The 16GB
 memory target is untested. The browser guard check passed only in an isolated headless Chrome profile; the
@@ -57,6 +61,9 @@ default profile lacked remote debugging. Jev's per-step timeout can be exceeded 
 - `scripts/decision_baselines.py` and the recorder are Codex's. Nobody deletes them in task 10.
 
 ## Log
+
+- 2026-10-11. Added aggregate evidence for two human recordings. The second save completed without errors.
+  The save fix is on main. Raw recordings remain private.
 
 - 2026-10-11 12:25 PT. Reconciled local and remote histories. Folded `PROGRESS.md` into this file. Rewrote
   `AGENTS.md`. Contexts un-ignored and committed.
