@@ -17,6 +17,7 @@
 <main>
   <h1>Demonstration recorder</h1>
   <p id="status" role="status">Ready. 0 of 2 demonstrations saved.</p>
+  <p id="notice" role="status"></p>
   <label for="url">Starting URL</label>
   <input id="url" type="url" value="https://www.google.com/travel/flights">
   <button class="secondary" id="open">Open page</button>
@@ -41,6 +42,7 @@
     el('save').disabled = busy || !state.active;
     el('finish').disabled = busy || state.active;
     el('files').textContent = (state.files || []).join('\n');
+    el('notice').textContent = state.notice || '';
     if (state.error) el('error').textContent = state.error;
   }
   async function command(action) {
