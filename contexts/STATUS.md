@@ -5,9 +5,9 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: IDLE. The one authorized single-action demonstration failed.** Root launched once and completed cleanup. No retry or implementation change is authorized.
-> Codex requested an exact JFK fill, received a matching airport suggestion, then requested an exact click. The freshness guard rejected that second request before execution. JFK was not selected.
-> The attempt took 22.54 seconds with two coordinator requests, one executed fill, zero local inference calls, and one model load. [Evidence](../results/flights-single-action-once.json) records the failed outcome. The one-action return boundary is implemented. Live destination completion and Qwen selection through this path remain unproven.
+> **Current run state: IDLE, task 16 prepares one authorized attempt after the minimal freshness fix.** Root remains the sole launcher. Thomas confirmed the fix and exactly one new JFK-only attempt.
+> Exact click/select requests retain their issued observation and use the existing target-specific execution guard. A conclusive pre-input rejection returns fresh evidence and requires a new coordinator request. Executed or uncertain input never enters that continuation path.
+> All previous evidence remains preserved. No inference or browser activity occurs during preparation. Shared deadlines, request budgets, and exclusive runtime ownership remain in force.
 >
 > **Current scope:** task 16, with supporting notes in task 13. Tasks 18–22 remain cut from the active plan.
 > This context update does not reopen task 19. Do not create new task numbers.
@@ -35,7 +35,7 @@ The final cancellation pilot stopped during inference. The user reported normal 
 
 ## Open follow-up
 
-- **16, Improve zero-browser benchmarking:** bounded-worker proof delivered: three identical suites passed 27/27 requested outcomes and 6/6 safe stops. One live Wikipedia field task passed. Full local flight completion remains unresolved. The one-off general-agent live Flights attempt failed before destination selection and date entry. The shared-interface field comparison passed all ten original outcomes and both supplemental outcomes. The five-pair comparison set excludes the original pair with indexing overlap. Its median delegated time reduction is 1.90 seconds. Native desktop CUA speed remains unproven. One additional workflow attempt passed in 29.90 seconds, without invoking recovery. One separately authorized sequential native workflow passed in 33.05 seconds, with product-comparison limits. The later JFK-only attempt failed after one coordinator correction in 22.70 seconds. Live flight recovery and general efficiency remain unproven. The single-action demonstration also failed at the second request because its observation was stale. No further run is authorized.
+- **16, Improve zero-browser benchmarking:** bounded-worker proof delivered: three identical suites passed 27/27 requested outcomes and 6/6 safe stops. One live Wikipedia field task passed. Full local flight completion remains unresolved. The one-off general-agent live Flights attempt failed before destination selection and date entry. The shared-interface field comparison passed all ten original outcomes and both supplemental outcomes. The five-pair comparison set excludes the original pair with indexing overlap. Its median delegated time reduction is 1.90 seconds. Native desktop CUA speed remains unproven. One additional workflow attempt passed in 29.90 seconds, without invoking recovery. One separately authorized sequential native workflow passed in 33.05 seconds, with product-comparison limits. The later JFK-only attempt failed after one coordinator correction in 22.70 seconds. Live flight recovery and general efficiency remain unproven. The single-action demonstration also failed at the second request because its observation was stale. One attempt after the minimal freshness fix is authorized under the current banner.
 
 ## Completed context work
 
@@ -134,3 +134,5 @@ Earlier implementation details and evidence remain in the numbered task files an
 - October 11: task 16 prepared the separate single-action path. Lint and 184 existing tests passed. Root owns the one pending launch.
 
 - October 11: task 16 recorded the failed single-action demonstration. The stale second request stopped before execution. Runtime is idle, with no retry authorized.
+
+- October 11: task 16 prepared the minimal target freshness fix. Lint and 184 existing tests passed. Root owns the one pending attempt.

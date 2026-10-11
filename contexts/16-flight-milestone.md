@@ -2,7 +2,7 @@
 
 Priority P0. Owner Codex milestone chat.
 
-Current scope: the one authorized single-action JFK demonstration finished with failure. Root launched once. The worker entered JFK and returned its suggestion. The second request stopped before execution because its observation was stale. Runtime is idle. No retry or implementation change is authorized.
+Current scope: apply the minimal freshness fix and prepare one newly authorized JFK-only attempt. Root is the sole launcher. Task 16 performs implementation and existing checks only. Preserve all previous evidence. No new tests or browser/model activity during preparation.
 
 ## Why
 
@@ -548,3 +548,26 @@ The elapsed time includes startup, model loading, coordinator waits, and cleanup
 No further implementation change or trial followed. Earlier evidence remains unchanged. Runtime is idle.
 
 Delivery checks passed: lint and all 184 existing tests in 4.52 seconds. Public evidence passed the private-path and credential scan.
+
+
+### Minimal target freshness candidate
+
+Thomas authorized the minimal freshness fix and exactly one new JFK-only attempt. Root remains the sole launcher. Requests still require the current random request ID and the fingerprint of the issued observation. Exact targets resolve only within that observation. No indexed target is rebound to a later page.
+
+Exact clicks and selects no longer receive an additional whole-page freshness veto. `Browser.act` still enforces the original page key and target guard. The unchanged executor checks visibility, occlusion, disabled state, and field boundaries. Other requests retain their whole-page freshness check.
+
+Only `PreInputStale` enters the new return path. Explicit pre-input freshness rejection raises that type. The narrow catch around `Browser.act` converts its pre-input `StalePage`. The unchanged executor uses `RuntimeError` for uncertain select execution. Observation after completed input is outside that catch. An observation failure after input cannot cause continuation.
+
+A conclusive rejection consumes one request slot, returns `stale_not_executed` with fresh observation, and waits for a new request ID. The original browser, loaded model, deadline, and request budget remain. No action is replayed automatically. Errors and unknown execution still stop.
+
+Root launches once after the frozen handoff:
+
+```sh
+ZB_RECORD_PATH=artifacts/replay/flights-target-freshness-once.jsonl uv run --offline --frozen --extra local python artifacts/flights-target-freshness-once/launch.py > artifacts/flights-target-freshness-once/console.log 2>&1
+```
+
+The request format is unchanged. After `result-N.json` reports `stale_not_executed`, root must read the new `ready.json` before issuing another request. The new sequence and request ID prevent automatic reuse. Previous attempt folders and published results remain unchanged. No live attempt ran during preparation.
+
+GitNexus refreshed the index and examined the changed symbols. Direct impact was low. Cached MCP responses retained stale warnings, and truncated graph flows limit coverage. Source inspection establishes the narrow catch boundary. No new tests were added.
+
+Required lint and all 184 existing tests passed in 4.67 seconds. Change detection reported medium aggregate impact across four flows. No shared executor implementation changed.
