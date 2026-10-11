@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "attempt": "flights-target-freshness-once",
+  "source_commit": "919395662dbc0bfe8ad77b5e644fd40330d5cc89",
+  "attempt_count": 1,
+  "goal": "Select JFK as destination. Do not change other fields or submit search.",
+  "outcomes": {
+    "independent_coordinator_assessment": "PASS",
+    "assessment_method": "Saved matching airport-option execution plus fresh closed destination field at the original node, with JFK in its label.",
+    "observed_destination": {
+      "node": 16,
+      "role": "combobox",
+      "kind": "fill",
+      "label": "Where to? New York JFK",
+      "value": "New York",
+      "expanded": "false",
+      "empty": "false"
+    },
+    "executed_matching_option": {
+      "step": 3,
+      "label": "John F. Kennedy International Airport (JFK)"
+    },
+    "automatic_assessment": {
+      "passed": false,
+      "checks": {
+        "matching_observed_option_clicked": true,
+        "unique_target_field": false,
+        "selected_field_populated": false,
+        "selection_dialog_closed": false
+      },
+      "selected_option": {
+        "step": 3,
+        "label": "John F. Kennedy International Airport (JFK)"
+      },
+      "observed_field": null,
+      "limitations": "Typed text alone is insufficient. Unrecognized option semantics fail closed."
+    },
+    "automatic_mismatch_cause": "The destination label changed from Where to? to Where to? New York JFK. Preserve the automatic verdict unchanged.",
+    "raw_parent_summary_outcome": "failed or unverified",
+    "terminal_exit_code": 130,
+    "terminal_parent_stop": "cancelled",
+    "terminal_reason": "Coordinator saved its independent verdict, then cancelled the parent through its existing handler. No fourth action request was sent.",
+    "automatic_success": false
+  },
+  "requirements": {
+    "JFK_text_entered": true,
+    "matching_option_clicked": true,
+    "original_destination_node_preserved": true,
+    "closed_selected_destination_observed": true,
+    "other_fields_changed": false,
+    "search_submitted": false,
+    "login_booking_or_payment": false,
+    "uncertain_mutation_replayed": false
+  },
+  "stale_continuation": {
+    "request": 2,
+    "status": "stale_not_executed",
+    "action_executed": false,
+    "unresolved_execution": false,
+    "reason": "Page changed since this decision. Observe again.",
+    "fresh_observation_returned": true,
+    "new_request_id": true,
+    "new_coordinator_request": 3,
+    "automatic_replay": false,
+    "option_target_guard_unchanged_between_saved_observations": true,
+    "page_key_changed_between_saved_observations": true,
+    "observed_change": "The saved page key changed destination node 16 value from JFK to empty. The active popup field retained JFK.",
+    "cause_limit": "This page-key transition is consistent with the freshness rejection. No input occurred on request 2."
+  },
+  "metrics": {
+    "dispatch_to_independent_verdict_ms": 50895.5385,
+    "dispatch_to_worker_stop_ms": 51113.550875,
+    "browser_cleanup_ms": 380.82975,
+    "total_including_startup_and_cleanup_ms": 51494.380625,
+    "browser_startup_ms": 271.693792,
+    "worker_and_worker_cleanup_ms": 50823.341708,
+    "coordinator_requests": 3,
+    "executed_deterministic_actions": 2,
+    "pre_input_stale_returns": 1,
+    "local_decisions": 0,
+    "local_model_calls": 0,
+    "model_loads": 1,
+    "model_load_ms": 2752.0135829690844,
+    "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+    "peak_worker_bytes": 2616019344,
+    "memory_limit_bytes": 6442450944,
+    "memory_scope": "Sampled inference worker only. Browser and parent excluded.",
+    "coordinator_tokens": null,
+    "shared_deadline_seconds": 90,
+    "shared_request_budget": 20,
+    "request_slots_remaining": [
+      20,
+      19,
+      18,
+      17
+    ],
+    "seconds_remaining": [
+      82.86699637491256,
+      76.56680458295159,
+      70.77283791592345,
+      64.60895137488842
+    ]
+  },
+  "control_evidence": {
+    "executed_steps": [
+      1,
+      3
+    ],
+    "same_worker_pid": true,
+    "same_browser_target": true,
+    "request_ids_unique": true,
+    "fourth_request_sent": false,
+    "owned_cleanup_completed": true,
+    "source_unchanged_before_after_and_assessment": true
+  },
+  "limits": [
+    "One independently evidenced destination selection, not general browser reliability.",
+    "The unchanged automatic assessor missed the changed destination label and did not stop successfully.",
+    "The coordinator cancelled after its independent assessment. Preserve exit 130 and cancelled status.",
+    "All action requests were deterministic. Qwen loaded once but performed no inference.",
+    "The attempt does not establish Qwen value, autonomous assessment, speed superiority, or cost savings.",
+    "Coordinator usage cannot be isolated from the mixed engineering chat.",
+    "Elapsed time includes startup, model loading, coordinator waits, assessment, cancellation, and cleanup.",
+    "No new responsiveness observation was requested. The earlier freeze remains unexplained.",
+    "Dates and the complete itinerary remain untested."
+  ],
+  "source_sha256": {
+    "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+    "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+    "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+    "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+    "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+    "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+    "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+    "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+    "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+    "jev_ultrafast/structured_policy.py": "008742becc08c3551caaee02dd37515f775f80ad338d534dc44176b68d6ea8a8",
+    "jev_ultrafast/workflow_worker.py": "d63cedf767c62bb18f61659d0e2343eb986a1a17c44d25105a3e423115326e11",
+    "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+    "scripts/milestone.py": "0e3db1d295dc96238aad00f96f06e1284e95bbde84a92e6bc4aeef6b57f076b1",
+    "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+    "scripts/milestone_verify.py": "ccd87bfaadaeb1d06aad4d3e4388f5249d2fbc6b0ae38dceae23d35da862b369",
+    "scripts/coordinator_handoff.py": "443f4108ca5932e44afce7e98819cae5fcfe35f0433bb2ccc32d3f638fe24d6f",
+    "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+    "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+    "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+    "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8",
+    "scripts/single_action_worker.py": "c227afbd943c684b6ed1f81dbbbd6af2ea90c69e95f00e93d0fc5af9c931a8c4"
+  },
+  "private_evidence_sha256": {
+    "artifacts/flights-target-freshness-once/action-1.json": "f5b11c56d08293933e0eee7cd1bd2c6652af1d0ed2488896aad7adfdc6f6a439",
+    "artifacts/flights-target-freshness-once/action-2.json": "835bece258847c59458a9b64e1a73d431cc3e6638c85933ad86366b0b57c59dd",
+    "artifacts/flights-target-freshness-once/action-3.json": "34424c01d8cde1ef90cb6defc9c9e62f099dab81585aba7187e2119c7d62799f",
+    "artifacts/flights-target-freshness-once/attempt-started.json": "032f9cdb592f09b1a3e368dd5d5885d27d9f4fcfa02a8a84bcd0be09467c2ebb",
+    "artifacts/flights-target-freshness-once/conditions.json": "c711ea536eece1ea6094e796d0dc66a4fd1400dd43a43e230a49e043335b3bd0",
+    "artifacts/flights-target-freshness-once/console.log": "fff9b584a84c0c5d20b1f308eb9cc9bf5b989696273a16ed50b4fc64d7177423",
+    "artifacts/flights-target-freshness-once/coordinator-verdict.json": "70f9a94783272cd53a2830f7d1dce85e36175b1000fa0942ce3a647ddedc1dbd",
+    "artifacts/flights-target-freshness-once/events.jsonl": "e5c7ae823dc524bedcc6a1f79b3bcab55ee8f98efa239ee8a142e0ebe839885d",
+    "artifacts/flights-target-freshness-once/launch.py": "d7a480748e1fa9174cac60cb7e9ace70896a59f3c76f01e234ef82164f53806c",
+    "artifacts/flights-target-freshness-once/prepared.json": "526012a8efbc9e7a68face9ed8885892cff55b835c410267ac358c318fc5af62",
+    "artifacts/flights-target-freshness-once/ready.json": "70bb0ab68ae982dc5bf605c9236cee56b38898a2b09de2d4f549629d2d5e3f92",
+    "artifacts/flights-target-freshness-once/request.json": "8ab1dd2d217f9ec902fa6a95217544ab5c9143a41c7594a5f3752dee845b3e5c",
+    "artifacts/flights-target-freshness-once/result-1.json": "05cd92e4fcc312dba819078824c07449f4c0f627de2fc74dbc14c11d5f29cb40",
+    "artifacts/flights-target-freshness-once/result-2.json": "e835c184c28aeb3dbca15318203700f87be3f684e516761fbe38fae803c1aa3d",
+    "artifacts/flights-target-freshness-once/result-3.json": "625c64dc0ea6a67ce33501412ee8155666326fdf3afa06610e0115398b8915a7",
+    "artifacts/flights-target-freshness-once/summary.json": "fff9b584a84c0c5d20b1f308eb9cc9bf5b989696273a16ed50b4fc64d7177423",
+    "artifacts/flights-target-freshness-once/worker-request.json": "682af218604cd4716dcf6ce0583e4406852ed448322ef5e0270debc33f086858"
+  },
+  "replay": {
+    "path": "artifacts/replay/flights-target-freshness-once.jsonl",
+    "configured": true,
+    "exists": false,
+    "note": "No model decision record was produced because no inference occurred."
+  },
+  "delivery_checks": {
+    "ruff": "PASS",
+    "pytest": "PASS",
+    "tests_passed": 184,
+    "pytest_seconds": 4.49,
+    "new_tests": 0
+  }
+}

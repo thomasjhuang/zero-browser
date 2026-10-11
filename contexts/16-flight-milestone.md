@@ -2,7 +2,7 @@
 
 Priority P0. Owner Codex milestone chat.
 
-Current scope: apply the minimal freshness fix and prepare one newly authorized JFK-only attempt. Root is the sole launcher. Task 16 performs implementation and existing checks only. Preserve all previous evidence. No new tests or browser/model activity during preparation.
+Current scope: Thomas authorized iterative full-task development after the independently successful JFK selection. Continue SFO–JFK round trip, November 12–16, 2026, one adult, economy, until matching flight results appear. Codex controls every action. Root is the sole launcher. Stop before flight selection, booking, identity, payment, login, or reservation. No new tests or reporting pause after each failed development run. Preserve raw evidence and freeze source during each attempt.
 
 ## Why
 
@@ -571,3 +571,24 @@ The request format is unchanged. After `result-N.json` reports `stale_not_execut
 GitNexus refreshed the index and examined the changed symbols. Direct impact was low. Cached MCP responses retained stale warnings, and truncated graph flows limit coverage. Source inspection establishes the narrow catch boundary. No new tests were added.
 
 Required lint and all 184 existing tests passed in 4.67 seconds. Change detection reported medium aggregate impact across four flows. No shared executor implementation changed.
+
+
+### Target freshness attempt result
+
+[Saved evidence](../results/flights-target-freshness-once.json) records one attempt on `919395662dbc0bfe8ad77b5e644fd40330d5cc89`. Independent coordinator assessment passed JFK destination selection. The automatic assessor returned false, and the parent ended with exit 130 after coordinator cancellation. These are separate outcomes.
+
+Request 1 filled the observed destination with JFK. Request 2 attempted the observed matching option, but the target freshness guard rejected it before input. The worker returned `stale_not_executed` with a fresh observation. Root issued request 3 with the new request ID. That request clicked the matching JFK airport option. The worker did not replay an action automatically.
+
+The saved option guard stayed identical across the stale return. The page key changed destination node 16 from `JFK` to an empty value while the active popup field retained JFK. This transition is consistent with the pre-input freshness rejection. No uncertain input occurred. The same browser and loaded model persisted under the original deadline and request budget.
+
+After request 3, the fresh observation showed original destination node 16 with label `Where to? New York JFK`, value `New York`, and `expanded=false`. The executed option identified `John F. Kennedy International Airport (JFK)`. Together these records support completed airport selection. No other field change, search submission, booking, payment, or login occurred.
+
+The unchanged automatic assessor required the earlier exact field label and failed to resolve the renamed destination. It recognized the matching option click but returned false for field and dialog requirements. Root saved a separate independent verdict, then cancelled only the parent through its existing cancellation handler. No fourth action request was sent. Worker and browser cleanup completed. The raw automatic verdict and cancelled terminal status remain unchanged.
+
+Independent assessment occurred 50,895.54 ms after dispatch. The worker stopped at 51,113.55 ms. Browser cleanup took 380.83 ms, and total elapsed time was 51,494.38 ms. Three coordinator requests produced two deterministic actions and one pre-input stale return. The worker loaded the model once in 2,752.01 ms but made zero inference calls. Peak sampled worker memory was 2,616,019,344 bytes, excluding browser and parent.
+
+All twenty-one runtime source hashes remained unchanged. Private requests, observations, verdict, and raw evidence remain preserved with public hashes. The configured replay path produced no model records because no inference occurred. Coordinator tokens are not separately attributable within the engineering chat. Elapsed time includes coordinator waits, assessment, cancellation, and cleanup. No new user observation was requested.
+
+This attempt demonstrates one safe stale-return continuation and independently evidenced JFK selection. It does not prove automatic assessment, Qwen value, general reliability, or speed superiority. Dates and the full itinerary remain untested. No code change or further trial followed. Runtime is idle.
+
+Preservation checks passed: lint and 184 existing tests in 4.49 seconds. Public evidence passed the private-path and credential scan.
