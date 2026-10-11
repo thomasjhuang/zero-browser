@@ -2,7 +2,7 @@
 
 Priority P0. Owner Codex milestone chat.
 
-Current scope: prepare one newly authorized JFK-only demonstration with Codex control between individual actions. Root is the sole launcher. Task 16 implements and prepares only. Preserve previous failures. No new tests or browser/model activity during preparation.
+Current scope: the one authorized single-action JFK demonstration finished with failure. Root launched once. The worker entered JFK and returned its suggestion. The second request stopped before execution because its observation was stale. Runtime is idle. No retry or implementation change is authorized.
 
 ## Why
 
@@ -531,3 +531,20 @@ The private folder exposes `ready.json` with a random request ID, sequence, obse
 GitNexus query, context, and impact calls examined the reused executor. The index refresh succeeded, but MCP symbol responses retained a stale warning. Truncated flows also limit graph coverage. Existing execution code remains unchanged. Source inspection covers the new request boundary. Live outcome and timing remain pending.
 
 Required lint and 184 existing tests passed in 4.57 seconds. Change detection reported low impact but did not map the new unindexed worker. No passing graph result proves that new path. Static inspection found one executor call in `dispatch_one`, no recursive dispatch, and no full-goal Agent command.
+
+
+### Single-action demonstration result
+
+[Saved evidence](../results/flights-single-action-once.json) records one failed attempt on `3eeb8ed94a4ae4090aae258b7eb6bcdac5154a9f`. Root supplied an exact fill request for the unique observed destination field. The executor entered `JFK` and returned a fresh matching airport suggestion. Root then supplied a separate exact click request for that unique observed option. Both requests used deterministic execution because their targets were already known.
+
+The second request stopped before execution with `StalePage: The request observation is stale`. Its fingerprint matched the supplied observation, but the current browser freshness check failed. No later observation identifies the exact page change. This was not a model decision failure, missing control, incorrect field value, uncertain execution, or false completion. No retry occurred.
+
+Independent assessment found a suggestion but no completed option click or selected destination field. The first action returned its failed selection assessment. The second request stopped before another outcome assessment. The parent returned exit code 1 and completed browser cleanup. The single-action control boundary is implemented, but the end-to-end destination task failed. Qwen selection through this path remains untested.
+
+Total startup-through-cleanup time was 22,541.15 ms. Browser startup took 326.03 ms. Worker plus process cleanup took 21,835.08 ms, and browser cleanup took 363.53 ms. Two coordinator requests caused one executed fill. There were zero local inference calls and one model load of 1,626.82 ms. Peak sampled worker memory was 2,594,146,752 bytes, excluding browser and parent. The same browser target and worker PID persisted between requests. All twenty-one runtime source hashes remained unchanged.
+
+The elapsed time includes startup, model loading, coordinator waits, and cleanup. Separate coordinator token accounting is unavailable in the mixed engineering chat. The replay path was configured, but no model call produced a decision record. Private action requests, observations, events, and failed-run evidence remain preserved. No new responsiveness observation was requested. The earlier freeze remains unexplained.
+
+No further implementation change or trial followed. Earlier evidence remains unchanged. Runtime is idle.
+
+Delivery checks passed: lint and all 184 existing tests in 4.52 seconds. Public evidence passed the private-path and credential scan.

@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "attempt": "flights-single-action-once",
+  "source_commit": "3eeb8ed94a4ae4090aae258b7eb6bcdac5154a9f",
+  "attempt_count": 1,
+  "goal": "Select JFK as the destination. Stop before search submission. Do not change other fields.",
+  "outcome": {
+    "independent_assessment": "FAIL",
+    "JFK_text_entered": true,
+    "matching_suggestion_observed": true,
+    "matching_suggestion_clicked": false,
+    "selected_airport_observed": false,
+    "search_submitted": false,
+    "final_verifier_ran": false,
+    "after_first_action_verifier": {
+      "passed": false,
+      "checks": {
+        "matching_observed_option_clicked": false,
+        "unique_target_field": false,
+        "selected_field_populated": false,
+        "selection_dialog_closed": false
+      },
+      "selected_option": null,
+      "observed_field": null,
+      "limitations": "Typed text alone is insufficient. Unrecognized option semantics fail closed."
+    },
+    "model_done": false,
+    "exit_code": 1
+  },
+  "first_failure": {
+    "request": 2,
+    "classification": "Stale observation rejected before execution.",
+    "cause": "The request observation is stale",
+    "request_fingerprint_matches_supplied_observation": true,
+    "freshness_check_failed": true,
+    "underlying_page_change": "Unknown. No later observation identifies the changed page detail.",
+    "incorrect_model_decision": false,
+    "incorrect_field_text": false,
+    "missing_control": false,
+    "false_completion": false,
+    "uncertain_execution": false,
+    "mutation_retried": false
+  },
+  "control_boundary": {
+    "implementation": "dispatch_one contains one guarded act call. The transport requires a new request ID before another action.",
+    "observed_coordinator_requests": 2,
+    "completed_action_returns": 1,
+    "requests": [
+      {
+        "request_id": "0fd5bcd470014b62bda36af7a8bec02d",
+        "fingerprint": "5fabc2a2ff72c3098634531c9e4d72a4a006ffc7d17494492d8202d98527caa2",
+        "mode": "exact",
+        "target": {
+          "id": "e17",
+          "node": 16,
+          "kind": "fill",
+          "label": "Where to? "
+        },
+        "value": "JFK"
+      },
+      {
+        "request_id": "4817cb0d350847f0a608d5af76fd95f9",
+        "fingerprint": "9e3db77912faaaba30218d8572ae666aabc30081f66337c2a79aa12d514a684a",
+        "mode": "exact",
+        "target": {
+          "id": "e4",
+          "node": 31,
+          "kind": "click",
+          "label": "John F. Kennedy International Airport (JFK)"
+        },
+        "value": null
+      }
+    ],
+    "executed_actions": [
+      {
+        "step": 1,
+        "kind": "fill",
+        "label": "Where to? ",
+        "text": "JFK"
+      }
+    ],
+    "execution_source": "deterministic",
+    "local_selection_path_exercised": false,
+    "same_worker_pid": true,
+    "same_browser_target": true,
+    "model_load_events": 1,
+    "actions_remaining": [
+      20,
+      19
+    ],
+    "seconds_remaining": [
+      85.86986816697754,
+      76.9808320000302
+    ],
+    "shared_deadline_seconds": 90,
+    "shared_action_budget": 20,
+    "new_request_required_between_actions": true
+  },
+  "metrics": {
+    "total_including_startup_and_cleanup_ms": 22541.149208,
+    "browser_startup_ms": 326.025,
+    "worker_and_worker_cleanup_ms": 21835.078375,
+    "dispatch_to_worker_stop_ms": 22177.611333,
+    "browser_cleanup_ms": 363.529625,
+    "coordinator_wait_ms": [
+      8648.193583,
+      8884.2065
+    ],
+    "executed_mutations": 1,
+    "deterministic_executed_actions": 1,
+    "local_decisions": 0,
+    "local_model_calls": 0,
+    "decision_time_ms": null,
+    "model_load_ms": 1626.8162501510233,
+    "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+    "model_load_peak_mlx_bytes": 2264693768,
+    "peak_worker_bytes": 2594146752,
+    "memory_limit_bytes": 6442450944,
+    "memory_scope": "Sampled inference worker only. Browser and parent excluded.",
+    "coordinator_tokens": null
+  },
+  "safety": {
+    "guard_rejected_before_second_execution": true,
+    "unresolved_mutations": 0,
+    "no_automatic_retry": true,
+    "owned_browser_cleanup_completed": true,
+    "source_unchanged_before_after_and_assessment": true
+  },
+  "limits": [
+    "One failed functional demonstration. No comparison supports speed or cost savings.",
+    "Both requests used exact known targets. This attempt did not exercise Qwen selection.",
+    "The worker loaded the model once but made no inference calls.",
+    "Coordinator token usage is not separately attributable in the mixed engineering chat.",
+    "Only the first action produced a fresh result. The second request stopped before action.",
+    "The trace does not identify the exact page change that invalidated freshness.",
+    "No new responsiveness observation was requested. The earlier freeze cause remains unknown.",
+    "Full itinerary and reliable live airport selection remain unproven."
+  ],
+  "source_sha256": {
+    "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+    "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+    "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+    "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+    "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+    "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+    "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+    "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+    "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+    "jev_ultrafast/structured_policy.py": "008742becc08c3551caaee02dd37515f775f80ad338d534dc44176b68d6ea8a8",
+    "jev_ultrafast/workflow_worker.py": "d63cedf767c62bb18f61659d0e2343eb986a1a17c44d25105a3e423115326e11",
+    "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+    "scripts/milestone.py": "0e3db1d295dc96238aad00f96f06e1284e95bbde84a92e6bc4aeef6b57f076b1",
+    "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+    "scripts/milestone_verify.py": "ccd87bfaadaeb1d06aad4d3e4388f5249d2fbc6b0ae38dceae23d35da862b369",
+    "scripts/coordinator_handoff.py": "443f4108ca5932e44afce7e98819cae5fcfe35f0433bb2ccc32d3f638fe24d6f",
+    "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+    "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+    "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+    "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8",
+    "scripts/single_action_worker.py": "d23bd86913c25f7c64a64b777fc8ace5658ac61bdc4c618d01b43f627f5e70cb"
+  },
+  "private_evidence_sha256": {
+    "artifacts/flights-single-action-once/action-1.json": "1af23d6680cf7dfa233f040fc9131d6f3c1f9ac04750e6d311228e643804e36f",
+    "artifacts/flights-single-action-once/action-2.json": "b3e5472b65d917ec4612955b58ff1a30721e3c41680d27115b2b5a27fddc340b",
+    "artifacts/flights-single-action-once/attempt-started.json": "98f835dd4acfb3ac2cea46b87bacd76f1c45cbe161ae00e9dd8ec9a9ae3aca56",
+    "artifacts/flights-single-action-once/conditions.json": "f332e57758bf195fb4f05447b4182666bdd06a1c8c2c8d6e21b0674a538dad95",
+    "artifacts/flights-single-action-once/console.log": "3a81fc73f2ae17b23944c7ffde686ab69d0c621aa1ccaf72328ad722f01dd1f0",
+    "artifacts/flights-single-action-once/events.jsonl": "af404fa44b09a89f2424010150fd8573663f07d33ff0f1131e4f84d9ab00f35a",
+    "artifacts/flights-single-action-once/launch.py": "a980ee2ae7a2017184765da68aa36c2dec72540be2c2aa80f6ad7ca4f9dd2155",
+    "artifacts/flights-single-action-once/prepared.json": "78dd1e875b6ce752ff3dcd091cea958203cc82a4b6dde5366d37888e55020085",
+    "artifacts/flights-single-action-once/ready.json": "3c35008ee7db3ab0cd5f19e87404ddf5c8c67619196e1acf932ce0154f9b93a6",
+    "artifacts/flights-single-action-once/request.json": "1bd5f142cf29edb911e0ebfd8925bf60596a21e5791ea20d299fe8b27b410409",
+    "artifacts/flights-single-action-once/result-1.json": "e3e159142a42881b7ffec41c13f4bbb2cc25f662234147671fb69d09faf7e43c",
+    "artifacts/flights-single-action-once/stopped.json": "26c8d50340510513ee4ca16f5a05a78511c3e1d05049c136ce6fe01567147b50",
+    "artifacts/flights-single-action-once/summary.json": "3a81fc73f2ae17b23944c7ffde686ab69d0c621aa1ccaf72328ad722f01dd1f0",
+    "artifacts/flights-single-action-once/worker-request.json": "902c5d667cd4352a2cf2c5e53c936b7a1abcbf505e7f595a8f368bf18f07fc19"
+  },
+  "replay": {
+    "path": "artifacts/replay/flights-single-action-once.jsonl",
+    "configured": true,
+    "exists": false,
+    "note": "No inference calls occurred, so no model decision records were produced."
+  },
+  "delivery_checks": {
+    "ruff": "PASS",
+    "pytest": "PASS",
+    "tests_passed": 184,
+    "pytest_seconds": 4.52,
+    "new_tests": 0
+  }
+}
