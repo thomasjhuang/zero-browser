@@ -291,3 +291,14 @@ Rerun command uses `--output results/paired-browser-five-pairs-v2.json`, with th
 The model-free transport preflight passed: an explicit MCP environment reached the isolated browser and observed the empty Wikipedia field, with zero mutations. Evidence: results/paired-transport-preflight.json. Private preflight source SHA256: 2284c5acaab506a28ca7d53a645859f968d8369afe4b11acf8301f4f4fb5ced2.
 Normal MCP shutdown is tolerated only for ESRCH plus a failed signal-zero existence check. Permission and other sampling errors still stop the series.
 New frozen runner hash: 848807b1c1a5ec4fa394457c098685c89c066ba773e1632c6fcbe5b59d674007. No other measured source changed after series 1.
+
+
+Series 2 at c769e6b stopped through the supervisor cancellation handler after the context coordinator requested a review hold. Evidence remains unchanged in results/paired-browser-five-pairs-v2.json.
+Two direct attempts failed on StalePage before browser mutation. The direct wrapper marked that pre-execution rejection uncertain; the local worker could observe again internally. This recovery difference invalidates a fair completion-rate comparison. Two delegated attempts passed. The fifth attempt was interrupted during the stop and recorded an operation-permitted error; its exact cause is not yet established. Five later trials are explicitly not run.
+The accounting records reconcile for completed turns. Runtime source hashes remained unchanged through each attempted trial. No efficiency claim follows from this incomplete unequal-recovery series.
+The task is holding runtime source unchanged while the comparison reviewer checks the recovery contract. The run slot is idle.
+
+
+The independent comparison review confirmed the StalePage asymmetry. The direct wrapper now removes its pending mutation only for a known rejection before input, records that rejection, and permits a fresh observation and decision. Both paths stop after three rejected decisions. Other exceptions remain uncertain and cannot be replayed.
+A small deterministic regression test distinguishes StalePage from a connection failure after possible dispatch. A process check found no owned coordinator, MCP, or isolated-browser processes left after cancellation.
+The runner now accepts `--stop-file artifacts/paired-series-v3.stop` to stop after an active trial without interrupting it. The next frozen series uses `results/paired-browser-five-pairs-v3.json` and the same ten-trial order. Prior series remain unchanged and invalid for an efficiency comparison.

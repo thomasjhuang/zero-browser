@@ -1,0 +1,926 @@
+{
+  "goal": "On the starting Wikipedia page, enter Ada Lovelace in Search Wikipedia. Stop before submission.",
+  "order": [
+    "direct",
+    "delegated",
+    "delegated",
+    "direct",
+    "direct",
+    "delegated",
+    "delegated",
+    "direct",
+    "direct",
+    "delegated"
+  ],
+  "model": "gpt-6-astra",
+  "reasoning_effort": "high",
+  "instructions_sha256": "8f6cca006ae37fcfa104edbeed50d4f8beec99cfafa17da60f457039a42ce69a",
+  "source_sha256": {
+    "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+    "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+    "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+    "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+    "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+    "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+    "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+    "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+    "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+    "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+    "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+    "scripts/paired_browser_benchmark.py": "848807b1c1a5ec4fa394457c098685c89c066ba773e1632c6fcbe5b59d674007",
+    "scripts/paired_browser_server.py": "74878b941b7f90477c03e50cd00e5c24a7afe83ed4bcf85abecbb82df436194a",
+    "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+    "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+    "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+    "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+    "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+    "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+    "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+    "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+    "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+    "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+    "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+    "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+    "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+    "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+    "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+    "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+    "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+    "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+    "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+    "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+    "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+    "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+    "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+  },
+  "revision": "c769e6b240fcf0e161a139f9d460ef2ac64fea37",
+  "scope": "Direct Codex versus local delegation over a shared observed-action MCP interface. Not the desktop native CUA tool stack. One real-site field task.",
+  "conditions": {
+    "browser": "fresh isolated Chrome, 1120x780, visible",
+    "coordinator": "fresh session, identical tools and instructions; mode differs",
+    "local_model": "fresh process per trial; no cache or weight download",
+    "tool_documentation": "Same schemas in both arms disclose both path behaviors",
+    "prompt_cache": "Provider caching is not controlled; report actual cached-input counters",
+    "timer": "Cold browser startup and coordinator dispatch through final verdict receipt",
+    "memory": "Sampled MCP browser/model process; excludes Chrome and coordinator client"
+  },
+  "runs": [
+    {
+      "run": "1-direct",
+      "method": "direct",
+      "error": null,
+      "exit_code": 0,
+      "passed": false,
+      "assessment": {
+        "passed": false,
+        "checks": {
+          "unique_field": true,
+          "exact_value": false,
+          "url_unchanged": true,
+          "execution_resolved": false
+        },
+        "observed": {
+          "value": "",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "url": "https://www.wikipedia.org/"
+      },
+      "verdict": "Not completed: the page changed before entry. Independent checks confirmed the search field is empty and the URL is unchanged. No retry or submission.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1646838479318375,
+      "verdict_received_monotonic_ns": 1646855518642916,
+      "pre_coordinator_startup_ms": 225.93075,
+      "coordinator_dispatch_to_verdict_ms": 16813.393791,
+      "goal_dispatch_to_verdict_ms": 17039.324541,
+      "cleanup_ms": 1400.752625,
+      "runtime": {
+        "peak_worker_bytes": 63324664,
+        "memory_samples": 172,
+        "worker_stopped_ms": 17843
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 78620,
+          "cached_input_tokens": 60288,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 225,
+          "reasoning_output_tokens": 75
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_0c56935ccd7f68c4016acc01a43e78819b9cb518e4072cb6dd",
+          "turn_id": "01a12ce6-63c7-7551-8495-b1f185c7dad6",
+          "timestamp": "2026-10-11T21:37:45.022Z",
+          "usage": {
+            "input_tokens": 12865,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 113,
+            "reasoning_output_tokens": 75,
+            "total_tokens": 12978
+          }
+        },
+        {
+          "response_id": "resp_0c56935ccd7f68c4016acc01a9598c819baa4f6018e4c1c2cc",
+          "turn_id": "01a12ce6-63c7-7551-8495-b1f185c7dad6",
+          "timestamp": "2026-10-11T21:37:47.563Z",
+          "usage": {
+            "input_tokens": 13365,
+            "cached_input_tokens": 12672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13387
+          }
+        },
+        {
+          "response_id": "resp_0c56935ccd7f68c4016acc01ac458c819b817f7ce974532019",
+          "turn_id": "01a12ce6-63c7-7551-8495-b1f185c7dad6",
+          "timestamp": "2026-10-11T21:37:50.816Z",
+          "usage": {
+            "input_tokens": 17347,
+            "cached_input_tokens": 13184,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 35,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17382
+          }
+        },
+        {
+          "response_id": "resp_0c56935ccd7f68c4016acc01af2014819baf29d0970be466f7",
+          "turn_id": "01a12ce6-63c7-7551-8495-b1f185c7dad6",
+          "timestamp": "2026-10-11T21:37:52.842Z",
+          "usage": {
+            "input_tokens": 17436,
+            "cached_input_tokens": 17152,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17459
+          }
+        },
+        {
+          "response_id": "resp_0c56935ccd7f68c4016acc01b12958819b8516ec1d559ae170",
+          "turn_id": "01a12ce6-63c7-7551-8495-b1f185c7dad6",
+          "timestamp": "2026-10-11T21:37:55.128Z",
+          "usage": {
+            "input_tokens": 17607,
+            "cached_input_tokens": 17280,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 32,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17639
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 78620,
+        "cached_input_tokens": 60288,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 225,
+        "reasoning_output_tokens": 75,
+        "total_tokens": 78845
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [],
+      "tools": [
+        "observe",
+        "act",
+        "assess"
+      ],
+      "private_events_sha256": "59a79e6f4011e274cb8d8596d08955586b86083d0f64c476c4889cdeda915260",
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "848807b1c1a5ec4fa394457c098685c89c066ba773e1632c6fcbe5b59d674007",
+        "scripts/paired_browser_server.py": "74878b941b7f90477c03e50cd00e5c24a7afe83ed4bcf85abecbb82df436194a",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    },
+    {
+      "run": "2-delegated",
+      "method": "delegated",
+      "error": null,
+      "exit_code": 0,
+      "passed": true,
+      "assessment": {
+        "passed": true,
+        "checks": {
+          "unique_field": true,
+          "exact_value": true,
+          "url_unchanged": true,
+          "execution_resolved": true
+        },
+        "observed": {
+          "value": "Ada Lovelace",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "url": "https://www.wikipedia.org/"
+      },
+      "verdict": "Verified: \u201cSearch Wikipedia\u201d contains \u201cAda Lovelace.\u201d The URL is unchanged. No search was submitted.\n\nASD-STE100 guidance was unavailable.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1646856926543208,
+      "verdict_received_monotonic_ns": 1646877469210541,
+      "pre_coordinator_startup_ms": 216.588458,
+      "coordinator_dispatch_to_verdict_ms": 20326.078875,
+      "goal_dispatch_to_verdict_ms": 20542.667333,
+      "cleanup_ms": 1353.939584,
+      "runtime": {
+        "peak_worker_bytes": 3416738552,
+        "memory_samples": 202,
+        "worker_stopped_ms": 21175
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 78520,
+          "cached_input_tokens": 63488,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 147,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_0ee08f40b5f91bea016acc01b695a087d0a8e419f8f86423c8",
+          "turn_id": "01a12ce6-aba6-7370-b68e-a407bada9991",
+          "timestamp": "2026-10-11T21:38:00.710Z",
+          "usage": {
+            "input_tokens": 12863,
+            "cached_input_tokens": 3456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 32,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 12895
+          }
+        },
+        {
+          "response_id": "resp_0ee08f40b5f91bea016acc01b9052087d0861e58ca3c7cc72d",
+          "turn_id": "01a12ce6-aba6-7370-b68e-a407bada9991",
+          "timestamp": "2026-10-11T21:38:02.418Z",
+          "usage": {
+            "input_tokens": 13282,
+            "cached_input_tokens": 12672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13304
+          }
+        },
+        {
+          "response_id": "resp_0ee08f40b5f91bea016acc01bb1af487d08b90d6264703b2a8",
+          "turn_id": "01a12ce6-aba6-7370-b68e-a407bada9991",
+          "timestamp": "2026-10-11T21:38:05.058Z",
+          "usage": {
+            "input_tokens": 17266,
+            "cached_input_tokens": 13056,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 34,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17300
+          }
+        },
+        {
+          "response_id": "resp_0ee08f40b5f91bea016acc01c40d8887d0972e7135cd4a5b9d",
+          "turn_id": "01a12ce6-aba6-7370-b68e-a407bada9991",
+          "timestamp": "2026-10-11T21:38:13.658Z",
+          "usage": {
+            "input_tokens": 17467,
+            "cached_input_tokens": 17024,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17490
+          }
+        },
+        {
+          "response_id": "resp_0ee08f40b5f91bea016acc01c6a5a487d09dbbeb14054b3b49",
+          "turn_id": "01a12ce6-aba6-7370-b68e-a407bada9991",
+          "timestamp": "2026-10-11T21:38:17.063Z",
+          "usage": {
+            "input_tokens": 17642,
+            "cached_input_tokens": 17280,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 36,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17678
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 78520,
+        "cached_input_tokens": 63488,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 147,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 78667
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 12393,
+          "monotonic_ns": 1646870275450666,
+          "wrapper_ms": 4857.881958,
+          "timing": {
+            "imports_ms": 852.36,
+            "model_acquisition_ms": 1626.149,
+            "prompt_preparation_ms": 10.847,
+            "generation_ms": 2367,
+            "structured_call_total_ms": 4857.73,
+            "result_handling_ms": 1.374
+          },
+          "usage": {
+            "prompt_tokens": 1074,
+            "completion_tokens": 28
+          }
+        },
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 14307,
+          "monotonic_ns": 1646872189280291,
+          "wrapper_ms": 1885.509041,
+          "timing": {
+            "imports_ms": 0.038,
+            "model_acquisition_ms": 0.003,
+            "prompt_preparation_ms": 1.374,
+            "generation_ms": 1883,
+            "structured_call_total_ms": 1885.399,
+            "result_handling_ms": 0.984
+          },
+          "usage": {
+            "prompt_tokens": 1008,
+            "completion_tokens": 26
+          }
+        }
+      ],
+      "tools": [
+        "observe",
+        "delegate",
+        "assess"
+      ],
+      "private_events_sha256": "5cc196ffd729a30a75b04e08b0e852cc045c5eb899e98fe57bf23f51dddd4154",
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "848807b1c1a5ec4fa394457c098685c89c066ba773e1632c6fcbe5b59d674007",
+        "scripts/paired_browser_server.py": "74878b941b7f90477c03e50cd00e5c24a7afe83ed4bcf85abecbb82df436194a",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    },
+    {
+      "run": "3-delegated",
+      "method": "delegated",
+      "error": null,
+      "exit_code": 0,
+      "passed": true,
+      "assessment": {
+        "passed": true,
+        "checks": {
+          "unique_field": true,
+          "exact_value": true,
+          "url_unchanged": true,
+          "execution_resolved": true
+        },
+        "observed": {
+          "value": "Ada Lovelace",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "url": "https://www.wikipedia.org/"
+      },
+      "verdict": "Verified: \u201cSearch Wikipedia\u201d contains \u201cAda Lovelace\u201d. The URL is unchanged. No submission was made.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1646878837625625,
+      "verdict_received_monotonic_ns": 1646897472690916,
+      "pre_coordinator_startup_ms": 402.810875,
+      "coordinator_dispatch_to_verdict_ms": 18232.254416,
+      "goal_dispatch_to_verdict_ms": 18635.065291,
+      "cleanup_ms": 1799.606334,
+      "runtime": {
+        "peak_worker_bytes": 3416066808,
+        "memory_samples": 188,
+        "worker_stopped_ms": 19540
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 77251,
+          "cached_input_tokens": 42496,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 175,
+          "reasoning_output_tokens": 41
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_0ca877d14c0df85f016acc01cce5d4819bb4931c3e84cfd7e6",
+          "turn_id": "01a12ce7-0307-7e80-a0ef-ee1659557e39",
+          "timestamp": "2026-10-11T21:38:24.197Z",
+          "usage": {
+            "input_tokens": 12863,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 69,
+            "reasoning_output_tokens": 41,
+            "total_tokens": 12932
+          }
+        },
+        {
+          "response_id": "resp_0ca877d14c0df85f016acc01d08980819b9c89f61e478ddca9",
+          "turn_id": "01a12ce7-0307-7e80-a0ef-ee1659557e39",
+          "timestamp": "2026-10-11T21:38:25.820Z",
+          "usage": {
+            "input_tokens": 13318,
+            "cached_input_tokens": 12672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13340
+          }
+        },
+        {
+          "response_id": "resp_0ca877d14c0df85f016acc01d2c7d0819bb7b112659d686c7c",
+          "turn_id": "01a12ce7-0307-7e80-a0ef-ee1659557e39",
+          "timestamp": "2026-10-11T21:38:29.143Z",
+          "usage": {
+            "input_tokens": 16831,
+            "cached_input_tokens": 13184,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 34,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 16865
+          }
+        },
+        {
+          "response_id": "resp_0ca877d14c0df85f016acc01d96274819b8636b810998b590a",
+          "turn_id": "01a12ce7-0307-7e80-a0ef-ee1659557e39",
+          "timestamp": "2026-10-11T21:38:34.796Z",
+          "usage": {
+            "input_tokens": 17032,
+            "cached_input_tokens": 16640,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17055
+          }
+        },
+        {
+          "response_id": "resp_0ca877d14c0df85f016acc01db3730819b9df991bcb289947d",
+          "turn_id": "01a12ce7-0307-7e80-a0ef-ee1659557e39",
+          "timestamp": "2026-10-11T21:38:37.074Z",
+          "usage": {
+            "input_tokens": 17207,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 27,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17234
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 77251,
+        "cached_input_tokens": 42496,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 175,
+        "reasoning_output_tokens": 41,
+        "total_tokens": 77426
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [
+        {
+          "event": "model_call_finished",
+          "elapsed_ms": 13252,
+          "monotonic_ns": 1646893529646375,
+          "wrapper_ms": 3980.525583,
+          "timing": {
+            "imports_ms": 823.577,
+            "model_acquisition_ms": 920.439,
+            "prompt_preparation_ms": 9.674,
+            "generation_ms": 2226,
+            "structured_call_total_ms": 3980.415,
+            "result_handling_ms": 0.725
+          },
+          "usage": {
+            "prompt_tokens": 1008,
+            "completion_tokens": 26
+          }
+        }
+      ],
+      "tools": [
+        "observe",
+        "delegate",
+        "assess"
+      ],
+      "private_events_sha256": "d2a4f8a48cf65d1eac629a3e95cd969bbda176a75c29d7c1fb44f0ed5ae90e30",
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "848807b1c1a5ec4fa394457c098685c89c066ba773e1632c6fcbe5b59d674007",
+        "scripts/paired_browser_server.py": "74878b941b7f90477c03e50cd00e5c24a7afe83ed4bcf85abecbb82df436194a",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    },
+    {
+      "run": "4-direct",
+      "method": "direct",
+      "error": null,
+      "exit_code": 0,
+      "passed": false,
+      "assessment": {
+        "passed": false,
+        "checks": {
+          "unique_field": true,
+          "exact_value": false,
+          "url_unchanged": true,
+          "execution_resolved": false
+        },
+        "observed": {
+          "value": "",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "url": "https://www.wikipedia.org/"
+      },
+      "verdict": "Not completed: the page changed before entry. Verification found the search field empty and URL unchanged. Nothing was submitted; no retry was made.",
+      "initial_page": {
+        "url": "https://www.wikipedia.org/",
+        "fields": [
+          {
+            "label": "Search Wikipedia",
+            "value": "",
+            "kind": "fill"
+          }
+        ]
+      },
+      "goal_dispatch_monotonic_ns": 1646899282596500,
+      "verdict_received_monotonic_ns": 1646914171401250,
+      "pre_coordinator_startup_ms": 228.325041,
+      "coordinator_dispatch_to_verdict_ms": 14660.479709,
+      "goal_dispatch_to_verdict_ms": 14888.80475,
+      "cleanup_ms": 1400.156958,
+      "runtime": {
+        "peak_worker_bytes": 62702096,
+        "memory_samples": 150,
+        "worker_stopped_ms": 15636
+      },
+      "coordinator_usage": [
+        {
+          "input_tokens": 78307,
+          "cached_input_tokens": 63488,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 137,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "coordinator_requests": [
+        {
+          "response_id": "resp_0b0d90ddc95e7e82016acc01e0d2548199b0a8d33b0b7446d6",
+          "turn_id": "01a12ce7-51a4-7eb0-80cb-d66e2b2c1d77",
+          "timestamp": "2026-10-11T21:38:43.077Z",
+          "usage": {
+            "input_tokens": 12867,
+            "cached_input_tokens": 3456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 25,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 12892
+          }
+        },
+        {
+          "response_id": "resp_0b0d90ddc95e7e82016acc01e36234819989ae6b9a8ebae8c3",
+          "turn_id": "01a12ce7-51a4-7eb0-80cb-d66e2b2c1d77",
+          "timestamp": "2026-10-11T21:38:44.810Z",
+          "usage": {
+            "input_tokens": 13278,
+            "cached_input_tokens": 12672,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 13300
+          }
+        },
+        {
+          "response_id": "resp_0b0d90ddc95e7e82016acc01e5822c81998525c1912e41758a",
+          "turn_id": "01a12ce7-51a4-7eb0-80cb-d66e2b2c1d77",
+          "timestamp": "2026-10-11T21:38:49.951Z",
+          "usage": {
+            "input_tokens": 17271,
+            "cached_input_tokens": 13056,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 35,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17306
+          }
+        },
+        {
+          "response_id": "resp_0b0d90ddc95e7e82016acc01ea4b7481999813fd144cef4274",
+          "turn_id": "01a12ce7-51a4-7eb0-80cb-d66e2b2c1d77",
+          "timestamp": "2026-10-11T21:38:51.870Z",
+          "usage": {
+            "input_tokens": 17360,
+            "cached_input_tokens": 17152,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17383
+          }
+        },
+        {
+          "response_id": "resp_0b0d90ddc95e7e82016acc01ec3a54819996b60e6b0799cdca",
+          "turn_id": "01a12ce7-51a4-7eb0-80cb-d66e2b2c1d77",
+          "timestamp": "2026-10-11T21:38:53.817Z",
+          "usage": {
+            "input_tokens": 17531,
+            "cached_input_tokens": 17152,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 32,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 17563
+          }
+        }
+      ],
+      "coordinator_usage_totals": {
+        "input_tokens": 78307,
+        "cached_input_tokens": 63488,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 137,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 78444
+      },
+      "usage_reconciliation": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      },
+      "local_calls": [],
+      "tools": [
+        "observe",
+        "act",
+        "assess"
+      ],
+      "private_events_sha256": "b1907ca4a94cd9c8ca7ce1df1404dca4689df581a190ec2967dcaedb2f2e6638",
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "848807b1c1a5ec4fa394457c098685c89c066ba773e1632c6fcbe5b59d674007",
+        "scripts/paired_browser_server.py": "74878b941b7f90477c03e50cd00e5c24a7afe83ed4bcf85abecbb82df436194a",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    },
+    {
+      "run": "5-direct",
+      "method": "direct",
+      "error": "[Errno 1] Operation not permitted",
+      "exit_code": null,
+      "passed": false,
+      "assessment": null,
+      "verdict": null,
+      "initial_page": null,
+      "goal_dispatch_monotonic_ns": 1646915578935708,
+      "verdict_received_monotonic_ns": 1646919277388291,
+      "pre_coordinator_startup_ms": 227.041083,
+      "coordinator_dispatch_to_verdict_ms": 3471.4115,
+      "goal_dispatch_to_verdict_ms": 3698.452583,
+      "cleanup_ms": null,
+      "runtime": {
+        "peak_worker_bytes": 62652920,
+        "memory_samples": 32
+      },
+      "coordinator_usage": [],
+      "coordinator_requests": [],
+      "coordinator_usage_totals": null,
+      "usage_reconciliation": {},
+      "local_calls": [],
+      "tools": [],
+      "private_events_sha256": "34310e04e76f38b60ccbe38ed2e067a2e7926ef33fb402cc8c0905cfe350a941",
+      "end_source_sha256": {
+        "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+        "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+        "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+        "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+        "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+        "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+        "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+        "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+        "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+        "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+        "scripts/milestone_verify.py": "61bff5d500613b474ac98acb1dc813dae6ef988f5cc03865d5001b69aeb8f6e7",
+        "scripts/paired_browser_benchmark.py": "848807b1c1a5ec4fa394457c098685c89c066ba773e1632c6fcbe5b59d674007",
+        "scripts/paired_browser_server.py": "74878b941b7f90477c03e50cd00e5c24a7afe83ed4bcf85abecbb82df436194a",
+        "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+        "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+        "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+        "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+        "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+        "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+        "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+        "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+        "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+        "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+        "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+        "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+        "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+        "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+        "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+        "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+        "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+        "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+        "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+        "jev_ultrafast/structured_policy.py": "0e328645643e9c3476098c86922c2805fcda45568f83a5ff3edb451b76f8b8b2",
+        "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+        "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+        "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+      },
+      "source_unchanged": true
+    }
+  ],
+  "not_run_after_safety_stop": [
+    "6-delegated",
+    "7-delegated",
+    "8-direct",
+    "9-direct",
+    "10-delegated"
+  ]
+}
