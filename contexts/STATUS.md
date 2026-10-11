@@ -1,42 +1,29 @@
 # Project status
 
-> **Read this banner first. 13:45 PT, set by Thomas via Claude.**
-> One agent works at a time. That agent is the task 16 chat. Everything below the banner is reference.
+> **Current coordination: October 11, 2026, authorized by Thomas in the context chat.**
+> This agreement replaces the earlier single-agent banner and conflicting historical file reservations.
+> Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
+> No two agents run local inference or browser experiments at the same time.
 >
-> **Cut as of 13:45.** 18 (MCP), 19 (context roadmap), 20, 21, 22. Do not resume them. Do not create new
-> task numbers. New work goes into the Result section of 16 or 13.
+> **Current run state: RESERVED / IDLE, Codex task 16.** Codex reports no inference running. Both agents acknowledged the ownership agreement.
+> Start the next run only after the context coordinator sends the publication notice.
+> The next owner is Codex, **Improve zero-browser benchmarking**. Claude must not start browser runs, replay, cache probes, or model loads.
 >
-> **Task 16's next steps, one change per rerun of `scripts/milestone.py --task local_search`:**
-> 1. Finish the current crowded-page run. Commit the milestone code and the duplicate-target removal with
->    its evidence. Nothing new starts before that commit is pushed.
-> 2. Joint menu. When the operation stage's candidates plus every target for every operation total 26 or
->    fewer, skip the two-stage split and score one flat menu where each candidate is a concrete action,
->    for example `TYPE_TEXT [1] Where from? (empty)`, `SELECT [3] Trip type: Round trip -> One way`,
->    `CLICK [5] Search`, `DONE`. Keep the two-stage path for larger pages. This targets the observed
->    failures (clicks a field instead of typing, premature DONE, reverses a dropdown) and makes small-page
->    decisions one forward pass. Rerun. Keep the failed records.
-> 3. Prefix KV cache for the two-stage path. All menus within one decision share the prefix up to the
->    candidate list. Prefill once, score suffixes from `copy.deepcopy` of the cache. Measured on this
->    machine, a 60-token suffix on a cached 1000-token prefix is 117ms versus ~1600ms uncached. Verify
->    identical picks against `scripts/replay.py --variant plain` on the same records before trusting it.
->    Rerun the crowded page. Target under 2s per decision there.
-> 4. DONE confirmation. DONE stops the run only when it wins on two consecutive decisions, the second
->    taken after a fresh observation. Generic, no site knowledge. Rerun.
+> **Current scope:** task 16, with supporting notes in task 13. Tasks 18–22 remain cut from the active plan.
+> This context update does not reopen task 19. Do not create new task numbers.
 >
-> **Landed 13:58 (Claude):** `snapshot.js` now emits `context` (nearby group text, 80 chars) on every element and
-> `empty`, `required`, `placeholder` on editable fields; `action_space()` passes them through, so the element list
-> in the observation already shows them. **Task 16, one line:** add `context`, `empty`, `required` to the
-> target-stage candidate description in `local_policy.py` (it currently picks only label/value/role/checked/
-> selected/expanded) so stage 2 sees them too. Do it with the joint-menu change.
+> **Next steps for Codex:**
+> 1. Publish the existing joint-menu, cache, and DONE-confirmation implementation with its existing evidence.
+> 2. Integrate Claude's observation metadata into the candidate descriptions in `local_policy.py`.
+>    Include `context`, `empty`, `required`, and `placeholder`. Preserve the observer changes in `510a2bf` and `9f5b613`.
+>    Preserve the original experiment order: joint menu for at most 26 candidates, prefix cache, then fresh-observation DONE confirmation.
+>    Existing runs remain historical evidence. Do not repeat completed experiments without a new reason.
+> 3. Run one fixed `local_search` experiment. Record its independent outcome and first failed step in task 16.
+>    Keep earlier results separate: those runs used the observation code before Claude's changes.
+> 4. Require three consecutive local successes, then the layout variations, before live Flights.
 >
-> Then three consecutive local_search passes, then the two layout variations, then live Flights.
-> Record every rerun in `contexts/16-flight-milestone.md` Result with the first failed step and cause.
-> Set `ZB_RECORD_PATH=artifacts/replay/<run>.jsonl` on runs so prompts can be replayed offline.
->
-> **Test scope:** keep existing tests. Defer broad unit-test expansion until the flight demonstration works.
-> Add tests only for critical safeguards or repeatable bugs. Keep required delivery checks and prioritize actual browser outcomes.
-> See [the working rules](AGENT-RULES.md#while-working).
-
+> **Test scope:** preserve existing tests and required delivery checks. Defer broad unit-test expansion until the flight demonstration works.
+> Add only small, deterministic tests for critical safeguards or repeatable bugs.
 
 Reconciled October 11, 2026. This file owns current state and reservations.
 [README.md](README.md) gives the engineering sequence. Task files preserve implementation history.
@@ -56,24 +43,27 @@ The final cancellation pilot stopped during inference. The user reported normal 
 
 - **19:** task state and the engineering sequence are reconciled. The isolated documentation candidate passed lint and all 118 tests. Coordination commit `86f94bc` published that context work.
 
-## Next, in order
+## Current ownership
 
-| Task | State | Entry requirement |
-| --- | --- | --- |
-| [20 Multi-step MCP outcomes](20-mcp-task-outcomes.md) | Planned, unassigned | Task 16 demonstrates repeated local completion and the MCP owner hands off files |
-| [21 Delegation comparison](21-delegation-comparison.md) | Planned, unassigned | Task 20 passes and a working native browser baseline is available |
-| [22 Model reuse](22-model-reuse.md) | Deferred, unassigned | Measurements establish startup overhead and acceptable task reliability |
-| [08 Evidence and README](08-hygiene-and-readme.md) | Deferred | Each public claim has a result file |
+| Owner | Reserved files and actions |
+| --- | --- |
+| Codex: **Improve zero-browser benchmarking**, task 16 | `jev_ultrafast/agent.py`, `local_policy.py`, `local_model.py`, `questions.py`, `snapshot.js`, `model.py`, `scripts/replay.py`, milestone scripts and fixtures, related tests, milestone evidence, root `README.md`, and task 16 |
+| Claude: **Hackathon project tasks**, task 13 support | Handed `snapshot.js`, `model.py`, replay, and the recording hook to Codex at `9f5b613`. Read-only review and task 13 notes only. No runtime edits or browser/model runs without a new handoff |
+| Codex: **Assess zero-browser’s thesis**, context coordinator | `contexts/AGENT-RULES.md`, `contexts/STATUS.md`, and `contexts/README.md` during this update. No inference or browser experiments |
 
-## Reservations and retired work
+After this update, task 16 becomes the sole writer of `STATUS.md` for ownership and run-state changes.
+Other agents request a change through task 16 instead of editing the shared status file concurrently.
+A runtime handoff must name the files, recipient, source commit, and run state.
+Existing task numbers identify work. They do not override this ownership table.
 
-- **13:** preserve the existing model owner's reservation and recording hook. Replay work landed. Further latency work needs coordination with task 16.
-- **12:** task 16 supersedes its separate benchmark plan. Its earlier file reservation remains until the owner releases it. No second benchmark runner is planned.
+## Deferred and historical work
+
+- **18–22:** no active work. The existing MCP connection and context history remain available.
+- **13:** supports task 16 after an explicit handoff. Its old broad model reservation no longer grants concurrent edits.
+- **12:** its separate benchmark plan is superseded. Do not start a second runner.
 - **03, 05, 06, 07:** superseded by task 16. **04:** absorbed into task 13.
-- **09:** deferred synthetic filter miss. **10:** deferred scaffolding removal. Neither is on the current completion path.
-- **00, 01, 02, 11:** implemented. The installer was not dropped. Multi-step reliability belongs to task 16.
-- **17:** instruction changes are committed and present on origin/main. Its old publication note is historical.
-- **18:** connection milestone completed. MCP multi-step work is task 20, not a completed result of task 18.
+- **08, 09, 10:** deferred. Evidence and required README corrections remain part of task 16 delivery.
+- **00, 01, 02, 11:** implemented. **17:** instruction changes are on origin/main.
 
 ## Evidence
 
@@ -98,17 +88,24 @@ The inherited demo retains hosted paths. The local worker must not use them.
 
 ## Coordination and publication
 
-Task 16 owns the active experiment. Task 13 retains its shared model reservation.
-Task 16's recorded exception permits prompt experiments in `local_policy.py`; preserve task 13's recording hook.
-Task 18's retest encountered the single-run lock. Schedule inference rather than bypassing the lock.
-Keep raw records in ignored `artifacts/`. Publish only sanitized evidence in `results/`.
-Do not erase the recorder or decision baseline tools during cleanup.
+Follow the [exclusive run and handoff rules](AGENT-RULES.md#exclusive-runtime-and-benchmark-access).
+The run slot covers CLI goals, MCP goals, milestone runs, replay, cache probes, and browser-only experiments.
+Keep the existing single-run lock. A busy lock means wait. It does not grant permission to use another lock directory.
+The ownership agreement covers entry points that do not acquire the lock themselves.
 
-The task 18 evidence commit `a232d80` and task 16 baseline `9a3e60e` are on origin/main.
-The user authorized publication of the remaining evidence and this test-policy clarification. Active runtime edits remain outside this publication.
-Other chats have unfinished changes in the shared checkout. Preserve them and do not stage them with this cleanup.
+During a measured run, freeze the runtime files, prompts, fixtures, and environment configuration.
+Record the owner, command, source commit, dirty-file hashes, evidence path, and start/end state in task 16.
+Keep raw records in ignored `artifacts/`. Publish only sanitized evidence in `results/`.
+Preserve the recorder, dispatch contract, bounded stops, and the rule against mutation retries.
+
+Stage only owned files. Do not include another agent's work in a commit.
+Before each commit, run the required lint and test commands. Before each push, pull with rebase on main.
+If another agent has uncommitted edits, preserve them. Use an isolated publication checkout instead of stashing their work.
+Do not alter the shared Git index while another owner prepares a commit.
 
 ## Log
+
+- October 11: Thomas requested coordination between Codex and Claude. Codex acknowledged the hold and reported no inference running. Claude acknowledged the hold and handed its observer and replay files to Codex. The context update assigns one runtime owner.
 
 - October 11, task 16: implemented the requested joint menu, scoped cache reuse, and DONE confirmation. The local gate failed. Evidence: `results/milestone-followup.json` and `results/milestone-cache-parity.json`.
 

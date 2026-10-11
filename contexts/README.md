@@ -10,18 +10,14 @@ Test whether a frontier coordinator can delegate useful browser work to a local 
 Travel search is the demonstration. Speed, cost savings, and general reliability remain unproven.
 The browser worker keeps inference local. The Codex coordinator is a separate component.
 
-## Engineering sequence
+## Active engineering work
 
-| Order | Task | Completion requirement |
-| --- | --- | --- |
-| 1 | [16 Reliable local and flight search](16-flight-milestone.md) | Complete the fixed local task repeatedly, then test variations before live flights |
-| 2 | [20 Multi-step MCP outcomes](20-mcp-task-outcomes.md) | Codex delegates the same task and receives independent evidence for every requirement |
-| 3 | [21 Delegation comparison](21-delegation-comparison.md) | Compare direct Codex with local delegation on identical tasks, including failures and human attention |
-| 4 | [22 Model reuse](22-model-reuse.md) | Proceed only after startup measurements identify a useful improvement |
+[Task 16](16-flight-milestone.md) is the only active engineering milestone.
+Complete the fixed local task repeatedly. Test the layout variations before live flight search.
+Task 13 supplies observation support through an explicit handoff.
 
-Task 13 retains its model and prompt reservation. Its latency work supports this sequence after coordination with task 16.
-Do not run a second benchmark implementation from task 12. Task 16 supplies the current runner.
-Task 08 updates public claims after measured results. Tasks 09 and 10 remain deferred.
+Tasks 18–22 remain outside the active plan. Their files preserve earlier proposals and results.
+Do not restart MCP work, a delegation comparison, model reuse, or a second benchmark implementation.
 Concurrent inference and a swarm remain outside the current milestone.
 
 ## Immediate task 16 work
@@ -33,17 +29,11 @@ Keep one change per experiment. Completion quality precedes cache optimization.
 
 ## Ownership
 
-| Reservation | Files and boundary |
-| --- | --- |
-| 16, milestone chat | `scripts/milestone*.py`, `fixtures/milestone*`, milestone evidence, and its recorded prompt experiments |
-| 13, existing model owner | `local_policy.py`, `local_model.py`, `questions.py`, replay and scoring records |
-| 12, legacy reservation | `scripts/run_cli.py` and previously assigned benchmark paths. Retain until the owner releases them |
-| 18, MCP chat | `scripts/mcp_server.py`, `scripts/codex_mcp_smoke.py`, MCP dependencies and evidence |
-| 19, thesis chat | Context reconciliation only. Preserve other owners' task-file edits |
-| 20–22 | Unassigned. Obtain the affected owner's handoff before edits |
-
-Preserve the executor, observer, dispatch contract, and recorder. Coordinate any necessary change before editing shared runtime files.
-One inference job runs at a time. A busy lock is not a benchmark result.
+Use the [current ownership table](STATUS.md#current-ownership). STATUS is the only source for current file reservations and run access.
+Follow the [exclusive run and handoff rules](AGENT-RULES.md#exclusive-runtime-and-benchmark-access).
+Codex task 16 owns runtime integration and benchmark execution. Claude's observer changes require a handoff before further edits.
+The context coordinator owns shared context files only during this reconciliation.
+Do not infer ownership from historical task descriptions.
 
 ## Experiment and time limits
 
@@ -52,6 +42,6 @@ Record the first failed step. Change one cause at a time. Reset consecutive succ
 Preserve failures and interrupted runs. Follow [experimental validation](../AGENTS.md#experimental-validation).
 
 Retain the October 11 hackathon cut lines: assess incomplete Qwen results at 14:30 PT, stop new features then, and finish by 16:00 PT.
-If completion still fails at the cut, report the measured failure. Later stages remain planned and do not extend the timebox.
+If completion still fails at the cut, report the measured failure. Deferred work does not extend the timebox.
 Plans grant no new experiment, publication, provider, or spending authority.
-Keep the existing publication hold in STATUS until resolved under the delivery procedure.
+Follow the current run state and publication coordination in STATUS.
