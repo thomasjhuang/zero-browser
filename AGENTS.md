@@ -1,9 +1,12 @@
 # Jev Ultrafast
 
+Read `contexts/AGENT-RULES.md` first, then `contexts/STATUS.md`, before any work. The contexts folder is the
+source of truth for project state and task ownership.
+
 Read README.md before editing. Keep the loop small: page -> indexed elements -> operation + target -> execution.
 
-Keep README.md brief. Use the primary checkout's ignored `contexts/PROJECT.md` for detailed context.
-Use its `contexts/PROGRESS.md` as the shared project progress file.
+Keep README.md brief. Use the shared `contexts/PROJECT.md` for detailed context.
+Use `contexts/PROGRESS.md` as the shared project progress file.
 Read the progress file before project work. Update it with completed work, evidence, and remaining work.
 If the local files are absent, use the code and recorded evidence.
 Treat numbered context files as plans until evidence establishes completion.
@@ -33,6 +36,8 @@ They grant no deployment, live-run, or spending authority.
 
 Before publication, examine the intended files and commit history for secrets and sensitive user information.
 Never publish API keys, credentials, tokens, private traces, or sensitive user information.
-Keep environment files, local context, and project progress ignored.
+Commit non-private instructions, task plans, ownership, and progress under `contexts/`.
+Keep model weights and caches out of Git.
+Keep credentials, environment files, and private traces ignored.
 If sensitive information appears in the publication scope, remove it before publication.
 Stage only the intended files. Preserve unrelated local work.

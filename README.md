@@ -11,3 +11,5 @@ uv run --offline --frozen --extra local python scripts/decision_smoke.py --offli
 
 Browser components come from [Jev Ultrafast](https://github.com/browser-use/jev-ultrafast).
 See `LICENSE.jev-ultrafast` for attribution.
+
+Shared project context and task ownership: [contexts/README.md](contexts/README.md).

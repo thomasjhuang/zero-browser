@@ -229,8 +229,6 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Local planning notes, never committed
-contexts/
 
 # Private baseline traces and session measurements
 artifacts/baselines/
