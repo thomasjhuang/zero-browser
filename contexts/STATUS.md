@@ -5,19 +5,20 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: RESERVED / IDLE, Codex task 16.** Saved-state diagnosis is in progress. No inference is running. Both agents acknowledged the ownership agreement.
+> **Current run state: IDLE, Codex task 16.** Three bounded-worker repeat suites and one live Wikipedia field task ended. No inference or browser experiment is active. Task 16 retains runtime ownership.
 > The coordinator released the hold after publishing `5799c81`. Task 16 owns the next run.
 > The next owner is Codex, **Improve zero-browser benchmarking**. Claude must not start browser runs, replay, cache probes, or model loads.
 >
 > **Current scope:** task 16, with supporting notes in task 13. Tasks 18–22 remain cut from the active plan.
 > This context update does not reopen task 19. Do not create new task numbers.
 >
-> **Current 150-minute session:** October 11, 14:09–16:39 PT, authorized by Thomas. This replaces the earlier hackathon cut times.
-> Diagnose saved failures first. Compare label scoring with bounded structured responses on fixed observations.
-> Choose from evidence, then implement one improvement and minimal persistent task state.
-> Speed optimization is paused. No desktop control, screenshots, new task numbers, or parallel agents.
-> Test complete outcomes and interruption separately. Live Flights still requires the local success gate.
-> Reserve the final 20 minutes for required checks and delivery.
+> **Revised scope, authorized by Thomas:** prove a bounded local browser worker before coordinator or planning work.
+> Keep the shortened proof window, ending about 14:31 PT. Complete required checks before delivery.
+> Accept one outcome, supplied values, allowed actions, stopping conditions, a deadline, and an action budget.
+> Return success/failure/uncertainty with observed evidence, actions, unresolved execution, timing, calls, and memory.
+> Test supplied field entry, dropdown selection, and autocomplete with reordered, distracting, ambiguous, and missing controls.
+> Pause caching, screenshots, desktop control, and long-task planning. The existing Codex chat delegated one live field task; multi-subtask integration remains untested.
+> No new task numbers or parallel agents. A valid direct/delegated comparison and savings remain untested.
 >
 > **Test scope:** preserve existing tests and required delivery checks. Defer broad unit-test expansion until the flight demonstration works.
 > Add only small, deterministic tests for critical safeguards or repeatable bugs.
@@ -34,7 +35,7 @@ The final cancellation pilot stopped during inference. The user reported normal 
 
 ## In progress
 
-- **16, Improve zero-browser benchmarking:** local completion remains unresolved. Cancellation observations passed. Baseline commit `9a3e60e` is on origin/main. The follow-up mechanisms passed delivery tests but failed the local outcome gate. Observation integration is complete. The model still submits incomplete fields. No live flight run started.
+- **16, Improve zero-browser benchmarking:** bounded-worker proof delivered: three identical suites passed 27/27 requested outcomes and 6/6 safe stops. One live Wikipedia field task passed. Full local flight completion remains unresolved; no live flight run started. Next: a valid direct/delegated field comparison, then unseen cases and a deterministic-helper baseline.
 
 ## Completed context work
 
@@ -69,6 +70,7 @@ Existing task numbers identify work. They do not override this ownership table.
 | Local model and adapters | [Shared model](../results/shared-local-model-verification.json), [installation](../results/install-cli-verification.json). Simple completion does not establish general reliability |
 | Runtime safety | [Guard tests](../results/cli-runtime-safety.json). The freeze cause remains unknown |
 | Milestone preparation | [Preparation](../results/milestone-preparation.json). Scripted controls and outcome tests, not model performance |
+| Bounded worker | [Repeat summary](../results/bounded-worker-summary.json), [live assessment](../results/bounded-worker-live-assessment.json). Fixed field contracts only; no general reliability or savings claim |
 | Current local experiments | [Measured runs](../results/milestone-local-runs.json). Failed tasks, interrupted records, source versions, and cancellation observations |
 | MCP connection | [Codex run](../results/codex-mcp.json). Simple navigation only |
 | Smaller models | [4B](../results/replay/quality-4b-plain.json), [1.7B](../results/replay/quality-1.7B-plain.json), [0.6B](../results/replay/quality-0.6B-plain.json). Synthetic cases only |

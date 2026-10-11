@@ -1,0 +1,109 @@
+{
+  "method": "structured",
+  "revision": "1089dac244aa1afe05ee0969c52d9a8e8c81e104",
+  "source_sha256": {
+    "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+    "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+    "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+    "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+    "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+    "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+    "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+    "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+    "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+    "jev_ultrafast/structured_policy.py": "ef30258d89f78dff28937799b0fc7ff3c1f8ee6209177724d2ac8f903838a684",
+    "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+    "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+    "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+    "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+    "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+    "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+    "fixtures/worker_tasks.json": "a1614f504490e90492b1e2d5e6d2643f72a1a0ac0880378d8a6ebd5210a52c46",
+    "fixtures/worker.html": "2cc807af4696892f36530487beed5933693341b6ae01ebc4437ceabe3c70aa20",
+    "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+    "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+  },
+  "manifest": {
+    "cases": [
+      {
+        "name": "supplied-request",
+        "task": {
+          "outcome": "Set Search Wikipedia to Ada Lovelace. Do not submit or navigate.",
+          "kind": "fill",
+          "target": "Search Wikipedia",
+          "value": "Ada Lovelace",
+          "permitted_actions": [
+            "fill"
+          ],
+          "stopping_conditions": [
+            "outcome_observed",
+            "human_required",
+            "boundary_violation"
+          ],
+          "deadline_seconds": 30,
+          "action_budget": 2
+        },
+        "url": "https://www.wikipedia.org/"
+      }
+    ]
+  },
+  "scope": "Bounded subtasks. No coordinator, full flight search, or savings proof.",
+  "runs": [
+    {
+      "case": "supplied-request",
+      "result": {
+        "status": "success",
+        "evidence": {
+          "value": "Ada Lovelace",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "executed_actions": [
+          {
+            "action": "Search Wikipedia",
+            "kind": "fill",
+            "text": "Ada Lovelace",
+            "execution": "executed",
+            "page_changed": null
+          }
+        ],
+        "model_claims": [
+          {
+            "unmet": "Search Wikipedia field still empty; Ada Lovelace not entered."
+          }
+        ],
+        "unresolved_execution": false,
+        "elapsed_ms": 4717,
+        "first_failure": null
+      },
+      "outcome": {
+        "event": "outcome",
+        "elapsed_ms": 6041,
+        "assessment": {
+          "passed": true,
+          "scope": "Worker field predicate only. No independent site adapter was supplied."
+        },
+        "model_calls": 1
+      },
+      "passed": true,
+      "model_calls": 1,
+      "model_calls_finished": 1,
+      "decision_ms": [
+        2079
+      ],
+      "unresolved_execution": false,
+      "runtime": {
+        "memory_limit_bytes": 6442450944,
+        "peak_worker_bytes": 3343960872,
+        "memory_samples": 60,
+        "worker_stopped_ms": 6303
+      },
+      "exit_code": 0,
+      "error": null,
+      "total_ms": 6825,
+      "private_record": "supplied-request.jsonl",
+      "private_record_sha256": "c59f2e79fd929894657a0c13471ffd15019cd6281169e1c1af061a2f38b615f7"
+    }
+  ]
+}

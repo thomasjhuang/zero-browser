@@ -151,3 +151,104 @@ Task 16 retains sole runtime ownership. No inference is running at session start
 The plan separates first-action accuracy from persistent task progress.
 Diagnose saved states, compare two bounded local decision methods, then use the evidence to choose the next change.
 Keep the existing goals, action boundary, runtime limits, and independent outcome tests.
+
+Thomas shortened this session to about 20 minutes at 14:11 PT. Deliver evidence by about 14:31 PT.
+Compare saved decisions and, if justified, one complete local task. Persistent task state remains pending until the decision method has evidence.
+
+Saved-state diagnosis: all required controls and useful actions exist in the inspected initial, partial, reordered, and crowded states.
+The latest first action is wrong with empty history. The policy has no explicit requirement or evidence-backed progress state.
+Evidence: `results/decision-saved-diagnosis.json`.
+
+Comparison command, once per method: `ZB_RECORD_PATH=artifacts/replay/diagnostic-<method>.jsonl uv run --offline --frozen --extra local python scripts/decision_diagnostics.py --cases fixtures/decision_saved_states.json --method <method> --output results/decision-diagnostic-<method>.json`.
+The methods are `label` and `structured`. Each case has a 90-second external deadline and the existing worker memory limit.
+Source commit: `833901e504d92098e0d4f7c121c1564c1f1a26d4`.
+New measured source hashes before the comparison:
+
+- `jev_ultrafast/structured_policy.py`: `ef30258d89f78dff28937799b0fc7ff3c1f8ee6209177724d2ac8f903838a684`.
+- `scripts/decision_diagnostics.py`: `d225129eeb4cd8450ca8946a0133b7d32d959805ffd832a0449c0488f88234aa`.
+- `fixtures/decision_saved_states.json`: `1e28efd2f64438551eba401c424a547f3ad411ffbd04109f2617946db9fa8080`.
+
+The harness records all other source hashes. Freeze these files until both methods finish.
+
+The first diagnostic attempt stopped before model loading: a relative case path failed source hashing.
+The harness now resolves that path. Updated harness SHA256: `34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924`.
+
+### Bounded local worker scope
+
+At 14:14 PT, Thomas replaced long-task planning with a bounded-worker proof. Preserve the shortened proof window.
+The saved comparison completed: label scoring chose useful actions in 0/5 cases, structured responses in 3/5.
+Structured responses still failed the partial and reordered cases. No full task or savings claim follows.
+Evidence: `results/decision-method-comparison.json` and both detailed diagnostic files.
+Build a small contract for one supplied field or option outcome. Stop on ambiguity, missing targets, uncertainty, or boundary violations.
+Do not build a coordinator or persistent planning state in this proof.
+
+Bounded-worker suite start: October 11, 14:17 PT. Source commit: `1089dac244aa1afe05ee0969c52d9a8e8c81e104`.
+Command: `ZB_RECORD_PATH=artifacts/replay/bounded-structured.jsonl uv run --offline --frozen --extra local python scripts/worker_benchmark.py --method structured --output results/bounded-worker-structured.json`.
+Eleven fixed cases: supplied text, dropdown, and autocomplete across normal, reordered, and distracting controls, plus ambiguous and missing targets.
+The existing lock, memory monitor, cancellation, isolated browser cleanup, and per-case deadline remain active.
+Source hashes before inference:
+
+- `jev_ultrafast/bounded_worker.py`: `b3c5410ecb54f4894ccb90b3ab34eb3489c073717c961d220219683d05e7c958`.
+- `jev_ultrafast/structured_policy.py`: `ef30258d89f78dff28937799b0fc7ff3c1f8ee6209177724d2ac8f903838a684`.
+- `scripts/worker_benchmark.py`: `8419384699656d132fc0f7a3d8287baf2caac3d06d3ef325d5d95cbfd95b4220`.
+- `fixtures/worker.html`: `2cc807af4696892f36530487beed5933693341b6ae01ebc4437ceabe3c70aa20`.
+- `fixtures/worker_tasks.json`: `a1614f504490e90492b1e2d5e6d2643f72a1a0ac0880378d8a6ebd5210a52c46`.
+
+The runner records all measured source hashes. No measured file changes until the suite ends.
+
+The initial bounded suite ended: 6/9 actionable cases passed. Both ambiguous/missing cases correctly stopped without a model call or mutation.
+Failures: fill-normal selected a forbidden field click, autocomplete-normal repeated field clicks, autocomplete-crowded exceeded the field boundary.
+Evidence: `results/bounded-worker-structured.json`. No uncertain mutation was replayed.
+
+One correction: restrict the model menu to the supplied field contract and omit actions that cannot change its current value.
+This is deterministic contract enforcement, not an improvement in unrestricted model competence.
+Rerun the same eleven cases and starting states with output `results/bounded-worker-constrained.json`.
+Command: `ZB_RECORD_PATH=artifacts/replay/bounded-constrained.jsonl uv run --offline --frozen --extra local python scripts/worker_benchmark.py --method structured --output results/bounded-worker-constrained.json`.
+Changed measured source: `jev_ultrafast/bounded_worker.py`, SHA256 `1839a4d4b66c1c26f5b07f355a7049bd6e2884c10d5834abc285906c7f0da2a5`.
+The runner records all source hashes. Keep all measured source and fixtures fixed during this rerun.
+
+The constrained suite passed all eleven assessments: nine requested outcomes and two safe uncertainty stops.
+Evidence: `results/bounded-worker-constrained.json`. This supports the narrow contract, not unrestricted browser decisions.
+The runner now accepts a supplied JSON request with `url` and `task`. Results include observed evidence, execution status, model calls, timing, and sampled worker memory.
+A small correction reports the actual failed mutation step. The same runtime and fixture tests passed before repeat runs.
+
+Repeat proof: three fresh suites with unchanged code and fixtures, starting at about 14:22 PT.
+For trial N, command: `ZB_RECORD_PATH=artifacts/replay/bounded-proof-N.jsonl uv run --offline --frozen --extra local python scripts/worker_benchmark.py --method structured --output results/bounded-worker-proof-N.json`.
+Changed source hashes before all three repeats:
+
+- `jev_ultrafast/bounded_worker.py`: `4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db`.
+- `scripts/worker_benchmark.py`: `742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7`.
+
+The runner records all remaining source hashes. Freeze measured files through the three sequential suites.
+
+
+### Bounded-worker delivery, October 11
+
+All three frozen repeat suites passed: 27/27 requested outcomes and 6/6 safe uncertainty stops.
+The source hashes are identical across the three suites. No false success, forbidden execution, or unresolved execution occurred in these runs.
+Median actionable task time was 5,367 ms, median decision time 1,513 ms, with 36 model calls and a maximum sampled worker footprint of 3,343,338,352 bytes. Browser memory is excluded.
+Evidence: `results/bounded-worker-summary.json` and the three linked raw result files.
+The initial failed suite remains in `results/bounded-worker-structured.json`; contract filtering is the demonstrated correction.
+
+The existing Codex chat observed Wikipedia's public portal, selected its Search Wikipedia control, and delegated one bounded fill request.
+Command: `ZB_RECORD_PATH=artifacts/replay/bounded-wikipedia.jsonl uv run --offline --frozen --extra local python scripts/worker_benchmark.py --request artifacts/live-request.json --output results/bounded-worker-wikipedia.json`.
+The request and observed target are reproduced in the public result manifest. Private observations and replay records remain under ignored artifacts.
+A fresh observation showed the exact value Ada Lovelace, the same document and URL, and only one fill action.
+The coordinator inspected this evidence and stopped. This is one live field subtask, not article retrieval or a complete browser workflow.
+Worker time was 6,825 ms, with one 2,079 ms decision, 961 local prompt tokens, and 27 locally tokenized response tokens. These are not coordinator tokens.
+Evidence: `results/bounded-worker-live-assessment.json` and `results/bounded-worker-wikipedia.json`.
+The worker timing includes browser/model startup and cleanup, but excludes coordinator preparation and assessment.
+
+The context coordinator relayed a request for a direct/delegated real-site comparison near the end of the shortened session.
+No valid paired comparison was completed within the existing budget. A direct native-browser attempt also passed the exact field-value and unchanged-URL checks in 9,643 ms from tab opening to verification snapshot. It used an existing Chrome profile and included first-use tool documentation. The worker used an isolated profile and excluded coordinator preparation/assessment. Context was not isolated or equalized. The raw worker-minus-direct difference is -2,818 ms, but this is not a valid time-savings estimate. Full dispatch-to-assessment timing remains missing.
+Exact per-run coordinator token telemetry is not exposed to this chat. Exact token savings and dollar savings cannot be reported.
+The next concrete experiment is the same live field goal through direct native browser control and worker delegation, with equivalent starting conditions and end-to-end timing.
+Separate requests currently start separate browser sessions. Multi-subtask integration needs a retained owned session, observed result handoff, and cancellation across that session.
+
+Later acceptance targets remain pending: unseen labels/values with 95/100 actionable trials, separate ambiguous/missing trials, a deterministic-helper baseline, and interruption/continuation with recoverable failure.
+The exact supplied-label/value contract may not need an LLM; these tests do not establish a benefit from local inference.
+The general agent's saved-state decision errors and failed full flight task remain unresolved. No live Flights run, persistent planning state, or savings claim is included.
+Prior responsiveness and cancellation observations remain valid. No new user observation is required for this delivery.
+The exclusive run slot is idle. Required delivery checks and publication follow below.
+
+Final required checks passed: lint and 133 tests in 4.43 seconds. GitNexus rebuilt successfully; incomplete graph traces and a cross-language link remain index limits. No general completeness claim follows from the graph.

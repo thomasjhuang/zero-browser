@@ -1,0 +1,324 @@
+{
+  "method": "label",
+  "cases_sha256": "1e28efd2f64438551eba401c424a547f3ad411ffbd04109f2617946db9fa8080",
+  "revision": "833901e504d92098e0d4f7c121c1564c1f1a26d4",
+  "source_sha256": {
+    "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+    "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+    "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+    "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+    "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+    "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+    "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+    "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+    "jev_ultrafast/structured_policy.py": "ef30258d89f78dff28937799b0fc7ff3c1f8ee6209177724d2ac8f903838a684",
+    "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+    "fixtures/decision_saved_states.json": "1e28efd2f64438551eba401c424a547f3ad411ffbd04109f2617946db9fa8080",
+    "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+    "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+    "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+  },
+  "limits": [
+    "Saved-state diagnostics do not prove task completion.",
+    "Worker memory excludes browser memory. No browser runs in this comparison.",
+    "Methods receive the same goal, saved observation, history, and available actions.",
+    "Prompt serialization differs. Label retains its existing two-stage path on crowded pages."
+  ],
+  "runs": [
+    {
+      "case": "initial",
+      "result": {
+        "event": "result",
+        "elapsed_ms": 4221,
+        "choice": "e11",
+        "operation": "CLICK",
+        "correct": false,
+        "model_claims": null,
+        "decision_ms": 2002,
+        "model_calls": 1,
+        "usage": {
+          "prompt_tokens": 1210,
+          "completion_tokens": 0
+        },
+        "peak_mlx_bytes": null
+      },
+      "events": [
+        {
+          "event": "started",
+          "elapsed_ms": 0,
+          "case": "initial",
+          "method": "label"
+        },
+        {
+          "event": "loaded",
+          "elapsed_ms": 2219,
+          "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+          "model_load_ms": 1338.5720839723945,
+          "model_active_mlx_bytes": 2264693768,
+          "model_load_peak_mlx_bytes": 2264693768,
+          "weight_bytes": 2263022417,
+          "snapshot_bytes": 2278970666
+        },
+        {
+          "event": "result",
+          "elapsed_ms": 4221,
+          "choice": "e11",
+          "operation": "CLICK",
+          "correct": false,
+          "model_claims": null,
+          "decision_ms": 2002,
+          "model_calls": 1,
+          "usage": {
+            "prompt_tokens": 1210,
+            "completion_tokens": 0
+          },
+          "peak_mlx_bytes": null
+        }
+      ],
+      "runtime": {
+        "peak_worker_bytes": 3550038872,
+        "memory_samples": 44,
+        "worker_stopped_ms": 4544
+      },
+      "exit_code": 0,
+      "error": null,
+      "total_ms": 4553
+    },
+    {
+      "case": "partial",
+      "result": {
+        "event": "result",
+        "elapsed_ms": 3791,
+        "choice": "e11",
+        "operation": "CLICK",
+        "correct": false,
+        "model_claims": null,
+        "decision_ms": 2185,
+        "model_calls": 1,
+        "usage": {
+          "prompt_tokens": 1330,
+          "completion_tokens": 0
+        },
+        "peak_mlx_bytes": null
+      },
+      "events": [
+        {
+          "event": "started",
+          "elapsed_ms": 0,
+          "case": "partial",
+          "method": "label"
+        },
+        {
+          "event": "loaded",
+          "elapsed_ms": 1606,
+          "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+          "model_load_ms": 759.4060418196023,
+          "model_active_mlx_bytes": 2264693768,
+          "model_load_peak_mlx_bytes": 2264693768,
+          "weight_bytes": 2263022417,
+          "snapshot_bytes": 2278970666
+        },
+        {
+          "event": "result",
+          "elapsed_ms": 3791,
+          "choice": "e11",
+          "operation": "CLICK",
+          "correct": false,
+          "model_claims": null,
+          "decision_ms": 2185,
+          "model_calls": 1,
+          "usage": {
+            "prompt_tokens": 1330,
+            "completion_tokens": 0
+          },
+          "peak_mlx_bytes": null
+        }
+      ],
+      "runtime": {
+        "peak_worker_bytes": 3492006720,
+        "memory_samples": 40,
+        "worker_stopped_ms": 4157
+      },
+      "exit_code": 0,
+      "error": null,
+      "total_ms": 4163
+    },
+    {
+      "case": "reordered",
+      "result": {
+        "event": "result",
+        "elapsed_ms": 3278,
+        "choice": "e7",
+        "operation": "CLICK",
+        "correct": false,
+        "model_claims": null,
+        "decision_ms": 1336,
+        "model_calls": 1,
+        "usage": {
+          "prompt_tokens": 840,
+          "completion_tokens": 0
+        },
+        "peak_mlx_bytes": null
+      },
+      "events": [
+        {
+          "event": "started",
+          "elapsed_ms": 0,
+          "case": "reordered",
+          "method": "label"
+        },
+        {
+          "event": "loaded",
+          "elapsed_ms": 1942,
+          "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+          "model_load_ms": 998.8305419683456,
+          "model_active_mlx_bytes": 2264693768,
+          "model_load_peak_mlx_bytes": 2264693768,
+          "weight_bytes": 2263022417,
+          "snapshot_bytes": 2278970666
+        },
+        {
+          "event": "result",
+          "elapsed_ms": 3278,
+          "choice": "e7",
+          "operation": "CLICK",
+          "correct": false,
+          "model_claims": null,
+          "decision_ms": 1336,
+          "model_calls": 1,
+          "usage": {
+            "prompt_tokens": 840,
+            "completion_tokens": 0
+          },
+          "peak_mlx_bytes": null
+        }
+      ],
+      "runtime": {
+        "peak_worker_bytes": 3342650128,
+        "memory_samples": 34,
+        "worker_stopped_ms": 3528
+      },
+      "exit_code": 0,
+      "error": null,
+      "total_ms": 3535
+    },
+    {
+      "case": "crowded",
+      "result": {
+        "event": "result",
+        "elapsed_ms": 18672,
+        "choice": "e6",
+        "operation": "CLICK",
+        "correct": false,
+        "model_claims": null,
+        "decision_ms": 16905,
+        "model_calls": 7,
+        "usage": {
+          "prompt_tokens": 25357,
+          "completion_tokens": 0
+        },
+        "peak_mlx_bytes": null
+      },
+      "events": [
+        {
+          "event": "started",
+          "elapsed_ms": 0,
+          "case": "crowded",
+          "method": "label"
+        },
+        {
+          "event": "loaded",
+          "elapsed_ms": 1767,
+          "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+          "model_load_ms": 926.4820420648903,
+          "model_active_mlx_bytes": 2264693768,
+          "model_load_peak_mlx_bytes": 2264693768,
+          "weight_bytes": 2263022417,
+          "snapshot_bytes": 2278970666
+        },
+        {
+          "event": "result",
+          "elapsed_ms": 18672,
+          "choice": "e6",
+          "operation": "CLICK",
+          "correct": false,
+          "model_claims": null,
+          "decision_ms": 16905,
+          "model_calls": 7,
+          "usage": {
+            "prompt_tokens": 25357,
+            "completion_tokens": 0
+          },
+          "peak_mlx_bytes": null
+        }
+      ],
+      "runtime": {
+        "peak_worker_bytes": 4472998624,
+        "memory_samples": 183,
+        "worker_stopped_ms": 19039
+      },
+      "exit_code": 0,
+      "error": null,
+      "total_ms": 19045
+    },
+    {
+      "case": "initial-reversed",
+      "result": {
+        "event": "result",
+        "elapsed_ms": 3904,
+        "choice": "e4",
+        "operation": "CLICK",
+        "correct": false,
+        "model_claims": null,
+        "decision_ms": 1907,
+        "model_calls": 1,
+        "usage": {
+          "prompt_tokens": 1187,
+          "completion_tokens": 0
+        },
+        "peak_mlx_bytes": null
+      },
+      "events": [
+        {
+          "event": "started",
+          "elapsed_ms": 0,
+          "case": "initial-reversed",
+          "method": "label"
+        },
+        {
+          "event": "loaded",
+          "elapsed_ms": 1996,
+          "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+          "model_load_ms": 1099.7707911301404,
+          "model_active_mlx_bytes": 2264693768,
+          "model_load_peak_mlx_bytes": 2264693768,
+          "weight_bytes": 2263022417,
+          "snapshot_bytes": 2278970666
+        },
+        {
+          "event": "result",
+          "elapsed_ms": 3904,
+          "choice": "e4",
+          "operation": "CLICK",
+          "correct": false,
+          "model_claims": null,
+          "decision_ms": 1907,
+          "model_calls": 1,
+          "usage": {
+            "prompt_tokens": 1187,
+            "completion_tokens": 0
+          },
+          "peak_mlx_bytes": null
+        }
+      ],
+      "runtime": {
+        "peak_worker_bytes": 3518909224,
+        "memory_samples": 41,
+        "worker_stopped_ms": 4246
+      },
+      "exit_code": 0,
+      "error": null,
+      "total_ms": 4253
+    }
+  ]
+}

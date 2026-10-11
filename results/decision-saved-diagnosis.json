@@ -1,0 +1,82 @@
+{
+  "diagnoses": [
+    {
+      "case": "initial",
+      "step": 1,
+      "observed_actions": 12,
+      "acceptable_action_ids": [
+        "e1",
+        "e3",
+        "e5",
+        "e7",
+        "e9",
+        "e10"
+      ],
+      "selected_action": "e11",
+      "selected_operation": "CLICK",
+      "history_count": 0,
+      "selected_is_useful": false,
+      "missing_controls": false,
+      "basis": "Fixture ground truth is used only in diagnostics, never in decision prompts."
+    },
+    {
+      "case": "partial",
+      "step": 4,
+      "observed_actions": 12,
+      "acceptable_action_ids": [
+        "e1",
+        "e7",
+        "e9"
+      ],
+      "selected_action": "e11",
+      "selected_operation": "CLICK",
+      "history_count": 3,
+      "selected_is_useful": false,
+      "missing_controls": false,
+      "basis": "Fixture ground truth is used only in diagnostics, never in decision prompts."
+    },
+    {
+      "case": "reordered",
+      "step": 1,
+      "observed_actions": 12,
+      "acceptable_action_ids": [
+        "e2",
+        "e3",
+        "e4",
+        "e6",
+        "e8",
+        "e10"
+      ],
+      "selected_action": "e8",
+      "selected_operation": "TYPE_TEXT",
+      "history_count": 0,
+      "selected_is_useful": true,
+      "missing_controls": false,
+      "basis": "Fixture ground truth is used only in diagnostics, never in decision prompts."
+    },
+    {
+      "case": "crowded",
+      "step": 4,
+      "observed_actions": 92,
+      "acceptable_action_ids": [
+        "e1",
+        "e3",
+        "e5"
+      ],
+      "selected_action": "e6",
+      "selected_operation": "CLICK",
+      "history_count": 3,
+      "selected_is_useful": false,
+      "missing_controls": false,
+      "basis": "Fixture ground truth is used only in diagnostics, never in decision prompts."
+    }
+  ],
+  "continuity": {
+    "original_goal_each_decision": true,
+    "recent_executed_actions": 10,
+    "explicit_requirements": false,
+    "evidence_linked_progress": false,
+    "durable_resume": false
+  },
+  "finding": "The latest initial wrong decision had no earlier actions to forget. Correct controls and actions were available. The current policy has no explicit persistent requirement state. These are distinct problems."
+}

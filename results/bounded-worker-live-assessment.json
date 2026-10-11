@@ -1,0 +1,48 @@
+{
+  "website": "https://www.wikipedia.org/",
+  "goal": "Enter Ada Lovelace in Search Wikipedia; stop before submission",
+  "coordinator": "Existing Codex chat; selected the target from an observed page and inspected returned evidence",
+  "coordinator_decisions": [
+    "Observe public page",
+    "Delegate one supplied-value fill contract",
+    "Inspect final observed field and URL; stop because the field outcome is satisfied"
+  ],
+  "fresh_observation_checks": {
+    "one_matching_field": true,
+    "exact_field_value": true,
+    "url_unchanged": true,
+    "document_unchanged": true,
+    "only_fill_executed": true
+  },
+  "worker_total_ms": 6825,
+  "decision_ms": [
+    2079
+  ],
+  "model_calls": 1,
+  "peak_worker_bytes": 3343960872,
+  "local_usage": [
+    {
+      "prompt_tokens": 961,
+      "completion_tokens": 27
+    }
+  ],
+  "coordinator_token_usage": null,
+  "end_to_end_coordinator_time_ms": null,
+  "direct_comparison": null,
+  "scope": "One exploratory live field task. Worker time includes owned browser/model startup and cleanup; it excludes coordinator preparation and assessment. No paired speed or savings claim.",
+  "record_sha256": "c59f2e79fd929894657a0c13471ffd15019cd6281169e1c1af061a2f38b615f7",
+  "direct_attempt": {
+    "method": "Codex chose the observed search field and used native CUA browser tools",
+    "start_url": "https://www.wikipedia.org/",
+    "final_url": "https://www.wikipedia.org/",
+    "observed_field_value": "Ada Lovelace",
+    "exact_field_value": true,
+    "url_unchanged": true,
+    "observed_start_ms": 1791754029726,
+    "tab_open_to_verification_snapshot_ms": 9643,
+    "owned_tab_closed": true,
+    "coordinator_tokens": null
+  },
+  "raw_worker_minus_direct_ms": -2818,
+  "comparison_limit": "Both field outcomes passed. This is not a matched end-to-end timing comparison: direct uses an existing Chrome profile and native tools, including first tool documentation; worker uses an isolated browser and its time excludes coordinator preparation and assessment. Raw difference is not time saved. Coordinator context was not isolated or equalized."
+}

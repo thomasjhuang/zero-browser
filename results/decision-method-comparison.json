@@ -1,0 +1,20 @@
+{
+  "methods": {
+    "label": {
+      "correct": 0,
+      "cases": 5,
+      "median_decision_ms": 2002,
+      "model_calls": 11,
+      "max_worker_bytes": 4472998624
+    },
+    "structured": {
+      "correct": 3,
+      "cases": 5,
+      "median_decision_ms": 2403,
+      "model_calls": 5,
+      "max_worker_bytes": 3956017936
+    }
+  },
+  "selection": "Structured responses improve the saved initial and crowded cases but still fail partial and reordered cases. This does not prove long-task reliability. The user changed scope to bounded subtasks before integration.",
+  "scope": "Diagnostics only. No browser task completion or savings claim."
+}

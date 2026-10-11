@@ -43,6 +43,43 @@ The user also reported normal responsiveness and clean closure during cancellati
 The observation-metadata follow-up also failed the fixed local task. Correct field descriptions did not prevent incomplete submission.
 [Cache parity](results/milestone-cache-parity.json) passed on fixed menus. Multi-step completion and the crowded-page speed target still fail.
 
+The current proof targets bounded subtasks rather than full flight search. The worker accepts one exact field outcome and supplied values.
+It narrows candidate actions to that contract. It reads field values after execution and keeps model claims separate from observed evidence.
+Missing or ambiguous targets return uncertainty. An uncertain mutation stops the worker without replay.
+
+For a supplied request, use JSON with a starting `url` and a `task` object:
+
+```json
+{
+  "url": "https://YOUR_START_PAGE",
+  "task": {
+    "outcome": "Set Departure airport to Zurich Airport (ZRH). Do not submit.",
+    "kind": "autocomplete",
+    "target": "Departure airport",
+    "value": "Zurich Airport (ZRH)",
+    "query": "Zurich",
+    "permitted_actions": ["fill", "click", "wait"],
+    "stopping_conditions": ["outcome_observed", "human_required", "boundary_violation"],
+    "deadline_seconds": 45,
+    "action_budget": 4
+  }
+}
+```
+
+Use `fill`, `select`, or `autocomplete` for `kind`. Supply the observed field label and the desired value.
+Autocomplete requires a unique matching option associated through `aria-controls` or `aria-owns`.
+The worker supports at most eight actions and a sixty-second worker deadline. Browser startup has a separate twenty-second limit.
+Cleanup can add time. Memory measurements exclude the browser.
+
+```bash
+mkdir -p artifacts/replay
+ZB_RECORD_PATH=artifacts/replay/request.jsonl uv run --offline --frozen --extra local python scripts/worker_benchmark.py --request request.json --output artifacts/request-result.json
+```
+
+The result includes status, observed field evidence, executed actions, unresolved execution, elapsed time, model calls, and sampled worker memory.
+The fixture suite uses additional independent tests. A supplied live request has only the worker's field predicate unless a separate site verifier is supplied.
+There is no automated coordinator, task-resumption mechanism, or measured time or cost saving in this proof.
+
 The CLI reads the final page independently. Supplied expectations determine `outcome_verified`.
 Without expectations, a DONE choice remains unverified. Failed expectations return a nonzero exit code.
 
@@ -51,3 +88,7 @@ Those failures prevent a claim of general browser reliability. Windows, Linux, a
 
 Browser components come from [Jev Ultrafast](https://github.com/browser-use/jev-ultrafast).
 See `LICENSE.jev-ultrafast` for attribution.
+
+
+The bounded-worker [repeat evidence](results/bounded-worker-summary.json) contains three unchanged suites: 27 requested outcomes and six safe stops passed. Median task time was 5.37 seconds; median decision time was 1.51 seconds. Peak sampled worker memory was 3.34 GB, excluding the browser.
+A [live Wikipedia field test](results/bounded-worker-live-assessment.json) entered supplied text without submission in 6.83 seconds of worker time. These narrow results do not prove general browser reliability, full flight-search completion, or savings. A direct native-browser attempt also passed, but its timing and browser conditions differ. A matched direct/coordinator comparison, unseen-case assessment, deterministic-helper baseline, and shared-session continuation remain untested.

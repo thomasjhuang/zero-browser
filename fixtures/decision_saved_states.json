@@ -1,0 +1,1321 @@
+{
+  "cases": [
+    {
+      "name": "initial",
+      "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+      "page": {
+        "url": "http://127.0.0.1:18765/milestone.html?layout=normal",
+        "title": "Local flight search test",
+        "text": "Flight search\nOrigin\nDestination\nDeparture date\nAdults\nCabin\nTrip type\nSearch flights",
+        "actions": [
+          {
+            "node": 1,
+            "role": "textbox",
+            "label": "Origin",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "empty": "true",
+            "kind": "fill",
+            "value": "",
+            "id": "e1"
+          },
+          {
+            "node": 1,
+            "role": "textbox",
+            "label": "Open Origin",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "kind": "click",
+            "value": "",
+            "id": "e2"
+          },
+          {
+            "node": 2,
+            "role": "textbox",
+            "label": "Destination",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "empty": "true",
+            "kind": "fill",
+            "value": "",
+            "id": "e3"
+          },
+          {
+            "node": 2,
+            "role": "textbox",
+            "label": "Open Destination",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "kind": "click",
+            "value": "",
+            "id": "e4"
+          },
+          {
+            "node": 3,
+            "role": "textbox",
+            "label": "Departure date (YYYY-MM-DD)",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "empty": "true",
+            "placeholder": "YYYY-MM-DD",
+            "kind": "fill",
+            "value": "",
+            "id": "e5"
+          },
+          {
+            "node": 3,
+            "role": "textbox",
+            "label": "Open Departure date (YYYY-MM-DD)",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "kind": "click",
+            "value": "",
+            "id": "e6"
+          },
+          {
+            "node": 4,
+            "role": "combobox",
+            "label": "Adults \u2192 1",
+            "context": "Adults 2 1 3",
+            "kind": "select",
+            "value": "1",
+            "current_value": "2",
+            "id": "e7"
+          },
+          {
+            "node": 4,
+            "role": "combobox",
+            "label": "Adults \u2192 3",
+            "context": "Adults 2 1 3",
+            "kind": "select",
+            "value": "3",
+            "current_value": "2",
+            "id": "e8"
+          },
+          {
+            "node": 5,
+            "role": "combobox",
+            "label": "Cabin \u2192 Economy",
+            "context": "Cabin Business Economy",
+            "kind": "select",
+            "value": "Economy",
+            "current_value": "Business",
+            "id": "e9"
+          },
+          {
+            "node": 6,
+            "role": "combobox",
+            "label": "Trip type \u2192 One way",
+            "context": "Trip type Round trip One way",
+            "kind": "select",
+            "value": "One way",
+            "current_value": "Round trip",
+            "id": "e10"
+          },
+          {
+            "node": 7,
+            "role": "button",
+            "label": "Search flights",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "kind": "click",
+            "value": "",
+            "id": "e11"
+          },
+          {
+            "id": "wait",
+            "kind": "wait",
+            "label": "Wait for the page to update"
+          }
+        ]
+      },
+      "history": [],
+      "acceptable_action_ids": [
+        "e1",
+        "e3",
+        "e5",
+        "e7",
+        "e9",
+        "e10"
+      ],
+      "source_record": "local_search-1791752516602899000",
+      "source_events_sha256": "0d16105d94d208dfe1d715f876ceb1c384dbbdf59632c7fbf085c9afbb124440",
+      "step": 1
+    },
+    {
+      "name": "partial",
+      "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+      "page": {
+        "url": "http://127.0.0.1:18765/milestone.html?layout=normal",
+        "title": "Local flight search test",
+        "text": "Flight search\nOrigin\nDestination\nDeparture date\nAdults\nCabin\nTrip type\nSearch flights",
+        "actions": [
+          {
+            "node": 1,
+            "role": "textbox",
+            "label": "Origin",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "empty": "true",
+            "kind": "fill",
+            "value": "",
+            "id": "e1"
+          },
+          {
+            "node": 1,
+            "role": "textbox",
+            "label": "Open Origin",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "kind": "click",
+            "value": "",
+            "id": "e2"
+          },
+          {
+            "node": 2,
+            "role": "textbox",
+            "label": "Destination",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "empty": "false",
+            "kind": "fill",
+            "value": "Boston",
+            "id": "e3"
+          },
+          {
+            "node": 2,
+            "role": "textbox",
+            "label": "Open Destination",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "kind": "click",
+            "value": "Boston",
+            "id": "e4"
+          },
+          {
+            "node": 3,
+            "role": "textbox",
+            "label": "Departure date (YYYY-MM-DD)",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "empty": "false",
+            "placeholder": "YYYY-MM-DD",
+            "kind": "fill",
+            "value": "2026-11-16",
+            "id": "e5"
+          },
+          {
+            "node": 3,
+            "role": "textbox",
+            "label": "Open Departure date (YYYY-MM-DD)",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "kind": "click",
+            "value": "2026-11-16",
+            "id": "e6"
+          },
+          {
+            "node": 4,
+            "role": "combobox",
+            "label": "Adults \u2192 1",
+            "context": "Adults 2 1 3",
+            "kind": "select",
+            "value": "1",
+            "current_value": "2",
+            "id": "e7"
+          },
+          {
+            "node": 4,
+            "role": "combobox",
+            "label": "Adults \u2192 3",
+            "context": "Adults 2 1 3",
+            "kind": "select",
+            "value": "3",
+            "current_value": "2",
+            "id": "e8"
+          },
+          {
+            "node": 5,
+            "role": "combobox",
+            "label": "Cabin \u2192 Economy",
+            "context": "Cabin Business Economy",
+            "kind": "select",
+            "value": "Economy",
+            "current_value": "Business",
+            "id": "e9"
+          },
+          {
+            "node": 6,
+            "role": "combobox",
+            "label": "Trip type \u2192 Round trip",
+            "context": "Trip type Round trip One way",
+            "kind": "select",
+            "value": "Round trip",
+            "current_value": "One way",
+            "id": "e10"
+          },
+          {
+            "node": 7,
+            "role": "button",
+            "label": "Search flights",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "kind": "click",
+            "value": "",
+            "id": "e11"
+          },
+          {
+            "id": "wait",
+            "kind": "wait",
+            "label": "Wait for the page to update"
+          }
+        ]
+      },
+      "history": [
+        {
+          "action": "Trip type \u2192 One way",
+          "kind": "select",
+          "text": null,
+          "page_changed": true
+        },
+        {
+          "action": "Departure date (YYYY-MM-DD)",
+          "kind": "fill",
+          "text": "2026-11-16",
+          "page_changed": true
+        },
+        {
+          "action": "Destination",
+          "kind": "fill",
+          "text": "Boston",
+          "page_changed": true
+        }
+      ],
+      "acceptable_action_ids": [
+        "e1",
+        "e7",
+        "e9"
+      ],
+      "source_record": "local_search-1791752434369203000",
+      "source_events_sha256": "86d8ffc0f4850cc77f93a825b567f8d31f0d1751629b3016ad1a9777039e9982",
+      "step": 4
+    },
+    {
+      "name": "reordered",
+      "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+      "page": {
+        "url": "http://127.0.0.1:18765/milestone.html?layout=reverse",
+        "title": "Local flight search test",
+        "text": "Flight search\nSearch flights\nTrip type\nCabin\nAdults\nDeparture date\nDestination\nOrigin",
+        "actions": [
+          {
+            "node": 1,
+            "role": "button",
+            "label": "Search flights",
+            "kind": "click",
+            "value": "",
+            "id": "e1"
+          },
+          {
+            "node": 2,
+            "role": "combobox",
+            "label": "Trip type \u2192 One way",
+            "kind": "select",
+            "value": "One way",
+            "current_value": "Round trip",
+            "id": "e2"
+          },
+          {
+            "node": 3,
+            "role": "combobox",
+            "label": "Cabin \u2192 Economy",
+            "kind": "select",
+            "value": "Economy",
+            "current_value": "Business",
+            "id": "e3"
+          },
+          {
+            "node": 4,
+            "role": "combobox",
+            "label": "Adults \u2192 1",
+            "kind": "select",
+            "value": "1",
+            "current_value": "2",
+            "id": "e4"
+          },
+          {
+            "node": 4,
+            "role": "combobox",
+            "label": "Adults \u2192 3",
+            "kind": "select",
+            "value": "3",
+            "current_value": "2",
+            "id": "e5"
+          },
+          {
+            "node": 5,
+            "role": "textbox",
+            "label": "Departure date (YYYY-MM-DD)",
+            "kind": "fill",
+            "value": "",
+            "id": "e6"
+          },
+          {
+            "node": 5,
+            "role": "textbox",
+            "label": "Open Departure date (YYYY-MM-DD)",
+            "kind": "click",
+            "value": "",
+            "id": "e7"
+          },
+          {
+            "node": 6,
+            "role": "textbox",
+            "label": "Destination",
+            "kind": "fill",
+            "value": "",
+            "id": "e8"
+          },
+          {
+            "node": 6,
+            "role": "textbox",
+            "label": "Open Destination",
+            "kind": "click",
+            "value": "",
+            "id": "e9"
+          },
+          {
+            "node": 7,
+            "role": "textbox",
+            "label": "Origin",
+            "kind": "fill",
+            "value": "",
+            "id": "e10"
+          },
+          {
+            "node": 7,
+            "role": "textbox",
+            "label": "Open Origin",
+            "kind": "click",
+            "value": "",
+            "id": "e11"
+          },
+          {
+            "id": "wait",
+            "kind": "wait",
+            "label": "Wait for the page to update"
+          }
+        ]
+      },
+      "history": [],
+      "acceptable_action_ids": [
+        "e2",
+        "e3",
+        "e4",
+        "e6",
+        "e8",
+        "e10"
+      ],
+      "source_record": "local_search_reordered-1791750859676689000",
+      "source_events_sha256": "05c94afb1991c8c0727624fe26a1204c001ef7a86deb410caa4d14fb58d2c9a7",
+      "step": 1
+    },
+    {
+      "name": "crowded",
+      "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+      "page": {
+        "url": "http://127.0.0.1:18765/milestone.html?layout=crowded",
+        "title": "Local flight search test",
+        "text": "Flight search\nOrigin\nDestination\nDeparture date\nAdults\nCabin\nTrip type\nSearch flights\nHelp topic 1\nHelp topic 2\nHelp topic 3\nHelp topic 4\nHelp topic 5\nHelp topic 6\nHelp topic 7\nHelp topic 8\nHelp topic 9\nHelp topic 10\nHelp topic 11\nHelp topic 12\nHelp topic 13\nHelp topic 14\nHelp topic 15\nHelp topic 16\nHelp topic 17\nHelp topic 18\nHelp topic 19\nHelp topic 20\nHelp topic 21\nHelp topic 22\nHelp topic 23\nHelp topic 24\nHelp topic 25\nHelp topic 26\nHelp topic 27\nHelp topic 28\nHelp topic 29\nHelp topic 30\nHelp topic 31\nHelp topic 32\nHelp topic 33\nHelp topic 34\nHelp topic 35\nHelp topic 36\nHelp topic 37\nHelp topic 38\nHelp topic 39\nHelp topic 40\nHelp topic 41\nHelp topic 42\nHelp topic 43\nHelp topic 44\nHelp topic 45\nHelp topic 46\nHelp topic 47\nHelp topic 48\nHelp topic 49\nHelp topic 50\nHelp topic 51\nHelp topic 52\nHelp topic 53\nHelp topic 54\nHelp topic 55\nHelp topic 56\nHelp topic 57\nHelp topic 58\nHelp topic 59\nHelp topic 60\nHelp topic 61\nHelp topic 62\nHelp topic 63\nHelp topic 64\nHelp topic 65\nHelp topic 66\nHelp topic 67\nHelp topic 68\nHelp topic 69\nHelp topic 70\nHelp topic 71\nHelp topic 72\nHelp topic 73\nHelp topic 74\nHelp topic 75\nHelp topic 76\nHelp topic 77\nHelp topic 78\nHelp topic 79\nHelp topic 80",
+        "actions": [
+          {
+            "node": 1,
+            "role": "textbox",
+            "label": "Origin",
+            "kind": "fill",
+            "value": "",
+            "id": "e1"
+          },
+          {
+            "node": 1,
+            "role": "textbox",
+            "label": "Open Origin",
+            "kind": "click",
+            "value": "",
+            "id": "e2"
+          },
+          {
+            "node": 2,
+            "role": "textbox",
+            "label": "Destination",
+            "kind": "fill",
+            "value": "",
+            "id": "e3"
+          },
+          {
+            "node": 2,
+            "role": "textbox",
+            "label": "Open Destination",
+            "kind": "click",
+            "value": "",
+            "id": "e4"
+          },
+          {
+            "node": 3,
+            "role": "textbox",
+            "label": "Departure date (YYYY-MM-DD)",
+            "kind": "fill",
+            "value": "",
+            "id": "e5"
+          },
+          {
+            "node": 3,
+            "role": "textbox",
+            "label": "Open Departure date (YYYY-MM-DD)",
+            "kind": "click",
+            "value": "",
+            "id": "e6"
+          },
+          {
+            "node": 4,
+            "role": "combobox",
+            "label": "Adults \u2192 2",
+            "kind": "select",
+            "value": "2",
+            "current_value": "1",
+            "id": "e7"
+          },
+          {
+            "node": 4,
+            "role": "combobox",
+            "label": "Adults \u2192 3",
+            "kind": "select",
+            "value": "3",
+            "current_value": "1",
+            "id": "e8"
+          },
+          {
+            "node": 5,
+            "role": "combobox",
+            "label": "Cabin \u2192 Business",
+            "kind": "select",
+            "value": "Business",
+            "current_value": "Economy",
+            "id": "e9"
+          },
+          {
+            "node": 6,
+            "role": "combobox",
+            "label": "Trip type \u2192 Round trip",
+            "kind": "select",
+            "value": "Round trip",
+            "current_value": "One way",
+            "id": "e10"
+          },
+          {
+            "node": 7,
+            "role": "button",
+            "label": "Search flights",
+            "kind": "click",
+            "value": "",
+            "id": "e11"
+          },
+          {
+            "node": 8,
+            "role": "button",
+            "label": "Help topic 1",
+            "kind": "click",
+            "value": "",
+            "id": "e12"
+          },
+          {
+            "node": 9,
+            "role": "button",
+            "label": "Help topic 2",
+            "kind": "click",
+            "value": "",
+            "id": "e13"
+          },
+          {
+            "node": 10,
+            "role": "button",
+            "label": "Help topic 3",
+            "kind": "click",
+            "value": "",
+            "id": "e14"
+          },
+          {
+            "node": 11,
+            "role": "button",
+            "label": "Help topic 4",
+            "kind": "click",
+            "value": "",
+            "id": "e15"
+          },
+          {
+            "node": 12,
+            "role": "button",
+            "label": "Help topic 5",
+            "kind": "click",
+            "value": "",
+            "id": "e16"
+          },
+          {
+            "node": 13,
+            "role": "button",
+            "label": "Help topic 6",
+            "kind": "click",
+            "value": "",
+            "id": "e17"
+          },
+          {
+            "node": 14,
+            "role": "button",
+            "label": "Help topic 7",
+            "kind": "click",
+            "value": "",
+            "id": "e18"
+          },
+          {
+            "node": 15,
+            "role": "button",
+            "label": "Help topic 8",
+            "kind": "click",
+            "value": "",
+            "id": "e19"
+          },
+          {
+            "node": 16,
+            "role": "button",
+            "label": "Help topic 9",
+            "kind": "click",
+            "value": "",
+            "id": "e20"
+          },
+          {
+            "node": 17,
+            "role": "button",
+            "label": "Help topic 10",
+            "kind": "click",
+            "value": "",
+            "id": "e21"
+          },
+          {
+            "node": 18,
+            "role": "button",
+            "label": "Help topic 11",
+            "kind": "click",
+            "value": "",
+            "id": "e22"
+          },
+          {
+            "node": 19,
+            "role": "button",
+            "label": "Help topic 12",
+            "kind": "click",
+            "value": "",
+            "id": "e23"
+          },
+          {
+            "node": 20,
+            "role": "button",
+            "label": "Help topic 13",
+            "kind": "click",
+            "value": "",
+            "id": "e24"
+          },
+          {
+            "node": 21,
+            "role": "button",
+            "label": "Help topic 14",
+            "kind": "click",
+            "value": "",
+            "id": "e25"
+          },
+          {
+            "node": 22,
+            "role": "button",
+            "label": "Help topic 15",
+            "kind": "click",
+            "value": "",
+            "id": "e26"
+          },
+          {
+            "node": 23,
+            "role": "button",
+            "label": "Help topic 16",
+            "kind": "click",
+            "value": "",
+            "id": "e27"
+          },
+          {
+            "node": 24,
+            "role": "button",
+            "label": "Help topic 17",
+            "kind": "click",
+            "value": "",
+            "id": "e28"
+          },
+          {
+            "node": 25,
+            "role": "button",
+            "label": "Help topic 18",
+            "kind": "click",
+            "value": "",
+            "id": "e29"
+          },
+          {
+            "node": 26,
+            "role": "button",
+            "label": "Help topic 19",
+            "kind": "click",
+            "value": "",
+            "id": "e30"
+          },
+          {
+            "node": 27,
+            "role": "button",
+            "label": "Help topic 20",
+            "kind": "click",
+            "value": "",
+            "id": "e31"
+          },
+          {
+            "node": 28,
+            "role": "button",
+            "label": "Help topic 21",
+            "kind": "click",
+            "value": "",
+            "id": "e32"
+          },
+          {
+            "node": 29,
+            "role": "button",
+            "label": "Help topic 22",
+            "kind": "click",
+            "value": "",
+            "id": "e33"
+          },
+          {
+            "node": 30,
+            "role": "button",
+            "label": "Help topic 23",
+            "kind": "click",
+            "value": "",
+            "id": "e34"
+          },
+          {
+            "node": 31,
+            "role": "button",
+            "label": "Help topic 24",
+            "kind": "click",
+            "value": "",
+            "id": "e35"
+          },
+          {
+            "node": 32,
+            "role": "button",
+            "label": "Help topic 25",
+            "kind": "click",
+            "value": "",
+            "id": "e36"
+          },
+          {
+            "node": 33,
+            "role": "button",
+            "label": "Help topic 26",
+            "kind": "click",
+            "value": "",
+            "id": "e37"
+          },
+          {
+            "node": 34,
+            "role": "button",
+            "label": "Help topic 27",
+            "kind": "click",
+            "value": "",
+            "id": "e38"
+          },
+          {
+            "node": 35,
+            "role": "button",
+            "label": "Help topic 28",
+            "kind": "click",
+            "value": "",
+            "id": "e39"
+          },
+          {
+            "node": 36,
+            "role": "button",
+            "label": "Help topic 29",
+            "kind": "click",
+            "value": "",
+            "id": "e40"
+          },
+          {
+            "node": 37,
+            "role": "button",
+            "label": "Help topic 30",
+            "kind": "click",
+            "value": "",
+            "id": "e41"
+          },
+          {
+            "node": 38,
+            "role": "button",
+            "label": "Help topic 31",
+            "kind": "click",
+            "value": "",
+            "id": "e42"
+          },
+          {
+            "node": 39,
+            "role": "button",
+            "label": "Help topic 32",
+            "kind": "click",
+            "value": "",
+            "id": "e43"
+          },
+          {
+            "node": 40,
+            "role": "button",
+            "label": "Help topic 33",
+            "kind": "click",
+            "value": "",
+            "id": "e44"
+          },
+          {
+            "node": 41,
+            "role": "button",
+            "label": "Help topic 34",
+            "kind": "click",
+            "value": "",
+            "id": "e45"
+          },
+          {
+            "node": 42,
+            "role": "button",
+            "label": "Help topic 35",
+            "kind": "click",
+            "value": "",
+            "id": "e46"
+          },
+          {
+            "node": 43,
+            "role": "button",
+            "label": "Help topic 36",
+            "kind": "click",
+            "value": "",
+            "id": "e47"
+          },
+          {
+            "node": 44,
+            "role": "button",
+            "label": "Help topic 37",
+            "kind": "click",
+            "value": "",
+            "id": "e48"
+          },
+          {
+            "node": 45,
+            "role": "button",
+            "label": "Help topic 38",
+            "kind": "click",
+            "value": "",
+            "id": "e49"
+          },
+          {
+            "node": 46,
+            "role": "button",
+            "label": "Help topic 39",
+            "kind": "click",
+            "value": "",
+            "id": "e50"
+          },
+          {
+            "node": 47,
+            "role": "button",
+            "label": "Help topic 40",
+            "kind": "click",
+            "value": "",
+            "id": "e51"
+          },
+          {
+            "node": 48,
+            "role": "button",
+            "label": "Help topic 41",
+            "kind": "click",
+            "value": "",
+            "id": "e52"
+          },
+          {
+            "node": 49,
+            "role": "button",
+            "label": "Help topic 42",
+            "kind": "click",
+            "value": "",
+            "id": "e53"
+          },
+          {
+            "node": 50,
+            "role": "button",
+            "label": "Help topic 43",
+            "kind": "click",
+            "value": "",
+            "id": "e54"
+          },
+          {
+            "node": 51,
+            "role": "button",
+            "label": "Help topic 44",
+            "kind": "click",
+            "value": "",
+            "id": "e55"
+          },
+          {
+            "node": 52,
+            "role": "button",
+            "label": "Help topic 45",
+            "kind": "click",
+            "value": "",
+            "id": "e56"
+          },
+          {
+            "node": 53,
+            "role": "button",
+            "label": "Help topic 46",
+            "kind": "click",
+            "value": "",
+            "id": "e57"
+          },
+          {
+            "node": 54,
+            "role": "button",
+            "label": "Help topic 47",
+            "kind": "click",
+            "value": "",
+            "id": "e58"
+          },
+          {
+            "node": 55,
+            "role": "button",
+            "label": "Help topic 48",
+            "kind": "click",
+            "value": "",
+            "id": "e59"
+          },
+          {
+            "node": 56,
+            "role": "button",
+            "label": "Help topic 49",
+            "kind": "click",
+            "value": "",
+            "id": "e60"
+          },
+          {
+            "node": 57,
+            "role": "button",
+            "label": "Help topic 50",
+            "kind": "click",
+            "value": "",
+            "id": "e61"
+          },
+          {
+            "node": 58,
+            "role": "button",
+            "label": "Help topic 51",
+            "kind": "click",
+            "value": "",
+            "id": "e62"
+          },
+          {
+            "node": 59,
+            "role": "button",
+            "label": "Help topic 52",
+            "kind": "click",
+            "value": "",
+            "id": "e63"
+          },
+          {
+            "node": 60,
+            "role": "button",
+            "label": "Help topic 53",
+            "kind": "click",
+            "value": "",
+            "id": "e64"
+          },
+          {
+            "node": 61,
+            "role": "button",
+            "label": "Help topic 54",
+            "kind": "click",
+            "value": "",
+            "id": "e65"
+          },
+          {
+            "node": 62,
+            "role": "button",
+            "label": "Help topic 55",
+            "kind": "click",
+            "value": "",
+            "id": "e66"
+          },
+          {
+            "node": 63,
+            "role": "button",
+            "label": "Help topic 56",
+            "kind": "click",
+            "value": "",
+            "id": "e67"
+          },
+          {
+            "node": 64,
+            "role": "button",
+            "label": "Help topic 57",
+            "kind": "click",
+            "value": "",
+            "id": "e68"
+          },
+          {
+            "node": 65,
+            "role": "button",
+            "label": "Help topic 58",
+            "kind": "click",
+            "value": "",
+            "id": "e69"
+          },
+          {
+            "node": 66,
+            "role": "button",
+            "label": "Help topic 59",
+            "kind": "click",
+            "value": "",
+            "id": "e70"
+          },
+          {
+            "node": 67,
+            "role": "button",
+            "label": "Help topic 60",
+            "kind": "click",
+            "value": "",
+            "id": "e71"
+          },
+          {
+            "node": 68,
+            "role": "button",
+            "label": "Help topic 61",
+            "kind": "click",
+            "value": "",
+            "id": "e72"
+          },
+          {
+            "node": 69,
+            "role": "button",
+            "label": "Help topic 62",
+            "kind": "click",
+            "value": "",
+            "id": "e73"
+          },
+          {
+            "node": 70,
+            "role": "button",
+            "label": "Help topic 63",
+            "kind": "click",
+            "value": "",
+            "id": "e74"
+          },
+          {
+            "node": 71,
+            "role": "button",
+            "label": "Help topic 64",
+            "kind": "click",
+            "value": "",
+            "id": "e75"
+          },
+          {
+            "node": 72,
+            "role": "button",
+            "label": "Help topic 65",
+            "kind": "click",
+            "value": "",
+            "id": "e76"
+          },
+          {
+            "node": 73,
+            "role": "button",
+            "label": "Help topic 66",
+            "kind": "click",
+            "value": "",
+            "id": "e77"
+          },
+          {
+            "node": 74,
+            "role": "button",
+            "label": "Help topic 67",
+            "kind": "click",
+            "value": "",
+            "id": "e78"
+          },
+          {
+            "node": 75,
+            "role": "button",
+            "label": "Help topic 68",
+            "kind": "click",
+            "value": "",
+            "id": "e79"
+          },
+          {
+            "node": 76,
+            "role": "button",
+            "label": "Help topic 69",
+            "kind": "click",
+            "value": "",
+            "id": "e80"
+          },
+          {
+            "node": 77,
+            "role": "button",
+            "label": "Help topic 70",
+            "kind": "click",
+            "value": "",
+            "id": "e81"
+          },
+          {
+            "node": 78,
+            "role": "button",
+            "label": "Help topic 71",
+            "kind": "click",
+            "value": "",
+            "id": "e82"
+          },
+          {
+            "node": 79,
+            "role": "button",
+            "label": "Help topic 72",
+            "kind": "click",
+            "value": "",
+            "id": "e83"
+          },
+          {
+            "node": 80,
+            "role": "button",
+            "label": "Help topic 73",
+            "kind": "click",
+            "value": "",
+            "id": "e84"
+          },
+          {
+            "node": 81,
+            "role": "button",
+            "label": "Help topic 74",
+            "kind": "click",
+            "value": "",
+            "id": "e85"
+          },
+          {
+            "node": 82,
+            "role": "button",
+            "label": "Help topic 75",
+            "kind": "click",
+            "value": "",
+            "id": "e86"
+          },
+          {
+            "node": 83,
+            "role": "button",
+            "label": "Help topic 76",
+            "kind": "click",
+            "value": "",
+            "id": "e87"
+          },
+          {
+            "node": 84,
+            "role": "button",
+            "label": "Help topic 77",
+            "kind": "click",
+            "value": "",
+            "id": "e88"
+          },
+          {
+            "node": 85,
+            "role": "button",
+            "label": "Help topic 78",
+            "kind": "click",
+            "value": "",
+            "id": "e89"
+          },
+          {
+            "node": 86,
+            "role": "button",
+            "label": "Help topic 79",
+            "kind": "click",
+            "value": "",
+            "id": "e90"
+          },
+          {
+            "node": 87,
+            "role": "button",
+            "label": "Help topic 80",
+            "kind": "click",
+            "value": "",
+            "id": "e91"
+          },
+          {
+            "id": "wait",
+            "kind": "wait",
+            "label": "Wait for the page to update"
+          }
+        ]
+      },
+      "history": [
+        {
+          "action": "Trip type \u2192 One way",
+          "kind": "select",
+          "text": null,
+          "page_changed": true
+        },
+        {
+          "action": "Cabin \u2192 Economy",
+          "kind": "select",
+          "text": null,
+          "page_changed": true
+        },
+        {
+          "action": "Adults \u2192 1",
+          "kind": "select",
+          "text": null,
+          "page_changed": true
+        }
+      ],
+      "acceptable_action_ids": [
+        "e1",
+        "e3",
+        "e5"
+      ],
+      "source_record": "local_search_crowded-1791751728329673000",
+      "source_events_sha256": "7e8616b546ac1164d494f182bd40d5905c28abff231013278ffa76adbe3a3f0f",
+      "step": 4
+    },
+    {
+      "name": "initial-reversed",
+      "goal": "Find one-way flights from San Francisco to Boston on November 16, 2026, for one adult in economy. Stop when matching flight options are visible. Do not select or book a flight.",
+      "page": {
+        "url": "http://127.0.0.1:18765/milestone.html?layout=normal",
+        "title": "Local flight search test",
+        "text": "Flight search\nOrigin\nDestination\nDeparture date\nAdults\nCabin\nTrip type\nSearch flights",
+        "actions": [
+          {
+            "id": "wait",
+            "kind": "wait",
+            "label": "Wait for the page to update"
+          },
+          {
+            "node": 7,
+            "role": "button",
+            "label": "Search flights",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "kind": "click",
+            "value": "",
+            "id": "e11"
+          },
+          {
+            "node": 6,
+            "role": "combobox",
+            "label": "Trip type \u2192 One way",
+            "context": "Trip type Round trip One way",
+            "kind": "select",
+            "value": "One way",
+            "current_value": "Round trip",
+            "id": "e10"
+          },
+          {
+            "node": 5,
+            "role": "combobox",
+            "label": "Cabin \u2192 Economy",
+            "context": "Cabin Business Economy",
+            "kind": "select",
+            "value": "Economy",
+            "current_value": "Business",
+            "id": "e9"
+          },
+          {
+            "node": 4,
+            "role": "combobox",
+            "label": "Adults \u2192 3",
+            "context": "Adults 2 1 3",
+            "kind": "select",
+            "value": "3",
+            "current_value": "2",
+            "id": "e8"
+          },
+          {
+            "node": 4,
+            "role": "combobox",
+            "label": "Adults \u2192 1",
+            "context": "Adults 2 1 3",
+            "kind": "select",
+            "value": "1",
+            "current_value": "2",
+            "id": "e7"
+          },
+          {
+            "node": 3,
+            "role": "textbox",
+            "label": "Open Departure date (YYYY-MM-DD)",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "kind": "click",
+            "value": "",
+            "id": "e6"
+          },
+          {
+            "node": 3,
+            "role": "textbox",
+            "label": "Departure date (YYYY-MM-DD)",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "empty": "true",
+            "placeholder": "YYYY-MM-DD",
+            "kind": "fill",
+            "value": "",
+            "id": "e5"
+          },
+          {
+            "node": 2,
+            "role": "textbox",
+            "label": "Open Destination",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "kind": "click",
+            "value": "",
+            "id": "e4"
+          },
+          {
+            "node": 2,
+            "role": "textbox",
+            "label": "Destination",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "empty": "true",
+            "kind": "fill",
+            "value": "",
+            "id": "e3"
+          },
+          {
+            "node": 1,
+            "role": "textbox",
+            "label": "Open Origin",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "kind": "click",
+            "value": "",
+            "id": "e2"
+          },
+          {
+            "node": 1,
+            "role": "textbox",
+            "label": "Origin",
+            "context": "Origin Destination Departure date Adults 2 1 3 Cabin Business Economy Trip type ",
+            "empty": "true",
+            "kind": "fill",
+            "value": "",
+            "id": "e1"
+          }
+        ]
+      },
+      "history": [],
+      "acceptable_action_ids": [
+        "e1",
+        "e3",
+        "e5",
+        "e7",
+        "e9",
+        "e10"
+      ],
+      "source_record": "local_search-1791752516602899000",
+      "source_events_sha256": "0d16105d94d208dfe1d715f876ceb1c384dbbdf59632c7fbf085c9afbb124440",
+      "step": 1
+    }
+  ]
+}

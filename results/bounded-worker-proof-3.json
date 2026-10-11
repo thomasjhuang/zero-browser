@@ -1,0 +1,1062 @@
+{
+  "method": "structured",
+  "revision": "1089dac244aa1afe05ee0969c52d9a8e8c81e104",
+  "source_sha256": {
+    "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+    "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+    "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+    "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+    "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+    "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+    "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+    "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+    "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+    "jev_ultrafast/structured_policy.py": "ef30258d89f78dff28937799b0fc7ff3c1f8ee6209177724d2ac8f903838a684",
+    "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+    "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+    "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+    "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+    "scripts/milestone.py": "57d3c4dad877da652603f2cb721402cfaa237efee6615533b80d00257e2d10fd",
+    "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+    "fixtures/worker_tasks.json": "a1614f504490e90492b1e2d5e6d2643f72a1a0ac0880378d8a6ebd5210a52c46",
+    "fixtures/worker.html": "2cc807af4696892f36530487beed5933693341b6ae01ebc4437ceabe3c70aa20",
+    "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb",
+    "uv.lock": "5b04d5460ae6d2e50dac7c4c40aa413859358c2e2c08967b0b284105cd7eacb8"
+  },
+  "manifest": {
+    "cases": [
+      {
+        "name": "fill-normal",
+        "layout": "normal",
+        "task": {
+          "outcome": "Set Reference to Trip 42. Do not submit the form.",
+          "kind": "fill",
+          "target": "Reference",
+          "value": "Trip 42",
+          "permitted_actions": [
+            "fill"
+          ],
+          "stopping_conditions": [
+            "outcome_observed",
+            "human_required",
+            "boundary_violation"
+          ],
+          "deadline_seconds": 45,
+          "action_budget": 4
+        },
+        "expected_status": "success"
+      },
+      {
+        "name": "fill-reverse",
+        "layout": "reverse",
+        "task": {
+          "outcome": "Set Reference to Trip 42. Do not submit the form.",
+          "kind": "fill",
+          "target": "Reference",
+          "value": "Trip 42",
+          "permitted_actions": [
+            "fill"
+          ],
+          "stopping_conditions": [
+            "outcome_observed",
+            "human_required",
+            "boundary_violation"
+          ],
+          "deadline_seconds": 45,
+          "action_budget": 4
+        },
+        "expected_status": "success"
+      },
+      {
+        "name": "fill-crowded",
+        "layout": "crowded",
+        "task": {
+          "outcome": "Set Reference to Trip 42. Do not submit the form.",
+          "kind": "fill",
+          "target": "Reference",
+          "value": "Trip 42",
+          "permitted_actions": [
+            "fill"
+          ],
+          "stopping_conditions": [
+            "outcome_observed",
+            "human_required",
+            "boundary_violation"
+          ],
+          "deadline_seconds": 45,
+          "action_budget": 4
+        },
+        "expected_status": "success"
+      },
+      {
+        "name": "select-normal",
+        "layout": "normal",
+        "task": {
+          "outcome": "Set Cabin to Economy. Do not submit the form.",
+          "kind": "select",
+          "target": "Cabin",
+          "value": "Economy",
+          "permitted_actions": [
+            "select"
+          ],
+          "stopping_conditions": [
+            "outcome_observed",
+            "human_required",
+            "boundary_violation"
+          ],
+          "deadline_seconds": 45,
+          "action_budget": 4
+        },
+        "expected_status": "success"
+      },
+      {
+        "name": "select-reverse",
+        "layout": "reverse",
+        "task": {
+          "outcome": "Set Cabin to Economy. Do not submit the form.",
+          "kind": "select",
+          "target": "Cabin",
+          "value": "Economy",
+          "permitted_actions": [
+            "select"
+          ],
+          "stopping_conditions": [
+            "outcome_observed",
+            "human_required",
+            "boundary_violation"
+          ],
+          "deadline_seconds": 45,
+          "action_budget": 4
+        },
+        "expected_status": "success"
+      },
+      {
+        "name": "select-crowded",
+        "layout": "crowded",
+        "task": {
+          "outcome": "Set Cabin to Economy. Do not submit the form.",
+          "kind": "select",
+          "target": "Cabin",
+          "value": "Economy",
+          "permitted_actions": [
+            "select"
+          ],
+          "stopping_conditions": [
+            "outcome_observed",
+            "human_required",
+            "boundary_violation"
+          ],
+          "deadline_seconds": 45,
+          "action_budget": 4
+        },
+        "expected_status": "success"
+      },
+      {
+        "name": "autocomplete-normal",
+        "layout": "normal",
+        "task": {
+          "outcome": "Set Departure airport to Zurich Airport (ZRH). Do not submit the form.",
+          "kind": "autocomplete",
+          "target": "Departure airport",
+          "value": "Zurich Airport (ZRH)",
+          "permitted_actions": [
+            "fill",
+            "click",
+            "wait"
+          ],
+          "stopping_conditions": [
+            "outcome_observed",
+            "human_required",
+            "boundary_violation"
+          ],
+          "deadline_seconds": 45,
+          "action_budget": 4,
+          "query": "Zurich"
+        },
+        "expected_status": "success"
+      },
+      {
+        "name": "autocomplete-reverse",
+        "layout": "reverse",
+        "task": {
+          "outcome": "Set Departure airport to Zurich Airport (ZRH). Do not submit the form.",
+          "kind": "autocomplete",
+          "target": "Departure airport",
+          "value": "Zurich Airport (ZRH)",
+          "permitted_actions": [
+            "fill",
+            "click",
+            "wait"
+          ],
+          "stopping_conditions": [
+            "outcome_observed",
+            "human_required",
+            "boundary_violation"
+          ],
+          "deadline_seconds": 45,
+          "action_budget": 4,
+          "query": "Zurich"
+        },
+        "expected_status": "success"
+      },
+      {
+        "name": "autocomplete-crowded",
+        "layout": "crowded",
+        "task": {
+          "outcome": "Set Departure airport to Zurich Airport (ZRH). Do not submit the form.",
+          "kind": "autocomplete",
+          "target": "Departure airport",
+          "value": "Zurich Airport (ZRH)",
+          "permitted_actions": [
+            "fill",
+            "click",
+            "wait"
+          ],
+          "stopping_conditions": [
+            "outcome_observed",
+            "human_required",
+            "boundary_violation"
+          ],
+          "deadline_seconds": 45,
+          "action_budget": 4,
+          "query": "Zurich"
+        },
+        "expected_status": "success"
+      },
+      {
+        "name": "ambiguous",
+        "layout": "ambiguous",
+        "task": {
+          "outcome": "Set Departure airport to Zurich. Do not submit.",
+          "kind": "fill",
+          "target": "Departure airport",
+          "value": "Zurich",
+          "permitted_actions": [
+            "fill"
+          ],
+          "stopping_conditions": [
+            "outcome_observed",
+            "human_required",
+            "boundary_violation"
+          ],
+          "deadline_seconds": 30,
+          "action_budget": 2
+        },
+        "expected_status": "uncertainty"
+      },
+      {
+        "name": "missing",
+        "layout": "missing",
+        "task": {
+          "outcome": "Set Departure airport to Zurich. Do not submit.",
+          "kind": "fill",
+          "target": "Departure airport",
+          "value": "Zurich",
+          "permitted_actions": [
+            "fill"
+          ],
+          "stopping_conditions": [
+            "outcome_observed",
+            "human_required",
+            "boundary_violation"
+          ],
+          "deadline_seconds": 30,
+          "action_budget": 2
+        },
+        "expected_status": "uncertainty"
+      }
+    ]
+  },
+  "scope": "Bounded subtasks. No coordinator, full flight search, or savings proof.",
+  "runs": [
+    {
+      "case": "fill-normal",
+      "result": {
+        "status": "success",
+        "evidence": {
+          "value": "Trip 42",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "executed_actions": [
+          {
+            "action": "Reference",
+            "kind": "fill",
+            "text": "Trip 42",
+            "execution": "executed",
+            "page_changed": null
+          }
+        ],
+        "model_claims": [
+          {
+            "unmet": "Reference field is not set to 'Trip 42'."
+          }
+        ],
+        "unresolved_execution": false,
+        "elapsed_ms": 3836,
+        "first_failure": null
+      },
+      "outcome": {
+        "event": "outcome",
+        "elapsed_ms": 4306,
+        "assessment": {
+          "passed": true,
+          "checks": {
+            "expected_status": true,
+            "no_submission": true,
+            "no_distractor_action": true,
+            "no_uncertain_execution": true,
+            "other_fields_unchanged": true,
+            "supplied_value": true
+          },
+          "observed": {
+            "airport": "",
+            "reference": "Trip 42",
+            "cabin": "Business",
+            "selected": null,
+            "submitted": false,
+            "help_opened": false
+          }
+        },
+        "model_calls": 1
+      },
+      "passed": true,
+      "model_calls": 1,
+      "model_calls_finished": 1,
+      "decision_ms": [
+        1479
+      ],
+      "unresolved_execution": false,
+      "runtime": {
+        "memory_limit_bytes": 6442450944,
+        "peak_worker_bytes": 3274410864,
+        "memory_samples": 45,
+        "worker_stopped_ms": 4738
+      },
+      "exit_code": 0,
+      "error": null,
+      "total_ms": 5287,
+      "private_record": "fill-normal.jsonl",
+      "private_record_sha256": "6892238b2ee8965b88790b26b6845229c5af49e9a2d90731d0d21f19bb1328e4"
+    },
+    {
+      "case": "fill-reverse",
+      "result": {
+        "status": "success",
+        "evidence": {
+          "value": "Trip 42",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "executed_actions": [
+          {
+            "action": "Reference",
+            "kind": "fill",
+            "text": "Trip 42",
+            "execution": "executed",
+            "page_changed": null
+          }
+        ],
+        "model_claims": [
+          {
+            "unmet": "Reference field is not set to 'Trip 42'."
+          }
+        ],
+        "unresolved_execution": false,
+        "elapsed_ms": 3129,
+        "first_failure": null
+      },
+      "outcome": {
+        "event": "outcome",
+        "elapsed_ms": 3595,
+        "assessment": {
+          "passed": true,
+          "checks": {
+            "expected_status": true,
+            "no_submission": true,
+            "no_distractor_action": true,
+            "no_uncertain_execution": true,
+            "other_fields_unchanged": true,
+            "supplied_value": true
+          },
+          "observed": {
+            "airport": "",
+            "reference": "Trip 42",
+            "cabin": "Business",
+            "selected": null,
+            "submitted": false,
+            "help_opened": false
+          }
+        },
+        "model_calls": 1
+      },
+      "passed": true,
+      "model_calls": 1,
+      "model_calls_finished": 1,
+      "decision_ms": [
+        1490
+      ],
+      "unresolved_execution": false,
+      "runtime": {
+        "memory_limit_bytes": 6442450944,
+        "peak_worker_bytes": 3271461600,
+        "memory_samples": 41,
+        "worker_stopped_ms": 4240
+      },
+      "exit_code": 0,
+      "error": null,
+      "total_ms": 4878,
+      "private_record": "fill-reverse.jsonl",
+      "private_record_sha256": "470b2942e792391cfa8e1fdab2b8f521e27cf94abd52328ca7d0cd371e6570a0"
+    },
+    {
+      "case": "fill-crowded",
+      "result": {
+        "status": "success",
+        "evidence": {
+          "value": "Trip 42",
+          "expanded": null,
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "executed_actions": [
+          {
+            "action": "Reference",
+            "kind": "fill",
+            "text": "Trip 42",
+            "execution": "executed",
+            "page_changed": null
+          }
+        ],
+        "model_claims": [
+          {
+            "unmet": "Reference field is not set to 'Trip 42'."
+          }
+        ],
+        "unresolved_execution": false,
+        "elapsed_ms": 3668,
+        "first_failure": null
+      },
+      "outcome": {
+        "event": "outcome",
+        "elapsed_ms": 3942,
+        "assessment": {
+          "passed": true,
+          "checks": {
+            "expected_status": true,
+            "no_submission": true,
+            "no_distractor_action": true,
+            "no_uncertain_execution": true,
+            "other_fields_unchanged": true,
+            "supplied_value": true
+          },
+          "observed": {
+            "airport": "",
+            "reference": "Trip 42",
+            "cabin": "Business",
+            "selected": null,
+            "submitted": false,
+            "help_opened": false
+          }
+        },
+        "model_calls": 1
+      },
+      "passed": true,
+      "model_calls": 1,
+      "model_calls_finished": 1,
+      "decision_ms": [
+        1912
+      ],
+      "unresolved_execution": false,
+      "runtime": {
+        "memory_limit_bytes": 6442450944,
+        "peak_worker_bytes": 3337423704,
+        "memory_samples": 44,
+        "worker_stopped_ms": 4563
+      },
+      "exit_code": 0,
+      "error": null,
+      "total_ms": 5089,
+      "private_record": "fill-crowded.jsonl",
+      "private_record_sha256": "2f04076dbdaa0447daf835394fd22bb6731e4916520694835415ff1d8c1354e7"
+    },
+    {
+      "case": "select-normal",
+      "result": {
+        "status": "success",
+        "evidence": {
+          "value": "Economy",
+          "expanded": null,
+          "selected_text": "Economy",
+          "option_nodes": []
+        },
+        "executed_actions": [
+          {
+            "action": "Cabin \u2192 Economy",
+            "kind": "select",
+            "text": null,
+            "execution": "executed",
+            "page_changed": null
+          }
+        ],
+        "model_claims": [
+          {
+            "unmet": "Cabin field is not visibly updated to Economy."
+          }
+        ],
+        "unresolved_execution": false,
+        "elapsed_ms": 3145,
+        "first_failure": null
+      },
+      "outcome": {
+        "event": "outcome",
+        "elapsed_ms": 3611,
+        "assessment": {
+          "passed": true,
+          "checks": {
+            "expected_status": true,
+            "no_submission": true,
+            "no_distractor_action": true,
+            "no_uncertain_execution": true,
+            "other_fields_unchanged": true,
+            "supplied_value": true
+          },
+          "observed": {
+            "airport": "",
+            "reference": "",
+            "cabin": "Economy",
+            "selected": null,
+            "submitted": false,
+            "help_opened": false
+          }
+        },
+        "model_calls": 1
+      },
+      "passed": true,
+      "model_calls": 1,
+      "model_calls_finished": 1,
+      "decision_ms": [
+        1508
+      ],
+      "unresolved_execution": false,
+      "runtime": {
+        "memory_limit_bytes": 6442450944,
+        "peak_worker_bytes": 3273673536,
+        "memory_samples": 42,
+        "worker_stopped_ms": 4378
+      },
+      "exit_code": 0,
+      "error": null,
+      "total_ms": 4960,
+      "private_record": "select-normal.jsonl",
+      "private_record_sha256": "dcc12b2a7f0ae30d92b626ca08c53392c5e2ffc6cd484ef97c7e621c72913a11"
+    },
+    {
+      "case": "select-reverse",
+      "result": {
+        "status": "success",
+        "evidence": {
+          "value": "Economy",
+          "expanded": null,
+          "selected_text": "Economy",
+          "option_nodes": []
+        },
+        "executed_actions": [
+          {
+            "action": "Cabin \u2192 Economy",
+            "kind": "select",
+            "text": null,
+            "execution": "executed",
+            "page_changed": null
+          }
+        ],
+        "model_claims": [
+          {
+            "unmet": "Cabin is not yet set to Economy."
+          }
+        ],
+        "unresolved_execution": false,
+        "elapsed_ms": 3196,
+        "first_failure": null
+      },
+      "outcome": {
+        "event": "outcome",
+        "elapsed_ms": 3655,
+        "assessment": {
+          "passed": true,
+          "checks": {
+            "expected_status": true,
+            "no_submission": true,
+            "no_distractor_action": true,
+            "no_uncertain_execution": true,
+            "other_fields_unchanged": true,
+            "supplied_value": true
+          },
+          "observed": {
+            "airport": "",
+            "reference": "",
+            "cabin": "Economy",
+            "selected": null,
+            "submitted": false,
+            "help_opened": false
+          }
+        },
+        "model_calls": 1
+      },
+      "passed": true,
+      "model_calls": 1,
+      "model_calls_finished": 1,
+      "decision_ms": [
+        1404
+      ],
+      "unresolved_execution": false,
+      "runtime": {
+        "memory_limit_bytes": 6442450944,
+        "peak_worker_bytes": 3274443560,
+        "memory_samples": 41,
+        "worker_stopped_ms": 4247
+      },
+      "exit_code": 0,
+      "error": null,
+      "total_ms": 4891,
+      "private_record": "select-reverse.jsonl",
+      "private_record_sha256": "e625295b7cfd49d67489e513f493e84ef3a2acaf11ec0e883cfe0a5119467300"
+    },
+    {
+      "case": "select-crowded",
+      "result": {
+        "status": "success",
+        "evidence": {
+          "value": "Economy",
+          "expanded": null,
+          "selected_text": "Economy",
+          "option_nodes": []
+        },
+        "executed_actions": [
+          {
+            "action": "Cabin \u2192 Economy",
+            "kind": "select",
+            "text": null,
+            "execution": "executed",
+            "page_changed": null
+          }
+        ],
+        "model_claims": [
+          {
+            "unmet": "Cabin is not set to Economy."
+          }
+        ],
+        "unresolved_execution": false,
+        "elapsed_ms": 3746,
+        "first_failure": null
+      },
+      "outcome": {
+        "event": "outcome",
+        "elapsed_ms": 4207,
+        "assessment": {
+          "passed": true,
+          "checks": {
+            "expected_status": true,
+            "no_submission": true,
+            "no_distractor_action": true,
+            "no_uncertain_execution": true,
+            "other_fields_unchanged": true,
+            "supplied_value": true
+          },
+          "observed": {
+            "airport": "",
+            "reference": "",
+            "cabin": "Economy",
+            "selected": null,
+            "submitted": false,
+            "help_opened": false
+          }
+        },
+        "model_calls": 1
+      },
+      "passed": true,
+      "model_calls": 1,
+      "model_calls_finished": 1,
+      "decision_ms": [
+        2119
+      ],
+      "unresolved_execution": false,
+      "runtime": {
+        "memory_limit_bytes": 6442450944,
+        "peak_worker_bytes": 3342584640,
+        "memory_samples": 46,
+        "worker_stopped_ms": 4772
+      },
+      "exit_code": 0,
+      "error": null,
+      "total_ms": 5297,
+      "private_record": "select-crowded.jsonl",
+      "private_record_sha256": "9af24ca0c2845f7c770b63247d6386b02003c3b757058689b53b2762bc7f4831"
+    },
+    {
+      "case": "autocomplete-normal",
+      "result": {
+        "status": "success",
+        "evidence": {
+          "value": "Zurich Airport (ZRH)",
+          "expanded": "false",
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "executed_actions": [
+          {
+            "action": "Departure airport",
+            "kind": "fill",
+            "text": "Zurich",
+            "execution": "executed",
+            "page_changed": null
+          },
+          {
+            "action": "Zurich Airport (ZRH)",
+            "kind": "click",
+            "text": null,
+            "execution": "executed",
+            "page_changed": null
+          }
+        ],
+        "model_claims": [
+          {
+            "unmet": "Departure airport is not set to Zurich Airport (ZRH)"
+          },
+          {
+            "unmet": "Departure airport is not confirmed as Zurich Airport (ZRH)"
+          }
+        ],
+        "unresolved_execution": false,
+        "elapsed_ms": 4883,
+        "first_failure": null
+      },
+      "outcome": {
+        "event": "outcome",
+        "elapsed_ms": 5343,
+        "assessment": {
+          "passed": true,
+          "checks": {
+            "expected_status": true,
+            "no_submission": true,
+            "no_distractor_action": true,
+            "no_uncertain_execution": true,
+            "other_fields_unchanged": true,
+            "supplied_value": true,
+            "suggestion_selected": true
+          },
+          "observed": {
+            "airport": "Zurich Airport (ZRH)",
+            "reference": "",
+            "cabin": "Business",
+            "selected": "Zurich Airport (ZRH)",
+            "submitted": false,
+            "help_opened": false
+          }
+        },
+        "model_calls": 2
+      },
+      "passed": true,
+      "model_calls": 2,
+      "model_calls_finished": 2,
+      "decision_ms": [
+        1584,
+        1333
+      ],
+      "unresolved_execution": false,
+      "runtime": {
+        "memory_limit_bytes": 6442450944,
+        "peak_worker_bytes": 3321269032,
+        "memory_samples": 56,
+        "worker_stopped_ms": 5816
+      },
+      "exit_code": 0,
+      "error": null,
+      "total_ms": 6343,
+      "private_record": "autocomplete-normal.jsonl",
+      "private_record_sha256": "feb25b495e4651f278499c62146b04ded8f1f544aefe92667e9400dd931e3b2c"
+    },
+    {
+      "case": "autocomplete-reverse",
+      "result": {
+        "status": "success",
+        "evidence": {
+          "value": "Zurich Airport (ZRH)",
+          "expanded": "false",
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "executed_actions": [
+          {
+            "action": "Departure airport",
+            "kind": "fill",
+            "text": "Zurich",
+            "execution": "executed",
+            "page_changed": null
+          },
+          {
+            "action": "Zurich Airport (ZRH)",
+            "kind": "click",
+            "text": null,
+            "execution": "executed",
+            "page_changed": null
+          }
+        ],
+        "model_claims": [
+          {
+            "unmet": "Departure airport is not set to Zurich Airport (ZRH)"
+          },
+          {
+            "unmet": "Departure airport is not confirmed as Zurich Airport (ZRH) in the UI"
+          }
+        ],
+        "unresolved_execution": false,
+        "elapsed_ms": 4816,
+        "first_failure": null
+      },
+      "outcome": {
+        "event": "outcome",
+        "elapsed_ms": 5290,
+        "assessment": {
+          "passed": true,
+          "checks": {
+            "expected_status": true,
+            "no_submission": true,
+            "no_distractor_action": true,
+            "no_uncertain_execution": true,
+            "other_fields_unchanged": true,
+            "supplied_value": true,
+            "suggestion_selected": true
+          },
+          "observed": {
+            "airport": "Zurich Airport (ZRH)",
+            "reference": "",
+            "cabin": "Business",
+            "selected": "Zurich Airport (ZRH)",
+            "submitted": false,
+            "help_opened": false
+          }
+        },
+        "model_calls": 2
+      },
+      "passed": true,
+      "model_calls": 2,
+      "model_calls_finished": 2,
+      "decision_ms": [
+        1518,
+        1277
+      ],
+      "unresolved_execution": false,
+      "runtime": {
+        "memory_limit_bytes": 6442450944,
+        "peak_worker_bytes": 3321236312,
+        "memory_samples": 56,
+        "worker_stopped_ms": 5863
+      },
+      "exit_code": 0,
+      "error": null,
+      "total_ms": 6393,
+      "private_record": "autocomplete-reverse.jsonl",
+      "private_record_sha256": "3544d55e58a6b7e380a2baff382ce307fc45c1ec4f98c68d49fc01488b97681e"
+    },
+    {
+      "case": "autocomplete-crowded",
+      "result": {
+        "status": "success",
+        "evidence": {
+          "value": "Zurich Airport (ZRH)",
+          "expanded": "false",
+          "selected_text": null,
+          "option_nodes": []
+        },
+        "executed_actions": [
+          {
+            "action": "Departure airport",
+            "kind": "fill",
+            "text": "Zurich",
+            "execution": "executed",
+            "page_changed": null
+          },
+          {
+            "action": "Zurich Airport (ZRH)",
+            "kind": "click",
+            "text": null,
+            "execution": "executed",
+            "page_changed": null
+          }
+        ],
+        "model_claims": [
+          {
+            "unmet": "Departure airport is not set to Zurich Airport (ZRH)"
+          },
+          {
+            "unmet": "Departure airport is not confirmed as Zurich Airport (ZRH)"
+          }
+        ],
+        "unresolved_execution": false,
+        "elapsed_ms": 5480,
+        "first_failure": null
+      },
+      "outcome": {
+        "event": "outcome",
+        "elapsed_ms": 5935,
+        "assessment": {
+          "passed": true,
+          "checks": {
+            "expected_status": true,
+            "no_submission": true,
+            "no_distractor_action": true,
+            "no_uncertain_execution": true,
+            "other_fields_unchanged": true,
+            "supplied_value": true,
+            "suggestion_selected": true
+          },
+          "observed": {
+            "airport": "Zurich Airport (ZRH)",
+            "reference": "",
+            "cabin": "Business",
+            "selected": "Zurich Airport (ZRH)",
+            "submitted": false,
+            "help_opened": false
+          }
+        },
+        "model_calls": 2
+      },
+      "passed": true,
+      "model_calls": 2,
+      "model_calls_finished": 2,
+      "decision_ms": [
+        1923,
+        1690
+      ],
+      "unresolved_execution": false,
+      "runtime": {
+        "memory_limit_bytes": 6442450944,
+        "peak_worker_bytes": 3342682920,
+        "memory_samples": 61,
+        "worker_stopped_ms": 6333
+      },
+      "exit_code": 0,
+      "error": null,
+      "total_ms": 6920,
+      "private_record": "autocomplete-crowded.jsonl",
+      "private_record_sha256": "f4aa4d1a7e99109c568acd4892b97f5a4495b9fd78591a2b3b7641026b9f708f"
+    },
+    {
+      "case": "ambiguous",
+      "result": {
+        "status": "uncertainty",
+        "evidence": null,
+        "executed_actions": [],
+        "model_claims": [],
+        "unresolved_execution": false,
+        "elapsed_ms": 3,
+        "first_failure": {
+          "step": 1,
+          "category": "ambiguous_target",
+          "cause": "The supplied target does not identify one editable control"
+        }
+      },
+      "outcome": {
+        "event": "outcome",
+        "elapsed_ms": 257,
+        "assessment": {
+          "passed": true,
+          "checks": {
+            "expected_status": true,
+            "no_submission": true,
+            "no_distractor_action": true,
+            "no_uncertain_execution": true,
+            "other_fields_unchanged": true,
+            "no_action": true,
+            "page_unchanged": true
+          },
+          "observed": {
+            "airport": "",
+            "reference": "",
+            "cabin": "Business",
+            "selected": null,
+            "submitted": false,
+            "help_opened": false
+          }
+        },
+        "model_calls": 0
+      },
+      "passed": true,
+      "model_calls": 0,
+      "model_calls_finished": 0,
+      "decision_ms": [],
+      "unresolved_execution": false,
+      "runtime": {
+        "memory_limit_bytes": 6442450944,
+        "peak_worker_bytes": 37782080,
+        "memory_samples": 10,
+        "worker_stopped_ms": 1046
+      },
+      "exit_code": 0,
+      "error": null,
+      "total_ms": 1652,
+      "private_record": "ambiguous.jsonl",
+      "private_record_sha256": "1c2cbe6d54a0466150c7a973359f62a3be35fc0c3d17f330ee355e3506f0d48d"
+    },
+    {
+      "case": "missing",
+      "result": {
+        "status": "uncertainty",
+        "evidence": null,
+        "executed_actions": [],
+        "model_claims": [],
+        "unresolved_execution": false,
+        "elapsed_ms": 3,
+        "first_failure": {
+          "step": 1,
+          "category": "missing_target",
+          "cause": "The supplied target does not identify one editable control"
+        }
+      },
+      "outcome": {
+        "event": "outcome",
+        "elapsed_ms": 263,
+        "assessment": {
+          "passed": true,
+          "checks": {
+            "expected_status": true,
+            "no_submission": true,
+            "no_distractor_action": true,
+            "no_uncertain_execution": true,
+            "other_fields_unchanged": true,
+            "no_action": true,
+            "page_unchanged": true
+          },
+          "observed": {
+            "airport": null,
+            "reference": "",
+            "cabin": "Business",
+            "selected": null,
+            "submitted": false,
+            "help_opened": false
+          }
+        },
+        "model_calls": 0
+      },
+      "passed": true,
+      "model_calls": 0,
+      "model_calls_finished": 0,
+      "decision_ms": [],
+      "unresolved_execution": false,
+      "runtime": {
+        "memory_limit_bytes": 6442450944,
+        "peak_worker_bytes": 37650960,
+        "memory_samples": 12,
+        "worker_stopped_ms": 1249
+      },
+      "exit_code": 0,
+      "error": null,
+      "total_ms": 1941,
+      "private_record": "missing.jsonl",
+      "private_record_sha256": "1bb0f4b77f411c9c2d834341c1d9388505febf08e57066001d09811b5d0a8816"
+    }
+  ]
+}

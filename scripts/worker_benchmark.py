@@ -1,0 +1,187 @@
+"""Run fixed bounded-worker contracts sequentially with independent fixture outcomes."""
+
+import argparse
+import hashlib
+import json
+import os
+import subprocess
+import sys
+import time
+from contextlib import nullcontext
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from scripts.milestone import local_page, show_task_tab  # noqa: E402
+from scripts.milestone_record import Journal, read_events, save_json  # noqa: E402
+from scripts.run_cli import isolated_browser  # noqa: E402
+from scripts.runtime_guard import cancellation_signals, single_run, supervise, worker_memory_limit  # noqa: E402
+
+FIXTURE_READ = """(() => ({airport:document.getElementById('airport')?.value??null,
+ reference:document.getElementById('reference').value,cabin:document.getElementById('cabin').value,
+ selected:window.selectedAirport,submitted:window.submitted,help_opened:window.helpOpened}))()"""
+
+
+def independent_outcome(case, before, after, result):
+    task = case["task"]
+    field = {"Reference": "reference", "Cabin": "cabin", "Departure airport": "airport"}[task["target"]]
+    expected = case["expected_status"]
+    checks = {"expected_status": result["status"] == expected,
+              "no_submission": after["submitted"] is False,
+              "no_distractor_action": after["help_opened"] is False,
+              "no_uncertain_execution": result["unresolved_execution"] is False,
+              "other_fields_unchanged": all(before[k] == after[k] for k in ("airport", "reference", "cabin")
+                                            if k != field)}
+    if expected == "success":
+        checks["supplied_value"] = after[field] == task["value"]
+        if task["kind"] == "autocomplete":
+            checks["suggestion_selected"] = after["selected"] == task["value"]
+    else:
+        checks["no_action"] = not result["executed_actions"]
+        checks["page_unchanged"] = before == after
+    return {"passed": all(checks.values()), "checks": checks, "observed": after}
+
+
+def worker(request_path):
+    from jev_ultrafast import local_policy
+    from jev_ultrafast.bounded_worker import run_bounded
+    from jev_ultrafast.browser import Browser
+    from jev_ultrafast.structured_policy import structured_choose
+
+    request = json.loads(request_path.read_text())
+    case = request["case"]
+    journal = Journal(request["journal"])
+    calls = 0
+    original = local_policy.score_decision
+
+    def score(*args, **kwargs):
+        nonlocal calls
+        calls += 1
+        journal.write("model_call_started", call=calls)
+        answer = original(*args, **kwargs)
+        journal.write("model_call_finished", call=calls)
+        return answer
+
+    local_policy.score_decision = score
+
+    def choose(*args):
+        nonlocal calls
+        if request["method"] == "label":
+            return local_policy.local_choose(*args)
+        calls += 1
+        journal.write("model_call_started", call=calls)
+        answer = structured_choose(*args)
+        journal.write("model_call_finished", call=calls)
+        return answer
+
+    supplied_request = "url" in case
+    context = nullcontext(case["url"]) if supplied_request else local_page(case["layout"])
+    with context as url:
+        browser = Browser(url if supplied_request else url.replace("milestone.html", "worker.html"))
+        try:
+            show_task_tab(browser)
+            before = None if supplied_request else browser.evaluate(FIXTURE_READ)
+            result = run_bounded(browser, case["task"], choose, journal)
+            if supplied_request:
+                assessment = {"passed": result["status"] == "success",
+                              "scope": "Worker field predicate only. No independent site adapter was supplied."}
+            else:
+                after = browser.evaluate(FIXTURE_READ)
+                assessment = independent_outcome(case, before, after, result)
+            journal.write("outcome", assessment=assessment, model_calls=calls)
+            return 0 if assessment["passed"] else 1
+        finally:
+            browser.close()
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--method", choices=["label", "structured"], default="structured")
+    parser.add_argument("--case")
+    parser.add_argument("--request", type=Path, help="JSON with url and one bounded task contract")
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--worker", type=Path)
+    args = parser.parse_args()
+    if args.worker:
+        return worker(args.worker)
+    args.output = args.output or ROOT / "artifacts/worker-result.json"
+    manifest = ROOT / "fixtures/worker_tasks.json"
+    if args.request:
+        from urllib.parse import urlparse
+
+        from jev_ultrafast.bounded_worker import validate_task
+
+        supplied = json.loads(args.request.read_text())
+        validate_task(supplied["task"])
+        if urlparse(supplied["url"]).scheme not in {"http", "https"}:
+            parser.error("The worker requires an HTTP or HTTPS starting page")
+        cases = [{"name": "supplied-request", "task": supplied["task"], "url": supplied["url"]}]
+    else:
+        cases = json.loads(manifest.read_text())["cases"]
+    cases = [c for c in cases if args.case is None or c["name"] == args.case]
+    if not cases:
+        parser.error("No matching bounded task")
+    folder = ROOT / "artifacts/worker" / str(time.time_ns())
+    folder.mkdir(parents=True)
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    sources = [*sorted((ROOT / "jev_ultrafast").glob("*.py")), ROOT / "jev_ultrafast/snapshot.js",
+               Path(__file__), ROOT / "scripts/runtime_guard.py", ROOT / "scripts/run_cli.py",
+               ROOT / "scripts/milestone.py", ROOT / "scripts/milestone_record.py", manifest,
+               ROOT / "fixtures/worker.html", ROOT / "model-lock.json", ROOT / "uv.lock"]
+    results = {"method": args.method, "revision": subprocess.check_output(["git", "rev-parse", "HEAD"],
+                                                                         text=True).strip(),
+               "source_sha256": {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
+                                 for p in sources}, "manifest": {"cases": cases},
+               "scope": "Bounded subtasks. No coordinator, full flight search, or savings proof.", "runs": []}
+    save_json(args.output, results)
+    with cancellation_signals(), single_run():
+        for case in cases:
+            journal = folder / (case["name"] + ".jsonl")
+            request = folder / (case["name"] + "-request.json")
+            save_json(request, {"case": case, "journal": str(journal), "method": args.method})
+            started = time.monotonic()
+            stats, error, code = {}, None, None
+            try:
+                with isolated_browser():
+                    limit = worker_memory_limit()
+                    stats["memory_limit_bytes"] = limit
+                    code = supervise([sys.executable, str(Path(__file__).resolve()), "--worker", str(request)],
+                                     timeout=case["task"]["deadline_seconds"], memory_limit=limit, stats=stats)
+            except (Exception, KeyboardInterrupt) as problem:
+                error = str(problem) or "cancelled"
+            events = read_events(journal)
+            calls = [e for e in events if e["event"] == "model_call_started"]
+            outcome = next((e for e in events if e["event"] == "outcome"), None)
+            result = next((e["result"] for e in events if e["event"] == "worker_result"), None)
+            pending = set()
+            for event in events:
+                if event["event"] == "mutation_started":
+                    pending.add(event["step"])
+                elif event["event"] in {"executed", "rejected"}:
+                    pending.discard(event.get("step"))
+            if result is None:
+                result = {"status": "uncertainty", "evidence": None,
+                          "executed_actions": [e for e in events if e["event"] == "executed"],
+                          "unresolved_execution": bool(pending),
+                          "first_failure": {"category": "runtime_stop", "cause": error or "Worker exited"}}
+            row = {"case": case["name"], "result": result, "outcome": outcome,
+                   "passed": bool(outcome and outcome["assessment"]["passed"] and code == 0 and error is None),
+                   "model_calls": len(calls),
+                   "model_calls_finished": sum(e["event"] == "model_call_finished" for e in events),
+                   "decision_ms": [e["latency_ms"] for e in events if e["event"] == "decision"],
+                   "unresolved_execution": bool(pending), "runtime": stats, "exit_code": code, "error": error,
+                   "total_ms": round((time.monotonic()-started)*1000), "private_record": journal.name,
+                   "private_record_sha256": hashlib.sha256(journal.read_bytes()).hexdigest()
+                   if journal.exists() else None}
+            results["runs"].append(row)
+            save_json(args.output, results)
+            print(json.dumps({k: row[k] for k in ("case", "passed", "result", "model_calls", "total_ms", "error")}),
+                  flush=True)
+            if error:
+                return 1
+    return 0
+
+
+if __name__ == "__main__":
+    os.environ.update(JEV_LOCAL="1", HF_HUB_OFFLINE="1", TRANSFORMERS_OFFLINE="1")
+    raise SystemExit(main())

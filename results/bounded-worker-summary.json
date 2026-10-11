@@ -1,0 +1,30 @@
+{
+  "scope": "Fixed bounded field contracts; not general browser competence",
+  "files": [
+    "results/bounded-worker-proof-1.json",
+    "results/bounded-worker-proof-2.json",
+    "results/bounded-worker-proof-3.json"
+  ],
+  "identical_measured_sources": true,
+  "assessment_passes": 33,
+  "assessment_total": 33,
+  "actionable_successes": 27,
+  "safe_uncertainty_stops": 6,
+  "median_actionable_total_ms": 5367,
+  "median_decision_ms": 1513.0,
+  "model_calls": 36,
+  "peak_worker_bytes": 3343338352,
+  "worker_memory_excludes_browser": true,
+  "all_suite_time_ms": 166804,
+  "false_successes": 0,
+  "forbidden_executions": 0,
+  "unresolved_executions": 0,
+  "limits": [
+    "No held-out 100-trial reliability assessment",
+    "No deterministic-helper comparison",
+    "No multi-subtask session continuation or recoverable-failure demonstration",
+    "No valid direct/coordinator paired comparison",
+    "Exact coordinator token counts, time savings, and billing savings unavailable",
+    "Full local flight goal still fails; live Flights not attempted"
+  ]
+}

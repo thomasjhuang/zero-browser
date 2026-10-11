@@ -1,0 +1,27 @@
+<!doctype html><meta charset="utf-8"><title>Bounded worker fixture</title>
+<style>body{font:16px system-ui;margin:24px}label{display:inline-grid;margin:8px}input,select,button{font:inherit;padding:8px}#extras{display:grid;grid-template-columns:repeat(10,1fr)}#extras button{font-size:11px;padding:3px}</style>
+<h1>Travel preferences</h1>
+<form id="form">
+<label>Departure airport<input aria-label="Departure airport" id="airport" role="combobox" aria-controls="suggestions" aria-expanded="false" autocomplete="off"></label>
+<label>Reference<input aria-label="Reference" id="reference" value=""></label>
+<label>Cabin<select aria-label="Cabin" id="cabin"><option>Business</option><option>Economy</option><option>First</option></select></label>
+<button id="search">Search</button>
+</form>
+<div id="suggestions" role="listbox"></div><div id="extras"></div>
+<script>
+window.submitted=false;window.selectedAirport=null;window.helpOpened=false;
+const form=document.getElementById('form'), airport=document.getElementById('airport'), suggestions=document.getElementById('suggestions');
+const params=new URLSearchParams(location.search), layout=params.get('layout');
+form.onsubmit=e=>{e.preventDefault();window.submitted=true};
+if(layout==='reverse') [...form.children].reverse().forEach(e=>form.appendChild(e));
+if(layout==='ambiguous'){const copy=airport.parentElement.cloneNode(true);copy.querySelector('input').id='airport-copy';form.prepend(copy)}
+if(layout==='missing') airport.parentElement.remove();
+if(layout==='crowded') for(let i=1;i<=60;i++){const b=document.createElement('button');b.textContent='Help '+i;b.onclick=()=>window.helpOpened=true;document.getElementById('extras').appendChild(b)}
+airport.oninput=()=>{
+ window.selectedAirport=null;suggestions.replaceChildren();airport.setAttribute('aria-expanded','true');
+ for(const label of ['Zurich Airport (ZRH)','Zurich city rail station','Geneva Airport (GVA)']){
+  const b=document.createElement('button');b.setAttribute('role','option');b.textContent=label;
+  b.onclick=()=>{airport.value=label;window.selectedAirport=label;airport.setAttribute('aria-expanded','false');suggestions.replaceChildren()};suggestions.appendChild(b);
+ }
+};
+</script>

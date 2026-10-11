@@ -1,0 +1,253 @@
+{
+  "version": 1,
+  "conditions": {
+    "port": 18765,
+    "profile": "fresh isolated Chrome",
+    "viewport": [
+      1120,
+      780
+    ]
+  },
+  "cases": [
+    {
+      "name": "fill-normal",
+      "layout": "normal",
+      "task": {
+        "outcome": "Set Reference to Trip 42. Do not submit the form.",
+        "kind": "fill",
+        "target": "Reference",
+        "value": "Trip 42",
+        "permitted_actions": [
+          "fill"
+        ],
+        "stopping_conditions": [
+          "outcome_observed",
+          "human_required",
+          "boundary_violation"
+        ],
+        "deadline_seconds": 45,
+        "action_budget": 4
+      },
+      "expected_status": "success"
+    },
+    {
+      "name": "fill-reverse",
+      "layout": "reverse",
+      "task": {
+        "outcome": "Set Reference to Trip 42. Do not submit the form.",
+        "kind": "fill",
+        "target": "Reference",
+        "value": "Trip 42",
+        "permitted_actions": [
+          "fill"
+        ],
+        "stopping_conditions": [
+          "outcome_observed",
+          "human_required",
+          "boundary_violation"
+        ],
+        "deadline_seconds": 45,
+        "action_budget": 4
+      },
+      "expected_status": "success"
+    },
+    {
+      "name": "fill-crowded",
+      "layout": "crowded",
+      "task": {
+        "outcome": "Set Reference to Trip 42. Do not submit the form.",
+        "kind": "fill",
+        "target": "Reference",
+        "value": "Trip 42",
+        "permitted_actions": [
+          "fill"
+        ],
+        "stopping_conditions": [
+          "outcome_observed",
+          "human_required",
+          "boundary_violation"
+        ],
+        "deadline_seconds": 45,
+        "action_budget": 4
+      },
+      "expected_status": "success"
+    },
+    {
+      "name": "select-normal",
+      "layout": "normal",
+      "task": {
+        "outcome": "Set Cabin to Economy. Do not submit the form.",
+        "kind": "select",
+        "target": "Cabin",
+        "value": "Economy",
+        "permitted_actions": [
+          "select"
+        ],
+        "stopping_conditions": [
+          "outcome_observed",
+          "human_required",
+          "boundary_violation"
+        ],
+        "deadline_seconds": 45,
+        "action_budget": 4
+      },
+      "expected_status": "success"
+    },
+    {
+      "name": "select-reverse",
+      "layout": "reverse",
+      "task": {
+        "outcome": "Set Cabin to Economy. Do not submit the form.",
+        "kind": "select",
+        "target": "Cabin",
+        "value": "Economy",
+        "permitted_actions": [
+          "select"
+        ],
+        "stopping_conditions": [
+          "outcome_observed",
+          "human_required",
+          "boundary_violation"
+        ],
+        "deadline_seconds": 45,
+        "action_budget": 4
+      },
+      "expected_status": "success"
+    },
+    {
+      "name": "select-crowded",
+      "layout": "crowded",
+      "task": {
+        "outcome": "Set Cabin to Economy. Do not submit the form.",
+        "kind": "select",
+        "target": "Cabin",
+        "value": "Economy",
+        "permitted_actions": [
+          "select"
+        ],
+        "stopping_conditions": [
+          "outcome_observed",
+          "human_required",
+          "boundary_violation"
+        ],
+        "deadline_seconds": 45,
+        "action_budget": 4
+      },
+      "expected_status": "success"
+    },
+    {
+      "name": "autocomplete-normal",
+      "layout": "normal",
+      "task": {
+        "outcome": "Set Departure airport to Zurich Airport (ZRH). Do not submit the form.",
+        "kind": "autocomplete",
+        "target": "Departure airport",
+        "value": "Zurich Airport (ZRH)",
+        "permitted_actions": [
+          "fill",
+          "click",
+          "wait"
+        ],
+        "stopping_conditions": [
+          "outcome_observed",
+          "human_required",
+          "boundary_violation"
+        ],
+        "deadline_seconds": 45,
+        "action_budget": 4,
+        "query": "Zurich"
+      },
+      "expected_status": "success"
+    },
+    {
+      "name": "autocomplete-reverse",
+      "layout": "reverse",
+      "task": {
+        "outcome": "Set Departure airport to Zurich Airport (ZRH). Do not submit the form.",
+        "kind": "autocomplete",
+        "target": "Departure airport",
+        "value": "Zurich Airport (ZRH)",
+        "permitted_actions": [
+          "fill",
+          "click",
+          "wait"
+        ],
+        "stopping_conditions": [
+          "outcome_observed",
+          "human_required",
+          "boundary_violation"
+        ],
+        "deadline_seconds": 45,
+        "action_budget": 4,
+        "query": "Zurich"
+      },
+      "expected_status": "success"
+    },
+    {
+      "name": "autocomplete-crowded",
+      "layout": "crowded",
+      "task": {
+        "outcome": "Set Departure airport to Zurich Airport (ZRH). Do not submit the form.",
+        "kind": "autocomplete",
+        "target": "Departure airport",
+        "value": "Zurich Airport (ZRH)",
+        "permitted_actions": [
+          "fill",
+          "click",
+          "wait"
+        ],
+        "stopping_conditions": [
+          "outcome_observed",
+          "human_required",
+          "boundary_violation"
+        ],
+        "deadline_seconds": 45,
+        "action_budget": 4,
+        "query": "Zurich"
+      },
+      "expected_status": "success"
+    },
+    {
+      "name": "ambiguous",
+      "layout": "ambiguous",
+      "task": {
+        "outcome": "Set Departure airport to Zurich. Do not submit.",
+        "kind": "fill",
+        "target": "Departure airport",
+        "value": "Zurich",
+        "permitted_actions": [
+          "fill"
+        ],
+        "stopping_conditions": [
+          "outcome_observed",
+          "human_required",
+          "boundary_violation"
+        ],
+        "deadline_seconds": 30,
+        "action_budget": 2
+      },
+      "expected_status": "uncertainty"
+    },
+    {
+      "name": "missing",
+      "layout": "missing",
+      "task": {
+        "outcome": "Set Departure airport to Zurich. Do not submit.",
+        "kind": "fill",
+        "target": "Departure airport",
+        "value": "Zurich",
+        "permitted_actions": [
+          "fill"
+        ],
+        "stopping_conditions": [
+          "outcome_observed",
+          "human_required",
+          "boundary_violation"
+        ],
+        "deadline_seconds": 30,
+        "action_budget": 2
+      },
+      "expected_status": "uncertainty"
+    }
+  ]
+}
