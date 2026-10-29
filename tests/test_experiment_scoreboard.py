@@ -73,6 +73,7 @@ def test_failed_fast_run_does_not_count_as_a_speedup(tmp_path):
     item = summary['speedups']['local_search']['browser-use']
     assert item['comparable'] is False
     assert item['latency'] is None
+    assert board.combined_score(summary) is None
     assert item['baseline_evidence'] == ['results/browser.json']
     assert summary['hypothesis_alive'] is True
 
@@ -159,6 +160,7 @@ def test_mlflow_logs_measured_ratios_only(tmp_path, monkeypatch):
 
     fake = SimpleNamespace(
         set_tracking_uri=lambda uri: calls.setdefault('uri', uri),
+        get_experiment_by_name=lambda name: object(),
         set_experiment=lambda name: calls.setdefault('experiment', name),
         start_run=lambda **kwargs: Run(),
         log_metric=lambda key, value: calls.setdefault('metrics', {}).setdefault(key, value),
@@ -180,3 +182,69 @@ def test_mlflow_logs_measured_ratios_only(tmp_path, monkeypatch):
 def test_empty_run_directory_does_not_write_numbers(tmp_path):
     assert board.main(['--runs', str(tmp_path / 'missing'), '--output', str(tmp_path / 'out.json')]) == 2
     assert not (tmp_path / 'out.json').exists()
+
+
+def _load(name, path):
+    spec = importlib.util.spec_from_file_location(name, path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def test_proposal_and_tracking_wait_for_real_records(tmp_path):
+    propose = _load('experiment_propose', ROOT / 'scripts' / 'experiment_propose.py')
+    track = _load('experiment_track', ROOT / 'scripts' / 'experiment_track.py')
+    output = tmp_path / 'proposed-idea.json'
+    assert propose.main(['--runs', str(tmp_path / 'missing'), '--output', str(output)]) == 2
+    assert not output.exists()
+    assert track.main(['--runs', str(tmp_path / 'missing'), '--output', str(tmp_path / 'summary.json')]) == 2
+    assert not (tmp_path / 'summary.json').exists()
+    assert not (tmp_path / 'mlflow').exists()
+
+
+def test_proposal_uses_the_recorded_lever_and_skips_unmeasured_ratios(tmp_path):
+    runs = tmp_path / 'results' / 'experiment-loop'
+    runs.mkdir(parents=True)
+    body = record(tmp_path, 'local', independent_checks={'origin': False},
+                  first_failed_step={'category': 'wrong_decision'})
+    (runs / 'local.json').write_text(json.dumps(body))
+    summary = board.summarize(board.load_records(runs), tmp_path)
+    rubrics = json.loads((ROOT / 'experiments' / 'local-coordinator' / 'rubrics.json').read_text())
+    idea = board.propose_idea(summary, rubrics)
+    assert idea['next_lever'] == summary['next_lever']
+    assert idea['hypothesis'] == summary['next_lever']['reason']
+    assert 'measured_latency_ratios' not in idea
+    assert idea['evidence_paths'] == ['results/local.json']
+    assert idea['source'] == 'SakanaAI/AI-Scientist-v3 idea schema'
+
+
+def test_evaluator_does_not_invent_a_zero_score(tmp_path):
+    evaluate = _load('evaluate', ROOT / 'experiments' / 'local-coordinator' / 'evaluate.py')
+    assert evaluate.main(tmp_path / 'missing', tmp_path / 'out', tmp_path) == 1
+    metrics = json.loads((tmp_path / 'out' / 'metrics.json').read_text())
+    assert metrics['combined_score'] is None
+
+
+def test_mlflow_file_store_keeps_only_measured_metrics(tmp_path):
+    pytest.importorskip('mlflow')
+    runs = tmp_path / 'results' / 'experiment-loop'
+    runs.mkdir(parents=True)
+    local = record(tmp_path, 'local', latency_ms=1000)
+    browser = record(tmp_path, 'browser', arm='browser-use', latency_ms=3000, hosted_model_calls=1)
+    (runs / 'local.json').write_text(json.dumps(local))
+    (runs / 'browser.json').write_text(json.dumps(browser))
+    summary = board.summarize(board.load_records(runs), tmp_path)
+    artifact = tmp_path / 'summary.json'
+    artifact.write_text(json.dumps(summary))
+    uri = tmp_path / 'mlflow'
+    logged = board.log_mlflow(summary, uri, artifact)
+    assert logged['logged'] is True
+    from mlflow.tracking import MlflowClient
+    client = MlflowClient(tracking_uri=logged['tracking_uri'])
+    experiment = client.get_experiment_by_name('zero-browser-local-coordinator')
+    found = client.search_runs([experiment.experiment_id])
+    assert len(found) == 1
+    metrics = found[0].data.metrics
+    assert metrics['local_search.browser-use.latency'] == 3
+    assert all(value is not None for value in metrics.values())
+    assert not any(key.startswith('local_search.grok') for key in metrics)

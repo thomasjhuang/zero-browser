@@ -156,9 +156,20 @@ copied evidence are redacted. A blocked arm uses `--blocked --reason "..."` inst
 
 The summary is the measured comparison. It does not invent a ratio for a missing or failed arm.
 `experiments/local-coordinator/evaluate.py` writes `metrics.json` and `correct.json` from those same records
-for a Sakana AI-Scientist v3 task. It does not launch a browser or a model. MLflow logging is optional:
-pass `--mlflow artifacts/mlflow` when the `mlflow` package is installed. The package is outside the frozen lock,
-and tracking files stay under ignored `artifacts/`.
+for a Sakana AI-Scientist v3 task. It does not launch a browser or a model. An unmeasured batch leaves
+`combined_score` null.
+
+MLflow is a dev dependency. Tracking uses a sqlite store under ignored `artifacts/mlflow`. Both commands exit
+without writing a run or an idea when `results/experiment-loop/` has no records.
+
+```bash
+uv run --offline --frozen --extra local python scripts/experiment_track.py \
+  --runs results/experiment-loop --output results/experiment-loop-summary.json
+uv run --offline --frozen --extra local python scripts/experiment_propose.py \
+  --runs results/experiment-loop --output experiments/local-coordinator/proposed-idea.json
+```
+
+The proposal writes one AI-Scientist v3 idea. Its lever is the scoreboard recommendation for those records.
 
 ## Tests and delivery
 

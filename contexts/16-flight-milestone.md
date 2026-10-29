@@ -694,3 +694,5 @@ The comparison arms are `browser-use`, `grok-4.7`, `grok-4.7+zero-browser`, and 
 On this Linux VM, ruff passed and the 10 new scoreboard tests passed. Thirteen existing tests failed while importing macOS `libproc` or `mlx`. Those files were not edited. The required suite still belongs on the desktop Mac.
 
 `scripts/experiment_record.py` copies `verification.checks` from a finished non-pilot milestone directory into `results/experiment-loop/`. `outcome_verified` and DONE do not decide the record. The recorder does not start a browser or a model. No `results/experiment-loop/` batch was present when this landed.
+
+`scripts/experiment_track.py` logs that directory to a local MLflow sqlite store under ignored `artifacts/mlflow`. `scripts/experiment_propose.py` writes one Sakana AI-Scientist v3 idea whose lever is the scoreboard recommendation. Neither command writes a file when the directory is missing or empty, and an unmeasured score is null rather than zero.

@@ -236,3 +236,7 @@ artifacts/baselines/
 
 # Private run traces and live replay recordings
 artifacts/
+
+# Local MLflow file stores created outside artifacts/
+mlruns/
+mlartifacts/

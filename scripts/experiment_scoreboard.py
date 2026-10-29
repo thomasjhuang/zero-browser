@@ -1,6 +1,7 @@
 """Score fixed-goal browser runs from evidence files. A DONE choice is not success."""
 
 import argparse
+import hashlib
 import json
 import statistics
 import sys
@@ -256,8 +257,8 @@ def summarize(records, root):
 def combined_score(summary):
     ratios = [item['latency'] for goal in summary['speedups'].values() for item in goal.values()
               if item['comparable'] and item['latency'] is not None]
-    if not ratios or not summary['hypothesis_alive']:
-        return 0.0
+    if not ratios:
+        return None
     return min(ratios)
 
 
@@ -281,15 +282,61 @@ def flat_metrics(summary):
     return metrics
 
 
+def propose_idea(summary, rubrics):
+    runs = summary.get('runs') or []
+    if not runs:
+        raise ValueError('No scored records')
+    evidence = sorted({path for stats in summary['arms'].values() for path in stats['evidence_paths']})
+    if not evidence:
+        raise ValueError('Scored records have no evidence paths')
+    lever = summary['next_lever']
+    measured = {}
+    for goal, baselines in summary['speedups'].items():
+        for name, item in baselines.items():
+            if not item.get('comparable') or item.get('latency') is None:
+                continue
+            reading = {'latency': item['latency'], 'hypothesis_evidence': item['hypothesis_evidence'],
+                       'baseline_evidence': item['baseline_evidence']}
+            for field in ('steps', 'tokens'):
+                if item.get(field) is not None:
+                    reading[field] = item[field]
+            measured[f'{goal}:{name}'] = reading
+    idea = {'idea_id': 'idea_' + hashlib.sha256('\n'.join(evidence).encode()).hexdigest()[:12],
+            'title': f"{lever['action']}: {lever['lever']} on {lever['goal_id']}",
+            'hypothesis': lever['reason'],
+            'implementation_plan': [lever['reason'], 'Change no other lever in this batch.'],
+            'target_rubrics': rubrics, 'notes_for_agent': 'Emitted from scored records only. Do not invent metrics.',
+            'source': 'SakanaAI/AI-Scientist-v3 idea schema', 'next_lever': lever, 'evidence_paths': evidence,
+            'hypothesis_alive': summary['hypothesis_alive']}
+    if measured:
+        idea['measured_latency_ratios'] = measured
+    return idea
+
+
+def mlflow_locations(tracking):
+    text = str(tracking)
+    if '://' in text:
+        return text, None
+    root = Path(text)
+    root.mkdir(parents=True, exist_ok=True)
+    artifacts = root / 'artifacts'
+    artifacts.mkdir(parents=True, exist_ok=True)
+    return 'sqlite:///' + (root / 'mlflow.db').resolve().as_posix(), artifacts.resolve().as_uri()
+
+
 def log_mlflow(summary, tracking_uri, artifact):
     import mlflow
-    mlflow.set_tracking_uri(str(tracking_uri))
-    mlflow.set_experiment('zero-browser-local-coordinator')
+    uri, artifact_location = mlflow_locations(tracking_uri)
+    mlflow.set_tracking_uri(uri)
+    name = 'zero-browser-local-coordinator'
+    if mlflow.get_experiment_by_name(name) is None:
+        mlflow.create_experiment(name, artifact_location=artifact_location)
+    mlflow.set_experiment(name)
     with mlflow.start_run(run_name='experiment-loop'):
         for key, value in flat_metrics(summary).items():
             mlflow.log_metric(key, float(value))
         mlflow.log_artifact(str(artifact))
-    return {'logged': True, 'tracking_uri': str(tracking_uri)}
+    return {'logged': True, 'tracking_uri': uri}
 
 
 def main(argv=None):

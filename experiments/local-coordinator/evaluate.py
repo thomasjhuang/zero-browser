@@ -24,7 +24,7 @@ def main(records_dir, results_dir, root):
         correct = True
         message = summary['next_lever']['reason']
     except (FileNotFoundError, ValueError, json.JSONDecodeError) as error:
-        metrics = {'combined_score': 0.0, 'error': str(error)}
+        metrics = {'combined_score': None, 'error': str(error)}
         message = str(error)
     (results / 'metrics.json').write_text(json.dumps(metrics, indent=2) + '\n')
     (results / 'correct.json').write_text(json.dumps({'correct': correct, 'message': message}, indent=2) + '\n')
