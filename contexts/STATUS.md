@@ -165,3 +165,5 @@ Earlier implementation details and evidence remain in the numbered task files an
 - October 29, 2026: desktop recorded one local_search attempt per arm on the RTX 3080. The local coordinator failed the independent checks (wrong_decision at step 1, 41181 ms, 7 steps, 0 hosted calls, done_choice false). browser-use, grok-4.7, and grok-4.7+zero-browser are blocked because those logins are absent. The scoreboard's next lever is prompt. The run slot is idle.
 
 - October 29, 2026: the same goal was rerun from the branch launcher after dropping the private launch patch. Independent checks failed again (wrong_decision, 6489 ms, 7 steps, done_choice false, successful_run false). It was not a memory refusal. Hosted arms remain blocked. Next lever is still prompt. The run slot is idle.
+
+- October 29, 2026: the prompt lever was tried once. local_search still failed the independent checks (wrong_decision, 6515 ms, 7 steps, done_choice false, successful_run false). The scoreboard says stop. The run slot is idle.
