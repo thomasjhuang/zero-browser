@@ -60,6 +60,21 @@
       "lever": "measurement",
       "category": "wrong_decision",
       "evidence_path": "results/experiment-loop/local-coordinator/local_search/local_search-1793259713570692462.evidence.json"
+    },
+    {
+      "arm": "local-coordinator",
+      "goal_id": "local_search",
+      "passed": false,
+      "blocked": false,
+      "done_choice": false,
+      "latency_ms": 6489,
+      "steps": 7,
+      "tokens": null,
+      "peak_memory_bytes": 1235664896,
+      "hosted_model_calls": 0,
+      "lever": "measurement",
+      "category": "wrong_decision",
+      "evidence_path": "results/experiment-loop/local-coordinator/local_search/local_search-1793260155458458566.evidence.json"
     }
   ],
   "arms": {
@@ -103,7 +118,7 @@
       ]
     },
     "local-coordinator:local_search": {
-      "attempts": 1,
+      "attempts": 2,
       "blocked": 0,
       "passes": 0,
       "success_rate": 0.0,
@@ -112,7 +127,8 @@
       "coordinator_tokens_median_pass": null,
       "peak_memory_bytes_max": 4625092608,
       "evidence_paths": [
-        "results/experiment-loop/local-coordinator/local_search/local_search-1793259713570692462.evidence.json"
+        "results/experiment-loop/local-coordinator/local_search/local_search-1793259713570692462.evidence.json",
+        "results/experiment-loop/local-coordinator/local_search/local_search-1793260155458458566.evidence.json"
       ]
     }
   },

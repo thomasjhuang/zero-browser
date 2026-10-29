@@ -1,0 +1,28 @@
+{
+  "schema": "zero-browser.experiment-run.v1",
+  "arm": "local-coordinator",
+  "goal_id": "local_search",
+  "independent_checks": {
+    "origin": false,
+    "destination": false,
+    "departure": false,
+    "adults": false,
+    "cabin": false,
+    "trip_type": false,
+    "search_submitted": false,
+    "results_visible": false,
+    "no_flight_selected": true
+  },
+  "latency_ms": 6489,
+  "steps": 7,
+  "hosted_model_calls": 0,
+  "done_choice": false,
+  "evidence_path": "results/experiment-loop/local-coordinator/local_search/local_search-1793260155458458566.evidence.json",
+  "lever": "measurement",
+  "first_failed_step": {
+    "category": "wrong_decision",
+    "step": 1
+  },
+  "peak_memory_bytes": 1235664896,
+  "local_model_calls": 9
+}

@@ -183,7 +183,9 @@ def _load_model():
         raise RuntimeError("This milestone requires Apple Silicon with Metal or Linux with CUDA")
     mx.set_default_device(mx.gpu)
     # The MLX memory limit is advisory. The CLI also monitors the worker externally.
-    budget = min(6 * 2**30, mx.device_info()["memory_size"] // 3)
+    device = mx.device_info()
+    memory = device["memory_size"] if "memory_size" in device else device["total_memory"]
+    budget = min(6 * 2**30, memory // 3)
     mx.set_memory_limit(budget)
     mx.set_cache_limit(256 * 2**20)
     lock = json.loads((ROOT / "model-lock.json").read_text())

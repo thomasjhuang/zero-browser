@@ -135,6 +135,8 @@ def supervise(command, *, timeout, memory_limit, memory_reader=process_memory, s
             try:
                 footprint = memory_reader(process.pid)
             except OSError:
+                if process.poll() is None:
+                    time.sleep(0.05)
                 if process.poll() is not None:
                     break
                 raise
