@@ -698,3 +698,18 @@ On this Linux VM, ruff passed and the 10 new scoreboard tests passed. Thirteen e
 `scripts/experiment_track.py` logs that directory to a local MLflow sqlite store under ignored `artifacts/mlflow`. `scripts/experiment_propose.py` writes one Sakana AI-Scientist v3 idea whose lever is the scoreboard recommendation. Neither command writes a file when the directory is missing or empty, and an unmeasured score is null rather than zero.
 
 `local_search --ready --headless` no longer requires a private Linux patch. The loader accepts `mx.cuda.is_available()` on non-Apple hosts and still requires Metal on arm64 Darwin. Worker memory uses `/proc` on Linux and `libproc` on macOS. Common Linux Chrome paths are candidates. This change does not record a run.
+
+### Scored local_search batch
+
+The desktop records were rescored with `scripts/experiment_scoreboard.py`. The output matches `results/experiment-loop-summary.json`. `scripts/experiment_propose.py` wrote `experiments/local-coordinator/proposed-idea.json`. That idea has no measured latency ratio.
+
+| Arm | Result | Evidence |
+| --- | --- | --- |
+| local-coordinator measurement | Fail, wrong_decision step 1, 41181 ms, 7 steps, 0 hosted calls | `results/experiment-loop/local-coordinator/local_search/local_search-1793259713570692462.json` |
+| local-coordinator measurement | Fail, wrong_decision step 1, 6489 ms, 7 steps, 0 hosted calls | `results/experiment-loop/local-coordinator/local_search/local_search-1793260155458458566.json` |
+| local-coordinator prompt | Fail, wrong_decision step 1, 6515 ms, 7 steps, 0 hosted calls | `results/experiment-loop/local-coordinator/local_search/local_search-1793260295460311524.json` |
+| browser-use | Blocked, no credential | `results/experiment-loop/browser-use/local_search/blocked.json` |
+| grok-4.7 | Blocked, no login | `results/experiment-loop/grok-4.7/local_search/blocked.json` |
+| grok-4.7+zero-browser | Blocked, no login | `results/experiment-loop/grok-4.7+zero-browser/local_search/blocked.json` |
+
+Independent checks failed on every requested field. `no_flight_selected` was true. DONE was false. Success rate is 0/3. Passing-run latency medians are null, and every baseline ratio is null. The next lever is stop. Do not run another local_search prompt change. The prompt evidence also records parent stop `Cannot read the worker memory footprint for 1491437`. The runner was not edited after that record.

@@ -1,0 +1,49 @@
+{
+  "idea_id": "idea_d3cc172404f9",
+  "title": "stop: none on local_search",
+  "hypothesis": "Local search still failed after the prompt lever. This line needs a different approach.",
+  "implementation_plan": [
+    "Local search still failed after the prompt lever. This line needs a different approach.",
+    "Change no other lever in this batch."
+  ],
+  "target_rubrics": [
+    {
+      "id": "independent_checks_not_done",
+      "description": "A run passes only when every independent check is true. The model DONE choice is ignored.",
+      "type": "metric"
+    },
+    {
+      "id": "hypothesis_stays_offline",
+      "description": "The local-coordinator arm records zero hosted model calls.",
+      "type": "implementation"
+    },
+    {
+      "id": "faster_than_recorded_baselines",
+      "description": "On a shared goal, passing local-coordinator runs have a latency ratio above 1 against each comparable baseline.",
+      "type": "metric"
+    },
+    {
+      "id": "one_lever",
+      "description": "Each batch changes at most one lever, chosen by the scoreboard recommendation.",
+      "type": "implementation"
+    }
+  ],
+  "notes_for_agent": "Emitted from scored records only. Do not invent metrics.",
+  "source": "SakanaAI/AI-Scientist-v3 idea schema",
+  "next_lever": {
+    "action": "stop",
+    "lever": "none",
+    "goal_id": "local_search",
+    "reason": "Local search still failed after the prompt lever. This line needs a different approach.",
+    "hypothesis_alive": false
+  },
+  "evidence_paths": [
+    "results/experiment-loop/browser-use/local_search/blocked.evidence.json",
+    "results/experiment-loop/grok-4.7+zero-browser/local_search/blocked.evidence.json",
+    "results/experiment-loop/grok-4.7/local_search/blocked.evidence.json",
+    "results/experiment-loop/local-coordinator/local_search/local_search-1793259713570692462.evidence.json",
+    "results/experiment-loop/local-coordinator/local_search/local_search-1793260155458458566.evidence.json",
+    "results/experiment-loop/local-coordinator/local_search/local_search-1793260295460311524.evidence.json"
+  ],
+  "hypothesis_alive": false
+}

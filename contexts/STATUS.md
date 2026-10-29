@@ -167,3 +167,5 @@ Earlier implementation details and evidence remain in the numbered task files an
 - October 29, 2026: the same goal was rerun from the branch launcher after dropping the private launch patch. Independent checks failed again (wrong_decision, 6489 ms, 7 steps, done_choice false, successful_run false). It was not a memory refusal. Hosted arms remain blocked. Next lever is still prompt. The run slot is idle.
 
 - October 29, 2026: the prompt lever was tried once. local_search still failed the independent checks (wrong_decision, 6515 ms, 7 steps, done_choice false, successful_run false). The scoreboard says stop. The run slot is idle.
+
+- October 29, 2026: rescored `results/experiment-loop/`. The summary matches `results/experiment-loop-summary.json`. Three local-coordinator attempts, zero passes. Baselines are blocked, so every latency ratio is null. The proposal is `experiments/local-coordinator/proposed-idea.json` and its action is stop. No further local_search prompt lever.
