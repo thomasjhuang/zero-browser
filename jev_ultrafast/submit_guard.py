@@ -9,6 +9,20 @@ def field_names(expected):
     return [key for key in expected if isinstance(key, str) and key]
 
 
+def field_contract(expected):
+    if not isinstance(expected, dict):
+        return {}
+    contract = {}
+    for key, value in expected.items():
+        if not isinstance(key, str) or not key or isinstance(value, bool):
+            continue
+        if isinstance(value, (str, int, float)):
+            contract[key] = str(value)
+        elif isinstance(value, list) and all(isinstance(item, str) for item in value):
+            contract[key] = value
+    return contract
+
+
 def _words(text):
     return re.sub(r"[^a-z0-9]+", " ", str(text).casefold()).strip()
 
@@ -34,12 +48,36 @@ def _unset(action):
     return False
 
 
+def _observed_value(action):
+    if action.get("kind") == "select":
+        return action.get("current_value", "")
+    return action.get("value", "")
+
+
+def _same(observed, expected):
+    left = str(observed).strip().casefold()
+    if isinstance(expected, list):
+        return left in {str(item).strip().casefold() for item in expected}
+    return left == str(expected).strip().casefold()
+
+
+def _requirements(fields):
+    if isinstance(fields, dict):
+        return list(fields.items())
+    return [(name, None) for name in fields or []]
+
+
 def unset_required_fields(actions, fields):
     missing = []
-    for field in fields:
+    for field, expected in _requirements(fields):
         observed = [action for action in actions
                     if action.get("kind") in {"fill", "select"} and _matches(_label(action), field)]
-        if observed and any(_unset(action) for action in observed):
+        if not observed:
+            continue
+        if expected is None:
+            if any(_unset(action) for action in observed):
+                missing.append(field)
+        elif not any(_same(_observed_value(action), expected) for action in observed):
             missing.append(field)
     return missing
 
@@ -58,12 +96,12 @@ def completion_allowed(actions, fields):
     return not unset_required_fields(actions, fields)
 
 
-def _empty_field_nodes(actions, missing):
+def _field_nodes(actions, missing):
     nodes = set()
     for action in actions:
         if action.get("node") is None or action.get("kind") not in {"fill", "select"}:
             continue
-        if _unset(action) and any(_matches(_label(action), field) for field in missing):
+        if any(_matches(_label(action), field) for field in missing):
             nodes.add(action["node"])
     return nodes
 
@@ -72,7 +110,7 @@ def actions_for_unset_required(actions, fields):
     missing = unset_required_fields(actions, fields)
     if not missing:
         return list(actions)
-    nodes = _empty_field_nodes(actions, missing)
+    nodes = _field_nodes(actions, missing)
     kept = []
     for action in actions:
         if action.get("kind") == "wait" or str(action.get("id", "")).casefold() == "wait":

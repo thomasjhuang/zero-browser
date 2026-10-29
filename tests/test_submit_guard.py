@@ -5,6 +5,7 @@ from jev_ultrafast.agent import Agent
 from jev_ultrafast.submit_guard import (
     actions_for_unset_required,
     completion_allowed,
+    field_contract,
     field_names,
     without_premature_submit,
 )
@@ -27,9 +28,30 @@ def test_field_names_do_not_include_answers():
     assert field_names(None) == []
 
 
+def test_field_contract_keeps_task_values():
+    assert field_contract({"adults": "1", "count": 3, "labels": ["City"], "flag": True}) == {
+        "adults": "1", "count": "3", "labels": ["City"]}
+
+
 def test_submit_is_hidden_while_a_required_field_is_empty():
     visible = without_premature_submit(actions(), ["origin", "cabin"])
     assert [item["id"] for item in visible] == ["origin", "open-origin", "cabin", "help"]
+
+
+def test_default_value_does_not_match_a_different_task_value():
+    page = actions(origin="filled") + [
+        {"id": "adults", "kind": "select", "label": "Adults → other", "current_value": "2", "value": "1", "node": 5},
+    ]
+    contract = {"origin": "filled", "adults": "1", "cabin": "Economy"}
+    visible = actions_for_unset_required(page, contract)
+    assert [item["id"] for item in visible] == ["adults"]
+    assert completion_allowed(page, contract) is False
+
+
+def test_submit_remains_when_visible_fields_match_the_contract():
+    page = actions(origin="filled", cabin="Economy")
+    visible = actions_for_unset_required(page, {"origin": "filled", "cabin": "Economy"})
+    assert any(item["id"] == "submit" for item in visible)
 
 
 def test_submit_remains_when_required_fields_have_values():
