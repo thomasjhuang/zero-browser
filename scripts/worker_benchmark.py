@@ -75,36 +75,40 @@ def remember_pass(cache_dir, goal, page, replayed, result, passed):
     return save_actions(cache_dir, goal, page, steps)
 
 
-def worker(request_path):
+def run_case(request):
     from jev_ultrafast import local_policy
-    from jev_ultrafast.browser import Browser
     from jev_ultrafast.structured_policy import structured_choose
 
-    request = json.loads(request_path.read_text())
     case = request["case"]
     journal = Journal(request["journal"])
-    calls = 0
+    counted = {"calls": 0}
     original = local_policy.score_decision
 
     def score(*args, **kwargs):
-        nonlocal calls
-        calls += 1
-        journal.write("model_call_started", call=calls)
+        counted["calls"] += 1
+        journal.write("model_call_started", call=counted["calls"])
         answer = original(*args, **kwargs)
-        journal.write("model_call_finished", call=calls)
+        journal.write("model_call_finished", call=counted["calls"])
+        return answer
+
+    def choose(*args):
+        if request["method"] == "label":
+            return local_policy.local_choose(*args)
+        counted["calls"] += 1
+        journal.write("model_call_started", call=counted["calls"])
+        answer = structured_choose(*args)
+        journal.write("model_call_finished", call=counted["calls"])
         return answer
 
     local_policy.score_decision = score
+    try:
+        return _finish_case(case, journal, choose, counted)
+    finally:
+        local_policy.score_decision = original
 
-    def choose(*args):
-        nonlocal calls
-        if request["method"] == "label":
-            return local_policy.local_choose(*args)
-        calls += 1
-        journal.write("model_call_started", call=calls)
-        answer = structured_choose(*args)
-        journal.write("model_call_finished", call=calls)
-        return answer
+
+def _finish_case(case, journal, choose, counted):
+    from jev_ultrafast.browser import Browser
 
     supplied_request = "url" in case
     context = nullcontext(case["url"]) if supplied_request else local_page(case["layout"])
@@ -122,26 +126,49 @@ def worker(request_path):
             else:
                 after = browser.evaluate(FIXTURE_READ)
                 assessment = independent_outcome(case, before, after, result)
-            journal.write("outcome", assessment=assessment, model_calls=calls)
+            journal.write("outcome", assessment=assessment, model_calls=counted["calls"])
             remember_pass(REPLAY_CACHE, case["task"]["outcome"], start_page, replayed, result,
                           assessment.get("passed"))
-            return 0 if assessment["passed"] else 1
+            code = 0 if assessment["passed"] else 1
+            journal.write("case_exit", code=code)
+            return code
         finally:
             browser.close()
 
 
-def main():
+def run_two(request):
+    """Run exactly two cases in this process. The weight load stays in memory."""
+    cases, journals = request.get("cases"), request.get("journals")
+    if not isinstance(cases, list) or len(cases) != 2 or not isinstance(journals, list) or len(journals) != 2:
+        raise ValueError("The shared process runs exactly two existing cases")
+    codes = [run_case({"case": case, "journal": journal, "method": request["method"]})
+             for case, journal in zip(cases, journals)]
+    return 0 if codes == [0, 0] else 1
+
+
+def worker(request_path):
+    request = json.loads(Path(request_path).read_text())
+    if "cases" in request:
+        return run_two(request)
+    return run_case(request)
+
+
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--method", choices=["label", "structured"], default="structured")
     parser.add_argument("--case")
+    parser.add_argument("--pair", nargs=2, metavar=("FIRST", "SECOND"),
+                        help="Run two existing cases in one process. The model loads once.")
     parser.add_argument("--request", type=Path, help="JSON with url and one bounded task contract")
     parser.add_argument("--output", type=Path)
     parser.add_argument("--worker", type=Path)
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     if args.worker:
         return worker(args.worker)
     args.output = args.output or ROOT / "artifacts/worker-result.json"
     manifest = ROOT / "fixtures/worker_tasks.json"
+    if args.pair and (args.case or args.request):
+        parser.error("--pair runs two manifest cases and cannot be combined with --case or --request")
     if args.request:
         from urllib.parse import urlparse
 
@@ -154,9 +181,16 @@ def main():
         cases = [{"name": "supplied-request", "task": supplied["task"], "url": supplied["url"]}]
     else:
         cases = json.loads(manifest.read_text())["cases"]
-    cases = [c for c in cases if args.case is None or c["name"] == args.case]
-    if not cases:
-        parser.error("No matching bounded task")
+    if args.pair:
+        by_name = {case["name"]: case for case in cases}
+        missing = [name for name in args.pair if name not in by_name]
+        if missing:
+            parser.error("No matching bounded task: " + ", ".join(missing))
+        cases = [by_name[name] for name in args.pair]
+    else:
+        cases = [c for c in cases if args.case is None or c["name"] == args.case]
+        if not cases:
+            parser.error("No matching bounded task")
     folder = ROOT / "artifacts/worker" / str(time.time_ns())
     folder.mkdir(parents=True)
     args.output.parent.mkdir(parents=True, exist_ok=True)
@@ -171,6 +205,24 @@ def main():
                "scope": "Bounded subtasks. No coordinator, full flight search, or savings proof.", "runs": []}
     save_json(args.output, results)
     with cancellation_signals(), single_run():
+        if args.pair:
+            journals = [folder / f"{index}-{case['name']}.jsonl" for index, case in enumerate(cases)]
+            request = folder / "pair-request.json"
+            save_json(request, {"cases": cases, "journals": [str(path) for path in journals], "method": args.method})
+            started = time.monotonic()
+            stats, error, code = {}, None, None
+            try:
+                with isolated_browser():
+                    limit = worker_memory_limit()
+                    stats["memory_limit_bytes"] = limit
+                    timeout = sum(case["task"]["deadline_seconds"] for case in cases)
+                    code = supervise([sys.executable, str(Path(__file__).resolve()), "--worker", str(request)],
+                                     timeout=timeout, memory_limit=limit, stats=stats)
+            except (Exception, KeyboardInterrupt) as problem:
+                error = str(problem) or "cancelled"
+            for case, journal in zip(cases, journals):
+                append_case(results, args.output, case, journal, code, error, stats, started)
+            return 1 if error else 0
         for case in cases:
             journal = folder / (case["name"] + ".jsonl")
             request = folder / (case["name"] + "-request.json")
@@ -185,37 +237,43 @@ def main():
                                      timeout=case["task"]["deadline_seconds"], memory_limit=limit, stats=stats)
             except (Exception, KeyboardInterrupt) as problem:
                 error = str(problem) or "cancelled"
-            events = read_events(journal)
-            calls = [e for e in events if e["event"] == "model_call_started"]
-            outcome = next((e for e in events if e["event"] == "outcome"), None)
-            result = next((e["result"] for e in events if e["event"] == "worker_result"), None)
-            pending = set()
-            for event in events:
-                if event["event"] == "mutation_started":
-                    pending.add(event["step"])
-                elif event["event"] in {"executed", "rejected"}:
-                    pending.discard(event.get("step"))
-            if result is None:
-                result = {"status": "uncertainty", "evidence": None,
-                          "executed_actions": [e for e in events if e["event"] == "executed"],
-                          "unresolved_execution": bool(pending),
-                          "first_failure": {"category": "runtime_stop", "cause": error or "Worker exited"}}
-            row = {"case": case["name"], "result": result, "outcome": outcome,
-                   "passed": bool(outcome and outcome["assessment"]["passed"] and code == 0 and error is None),
-                   "model_calls": len(calls),
-                   "model_calls_finished": sum(e["event"] == "model_call_finished" for e in events),
-                   "decision_ms": [e["latency_ms"] for e in events if e["event"] == "decision"],
-                   "unresolved_execution": bool(pending), "runtime": stats, "exit_code": code, "error": error,
-                   "total_ms": round((time.monotonic()-started)*1000), "private_record": journal.name,
-                   "private_record_sha256": hashlib.sha256(journal.read_bytes()).hexdigest()
-                   if journal.exists() else None}
-            results["runs"].append(row)
-            save_json(args.output, results)
-            print(json.dumps({k: row[k] for k in ("case", "passed", "result", "model_calls", "total_ms", "error")}),
-                  flush=True)
-            if error:
+            if append_case(results, args.output, case, journal, code, error, stats, started):
                 return 1
     return 0
+
+
+def append_case(results, output, case, journal, code, error, stats, started):
+    events = read_events(journal)
+    calls = [e for e in events if e["event"] == "model_call_started"]
+    outcome = next((e for e in events if e["event"] == "outcome"), None)
+    result = next((e["result"] for e in events if e["event"] == "worker_result"), None)
+    pending = set()
+    for event in events:
+        if event["event"] == "mutation_started":
+            pending.add(event["step"])
+        elif event["event"] in {"executed", "rejected"}:
+            pending.discard(event.get("step"))
+    if result is None:
+        result = {"status": "uncertainty", "evidence": None,
+                  "executed_actions": [e for e in events if e["event"] == "executed"],
+                  "unresolved_execution": bool(pending),
+                  "first_failure": {"category": "runtime_stop", "cause": error or "Worker exited"}}
+    case_exit = next((e.get("code") for e in reversed(events) if e["event"] == "case_exit"), None)
+    exit_code = case_exit if isinstance(case_exit, int) and not isinstance(case_exit, bool) else code
+    row = {"case": case["name"], "result": result, "outcome": outcome,
+           "passed": bool(outcome and outcome["assessment"]["passed"] and exit_code == 0 and error is None),
+           "model_calls": len(calls),
+           "model_calls_finished": sum(e["event"] == "model_call_finished" for e in events),
+           "decision_ms": [e["latency_ms"] for e in events if e["event"] == "decision"],
+           "unresolved_execution": bool(pending), "runtime": stats, "exit_code": exit_code, "error": error,
+           "total_ms": round((time.monotonic()-started)*1000), "private_record": journal.name,
+           "private_record_sha256": hashlib.sha256(journal.read_bytes()).hexdigest()
+           if journal.exists() else None}
+    results["runs"].append(row)
+    save_json(output, results)
+    print(json.dumps({k: row[k] for k in ("case", "passed", "result", "model_calls", "total_ms", "error")}),
+          flush=True)
+    return error is not None
 
 
 if __name__ == "__main__":

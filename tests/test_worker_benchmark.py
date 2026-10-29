@@ -1,7 +1,10 @@
+import json
+from contextlib import nullcontext
+from pathlib import Path
 from types import SimpleNamespace
 
 from jev_ultrafast.replay_cache import load_actions, save_actions
-from scripts.worker_benchmark import execute_case, remember_pass
+from scripts.worker_benchmark import ROOT, execute_case, main, remember_pass, run_two
 
 
 def city_page():
@@ -66,3 +69,45 @@ def test_a_complete_action_list_skips_the_model(tmp_path, monkeypatch):
     history = [{"kind": "fill", "action": "City", "text": "Lima"}]
     assert remember_pass(tmp_path, "Set City to Lima", page, None, {"executed_actions": history}, True)
     assert load_actions(tmp_path, "Set City to Lima", page) == steps
+
+
+def test_two_cases_load_weights_once(monkeypatch):
+    from jev_ultrafast import local_model
+
+    loads = []
+    monkeypatch.setattr(local_model, "_MODEL", None)
+    monkeypatch.setattr(local_model, "_MODEL_INFO", None)
+    monkeypatch.setattr(local_model, "_load_model",
+                        lambda: loads.append("weights") or (("model", "tokenizer", None), {"model_load_ms": 1}))
+
+    def run_case(_request):
+        local_model.get_model()
+        return 0
+
+    monkeypatch.setattr("scripts.worker_benchmark.run_case", run_case)
+    code = run_two({"cases": [{"name": "one"}, {"name": "two"}], "journals": ["one.jsonl", "two.jsonl"],
+                    "method": "structured"})
+    assert code == 0
+    assert loads == ["weights"]
+
+
+def test_pair_starts_one_process(monkeypatch, tmp_path):
+    from scripts import worker_benchmark as bench
+
+    names = [case["name"] for case in json.loads((ROOT / "fixtures/worker_tasks.json").read_text())["cases"][:2]]
+    started = []
+
+    def supervise(cmd, **_kwargs):
+        started.append(cmd)
+        return 0
+
+    monkeypatch.setattr(bench, "supervise", supervise)
+    monkeypatch.setattr(bench, "isolated_browser", lambda: nullcontext())
+    monkeypatch.setattr(bench, "single_run", lambda: nullcontext())
+    monkeypatch.setattr(bench, "cancellation_signals", lambda: nullcontext())
+    monkeypatch.setattr(bench, "worker_memory_limit", lambda: 2**30)
+    assert main(["--pair", *names, "--output", str(tmp_path / "out.json")]) == 0
+    assert len(started) == 1
+    request = json.loads(Path(started[0][-1]).read_text())
+    assert [case["name"] for case in request["cases"]] == names
+    assert started[0][-2] == "--worker"
