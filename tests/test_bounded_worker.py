@@ -59,6 +59,25 @@ def test_a_click_outcome_uses_the_observed_control():
     assert result["status"] == "success"
 
 
+def test_a_met_goal_is_not_a_missing_target():
+    task = {"outcome": "Open the item.", "kind": "click", "target": "Open item", "value": "#opened",
+            "permitted_actions": ["click"],
+            "stopping_conditions": ["outcome_observed", "human_required", "boundary_violation"],
+            "deadline_seconds": 10, "action_budget": 2}
+    opened = {"url": "http://127.0.0.1/page#opened", "text": "Opened", "actions": []}
+    result = run_bounded(SimpleNamespace(observe=lambda **_k: opened), task,
+                         lambda *_a: pytest.fail("model called"),
+                         SimpleNamespace(write=lambda *_a, **_k: None))
+    assert result["status"] == "success"
+    assert result["first_failure"] is None
+    closed = {"url": "http://127.0.0.1/page", "text": "List", "actions": []}
+    missed = run_bounded(SimpleNamespace(observe=lambda **_k: closed), task,
+                         lambda *_a: pytest.fail("model called"),
+                         SimpleNamespace(write=lambda *_a, **_k: None))
+    assert missed["status"] == "uncertainty"
+    assert missed["first_failure"]["category"] == "missing_target"
+
+
 def test_limits_and_target_type_fail_closed():
     invalid = {**task(), "action_budget": 100}
     with pytest.raises(ValueError):

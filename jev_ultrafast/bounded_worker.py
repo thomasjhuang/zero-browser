@@ -29,6 +29,20 @@ def validate_task(task):
         raise ValueError("Unsupported action boundary or stopping conditions")
 
 
+def goal_met(page, task, evidence=None, selected_suggestion=False):
+    """Whether the task outcome is already visible, even if its control has gone."""
+    if task["kind"] == "click":
+        return task["value"] in str(page.get("url") or "")
+    if not evidence:
+        return False
+    matches = normalized(evidence.get("value")) == normalized(task["value"])
+    if task["kind"] == "select":
+        matches = matches or normalized(evidence.get("selected_text")) == normalized(task["value"])
+    if task["kind"] == "autocomplete":
+        matches = matches and selected_suggestion and evidence.get("expanded") == "false"
+    return matches
+
+
 def target_actions(page, task):
     if task["kind"] == "click":
         actions = [a for a in page["actions"] if a["kind"] == "click"
@@ -112,22 +126,18 @@ def run_bounded(browser, task, choose, journal):
             page = browser.observe(screenshot=False)
             journal.write("observation", page=page)
             require_page(page)
+            if goal_met(page, task, selected_suggestion=selected_suggestion):
+                return finish("success")
             targets, problem = target_actions(page, task)
             if problem:
                 return finish("uncertainty", problem, "The supplied target does not identify one editable control")
             node = targets[0]["node"]
             evidence = observe_field(browser, node)
             if evidence is None:
+                if goal_met(page, task, selected_suggestion=selected_suggestion):
+                    return finish("success")
                 return finish("uncertainty", "missing_target", "The observed target disappeared")
-            if task["kind"] == "click":
-                matches = task["value"] in str(page.get("url") or "")
-            else:
-                matches = normalized(evidence["value"]) == normalized(task["value"])
-                if task["kind"] == "select":
-                    matches |= normalized(evidence["selected_text"]) == normalized(task["value"])
-                if task["kind"] == "autocomplete":
-                    matches &= selected_suggestion and evidence["expanded"] == "false"
-            if matches:
+            if goal_met(page, task, evidence, selected_suggestion):
                 return finish("success")
             if len(history) >= task["action_budget"]:
                 return finish("failure", "action_budget", "The supplied outcome was not observed")
