@@ -7,7 +7,7 @@ import os
 import subprocess
 import sys
 import time
-from contextlib import nullcontext
+from contextlib import contextmanager, nullcontext
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -20,12 +20,22 @@ from scripts.runtime_guard import cancellation_signals, single_run, supervise, w
 FIXTURE_READ = """(() => ({airport:document.getElementById('airport')?.value??null,
  reference:document.getElementById('reference').value,cabin:document.getElementById('cabin').value,
  selected:window.selectedAirport,submitted:window.submitted,help_opened:window.helpOpened}))()"""
+PAGE_READ = "(() => ({url:location.href, text:document.body?document.body.innerText:''}))()"
 
 
 def independent_outcome(case, before, after, result):
     task = case["task"]
-    field = {"Reference": "reference", "Cabin": "cabin", "Departure airport": "airport"}[task["target"]]
     expected = case["expected_status"]
+    if task["kind"] == "click":
+        url = str((after or {}).get("url") or "")
+        text = str((after or {}).get("text") or "")
+        checks = {"expected_status": result["status"] == expected,
+                  "opened": task["value"] in url,
+                  "no_uncertain_execution": result["unresolved_execution"] is False}
+        if case.get("expect_text"):
+            checks["visible_text"] = case["expect_text"] in text
+        return {"passed": all(checks.values()), "checks": checks, "observed": after}
+    field = {"Reference": "reference", "Cabin": "cabin", "Departure airport": "airport"}[task["target"]]
     checks = {"expected_status": result["status"] == expected,
               "no_submission": after["submitted"] is False,
               "no_distractor_action": after["help_opened"] is False,
@@ -107,16 +117,47 @@ def run_case(request):
         local_policy.score_decision = original
 
 
+@contextmanager
+def hotel_fixture():
+    """Serve the existing local hotel page. The fixture chooses its own controls."""
+    import threading
+    from functools import partial
+    from http.server import ThreadingHTTPServer
+
+    from scripts.milestone import MANIFEST
+    from scripts.run_cli import FixtureHandler
+
+    port = json.loads(MANIFEST.read_text())["conditions"]["local_port"]
+    handler = partial(FixtureHandler, directory=str(ROOT / "jev_ultrafast" / "static"))
+    server = ThreadingHTTPServer(("127.0.0.1", port), handler)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        yield f"http://127.0.0.1:{server.server_port}/fixture.html?scenario=travel"
+    finally:
+        server.shutdown()
+        server.server_close()
+        thread.join(timeout=2)
+
+
 def _finish_case(case, journal, choose, counted):
     from jev_ultrafast.browser import Browser
 
     supplied_request = "url" in case
-    context = nullcontext(case["url"]) if supplied_request else local_page(case["layout"])
+    hotel = case.get("page") == "fixture.html"
+    if hotel:
+        context = hotel_fixture()
+    elif supplied_request:
+        context = nullcontext(case["url"])
+    else:
+        context = local_page(case["layout"])
     with context as url:
-        browser = Browser(url if supplied_request else url.replace("milestone.html", "worker.html"))
+        address = url if supplied_request or hotel else url.replace("milestone.html", "worker.html")
+        browser = Browser(address)
         try:
             show_task_tab(browser)
-            before = None if supplied_request else browser.evaluate(FIXTURE_READ)
+            read = PAGE_READ if case["task"]["kind"] == "click" else FIXTURE_READ
+            before = None if supplied_request else browser.evaluate(read)
             from scripts.milestone import REPLAY_CACHE
 
             start_page, replayed, result = execute_case(browser, case["task"], choose, journal, REPLAY_CACHE)
@@ -124,7 +165,7 @@ def _finish_case(case, journal, choose, counted):
                 assessment = {"passed": result["status"] == "success",
                               "scope": "Worker field predicate only. No independent site adapter was supplied."}
             else:
-                after = browser.evaluate(FIXTURE_READ)
+                after = browser.evaluate(read)
                 assessment = independent_outcome(case, before, after, result)
             journal.write("outcome", assessment=assessment, model_calls=counted["calls"])
             remember_pass(REPLAY_CACHE, case["task"]["outcome"], start_page, replayed, result,

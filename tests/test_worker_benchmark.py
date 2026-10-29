@@ -71,6 +71,19 @@ def test_a_complete_action_list_skips_the_model(tmp_path, monkeypatch):
     assert load_actions(tmp_path, "Set City to Lima", page) == steps
 
 
+def test_open_casa_flora_is_registered_on_the_hotel_fixture():
+    from jev_ultrafast.bounded_worker import validate_task
+    from scripts.worker_benchmark import independent_outcome
+
+    cases = json.loads((ROOT / "fixtures/worker_tasks.json").read_text())["cases"]
+    case = next(item for item in cases if item["name"] == "open-casa-flora")
+    assert case["page"] == "fixture.html"
+    validate_task(case["task"])
+    opened = {"url": "http://127.0.0.1/fixture.html?scenario=travel#casa-flora", "text": "Casa Flora"}
+    result = {"status": "success", "unresolved_execution": False}
+    assert independent_outcome(case, {}, opened, result)["passed"] is True
+
+
 def test_two_cases_load_weights_once(monkeypatch):
     from jev_ultrafast import local_model
 

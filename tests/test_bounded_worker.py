@@ -39,6 +39,26 @@ def test_uncertain_mutation_is_never_repeated():
     assert result["first_failure"]["step"] == 1
 
 
+def test_a_click_outcome_uses_the_observed_control():
+    click = {"id": "view", "node": 4, "kind": "click", "label": "View Casa Flora"}
+    page = {"actions": [click, {"id": "other", "node": 5, "kind": "click", "label": "View The Glasshouse"}]}
+    task = {"outcome": "Open Casa Flora.", "kind": "click", "target": "View Casa Flora", "value": "#casa-flora",
+            "permitted_actions": ["click"],
+            "stopping_conditions": ["outcome_observed", "human_required", "boundary_violation"],
+            "deadline_seconds": 10, "action_budget": 2}
+    validate_task(task)
+    assert target_actions(page, task)[0] == [click]
+    assert permitted_candidates(page, task, 4, {}, []) == [click]
+    opened = {"url": "http://127.0.0.1/fixture.html?scenario=travel#casa-flora", "text": "Casa Flora",
+              "actions": [click]}
+    browser = SimpleNamespace(observe=lambda **_k: opened,
+                              evaluate=lambda _e: {"value": "View stay", "expanded": None, "option_nodes": [],
+                                                   "selected_text": None})
+    result = run_bounded(browser, task, lambda *_a: pytest.fail("model called"),
+                         SimpleNamespace(write=lambda *_a, **_k: None))
+    assert result["status"] == "success"
+
+
 def test_limits_and_target_type_fail_closed():
     invalid = {**task(), "action_budget": 100}
     with pytest.raises(ValueError):

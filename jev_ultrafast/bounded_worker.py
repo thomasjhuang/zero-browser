@@ -14,8 +14,10 @@ def normalized(value):
 def validate_task(task):
     required = {"outcome", "kind", "target", "value", "permitted_actions", "stopping_conditions",
                 "deadline_seconds", "action_budget"}
-    if not required <= set(task) or task["kind"] not in {"fill", "select", "autocomplete"}:
+    if not required <= set(task) or task["kind"] not in {"fill", "select", "autocomplete", "click"}:
         raise ValueError("Supply one supported field outcome and its limits")
+    if task["kind"] == "click" and task["permitted_actions"] != ["click"]:
+        raise ValueError("A click outcome permits only the click control")
     if any(not isinstance(task[k], str) or not task[k].strip() for k in ("outcome", "target", "value")):
         raise ValueError("Outcome, target, and supplied value must be nonempty strings")
     if (type(task["action_budget"]) is not int or not 1 <= task["action_budget"] <= 8
@@ -28,11 +30,17 @@ def validate_task(task):
 
 
 def target_actions(page, task):
-    actions = [a for a in page["actions"] if a["kind"] in {"fill", "select"}
-               and normalized(a["label"].split(" → ")[0]) == normalized(task["target"])]
+    if task["kind"] == "click":
+        actions = [a for a in page["actions"] if a["kind"] == "click"
+                   and normalized(a.get("label", "")) == normalized(task["target"])]
+    else:
+        actions = [a for a in page["actions"] if a["kind"] in {"fill", "select"}
+                   and normalized(a["label"].split(" → ")[0]) == normalized(task["target"])]
     nodes = {a["node"] for a in actions}
     if len(nodes) != 1:
         return [], "missing_target" if not nodes else "ambiguous_target"
+    if task["kind"] == "click":
+        return actions, None
     if task["kind"] == "select" and any(a["kind"] != "select" for a in actions):
         return [], "unsupported_target"
     if task["kind"] != "select" and any(a["kind"] != "fill" for a in actions):
@@ -69,6 +77,9 @@ def permitted_candidates(page, task, node, evidence, options):
             if (normalized(action["value"]) == normalized(task["value"])
                     or normalized(action["label"].split(" → ")[-1]) == normalized(task["value"])):
                 candidates.append(action)
+        elif (kind == "click" and task["kind"] == "click"
+              and normalized(action.get("label", "")) == normalized(task["target"])):
+            candidates.append(action)
         elif kind == "click" and task["kind"] == "autocomplete" and action in options:
             candidates.append(action)
         elif (kind == "wait" and task["kind"] == "autocomplete" and evidence["expanded"] == "true"
@@ -108,11 +119,14 @@ def run_bounded(browser, task, choose, journal):
             evidence = observe_field(browser, node)
             if evidence is None:
                 return finish("uncertainty", "missing_target", "The observed target disappeared")
-            matches = normalized(evidence["value"]) == normalized(task["value"])
-            if task["kind"] == "select":
-                matches |= normalized(evidence["selected_text"]) == normalized(task["value"])
-            if task["kind"] == "autocomplete":
-                matches &= selected_suggestion and evidence["expanded"] == "false"
+            if task["kind"] == "click":
+                matches = task["value"] in str(page.get("url") or "")
+            else:
+                matches = normalized(evidence["value"]) == normalized(task["value"])
+                if task["kind"] == "select":
+                    matches |= normalized(evidence["selected_text"]) == normalized(task["value"])
+                if task["kind"] == "autocomplete":
+                    matches &= selected_suggestion and evidence["expanded"] == "false"
             if matches:
                 return finish("success")
             if len(history) >= task["action_budget"]:
@@ -125,10 +139,14 @@ def run_bounded(browser, task, choose, journal):
             if not candidates:
                 return finish("uncertainty", "missing_target", "No supported action can reach the supplied value")
             supplied = json.dumps({"target": task["target"], "value": task["value"]})
+            if task["kind"] == "click":
+                limit = "Choose the named control. Do not submit."
+            else:
+                limit = ("Do not submit, navigate away, change other fields, or choose other values. "
+                         "The supplied value will be used for text entry. Stop after this one field outcome.")
             goal = (task["outcome"] + "\nSupplied values: " + supplied
                     + "\nPermitted actions: " + json.dumps(task["permitted_actions"])
-                    + "\nDo not submit, navigate away, change other fields, or choose other values. "
-                      "The supplied value will be used for text entry. Stop after this one field outcome.")
+                    + "\n" + limit)
             try:
                 decision = choose({**page, "actions": candidates}, goal, history)
             except ValueError as error:
