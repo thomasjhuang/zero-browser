@@ -123,6 +123,21 @@ def test_repeated_unreadable_memory_still_stops_a_live_worker():
         runtime_guard.read_live_footprint(_Worker(), read, attempts=2, pause=0)
 
 
+def test_unreadable_memory_until_the_worker_exits_is_not_a_stop():
+    worker = _Worker(pid=2894023)
+    calls = {"n": 0}
+
+    def read(_pid):
+        calls["n"] += 1
+        if calls["n"] >= 3:
+            worker.code = 0
+        raise OSError("Cannot read the worker memory footprint for 2894023")
+
+    assert runtime_guard.read_live_footprint(
+        worker, read, attempts=2, pause=0, deadline=time.monotonic() + 5) is None
+    assert calls["n"] >= 3
+
+
 def test_low_memory_headroom_refuses_model_start(monkeypatch):
     monkeypatch.setattr(runtime_guard.sys, "platform", "darwin")
 
