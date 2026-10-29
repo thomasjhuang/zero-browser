@@ -6,7 +6,7 @@
 > No two agents run local inference or browser experiments at the same time.
 >
 > **Current run state: RESERVED for desktop execution.** VM browser and local-model runs stay idle.
-> Desktop worker `bc-7af786e3-ca6a-57c3-8e30-00259f3291e0` on thomas-computer owns browser, offline models, Codex CLI, and Claude CLI, and writes measured runs under `results/`.
+> Desktop worker `bc-7af786e3-ca6a-57c3-8e30-00259f3291e0` on thomas-computer owns browser, offline models, Codex CLI, and Claude CLI. Measured runs stay outside git.
 > VM worker `bc-65a045d8-dfac-5b19-b5ec-702051a6d2cf` owns experiment design and the sealed scoreboard. It must not start those desktop runs.
 > The earlier direct-action attempt is finished. The worker and browser from that attempt are closed.
 > Task 16 completed the callable adapter and preserved every comparison. Final lint and all 184 existing tests passed. Publication follows the repository procedure.
@@ -49,7 +49,7 @@ The final cancellation pilot stopped during inference. The user reported normal 
 
 | Owner | Reserved files and actions |
 | --- | --- |
-| Desktop `bc-7af786e3-ca6a-57c3-8e30-00259f3291e0`: local execution | Browser, offline model loads, Codex CLI, Claude CLI, and new files under `results/`. No VM inference beside this reservation |
+| Desktop `bc-7af786e3-ca6a-57c3-8e30-00259f3291e0`: local execution | Browser, offline model loads, Codex CLI, and Claude CLI. No VM inference beside this reservation |
 | VM `bc-65a045d8-dfac-5b19-b5ec-702051a6d2cf`: experiment design and measurement | `scripts/experiment_scoreboard.py`, `scripts/experiment_record.py`, `scripts/experiment_track.py`, `scripts/experiment_propose.py`, `experiments/local-coordinator/`, their tests, and the scoreboard section of this file and task 16. Does not run the browser or a local model |
 | Codex: optional observation compactor support | Complete in detached candidate `1f1ccd4` from `3fd3936`, independently reviewed. New `observation_compactor.py`, its test, assessment script, and sanitized results only. Integration remains pending. No runtime integration or browser/model runs. Required checks use an agreed idle slot |
 | Codex: **Improve zero-browser benchmarking**, task 16 | `jev_ultrafast/agent.py`, `local_policy.py`, `local_model.py`, `questions.py`, `snapshot.js`, `model.py`, `scripts/replay.py`, milestone scripts and fixtures, related tests, milestone evidence, root `README.md`, and task 16 |
@@ -120,11 +120,11 @@ Do not alter the shared Git index while another owner prepares a commit.
 
 - October 29, 2026: task 16 let the milestone loader accept Linux CUDA and read worker memory from `/proc`. Metal and `libproc` stay the Apple path. No measured batch was started.
 
-- October 29, 2026: task 16 wired MLflow ingest and an AI-Scientist v3 proposal step. Both exit without a run or an idea while `results/experiment-loop/` is empty. No measured batch has appeared.
+- October 29, 2026: task 16 wired MLflow ingest and an AI-Scientist v3 proposal step. Scores and proposals stay outside git.
 
-- October 29, 2026: task 16 added a recorder that copies milestone verifier checks into `results/experiment-loop/`. No measured batch has appeared yet. The scoreboard and recorder are on the protected-main pull request, not on origin/main.
+- October 29, 2026: task 16 added a recorder that copies milestone verifier checks into ignored `artifacts/experiment-loop/`.
 
-- October 29, 2026: task 16 added a sealed scoreboard for the local-coordinator comparison. Desktop execution owns the run slot and will write `results/experiment-loop/`. No VM browser or model run started. Prior flight numbers are not the browser-use or Grok 4.7 comparison.
+- October 29, 2026: task 16 added a sealed scoreboard for the local-coordinator comparison. No VM browser or model run started.
 
 - October 11, 14:45 PT: task 16 finished ten shared-interface trials, all outcomes passed. Four pairs support the limited timing summary; pair 4 retains its indexing caveat. Exact usage and independent audits are in results/paired-browser-comparison.json. Runtime is idle.
 
@@ -162,12 +162,4 @@ Earlier implementation details and evidence remain in the numbered task files an
 
 - October 11, 2026: Task 16 preserved isolated usage comparisons and the funded JEV failure. The direct-action helper passed one full flight search. Runtime slot idle.
 
-- October 29, 2026: desktop recorded one local_search attempt per arm on the RTX 3080. The local coordinator failed the independent checks (wrong_decision at step 1, 41181 ms, 7 steps, 0 hosted calls, done_choice false). browser-use, grok-4.7, and grok-4.7+zero-browser are blocked because those logins are absent. The scoreboard's next lever is prompt. The run slot is idle.
-
-- October 29, 2026: the same goal was rerun from the branch launcher after dropping the private launch patch. Independent checks failed again (wrong_decision, 6489 ms, 7 steps, done_choice false, successful_run false). It was not a memory refusal. Hosted arms remain blocked. Next lever is still prompt. The run slot is idle.
-
-- October 29, 2026: the prompt lever was tried once. local_search still failed the independent checks (wrong_decision, 6515 ms, 7 steps, done_choice false, successful_run false). The scoreboard says stop. The run slot is idle.
-
-- October 29, 2026: rescored `results/experiment-loop/`. The summary matches `results/experiment-loop-summary.json`. Three local-coordinator attempts, zero passes. Baselines are blocked, so every latency ratio is null. The proposal is `experiments/local-coordinator/proposed-idea.json` and its action is stop. No further local_search prompt lever.
-
-- October 29, 2026: a failed `/proc` memory read is retried while the worker is alive and ignored once the worker has exited. The 3 GiB floor is unchanged. local_search stays stopped. The recorded prompt evidence was not rewritten.
+- October 29, 2026: a failed `/proc` memory read is retried while the worker is alive and ignored once the worker has exited. The 3 GiB floor is unchanged.

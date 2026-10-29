@@ -138,7 +138,7 @@ Task 21 defines the future native Codex comparison. No working native baseline i
 
 ## Experiment scoreboard
 
-Desktop execution writes one JSON record per attempt under `results/experiment-loop/`.
+Run records, scores, and proposals stay outside git. The recorder writes under ignored `artifacts/experiment-loop/`.
 The record schema is `zero-browser.experiment-run.v1`. The scoreboard rejects a batch when evidence is missing,
 token fields disagree, or the `local-coordinator` arm records a hosted call. Passing requires every
 `independent_checks` value to be true. A DONE choice is stored and ignored.
@@ -147,29 +147,19 @@ token fields disagree, or the `local-coordinator` arm records a hosted call. Pas
 uv run --offline --frozen --extra local python scripts/experiment_record.py \
   --arm local-coordinator --hosted-model-calls 0 --run-dir artifacts/milestone/<run>
 uv run --offline --frozen --extra local python scripts/experiment_scoreboard.py \
-  --runs results/experiment-loop --output results/experiment-loop-summary.json
+  --runs artifacts/experiment-loop --output artifacts/experiment-loop-summary.json
 ```
 
 `experiment_record.py` copies `verification.checks` from a finished milestone directory. It does not
 treat `outcome_verified` or a DONE choice as the result. Pilot runs are refused. Absolute paths in the
 copied evidence are redacted. A blocked arm uses `--blocked --reason "..."` instead of a run directory.
 
-The summary is the measured comparison. It does not invent a ratio for a missing or failed arm.
-`experiments/local-coordinator/evaluate.py` writes `metrics.json` and `correct.json` from those same records
-for a Sakana AI-Scientist v3 task. It does not launch a browser or a model. An unmeasured batch leaves
-`combined_score` null.
+Do not commit the summary or a proposal. An unmeasured batch leaves `combined_score` null.
+`experiments/local-coordinator/evaluate.py` can write `metrics.json` and `correct.json` for a local
+AI-Scientist v3 task. It does not launch a browser or a model.
 
-MLflow is a dev dependency. Tracking uses a sqlite store under ignored `artifacts/mlflow`. Both commands exit
-without writing a run or an idea when `results/experiment-loop/` has no records.
-
-```bash
-uv run --offline --frozen --extra local python scripts/experiment_track.py \
-  --runs results/experiment-loop --output results/experiment-loop-summary.json
-uv run --offline --frozen --extra local python scripts/experiment_propose.py \
-  --runs results/experiment-loop --output experiments/local-coordinator/proposed-idea.json
-```
-
-The proposal writes one AI-Scientist v3 idea. Its lever is the scoreboard recommendation for those records.
+MLflow is a dev dependency. Tracking uses a sqlite store under ignored `artifacts/mlflow`. The track and
+propose commands exit without writing when the run directory is missing.
 
 ## Tests and delivery
 

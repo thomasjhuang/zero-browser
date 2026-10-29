@@ -85,7 +85,7 @@ def write_measured(run_dir, root, arm, hosted_model_calls, lever='measurement', 
     goal_id = summary.get('task')
     if not isinstance(goal_id, str) or not goal_id:
         raise ValueError('summary task id is missing')
-    folder = Path(root) / 'results' / 'experiment-loop' / arm / goal_id
+    folder = Path(root) / 'artifacts' / 'experiment-loop' / arm / goal_id
     evidence_rel = (folder / f'{run_dir.name}.evidence.json').relative_to(root).as_posix()
     record = build_record(summary, arm=arm, hosted_model_calls=hosted_model_calls, evidence_path=evidence_rel,
                           lever=lever, coordinator_tokens=coordinator_tokens)
@@ -105,7 +105,7 @@ def write_measured(run_dir, root, arm, hosted_model_calls, lever='measurement', 
 
 
 def write_blocked(root, arm, goal_id, reason, hosted_model_calls):
-    folder = Path(root) / 'results' / 'experiment-loop' / arm / goal_id
+    folder = Path(root) / 'artifacts' / 'experiment-loop' / arm / goal_id
     evidence_rel = (folder / 'blocked.evidence.json').relative_to(root).as_posix()
     _write_json(Path(root) / evidence_rel, {'reason': reason})
     record = blocked_record(arm=arm, goal_id=goal_id, reason=reason, hosted_model_calls=hosted_model_calls,

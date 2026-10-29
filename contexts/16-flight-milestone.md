@@ -687,31 +687,12 @@ Final delivery checks passed: lint and all 184 existing tests in 4.55 seconds. A
 
 ### Experiment loop measurement
 
-October 29, 2026. VM worker `bc-65a045d8-dfac-5b19-b5ec-702051a6d2cf` owns the sealed judge. Desktop worker `bc-7af786e3-ca6a-57c3-8e30-00259f3291e0` owns browser, offline model, Codex CLI, and Claude CLI execution and writes `results/`. No new measured batch has landed. This section does not claim a speedup.
+October 29, 2026. VM worker `bc-65a045d8-dfac-5b19-b5ec-702051a6d2cf` owns the sealed judge. Desktop worker `bc-7af786e3-ca6a-57c3-8e30-00259f3291e0` owns browser, offline model, Codex CLI, and Claude CLI execution. Scores and proposals are not committed.
 
-The comparison arms are `browser-use`, `grok-4.7`, `grok-4.7+zero-browser`, and hypothesis arm `local-coordinator`. The first fixed goal remains `local_search`. Live flight goals stay closed until three consecutive independent local passes. The judge is `scripts/experiment_scoreboard.py`. Sakana AI-Scientist v3 task text, rubrics, and the first idea are in `experiments/local-coordinator/`. `evaluate.py` only scores recorded runs. Prior SFO–JFK numbers in `results/flights-sequential-comparison.json` used Codex and hosted JEV, so they are not this comparison.
+The comparison arms are `browser-use`, `grok-4.7`, `grok-4.7+zero-browser`, and hypothesis arm `local-coordinator`. The judge is `scripts/experiment_scoreboard.py`. Sakana AI-Scientist v3 task text and rubrics are in `experiments/local-coordinator/`. `evaluate.py` only scores recorded runs. Prior SFO–JFK numbers in `results/flights-sequential-comparison.json` used Codex and hosted JEV, so they are not this comparison.
 
-On this Linux VM, ruff passed and the 10 new scoreboard tests passed. Thirteen existing tests failed while importing macOS `libproc` or `mlx`. Those files were not edited. The required suite still belongs on the desktop Mac.
+`scripts/experiment_record.py` copies `verification.checks` from a finished non-pilot milestone directory into ignored `artifacts/experiment-loop/`. `outcome_verified` and DONE do not decide the record. The recorder does not start a browser or a model. Scores and proposals are not committed.
 
-`scripts/experiment_record.py` copies `verification.checks` from a finished non-pilot milestone directory into `results/experiment-loop/`. `outcome_verified` and DONE do not decide the record. The recorder does not start a browser or a model. No `results/experiment-loop/` batch was present when this landed.
+`scripts/experiment_track.py` logs a batch to a local MLflow sqlite store under ignored `artifacts/mlflow`. `scripts/experiment_propose.py` writes one Sakana AI-Scientist v3 idea from scored records. Neither command writes a file when the directory is missing or empty, and an unmeasured score is null rather than zero.
 
-`scripts/experiment_track.py` logs that directory to a local MLflow sqlite store under ignored `artifacts/mlflow`. `scripts/experiment_propose.py` writes one Sakana AI-Scientist v3 idea whose lever is the scoreboard recommendation. Neither command writes a file when the directory is missing or empty, and an unmeasured score is null rather than zero.
-
-`local_search --ready --headless` no longer requires a private Linux patch. The loader accepts `mx.cuda.is_available()` on non-Apple hosts and still requires Metal on arm64 Darwin. Worker memory uses `/proc` on Linux and `libproc` on macOS. Common Linux Chrome paths are candidates. This change does not record a run.
-
-### Scored local_search batch
-
-The desktop records were rescored with `scripts/experiment_scoreboard.py`. The output matches `results/experiment-loop-summary.json`. `scripts/experiment_propose.py` wrote `experiments/local-coordinator/proposed-idea.json`. That idea has no measured latency ratio.
-
-| Arm | Result | Evidence |
-| --- | --- | --- |
-| local-coordinator measurement | Fail, wrong_decision step 1, 41181 ms, 7 steps, 0 hosted calls | `results/experiment-loop/local-coordinator/local_search/local_search-1793259713570692462.json` |
-| local-coordinator measurement | Fail, wrong_decision step 1, 6489 ms, 7 steps, 0 hosted calls | `results/experiment-loop/local-coordinator/local_search/local_search-1793260155458458566.json` |
-| local-coordinator prompt | Fail, wrong_decision step 1, 6515 ms, 7 steps, 0 hosted calls | `results/experiment-loop/local-coordinator/local_search/local_search-1793260295460311524.json` |
-| browser-use | Blocked, no credential | `results/experiment-loop/browser-use/local_search/blocked.json` |
-| grok-4.7 | Blocked, no login | `results/experiment-loop/grok-4.7/local_search/blocked.json` |
-| grok-4.7+zero-browser | Blocked, no login | `results/experiment-loop/grok-4.7+zero-browser/local_search/blocked.json` |
-
-Independent checks failed on every requested field. `no_flight_selected` was true. DONE was false. Success rate is 0/3. Passing-run latency medians are null, and every baseline ratio is null. The next lever is stop. Do not run another local_search prompt change. The prompt evidence also records parent stop `Cannot read the worker memory footprint for 1491437`. That file stays as recorded.
-
-The stop came from a `/proc` read that missed `VmRSS` while the worker was still starting or exiting. The supervisor slept and then raised without reading again. It now retries a live worker and treats an exited worker as finished. The 3 GiB floor is unchanged. local_search stays stopped.
+`local_search --ready --headless` no longer requires a private Linux patch. The loader accepts `mx.cuda.is_available()` on non-Apple hosts and still requires Metal on arm64 Darwin. Worker memory uses `/proc` on Linux and `libproc` on macOS. Common Linux Chrome paths are candidates. A `/proc` status read can miss `VmRSS` while a worker is starting or exiting. The supervisor retries a live worker and treats an exited worker as finished. The 3 GiB floor is unchanged.

@@ -4,8 +4,8 @@
   "hypothesis": "A high-level coordinator driving the pinned offline model can finish the fixed local search without hosted calls and with lower latency, fewer steps, and fewer coordinator tokens than browser-use and Grok 4.7.",
   "implementation_plan": [
     "Keep the current runtime fixed for the measurement batch",
-    "Run local_search once per arm and write schema zero-browser.experiment-run.v1 records under results/experiment-loop/",
-    "Score the directory with scripts/experiment_scoreboard.py and follow its single next lever"
+    "Run local_search once per arm and write schema zero-browser.experiment-run.v1 records under ignored artifacts/experiment-loop/",
+    "Score the directory with scripts/experiment_scoreboard.py and keep the score outside git"
   ],
   "target_rubrics": [
     {

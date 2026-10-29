@@ -14,7 +14,7 @@ SPEC.loader.exec_module(board)
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--runs', type=Path, default=ROOT / 'results' / 'experiment-loop')
+    parser.add_argument('--runs', type=Path, default=ROOT / 'artifacts' / 'experiment-loop')
     parser.add_argument('--root', type=Path, default=ROOT)
     parser.add_argument('--output', type=Path)
     parser.add_argument('--mlflow', type=Path, default=ROOT / 'artifacts' / 'mlflow')
