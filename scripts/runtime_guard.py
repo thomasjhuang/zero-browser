@@ -119,6 +119,23 @@ def stop_process_group(process, grace=1):
         process.wait(timeout=grace)
 
 
+def read_live_footprint(process, memory_reader, attempts=4, pause=0.02):
+    error = None
+    for _ in range(attempts):
+        if process.poll() is not None:
+            return None
+        try:
+            return memory_reader(process.pid)
+        except OSError as raised:
+            error = raised
+        if process.poll() is not None:
+            return None
+        time.sleep(pause)
+    if process.poll() is not None:
+        return None
+    raise error
+
+
 def supervise(command, *, timeout, memory_limit, memory_reader=process_memory, stats=None, cancel_after=None):
     stats = stats if stats is not None else {}
     started = time.monotonic()
@@ -132,14 +149,9 @@ def supervise(command, *, timeout, memory_limit, memory_reader=process_memory, s
                 raise KeyboardInterrupt
             if time.monotonic() >= deadline:
                 raise RuntimeError("Worker deadline reached. The owned run stopped.")
-            try:
-                footprint = memory_reader(process.pid)
-            except OSError:
-                if process.poll() is None:
-                    time.sleep(0.05)
-                if process.poll() is not None:
-                    break
-                raise
+            footprint = read_live_footprint(process, memory_reader)
+            if footprint is None:
+                break
             stats["peak_worker_bytes"] = max(stats["peak_worker_bytes"], footprint)
             stats["memory_samples"] += 1
             if footprint > memory_limit:

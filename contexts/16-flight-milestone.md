@@ -712,4 +712,6 @@ The desktop records were rescored with `scripts/experiment_scoreboard.py`. The o
 | grok-4.7 | Blocked, no login | `results/experiment-loop/grok-4.7/local_search/blocked.json` |
 | grok-4.7+zero-browser | Blocked, no login | `results/experiment-loop/grok-4.7+zero-browser/local_search/blocked.json` |
 
-Independent checks failed on every requested field. `no_flight_selected` was true. DONE was false. Success rate is 0/3. Passing-run latency medians are null, and every baseline ratio is null. The next lever is stop. Do not run another local_search prompt change. The prompt evidence also records parent stop `Cannot read the worker memory footprint for 1491437`. The runner was not edited after that record.
+Independent checks failed on every requested field. `no_flight_selected` was true. DONE was false. Success rate is 0/3. Passing-run latency medians are null, and every baseline ratio is null. The next lever is stop. Do not run another local_search prompt change. The prompt evidence also records parent stop `Cannot read the worker memory footprint for 1491437`. That file stays as recorded.
+
+The stop came from a `/proc` read that missed `VmRSS` while the worker was still starting or exiting. The supervisor slept and then raised without reading again. It now retries a live worker and treats an exited worker as finished. The 3 GiB floor is unchanged. local_search stays stopped.
