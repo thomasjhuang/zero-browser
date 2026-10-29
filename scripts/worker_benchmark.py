@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from scripts.milestone import local_page, show_task_tab  # noqa: E402
+from scripts.milestone import HumanRequired, local_page, show_task_tab  # noqa: E402
 from scripts.milestone_record import Journal, read_events, save_json  # noqa: E402
 from scripts.run_cli import isolated_browser  # noqa: E402
 from scripts.runtime_guard import cancellation_signals, single_run, supervise, worker_memory_limit  # noqa: E402
@@ -42,9 +42,41 @@ def independent_outcome(case, before, after, result):
     return {"passed": all(checks.values()), "checks": checks, "observed": after}
 
 
+def execute_case(browser, task, choose, journal, cache_dir):
+    """Replay only when every stored target is on the page. Otherwise use the model."""
+    from jev_ultrafast.bounded_worker import run_bounded
+    from jev_ultrafast.replay_cache import cached_steps
+
+    page = browser.observe(screenshot=False)
+    replayed = None
+    try:
+        replayed = cached_steps(cache_dir, task["outcome"], page, browser)
+    except HumanRequired:
+        raise
+    except Exception:
+        replayed = None
+    if not replayed:
+        return page, None, run_bounded(browser, task, choose, journal)
+    journal.write("replay", step=0, actions=len(replayed))
+    result = {"status": "success", "evidence": None, "model_claims": [], "unresolved_execution": False,
+              "first_failure": None, "executed_actions": [
+                  {"action": step.get("target"), "kind": step.get("operation"), "text": step.get("value"),
+                   "execution": "executed"} for step in replayed]}
+    journal.write("worker_result", result=result)
+    return page, replayed, result
+
+
+def remember_pass(cache_dir, goal, page, replayed, result, passed):
+    from jev_ultrafast.replay_cache import save_actions, steps_from_history
+
+    if not passed:
+        return None
+    steps = replayed if replayed else steps_from_history((result or {}).get("executed_actions"))
+    return save_actions(cache_dir, goal, page, steps)
+
+
 def worker(request_path):
     from jev_ultrafast import local_policy
-    from jev_ultrafast.bounded_worker import run_bounded
     from jev_ultrafast.browser import Browser
     from jev_ultrafast.structured_policy import structured_choose
 
@@ -81,7 +113,9 @@ def worker(request_path):
         try:
             show_task_tab(browser)
             before = None if supplied_request else browser.evaluate(FIXTURE_READ)
-            result = run_bounded(browser, case["task"], choose, journal)
+            from scripts.milestone import REPLAY_CACHE
+
+            start_page, replayed, result = execute_case(browser, case["task"], choose, journal, REPLAY_CACHE)
             if supplied_request:
                 assessment = {"passed": result["status"] == "success",
                               "scope": "Worker field predicate only. No independent site adapter was supplied."}
@@ -89,6 +123,8 @@ def worker(request_path):
                 after = browser.evaluate(FIXTURE_READ)
                 assessment = independent_outcome(case, before, after, result)
             journal.write("outcome", assessment=assessment, model_calls=calls)
+            remember_pass(REPLAY_CACHE, case["task"]["outcome"], start_page, replayed, result,
+                          assessment.get("passed"))
             return 0 if assessment["passed"] else 1
         finally:
             browser.close()

@@ -238,6 +238,53 @@ def test_cache_miss_runs_the_model_and_a_hit_does_not(tmp_path, monkeypatch):
     assert ran["seen"] == [("Note", "Ship the crate")]
 
 
+def test_missing_replay_target_runs_the_model(tmp_path, monkeypatch):
+    from jev_ultrafast import agent as agent_module
+    from jev_ultrafast import local_model
+    from jev_ultrafast.replay_cache import save_actions
+
+    page = _note_page()
+    save_actions(tmp_path, "Save the note", page, [
+        {"operation": "fill", "target": "Note", "value": "Ship the crate"},
+        {"operation": "click", "target": "Save note"},
+    ])
+    acted = []
+    loads = []
+
+    class Agent:
+        def __init__(self, *_args):
+            self.state = {"page": page, "status": "ready", "history": [], "decisions": []}
+            passed = {"submitted": {"note": "Ship the crate"}, "results_visible": True, "selected": False}
+
+            def act(*_args, **_kwargs):
+                acted.append(1)
+
+            self.browser = SimpleNamespace(observe=lambda **_k: page, act=act, evaluate=lambda _e: passed)
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_args):
+            return None
+
+        def command(self, name, *_args):
+            if name == "predict":
+                self.state["decisions"].append({"choice": "DONE", "operation": "DONE", "latency_ms": 1})
+                return
+            self.state["history"].append({"kind": "fill", "action": "Note", "text": "Ship the crate"})
+            self.state["status"] = "done"
+
+    monkeypatch.setattr(milestone, "REPLAY_CACHE", tmp_path)
+    monkeypatch.setattr(agent_module, "Agent", Agent)
+    monkeypatch.setattr(local_model, "get_model", lambda: loads.append(1))
+    monkeypatch.setattr(local_model, "get_model_info", lambda: {})
+    monkeypatch.setattr(milestone, "measured_model", lambda *_a: nullcontext())
+    task = {"kind": "local", "goal": "Save the note", "expected": {"note": "Ship the crate"}}
+    assert milestone.run_task(task, page["url"], Journal(tmp_path / "events"), 2) == 0
+    assert loads == [1]
+    assert acted == []
+
+
 @pytest.mark.parametrize("challenge", [True, False])
 def test_runner_stops_initial_challenge_or_three_rejections(tmp_path, monkeypatch, challenge):
     from jev_ultrafast import agent as agent_module
