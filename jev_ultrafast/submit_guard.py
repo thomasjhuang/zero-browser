@@ -52,3 +52,7 @@ def without_premature_submit(actions, fields):
     if not unset_required_fields(actions, fields):
         return actions
     return [action for action in actions if not is_submit(action)]
+
+
+def completion_allowed(actions, fields):
+    return not unset_required_fields(actions, fields)

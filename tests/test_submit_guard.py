@@ -1,7 +1,8 @@
 """Submit stays out of the menu while a required field is empty. No browser."""
 
+from jev_ultrafast import local_policy
 from jev_ultrafast.agent import Agent
-from jev_ultrafast.submit_guard import field_names, without_premature_submit
+from jev_ultrafast.submit_guard import completion_allowed, field_names, without_premature_submit
 
 
 def actions(origin="", cabin="Economy"):
@@ -31,6 +32,37 @@ def test_submit_remains_when_required_fields_have_values():
     assert any(item["id"] == "submit" for item in visible)
 
 
+def test_done_is_hidden_while_a_required_field_is_empty(monkeypatch):
+    state = {"url": "http://fixture", "title": "Form", "text": "", "actions": actions()}
+    seen = {}
+
+    def score(_goal, _observation, candidates):
+        seen["ids"] = {item["id"] for item in candidates}
+        return {"selected_action": candidates[0], "scores": {item["id"]: float(item is candidates[0])
+                                                             for item in candidates}, "prompt_tokens": 1}
+
+    monkeypatch.setattr(local_policy, "_score", score)
+    local_policy.local_choose(state, "Complete the form", [], required_fields=["origin"])
+    assert "DONE" not in seen["ids"]
+    assert "BLOCKED" in seen["ids"]
+    assert completion_allowed(actions(origin="filled"), ["origin"]) is True
+
+
+def test_done_returns_after_required_fields_are_filled(monkeypatch):
+    state = {"url": "http://fixture", "title": "Form", "text": "", "actions": actions(origin="filled")}
+    seen = {}
+
+    def score(_goal, _observation, candidates):
+        seen["ids"] = {item["id"] for item in candidates}
+        return {"selected_action": next(item for item in candidates if item["id"] == "DONE"),
+                "scores": {item["id"]: float(item["id"] == "DONE") for item in candidates}, "prompt_tokens": 1}
+
+    monkeypatch.setattr(local_policy, "_score", score)
+    answer = local_policy.local_choose(state, "Complete the form", [], required_fields=["origin", "cabin"])
+    assert answer["choice"] == "DONE"
+    assert "DONE" in seen["ids"]
+
+
 def test_non_submit_controls_stay_when_fields_are_empty():
     visible = without_premature_submit(actions(), ["origin"])
     assert any(item["id"] == "help" for item in visible)
@@ -55,7 +87,7 @@ def test_predict_does_not_offer_submit_while_the_field_is_empty(monkeypatch):
     }
     seen = {}
 
-    def choose(offered, _goal, _history):
+    def choose(offered, _goal, _history, _fields=None):
         seen["ids"] = [item["id"] for item in offered["actions"]]
         return {"choice": "origin", "confidence": 1, "probabilities": {"origin": 1},
                 "operation": "TYPE_TEXT", "target": "1", "usage": {}}

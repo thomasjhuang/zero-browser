@@ -8,6 +8,7 @@ import time
 import httpx
 
 from .questions import NEXT_ACTION, TARGET, TEXT_VALUE
+from .submit_guard import completion_allowed
 
 CLIENT = httpx.Client(http2=True, timeout=25)
 
@@ -79,11 +80,11 @@ def action_space(actions):
     return elements, targets, controls
 
 
-def choose(state, goal, history):
+def choose(state, goal, history, required_fields=None):
     if os.environ.get("JEV_LOCAL") == "1":
         from .local_policy import local_choose
 
-        return local_choose(state, goal, history)
+        return local_choose(state, goal, history, required_fields)
     elements, targets, controls = action_space(state["actions"])
     labels = {
         "CLICK": "Click an element, button, menu option, autocomplete suggestion, or calendar day.",
@@ -92,7 +93,9 @@ def choose(state, goal, history):
     }
     operations = {key: labels[key] for key in targets}
     operations.update({key: value["label"] for key, value in controls.items()})
-    operations.update(DONE="Every requirement is visibly satisfied.", BLOCKED="No supported operation can progress.")
+    operations.update(BLOCKED="No supported operation can progress.")
+    if completion_allowed(state["actions"], required_fields or []):
+        operations["DONE"] = "Every requirement is visibly satisfied."
     questions = {
         "operation": {"type": "choice", "criteria": operations, "instructions": {"goal": goal, "rules": NEXT_ACTION}}
     }

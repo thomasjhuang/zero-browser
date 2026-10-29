@@ -13,6 +13,7 @@ from .local_model import (
 )
 from .model import action_space
 from .questions import NEXT_ACTION, TARGET, TEXT_VALUE
+from .submit_guard import completion_allowed
 
 MODEL_ID = "mlx-community/Qwen3-4B-Instruct-2507-4bit"
 
@@ -35,7 +36,7 @@ def _select(goal, observation, candidates, records):
     return result
 
 
-def local_choose(state, goal, history):
+def local_choose(state, goal, history, required_fields=None):
     started = time.perf_counter()
     begin_decision_group()
     elements, targets, controls = action_space(state["actions"])
@@ -46,7 +47,9 @@ def local_choose(state, goal, history):
     }
     operations = {key: labels[key] for key in targets}
     operations.update({key: value["label"] for key, value in controls.items()})
-    operations.update(DONE="All requirements are visibly satisfied.", BLOCKED="No supported operation can progress.")
+    operations.update(BLOCKED="No supported operation can progress.")
+    if completion_allowed(state["actions"], required_fields or []):
+        operations["DONE"] = "All requirements are visibly satisfied."
     request = {
         "page": {k: state[k][:3000] if k == "text" else state[k] for k in ("url", "title", "text")},
         "elements": elements,

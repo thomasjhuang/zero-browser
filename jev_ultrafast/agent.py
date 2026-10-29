@@ -80,7 +80,7 @@ class Agent:
             fields = state.get("required_fields") or []
             if fields:
                 page = {**page, "actions": without_premature_submit(page["actions"], fields)}
-            state["decision"] = choose(page, state["goal"], state["history"])
+            state["decision"] = choose(page, state["goal"], state["history"], fields)
             state["decision"]["done_confirmation"] = confirm_done and state["decision"]["choice"] == "DONE"
             state["decisions"].append(
                 {
