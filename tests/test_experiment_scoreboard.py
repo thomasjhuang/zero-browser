@@ -98,6 +98,27 @@ def test_passing_runs_report_speedup_with_evidence_paths(tmp_path):
     assert summary['next_lever']['action'] == 'repeat-goal'
 
 
+def test_evidence_sidecar_does_not_block_scoring(tmp_path):
+    runs = tmp_path / 'results' / 'experiment-loop'
+    runs.mkdir(parents=True)
+    body = record(tmp_path, 'local')
+    (runs / 'local.json').write_text(json.dumps(body))
+    (runs / 'local.evidence.json').write_text('{"note": "sidecar"}\n')
+    summary = board.summarize(board.load_records(runs), tmp_path)
+    assert summary['arms']['local-coordinator:local_search']['passes'] == 1
+
+
+def test_premature_done_selects_the_prompt_lever():
+    rows = [{'arm': 'local-coordinator', 'goal_id': 'local_search', 'passed': False, 'blocked': False,
+             'category': 'premature_completion', 'lever': 'measurement', 'evidence_path': 'results/local.json'}]
+    for arm in board.BASELINES:
+        rows.append({'arm': arm, 'goal_id': 'local_search', 'passed': False, 'blocked': True, 'category': None,
+                     'lever': 'measurement', 'evidence_path': f'results/{arm}.json'})
+    choice = board.recommend(rows, {'local_search': {}})
+    assert choice['lever'] == 'prompt'
+    assert choice['hypothesis_alive'] is True
+
+
 def test_three_failures_after_the_matching_lever_stop_the_line():
     rows = [{'arm': 'local-coordinator', 'goal_id': 'local_search', 'passed': False, 'blocked': False,
              'category': 'wrong_decision', 'lever': 'prompt', 'evidence_path': f'results/{index}.json'}

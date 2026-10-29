@@ -144,9 +144,15 @@ token fields disagree, or the `local-coordinator` arm records a hosted call. Pas
 `independent_checks` value to be true. A DONE choice is stored and ignored.
 
 ```bash
+uv run --offline --frozen --extra local python scripts/experiment_record.py \
+  --arm local-coordinator --hosted-model-calls 0 --run-dir artifacts/milestone/<run>
 uv run --offline --frozen --extra local python scripts/experiment_scoreboard.py \
   --runs results/experiment-loop --output results/experiment-loop-summary.json
 ```
+
+`experiment_record.py` copies `verification.checks` from a finished milestone directory. It does not
+treat `outcome_verified` or a DONE choice as the result. Pilot runs are refused. Absolute paths in the
+copied evidence are redacted. A blocked arm uses `--blocked --reason "..."` instead of a run directory.
 
 The summary is the measured comparison. It does not invent a ratio for a missing or failed arm.
 `experiments/local-coordinator/evaluate.py` writes `metrics.json` and `correct.json` from those same records

@@ -14,7 +14,8 @@ ARMS = (HYPOTHESIS,) + BASELINES
 GROK_ARMS = {'grok-4.7', 'grok-4.7+zero-browser'}
 PRIMARY = 'local_search'
 VARIATION = 'local_search_reordered'
-LEVER_FOR_CATEGORY = {'wrong_decision': 'prompt', 'incorrect_field_text': 'field-text'}
+LEVER_FOR_CATEGORY = {'wrong_decision': 'prompt', 'incorrect_field_text': 'field-text',
+                      'premature_completion': 'prompt'}
 
 
 def evidence_file(root, record):
@@ -223,10 +224,14 @@ def load_records(directory):
         raise FileNotFoundError(f'No run records in {directory}')
     records = []
     for path in paths:
+        if path.name.endswith('.evidence.json'):
+            continue
         data = json.loads(path.read_text())
         if not isinstance(data, dict) or data.get('schema') != SCHEMA:
             raise ValueError(f'{path.name} is not a {SCHEMA} record')
         records.append(data)
+    if not records:
+        raise FileNotFoundError(f'No run records in {directory}')
     return records
 
 
