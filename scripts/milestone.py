@@ -178,11 +178,13 @@ def run_task(task, url, journal, max_decisions, *, visible=False, coordinator=No
     from jev_ultrafast.agent import Agent
     from jev_ultrafast.browser import StalePage
     from jev_ultrafast.local_model import get_model, get_model_info
+    from jev_ultrafast.submit_guard import field_names
 
     step = [0]
     with Agent(url, task["goal"]) as agent:
         if visible:
             journal.write("task_tab_shown", closed_startup_tabs=show_task_tab(agent.browser))
+        agent.state["required_fields"] = field_names(task.get("expected"))
         journal.write("observation", step=0, page=agent.state["page"])
         require_page(agent.state["page"])
         instrument_browser(agent.browser, journal, step)
