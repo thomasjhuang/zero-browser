@@ -684,3 +684,11 @@ After funding, JEV attempt 02 failed in 7,144.63 ms to its independent verdict a
 The adapter passed lint and all 184 existing tests before measurement. No new tests or review cycle ran. GitNexus discovery, query, context, and change detection used the existing stale index. The graph omitted the new untracked helper and does not establish complete impact coverage. Source inspection and existing tests supplied the delivery checks. No index refresh interrupted measurement. The earlier freeze remains unexplained. Existing responsiveness observations remain applicable.
 
 Final delivery checks passed: lint and all 184 existing tests in 4.55 seconds. Added evidence passed JSON, private-path, and credential-pattern checks. Runtime sources stayed frozen through measurement. No new responsiveness observation is needed.
+
+### Experiment loop measurement
+
+October 29, 2026. VM worker `bc-65a045d8-dfac-5b19-b5ec-702051a6d2cf` owns the sealed judge. Desktop worker `bc-7af786e3-ca6a-57c3-8e30-00259f3291e0` owns browser, offline model, Codex CLI, and Claude CLI execution and writes `results/`. No new measured batch has landed. This section does not claim a speedup.
+
+The comparison arms are `browser-use`, `grok-4.7`, `grok-4.7+zero-browser`, and hypothesis arm `local-coordinator`. The first fixed goal remains `local_search`. Live flight goals stay closed until three consecutive independent local passes. The judge is `scripts/experiment_scoreboard.py`. Sakana AI-Scientist v3 task text, rubrics, and the first idea are in `experiments/local-coordinator/`. `evaluate.py` only scores recorded runs. Prior SFO–JFK numbers in `results/flights-sequential-comparison.json` used Codex and hosted JEV, so they are not this comparison.
+
+On this Linux VM, ruff passed and the 10 new scoreboard tests passed. Thirteen existing tests failed while importing macOS `libproc` or `mlx`. Those files were not edited. The required suite still belongs on the desktop Mac.

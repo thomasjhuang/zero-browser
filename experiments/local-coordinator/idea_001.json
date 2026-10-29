@@ -1,0 +1,23 @@
+{
+  "idea_id": "idea_local_coordinator_measure_001",
+  "title": "Measure the current local coordinator before changing it",
+  "hypothesis": "A high-level coordinator driving the pinned offline model can finish the fixed local search without hosted calls and with lower latency, fewer steps, and fewer coordinator tokens than browser-use and Grok 4.7.",
+  "implementation_plan": [
+    "Keep the current runtime fixed for the measurement batch",
+    "Run local_search once per arm and write schema zero-browser.experiment-run.v1 records under results/experiment-loop/",
+    "Score the directory with scripts/experiment_scoreboard.py and follow its single next lever"
+  ],
+  "target_rubrics": [
+    {
+      "id": "independent_checks_not_done",
+      "description": "A run passes only when every independent check is true. The model DONE choice is ignored.",
+      "type": "metric"
+    },
+    {
+      "id": "hypothesis_stays_offline",
+      "description": "The local-coordinator arm records zero hosted model calls.",
+      "type": "implementation"
+    }
+  ],
+  "notes_for_agent": "Do not treat a fast failure as a speedup. If Grok or Codex or Claude is not logged in, write a blocked record and continue the arms that can run. No live flight goal in this idea."
+}

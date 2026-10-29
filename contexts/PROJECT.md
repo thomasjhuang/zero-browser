@@ -136,6 +136,24 @@ The earlier commands for `scripts/baselines.py` were stale. That file is absent 
 Task 21 defines the future native Codex comparison. No working native baseline is established.
 `scripts/decision_baselines.py` compares synthetic decisions only. It does not measure browser completion.
 
+## Experiment scoreboard
+
+Desktop execution writes one JSON record per attempt under `results/experiment-loop/`.
+The record schema is `zero-browser.experiment-run.v1`. The scoreboard rejects a batch when evidence is missing,
+token fields disagree, or the `local-coordinator` arm records a hosted call. Passing requires every
+`independent_checks` value to be true. A DONE choice is stored and ignored.
+
+```bash
+uv run --offline --frozen --extra local python scripts/experiment_scoreboard.py \
+  --runs results/experiment-loop --output results/experiment-loop-summary.json
+```
+
+The summary is the measured comparison. It does not invent a ratio for a missing or failed arm.
+`experiments/local-coordinator/evaluate.py` writes `metrics.json` and `correct.json` from those same records
+for a Sakana AI-Scientist v3 task. It does not launch a browser or a model. MLflow logging is optional:
+pass `--mlflow artifacts/mlflow` when the `mlflow` package is installed. The package is outside the frozen lock,
+and tracking files stay under ignored `artifacts/`.
+
 ## Tests and delivery
 
 Follow `AGENTS.md` and `contexts/AGENT-RULES.md` for delivery.
