@@ -75,6 +75,21 @@
       "lever": "measurement",
       "category": "wrong_decision",
       "evidence_path": "results/experiment-loop/local-coordinator/local_search/local_search-1793260155458458566.evidence.json"
+    },
+    {
+      "arm": "local-coordinator",
+      "goal_id": "local_search",
+      "passed": false,
+      "blocked": false,
+      "done_choice": false,
+      "latency_ms": 6515,
+      "steps": 7,
+      "tokens": null,
+      "peak_memory_bytes": 1219088384,
+      "hosted_model_calls": 0,
+      "lever": "prompt",
+      "category": "wrong_decision",
+      "evidence_path": "results/experiment-loop/local-coordinator/local_search/local_search-1793260295460311524.evidence.json"
     }
   ],
   "arms": {
@@ -118,7 +133,7 @@
       ]
     },
     "local-coordinator:local_search": {
-      "attempts": 2,
+      "attempts": 3,
       "blocked": 0,
       "passes": 0,
       "success_rate": 0.0,
@@ -128,7 +143,8 @@
       "peak_memory_bytes_max": 4625092608,
       "evidence_paths": [
         "results/experiment-loop/local-coordinator/local_search/local_search-1793259713570692462.evidence.json",
-        "results/experiment-loop/local-coordinator/local_search/local_search-1793260155458458566.evidence.json"
+        "results/experiment-loop/local-coordinator/local_search/local_search-1793260155458458566.evidence.json",
+        "results/experiment-loop/local-coordinator/local_search/local_search-1793260295460311524.evidence.json"
       ]
     }
   },
@@ -161,13 +177,13 @@
     }
   },
   "next_lever": {
-    "action": "change-one-lever",
-    "lever": "prompt",
+    "action": "stop",
+    "lever": "none",
     "goal_id": "local_search",
-    "reason": "The latest failure category is wrong_decision. Change only the prompt lever.",
-    "hypothesis_alive": true
+    "reason": "Local search still failed after the prompt lever. This line needs a different approach.",
+    "hypothesis_alive": false
   },
-  "hypothesis_alive": true,
+  "hypothesis_alive": false,
   "limits": [
     "DONE is ignored. Pass requires every independent check to be true.",
     "Latency, token, and step ratios use passing runs only.",
