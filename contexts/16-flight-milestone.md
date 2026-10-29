@@ -696,3 +696,5 @@ On this Linux VM, ruff passed and the 10 new scoreboard tests passed. Thirteen e
 `scripts/experiment_record.py` copies `verification.checks` from a finished non-pilot milestone directory into `results/experiment-loop/`. `outcome_verified` and DONE do not decide the record. The recorder does not start a browser or a model. No `results/experiment-loop/` batch was present when this landed.
 
 `scripts/experiment_track.py` logs that directory to a local MLflow sqlite store under ignored `artifacts/mlflow`. `scripts/experiment_propose.py` writes one Sakana AI-Scientist v3 idea whose lever is the scoreboard recommendation. Neither command writes a file when the directory is missing or empty, and an unmeasured score is null rather than zero.
+
+`local_search --ready --headless` no longer requires a private Linux patch. The loader accepts `mx.cuda.is_available()` on non-Apple hosts and still requires Metal on arm64 Darwin. Worker memory uses `/proc` on Linux and `libproc` on macOS. Common Linux Chrome paths are candidates. This change does not record a run.

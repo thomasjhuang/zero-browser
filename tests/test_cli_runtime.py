@@ -87,6 +87,8 @@ def test_process_memory_reads_a_live_process():
 
 
 def test_low_memory_headroom_refuses_model_start(monkeypatch):
+    monkeypatch.setattr(runtime_guard.sys, "platform", "darwin")
+
     def output(command, **kwargs):
         return str(24 * 2**30) if "sysctl" in command[0] else "System-wide memory free percentage: 10%"
 
@@ -96,6 +98,8 @@ def test_low_memory_headroom_refuses_model_start(monkeypatch):
 
 
 def test_memory_budget_leaves_room_for_other_applications(monkeypatch):
+    monkeypatch.setattr(runtime_guard.sys, "platform", "darwin")
+
     def output(command, **kwargs):
         return str(16 * 2**30) if "sysctl" in command[0] else "System-wide memory free percentage: 40%"
 

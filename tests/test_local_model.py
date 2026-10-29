@@ -51,6 +51,23 @@ def test_concurrent_callers_share_one_lazy_model(monkeypatch):
     assert len(loads) == 1
 
 
+def test_cuda_is_accepted_and_metal_still_requires_apple_silicon(monkeypatch):
+    cuda = SimpleNamespace(is_available=lambda: True)
+    metal = SimpleNamespace(is_available=lambda: False)
+    mx = SimpleNamespace(cuda=cuda, metal=metal)
+    monkeypatch.setattr(local_model.platform, "system", lambda: "Linux")
+    monkeypatch.setattr(local_model.platform, "machine", lambda: "x86_64")
+    assert local_model.accelerator_ready(mx)
+    cuda.is_available = lambda: False
+    assert not local_model.accelerator_ready(mx)
+    monkeypatch.setattr(local_model.platform, "system", lambda: "Darwin")
+    monkeypatch.setattr(local_model.platform, "machine", lambda: "arm64")
+    metal.is_available = lambda: True
+    assert local_model.accelerator_ready(mx)
+    monkeypatch.setattr(local_model.platform, "machine", lambda: "x86_64")
+    assert not local_model.accelerator_ready(mx)
+
+
 def test_failed_load_does_not_cache_a_model(monkeypatch):
     def fail():
         raise FileNotFoundError("The pinned model is absent")

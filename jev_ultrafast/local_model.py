@@ -163,6 +163,14 @@ _MODEL_INFO = None
 _MODEL_LOCK = Lock()
 
 
+def accelerator_ready(mx):
+    if platform.system() == "Darwin" and platform.machine() == "arm64":
+        metal = getattr(mx, "metal", None)
+        return metal is not None and bool(metal.is_available())
+    cuda = getattr(mx, "cuda", None)
+    return cuda is not None and bool(cuda.is_available())
+
+
 def _load_model():
     # Set these before imports. The scorer never initiates a download.
     os.environ["HF_HUB_OFFLINE"] = "1"
@@ -171,8 +179,8 @@ def _load_model():
     from huggingface_hub import snapshot_download
     from mlx_lm import load
 
-    if platform.system() != "Darwin" or platform.machine() != "arm64" or not mx.metal.is_available():
-        raise RuntimeError("This milestone requires Apple Silicon with Metal available")
+    if not accelerator_ready(mx):
+        raise RuntimeError("This milestone requires Apple Silicon with Metal or Linux with CUDA")
     mx.set_default_device(mx.gpu)
     # The MLX memory limit is advisory. The CLI also monitors the worker externally.
     budget = min(6 * 2**30, mx.device_info()["memory_size"] // 3)

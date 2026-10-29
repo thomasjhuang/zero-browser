@@ -118,6 +118,8 @@ Do not alter the shared Git index while another owner prepares a commit.
 
 ## Log
 
+- October 29, 2026: task 16 let the milestone loader accept Linux CUDA and read worker memory from `/proc`. Metal and `libproc` stay the Apple path. No measured batch was started.
+
 - October 29, 2026: task 16 wired MLflow ingest and an AI-Scientist v3 proposal step. Both exit without a run or an idea while `results/experiment-loop/` is empty. No measured batch has appeared.
 
 - October 29, 2026: task 16 added a recorder that copies milestone verifier checks into `results/experiment-loop/`. No measured batch has appeared yet. The scoreboard and recorder are on the protected-main pull request, not on origin/main.
