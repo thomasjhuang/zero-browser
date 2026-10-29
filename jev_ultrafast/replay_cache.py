@@ -69,3 +69,14 @@ def steps_from_history(history):
 
 def replay(browser, steps):
     return run_controls(browser, steps)
+
+
+def cached_steps(directory, goal, page, browser):
+    """Replay a stored list. None means the caller must run the model."""
+    steps = load_actions(directory, goal, page)
+    if not steps:
+        return None
+    result = replay(browser, steps)
+    if not isinstance(result, dict) or result.get("error") or not result.get("executed"):
+        return None
+    return steps

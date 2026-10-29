@@ -1,6 +1,6 @@
 """A passed action list replays on the same controls without a model."""
 
-from jev_ultrafast.replay_cache import load_actions, replay, save_actions, steps_from_history
+from jev_ultrafast.replay_cache import cached_steps, load_actions, replay, save_actions, steps_from_history
 
 
 def page(title="Notes"):
@@ -41,6 +41,24 @@ def test_replay_uses_the_browser_and_not_a_model():
     assert result["error"] is None
     assert result["executed"] == [None]
     assert seen == [("Save note", None)]
+
+
+def test_a_different_goal_is_a_miss_and_does_not_act(tmp_path):
+    steps = [{"operation": "fill", "target": "Note", "value": "Ship the crate"}]
+    save_actions(tmp_path, "Save the note", page(), steps)
+    acted = []
+
+    class Browser:
+        def observe(self, screenshot=False):
+            return page()
+
+        def act(self, action, _observed, text=None):
+            acted.append((action["label"], text))
+
+    assert cached_steps(tmp_path, "Save another note", page(), Browser()) is None
+    assert acted == []
+    assert cached_steps(tmp_path, "Save the note", page(), Browser()) == steps
+    assert acted == [("Note", "Ship the crate")]
 
 
 def test_history_becomes_a_general_action_list():

@@ -35,6 +35,7 @@ from scripts.runtime_guard import (  # noqa: E402
 )
 
 MANIFEST = ROOT / "fixtures/milestone_tasks.json"
+REPLAY_CACHE = ROOT / "artifacts" / "replay-cache"
 FORBIDDEN = re.compile(
     r"\b(log\s*in|sign\s*in|sign\s*up|register|password|captcha|select flight|book|booking|"
     r"reserve|buy|purchase|pay|payment|checkout|send|message|delete|account|subscribe)\b", re.I,
@@ -178,7 +179,7 @@ def run_task(task, url, journal, max_decisions, *, visible=False, coordinator=No
     from jev_ultrafast.agent import Agent
     from jev_ultrafast.browser import StalePage
     from jev_ultrafast.local_model import get_model, get_model_info
-    from jev_ultrafast.replay_cache import load_actions, replay, save_actions, steps_from_history
+    from jev_ultrafast.replay_cache import cached_steps, save_actions, steps_from_history
     from jev_ultrafast.submit_guard import field_names
 
     step = [0]
@@ -193,22 +194,19 @@ def run_task(task, url, journal, max_decisions, *, visible=False, coordinator=No
         if handoff:
             handoff.check_deadline()
         start_page = agent.state["page"]
-        cache_dir = ROOT / "artifacts" / "replay-cache"
-        cached = None if coordinator else load_actions(cache_dir, task["goal"], start_page)
-        replayed = None
+        cache_dir = REPLAY_CACHE
+        cached = None
         replay_dirty = False
-        if cached:
+        if not coordinator:
             try:
-                replayed = replay(agent.browser, cached)
+                cached = cached_steps(cache_dir, task["goal"], start_page, agent.browser)
             except HumanRequired:
                 raise
             except Exception as error:
                 replay_dirty = True
                 journal.write("replay_failed", step=0, cause=str(error))
                 agent.state["page"] = agent.browser.observe(screenshot=False)
-        used_replay = bool(replayed and replayed.get("error") is None)
-        if replayed and not used_replay:
-            journal.write("replay_failed", step=0, cause=str(replayed.get("error")), target=replayed.get("target"))
+        used_replay = cached is not None
         if used_replay:
             journal.write("replay", step=0, actions=len(cached))
             loaded_at = time.monotonic()
