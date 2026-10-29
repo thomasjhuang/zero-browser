@@ -56,3 +56,29 @@ def without_premature_submit(actions, fields):
 
 def completion_allowed(actions, fields):
     return not unset_required_fields(actions, fields)
+
+
+def _empty_field_nodes(actions, missing):
+    nodes = set()
+    for action in actions:
+        if action.get("node") is None or action.get("kind") not in {"fill", "select"}:
+            continue
+        if _unset(action) and any(_matches(_label(action), field) for field in missing):
+            nodes.add(action["node"])
+    return nodes
+
+
+def actions_for_unset_required(actions, fields):
+    missing = unset_required_fields(actions, fields)
+    if not missing:
+        return list(actions)
+    nodes = _empty_field_nodes(actions, missing)
+    kept = []
+    for action in actions:
+        if action.get("kind") == "wait" or str(action.get("id", "")).casefold() == "wait":
+            continue
+        if is_submit(action):
+            continue
+        if action.get("node") in nodes:
+            kept.append(action)
+    return kept

@@ -2,7 +2,12 @@
 
 from jev_ultrafast import local_policy
 from jev_ultrafast.agent import Agent
-from jev_ultrafast.submit_guard import completion_allowed, field_names, without_premature_submit
+from jev_ultrafast.submit_guard import (
+    actions_for_unset_required,
+    completion_allowed,
+    field_names,
+    without_premature_submit,
+)
 
 
 def actions(origin="", cabin="Economy"):
@@ -44,7 +49,7 @@ def test_done_is_hidden_while_a_required_field_is_empty(monkeypatch):
     monkeypatch.setattr(local_policy, "_score", score)
     local_policy.local_choose(state, "Complete the form", [], required_fields=["origin"])
     assert "DONE" not in seen["ids"]
-    assert "BLOCKED" in seen["ids"]
+    assert "BLOCKED" not in seen["ids"]
     assert completion_allowed(actions(origin="filled"), ["origin"]) is True
 
 
@@ -61,6 +66,26 @@ def test_done_returns_after_required_fields_are_filled(monkeypatch):
     answer = local_policy.local_choose(state, "Complete the form", [], required_fields=["origin", "cabin"])
     assert answer["choice"] == "DONE"
     assert "DONE" in seen["ids"]
+
+
+def test_unset_required_fields_are_the_only_menu_actions(monkeypatch):
+    menu = actions() + [
+        {"id": "wait", "kind": "wait", "label": "Wait"},
+        {"id": "adults", "kind": "select", "label": "Adults → 1", "current_value": "2", "value": "1", "node": 5},
+    ]
+    state = {"url": "http://fixture", "title": "Form", "text": "", "actions": menu}
+    seen = {}
+
+    def score(_goal, _observation, candidates):
+        seen["ids"] = {item["id"] for item in candidates}
+        return {"selected_action": candidates[0],
+                "scores": {item["id"]: float(item is candidates[0]) for item in candidates},
+                "prompt_tokens": 1}
+
+    monkeypatch.setattr(local_policy, "_score", score)
+    local_policy.local_choose(state, "Complete the form", [], required_fields=["origin", "adults", "cabin"])
+    assert seen["ids"] == {"origin", "open-origin"}
+    assert actions_for_unset_required(menu, ["origin"]) == [menu[0], menu[1]]
 
 
 def test_non_submit_controls_stay_when_fields_are_empty():
@@ -94,5 +119,4 @@ def test_predict_does_not_offer_submit_while_the_field_is_empty(monkeypatch):
 
     monkeypatch.setattr("jev_ultrafast.agent.choose", choose)
     runner.command("predict")
-    assert "submit" not in seen["ids"]
-    assert "origin" in seen["ids"]
+    assert seen["ids"] == ["origin", "open-origin"]
