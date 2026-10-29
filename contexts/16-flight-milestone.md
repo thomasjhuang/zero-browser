@@ -684,3 +684,15 @@ After funding, JEV attempt 02 failed in 7,144.63 ms to its independent verdict a
 The adapter passed lint and all 184 existing tests before measurement. No new tests or review cycle ran. GitNexus discovery, query, context, and change detection used the existing stale index. The graph omitted the new untracked helper and does not establish complete impact coverage. Source inspection and existing tests supplied the delivery checks. No index refresh interrupted measurement. The earlier freeze remains unexplained. Existing responsiveness observations remain applicable.
 
 Final delivery checks passed: lint and all 184 existing tests in 4.55 seconds. Added evidence passed JSON, private-path, and credential-pattern checks. Runtime sources stayed frozen through measurement. No new responsiveness observation is needed.
+
+### Experiment loop measurement
+
+October 29, 2026. VM worker `bc-65a045d8-dfac-5b19-b5ec-702051a6d2cf` owns the sealed judge. Desktop worker `bc-7af786e3-ca6a-57c3-8e30-00259f3291e0` owns browser, offline model, Codex CLI, and Claude CLI execution. Scores and proposals are not committed.
+
+The comparison arms are `browser-use`, `grok-4.7`, `grok-4.7+zero-browser`, and hypothesis arm `local-coordinator`. The judge is `scripts/experiment_scoreboard.py`. Sakana AI-Scientist v3 task text and rubrics are in `experiments/local-coordinator/`. `evaluate.py` only scores recorded runs. Prior SFO–JFK numbers in `results/flights-sequential-comparison.json` used Codex and hosted JEV, so they are not this comparison.
+
+`scripts/experiment_record.py` copies `verification.checks` from a finished non-pilot milestone directory into ignored `artifacts/experiment-loop/`. `outcome_verified` and DONE do not decide the record. The recorder does not start a browser or a model. Scores and proposals are not committed.
+
+`scripts/experiment_track.py` logs a batch to a local MLflow sqlite store under ignored `artifacts/mlflow`. `scripts/experiment_propose.py` writes one Sakana AI-Scientist v3 idea from scored records. Neither command writes a file when the directory is missing or empty, and an unmeasured score is null rather than zero.
+
+`local_search --ready --headless` no longer requires a private Linux patch. The loader accepts `mx.cuda.is_available()` on non-Apple hosts and still requires Metal on arm64 Darwin. Worker memory uses `/proc` on Linux and `libproc` on macOS. Common Linux Chrome paths are candidates. A `/proc` status read can miss `VmRSS` while a worker is starting or exiting. The supervisor retries a live worker and treats an exited worker as finished. The 3 GiB floor is unchanged.

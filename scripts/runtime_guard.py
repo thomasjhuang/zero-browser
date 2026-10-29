@@ -6,6 +6,7 @@ import os
 import re
 import signal
 import subprocess
+import sys
 import tempfile
 import threading
 import time
@@ -23,7 +24,7 @@ class RUsage(ctypes.Structure):
     ]
 
 
-def process_memory(pid):
+def _darwin_process_memory(pid):
     library = ctypes.CDLL("/usr/lib/libproc.dylib", use_errno=True)
     call = library.proc_pid_rusage
     call.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_void_p]
@@ -34,13 +35,40 @@ def process_memory(pid):
     return info.phys_footprint
 
 
-def worker_memory_limit():
-    total = int(subprocess.check_output(["/usr/sbin/sysctl", "-n", "hw.memsize"], text=True))
-    pressure = subprocess.check_output(["/usr/bin/memory_pressure", "-Q"], text=True)
-    match = re.search(r"System-wide memory free percentage:\s*(\d+)%", pressure)
+def _linux_process_memory(pid):
+    match = re.search(r"^VmRSS:\s+(\d+)\s+kB$", Path(f"/proc/{pid}/status").read_text(), re.M)
     if not match:
+        raise OSError(f"Cannot read the worker memory footprint for {pid}")
+    return int(match.group(1)) * 1024
+
+
+def process_memory(pid):
+    if sys.platform == "darwin":
+        return _darwin_process_memory(pid)
+    return _linux_process_memory(pid)
+
+
+def _host_memory():
+    if sys.platform == "darwin":
+        total = int(subprocess.check_output(["/usr/sbin/sysctl", "-n", "hw.memsize"], text=True))
+        pressure = subprocess.check_output(["/usr/bin/memory_pressure", "-Q"], text=True)
+        match = re.search(r"System-wide memory free percentage:\s*(\d+)%", pressure)
+        if not match:
+            raise RuntimeError("Cannot read memory headroom. No inference worker started.")
+        return total, total * int(match[1]) // 100
+    text = Path("/proc/meminfo").read_text()
+    found = {}
+    for name in ("MemTotal", "MemAvailable"):
+        match = re.search(rf"^{name}:\s+(\d+)\s+kB$", text, re.M)
+        if match:
+            found[name] = int(match.group(1)) * 1024
+    if len(found) != 2:
         raise RuntimeError("Cannot read memory headroom. No inference worker started.")
-    headroom = total * int(match[1]) // 100
+    return found["MemTotal"], found["MemAvailable"]
+
+
+def worker_memory_limit():
+    total, headroom = _host_memory()
     budget = min(6 * 2**30, total // 3, headroom - 2 * 2**30)
     if budget < 3 * 2**30:
         raise RuntimeError("Insufficient memory headroom for Qwen. Close unused applications before another run.")
@@ -91,6 +119,26 @@ def stop_process_group(process, grace=1):
         process.wait(timeout=grace)
 
 
+def read_live_footprint(process, memory_reader, attempts=4, pause=0.02, deadline=None):
+    error = None
+    while True:
+        for _ in range(attempts):
+            if process.poll() is not None:
+                return None
+            try:
+                return memory_reader(process.pid)
+            except OSError as raised:
+                error = raised
+            if process.poll() is not None:
+                return None
+            time.sleep(pause)
+        if process.poll() is not None:
+            return None
+        if deadline is None or time.monotonic() >= deadline:
+            raise error
+        time.sleep(pause)
+
+
 def supervise(command, *, timeout, memory_limit, memory_reader=process_memory, stats=None, cancel_after=None):
     stats = stats if stats is not None else {}
     started = time.monotonic()
@@ -104,12 +152,9 @@ def supervise(command, *, timeout, memory_limit, memory_reader=process_memory, s
                 raise KeyboardInterrupt
             if time.monotonic() >= deadline:
                 raise RuntimeError("Worker deadline reached. The owned run stopped.")
-            try:
-                footprint = memory_reader(process.pid)
-            except OSError:
-                if process.poll() is not None:
-                    break
-                raise
+            footprint = read_live_footprint(process, memory_reader, deadline=deadline)
+            if footprint is None:
+                break
             stats["peak_worker_bytes"] = max(stats["peak_worker_bytes"], footprint)
             stats["memory_samples"] += 1
             if footprint > memory_limit:

@@ -33,6 +33,10 @@ CHROME_CANDIDATES = (
     CACHED_CHROME,
     Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"),
     Path.home() / "Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    Path("/usr/bin/google-chrome-stable"),
+    Path("/usr/bin/google-chrome"),
+    Path("/usr/bin/chromium"),
+    Path("/usr/bin/chromium-browser"),
 )
 
 

@@ -159,6 +159,132 @@ def test_pilot_requires_explicit_readiness(monkeypatch):
     assert error.value.code == 2
 
 
+def _note_page():
+    return {
+        "url": "http://127.0.0.1:9/notes",
+        "title": "Notes",
+        "text": "Notes",
+        "fingerprint": "abc",
+        "actions": [{"id": "note", "kind": "fill", "label": "Note", "value": "", "node": 1}],
+    }
+
+
+def test_cache_miss_runs_the_model_and_a_hit_does_not(tmp_path, monkeypatch):
+    from jev_ultrafast import agent as agent_module
+    from jev_ultrafast import local_model
+    from jev_ultrafast.browser import StalePage
+    from jev_ultrafast.replay_cache import load_actions, save_actions
+
+    loads = []
+    page = _note_page()
+    save_actions(tmp_path, "Save the note", page, [{"operation": "fill", "target": "Note", "value": "Ship the crate"}])
+
+    class Agent:
+        def __init__(self, *_args):
+            self.state = {"page": page, "status": "ready", "history": [], "decisions": []}
+            passed = {"submitted": {"note": "Ship the crate"}, "results_visible": True, "selected": False}
+            self.browser = SimpleNamespace(
+                observe=lambda **_k: page,
+                act=lambda *_a, **_k: None,
+                evaluate=lambda _e: passed,
+            )
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_args):
+            return None
+
+        def command(self, name, *_args):
+            if name == "predict":
+                self.state["decisions"].append({"choice": "DONE", "operation": "DONE", "latency_ms": 1})
+                self.state["status"] = "predicted"
+                return
+            self.state["history"].append({"kind": "fill", "action": "Note", "text": "Ship the crate"})
+            self.state["status"] = "done"
+
+    monkeypatch.setattr(milestone, "REPLAY_CACHE", tmp_path)
+    monkeypatch.setattr(agent_module, "Agent", Agent)
+    monkeypatch.setattr(local_model, "get_model", lambda: loads.append(1))
+    monkeypatch.setattr(local_model, "get_model_info", lambda: {})
+    monkeypatch.setattr(milestone, "measured_model", lambda *_a: nullcontext())
+    task = {"kind": "local", "goal": "Save another note", "expected": {"note": "Ship the crate"}}
+    journal = Journal(tmp_path / "miss")
+    assert milestone.run_task(task, "http://127.0.0.1:9/notes", journal, 2) == 0
+    assert loads == [1]
+    stored = load_actions(tmp_path, "Save another note", page)
+    assert stored == [{"operation": "fill", "target": "Note", "value": "Ship the crate"}]
+
+    loads.clear()
+    ran = {}
+
+    class ReplayAgent(Agent):
+        def __init__(self, *_args):
+            super().__init__()
+
+            def act(action, _observed, text=None):
+                ran.setdefault("seen", []).append((action["label"], text))
+
+            self.browser = SimpleNamespace(observe=lambda **_k: page, act=act, evaluate=self.browser.evaluate)
+
+        def command(self, *_args):
+            raise StalePage("The model loop ran on a cache hit")
+
+    monkeypatch.setattr(agent_module, "Agent", ReplayAgent)
+    journal = Journal(tmp_path / "hit")
+    hit = {"kind": "local", "goal": "Save the note", "expected": {"note": "Ship the crate"}}
+    assert milestone.run_task(hit, "http://127.0.0.1:9/notes", journal, 2) == 0
+    assert loads == []
+    assert ran["seen"] == [("Note", "Ship the crate")]
+
+
+def test_missing_replay_target_runs_the_model(tmp_path, monkeypatch):
+    from jev_ultrafast import agent as agent_module
+    from jev_ultrafast import local_model
+    from jev_ultrafast.replay_cache import save_actions
+
+    page = _note_page()
+    save_actions(tmp_path, "Save the note", page, [
+        {"operation": "fill", "target": "Note", "value": "Ship the crate"},
+        {"operation": "click", "target": "Save note"},
+    ])
+    acted = []
+    loads = []
+
+    class Agent:
+        def __init__(self, *_args):
+            self.state = {"page": page, "status": "ready", "history": [], "decisions": []}
+            passed = {"submitted": {"note": "Ship the crate"}, "results_visible": True, "selected": False}
+
+            def act(*_args, **_kwargs):
+                acted.append(1)
+
+            self.browser = SimpleNamespace(observe=lambda **_k: page, act=act, evaluate=lambda _e: passed)
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_args):
+            return None
+
+        def command(self, name, *_args):
+            if name == "predict":
+                self.state["decisions"].append({"choice": "DONE", "operation": "DONE", "latency_ms": 1})
+                return
+            self.state["history"].append({"kind": "fill", "action": "Note", "text": "Ship the crate"})
+            self.state["status"] = "done"
+
+    monkeypatch.setattr(milestone, "REPLAY_CACHE", tmp_path)
+    monkeypatch.setattr(agent_module, "Agent", Agent)
+    monkeypatch.setattr(local_model, "get_model", lambda: loads.append(1))
+    monkeypatch.setattr(local_model, "get_model_info", lambda: {})
+    monkeypatch.setattr(milestone, "measured_model", lambda *_a: nullcontext())
+    task = {"kind": "local", "goal": "Save the note", "expected": {"note": "Ship the crate"}}
+    assert milestone.run_task(task, page["url"], Journal(tmp_path / "events"), 2) == 0
+    assert loads == [1]
+    assert acted == []
+
+
 @pytest.mark.parametrize("challenge", [True, False])
 def test_runner_stops_initial_challenge_or_three_rejections(tmp_path, monkeypatch, challenge):
     from jev_ultrafast import agent as agent_module

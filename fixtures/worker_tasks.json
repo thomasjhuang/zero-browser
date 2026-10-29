@@ -248,6 +248,28 @@
         "action_budget": 2
       },
       "expected_status": "uncertainty"
+    },
+    {
+      "name": "open-casa-flora",
+      "page": "fixture.html",
+      "task": {
+        "outcome": "Open Casa Flora.",
+        "kind": "click",
+        "target": "View Casa Flora",
+        "value": "#casa-flora",
+        "permitted_actions": [
+          "click"
+        ],
+        "stopping_conditions": [
+          "outcome_observed",
+          "human_required",
+          "boundary_violation"
+        ],
+        "deadline_seconds": 45,
+        "action_budget": 4
+      },
+      "expected_status": "success",
+      "expect_text": "Casa Flora"
     }
   ]
 }

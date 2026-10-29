@@ -13,6 +13,7 @@ from .local_model import (
 )
 from .model import action_space
 from .questions import NEXT_ACTION, TARGET, TEXT_VALUE
+from .submit_guard import actions_for_unset_required, completion_allowed
 
 MODEL_ID = "mlx-community/Qwen3-4B-Instruct-2507-4bit"
 
@@ -35,9 +36,11 @@ def _select(goal, observation, candidates, records):
     return result
 
 
-def local_choose(state, goal, history):
+def local_choose(state, goal, history, required_fields=None):
     started = time.perf_counter()
     begin_decision_group()
+    fields = required_fields or []
+    state = {**state, "actions": actions_for_unset_required(state["actions"], fields)}
     elements, targets, controls = action_space(state["actions"])
     labels = {
         "CLICK": "Click an observed element, button, suggestion, or calendar day.",
@@ -46,7 +49,9 @@ def local_choose(state, goal, history):
     }
     operations = {key: labels[key] for key in targets}
     operations.update({key: value["label"] for key, value in controls.items()})
-    operations.update(DONE="All requirements are visibly satisfied.", BLOCKED="No supported operation can progress.")
+    if completion_allowed(state["actions"], fields):
+        operations["DONE"] = "All requirements are visibly satisfied."
+        operations["BLOCKED"] = "No supported operation can progress."
     request = {
         "page": {k: state[k][:3000] if k == "text" else state[k] for k in ("url", "title", "text")},
         "elements": elements,

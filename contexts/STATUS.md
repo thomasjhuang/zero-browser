@@ -5,7 +5,10 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: IDLE.** Root reported END for the direct-action attempt. The worker and browser closed. No further experiment is active.
+> **Current run state: RESERVED for desktop execution.** VM browser and local-model runs stay idle.
+> Desktop worker `bc-7af786e3-ca6a-57c3-8e30-00259f3291e0` on thomas-computer owns browser, offline models, Codex CLI, and Claude CLI. Measured runs stay outside git.
+> VM worker `bc-65a045d8-dfac-5b19-b5ec-702051a6d2cf` owns experiment design and the sealed scoreboard. It must not start those desktop runs.
+> The earlier direct-action attempt is finished. The worker and browser from that attempt are closed.
 > Task 16 completed the callable adapter and preserved every comparison. Final lint and all 184 existing tests passed. Publication follows the repository procedure.
 > Latest measured results: native PASS in 46.22 seconds, prior Qwen PASS in 140.80 seconds, direct-action Qwen PASS in 123.14 seconds. Context and timing boundaries differ. Funded JEV failed after 7.14 seconds.
 > [Evidence](../results/flights-sequential-comparison.json) contains usage, memory, source hashes, and failed-run records. No general reliability or savings claim follows.
@@ -46,6 +49,8 @@ The final cancellation pilot stopped during inference. The user reported normal 
 
 | Owner | Reserved files and actions |
 | --- | --- |
+| Desktop `bc-7af786e3-ca6a-57c3-8e30-00259f3291e0`: local execution | Browser, offline model loads, Codex CLI, and Claude CLI. No VM inference beside this reservation |
+| VM `bc-65a045d8-dfac-5b19-b5ec-702051a6d2cf`: experiment design and measurement | `scripts/experiment_scoreboard.py`, `scripts/experiment_record.py`, `scripts/experiment_track.py`, `scripts/experiment_propose.py`, `experiments/local-coordinator/`, their tests, and the scoreboard section of this file and task 16. Does not run the browser or a local model |
 | Codex: optional observation compactor support | Complete in detached candidate `1f1ccd4` from `3fd3936`, independently reviewed. New `observation_compactor.py`, its test, assessment script, and sanitized results only. Integration remains pending. No runtime integration or browser/model runs. Required checks use an agreed idle slot |
 | Codex: **Improve zero-browser benchmarking**, task 16 | `jev_ultrafast/agent.py`, `local_policy.py`, `local_model.py`, `questions.py`, `snapshot.js`, `model.py`, `scripts/replay.py`, milestone scripts and fixtures, related tests, milestone evidence, root `README.md`, and task 16 |
 | Claude: **Hackathon project tasks**, task 13 support | Handed `snapshot.js`, `model.py`, replay, and the recording hook to Codex at `9f5b613`. Read-only review and task 13 notes only. No runtime edits or browser/model runs without a new handoff |
@@ -113,6 +118,14 @@ Do not alter the shared Git index while another owner prepares a commit.
 
 ## Log
 
+- October 29, 2026: task 16 let the milestone loader accept Linux CUDA and read worker memory from `/proc`. Metal and `libproc` stay the Apple path. No measured batch was started.
+
+- October 29, 2026: task 16 wired MLflow ingest and an AI-Scientist v3 proposal step. Scores and proposals stay outside git.
+
+- October 29, 2026: task 16 added a recorder that copies milestone verifier checks into ignored `artifacts/experiment-loop/`.
+
+- October 29, 2026: task 16 added a sealed scoreboard for the local-coordinator comparison. No VM browser or model run started.
+
 - October 11, 14:45 PT: task 16 finished ten shared-interface trials, all outcomes passed. Four pairs support the limited timing summary; pair 4 retains its indexing caveat. Exact usage and independent audits are in results/paired-browser-comparison.json. Runtime is idle.
 
 - October 11, 14:02 PT: task 16 integrated the observation handoff and corrected field descriptions. Both fixed local reruns failed. Evidence: `results/milestone-followup.json`. Slot idle.
@@ -148,3 +161,5 @@ Earlier implementation details and evidence remain in the numbered task files an
 - October 11: task 16 completed comparison preservation and separate Qwen recovery evidence. JEV remains blocked on account funding. All runtimes are idle. No further live tests ran.
 
 - October 11, 2026: Task 16 preserved isolated usage comparisons and the funded JEV failure. The direct-action helper passed one full flight search. Runtime slot idle.
+
+- October 29, 2026: a failed `/proc` memory read is retried while the worker is alive and ignored once the worker has exited. The 3 GiB floor is unchanged.

@@ -50,6 +50,12 @@ def test_installer_download_keeps_locks_and_uses_exact_revision(tmp_path, monkey
     assert (tmp_path / "requirements-local.lock.txt").read_text() == "Keep these exact dependencies.\n"
 
 
+def test_chrome_candidates_include_linux_executables():
+    cli = load_script("run_cli")
+    assert Path("/usr/bin/google-chrome") in cli.CHROME_CANDIDATES
+    assert Path("/usr/bin/google-chrome-stable") in cli.CHROME_CANDIDATES
+
+
 def test_installer_rejects_platform_before_download(tmp_path):
     command = tmp_path / "uname"
     command.write_text('#!/bin/sh\necho Linux\n')

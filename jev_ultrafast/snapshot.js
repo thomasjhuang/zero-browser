@@ -96,7 +96,12 @@
         const placeholder=e.getAttribute('placeholder');
         if (placeholder) flags.placeholder=placeholder.slice(0,60);
       }
-      actions.push({...base,...flags,kind:editable?'fill':'click',value});
+      const action={...base,...flags,kind:editable?'fill':'click',value};
+      const submitsForm=!!e.form && (
+        (e.tagName==='INPUT' && (e.type==='submit' || e.type==='image')) ||
+        (e.tagName==='BUTTON' && e.type==='submit'));
+      if (submitsForm && !editable) action.submits='true';
+      actions.push(action);
       if (editable) actions.push({...base,kind:'click',value,label:'Open '+base.label});
     }
   }

@@ -7,6 +7,7 @@ from pathlib import Path
 from .browser import Browser, StalePage
 from .model import action_space, choose, field_context, field_text
 from .questions import MAX_STEPS
+from .submit_guard import actions_for_unset_required
 
 
 class Agent:
@@ -75,7 +76,11 @@ class Agent:
                 raise ValueError("This run has stopped. Start a fresh demo.")
             if len(state["decisions"]) >= MAX_STEPS * 2:
                 raise ValueError("Reached the demo's model-call budget")
-            state["decision"] = choose(state["page"], state["goal"], state["history"])
+            page = state["page"]
+            fields = state.get("required_fields") or []
+            if fields:
+                page = {**page, "actions": actions_for_unset_required(page["actions"], fields)}
+            state["decision"] = choose(page, state["goal"], state["history"], fields)
             state["decision"]["done_confirmation"] = confirm_done and state["decision"]["choice"] == "DONE"
             state["decisions"].append(
                 {

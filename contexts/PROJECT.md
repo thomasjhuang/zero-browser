@@ -136,6 +136,31 @@ The earlier commands for `scripts/baselines.py` were stale. That file is absent 
 Task 21 defines the future native Codex comparison. No working native baseline is established.
 `scripts/decision_baselines.py` compares synthetic decisions only. It does not measure browser completion.
 
+## Experiment scoreboard
+
+Run records, scores, and proposals stay outside git. The recorder writes under ignored `artifacts/experiment-loop/`.
+The record schema is `zero-browser.experiment-run.v1`. The scoreboard rejects a batch when evidence is missing,
+token fields disagree, or the `local-coordinator` arm records a hosted call. Passing requires every
+`independent_checks` value to be true. A DONE choice is stored and ignored.
+
+```bash
+uv run --offline --frozen --extra local python scripts/experiment_record.py \
+  --arm local-coordinator --hosted-model-calls 0 --run-dir artifacts/milestone/<run>
+uv run --offline --frozen --extra local python scripts/experiment_scoreboard.py \
+  --runs artifacts/experiment-loop --output artifacts/experiment-loop-summary.json
+```
+
+`experiment_record.py` copies `verification.checks` from a finished milestone directory. It does not
+treat `outcome_verified` or a DONE choice as the result. Pilot runs are refused. Absolute paths in the
+copied evidence are redacted. A blocked arm uses `--blocked --reason "..."` instead of a run directory.
+
+Do not commit the summary or a proposal. An unmeasured batch leaves `combined_score` null.
+`experiments/local-coordinator/evaluate.py` can write `metrics.json` and `correct.json` for a local
+AI-Scientist v3 task. It does not launch a browser or a model.
+
+MLflow is a dev dependency. Tracking uses a sqlite store under ignored `artifacts/mlflow`. The track and
+propose commands exit without writing when the run directory is missing.
+
 ## Tests and delivery
 
 Follow `AGENTS.md` and `contexts/AGENT-RULES.md` for delivery.

@@ -35,6 +35,7 @@ from scripts.runtime_guard import (  # noqa: E402
 )
 
 MANIFEST = ROOT / "fixtures/milestone_tasks.json"
+REPLAY_CACHE = ROOT / "artifacts" / "replay-cache"
 FORBIDDEN = re.compile(
     r"\b(log\s*in|sign\s*in|sign\s*up|register|password|captcha|select flight|book|booking|"
     r"reserve|buy|purchase|pay|payment|checkout|send|message|delete|account|subscribe)\b", re.I,
@@ -178,78 +179,109 @@ def run_task(task, url, journal, max_decisions, *, visible=False, coordinator=No
     from jev_ultrafast.agent import Agent
     from jev_ultrafast.browser import StalePage
     from jev_ultrafast.local_model import get_model, get_model_info
+    from jev_ultrafast.replay_cache import cached_steps, save_actions, steps_from_history
+    from jev_ultrafast.submit_guard import field_names
 
     step = [0]
     with Agent(url, task["goal"]) as agent:
         if visible:
             journal.write("task_tab_shown", closed_startup_tabs=show_task_tab(agent.browser))
+        agent.state["required_fields"] = field_names(task.get("expected"))
         journal.write("observation", step=0, page=agent.state["page"])
         require_page(agent.state["page"])
         instrument_browser(agent.browser, journal, step)
         handoff = CoordinatorHandoff(coordinator, journal, agent.state["page"]) if coordinator else None
         if handoff:
             handoff.check_deadline()
-        journal.write("model_loading", step=0)
-        get_model()
-        loaded_at = time.monotonic()
-        journal.write("model_loaded", **get_model_info(), monotonic=loaded_at, worker_pid=os.getpid())
+        start_page = agent.state["page"]
+        cache_dir = REPLAY_CACHE
+        cached = None
+        replay_dirty = False
+        if not coordinator:
+            try:
+                cached = cached_steps(cache_dir, task["goal"], start_page, agent.browser)
+            except HumanRequired:
+                raise
+            except Exception as error:
+                replay_dirty = True
+                journal.write("replay_failed", step=0, cause=str(error))
+                agent.state["page"] = agent.browser.observe(screenshot=False)
+        used_replay = cached is not None
+        if used_replay:
+            journal.write("replay", step=0, actions=len(cached))
+            loaded_at = time.monotonic()
+        else:
+            journal.write("model_loading", step=0)
+            get_model()
+            loaded_at = time.monotonic()
+            journal.write("model_loaded", **get_model_info(), monotonic=loaded_at, worker_pid=os.getpid())
         rejected = 0
-        with measured_model(journal, step):
-            for number in range(1, max_decisions + 1):
-                step[0] = number
-                try:
-                    if handoff:
-                        handoff.check_deadline()
-                    agent.command("predict")
-                    decision = agent.state["decisions"][-1]
-                    journal.write("decision", step=number, **decision)
-                    choice = decision["choice"]
-                    if choice not in {"DONE", "BLOCKED"}:
-                        action = next((a for a in agent.state["page"]["actions"] if a["id"] == choice), None)
-                        if action is None:
-                            journal.write("failure", step=number, category="wrong_decision",
-                                          cause="The selected target is absent from the observed actions.")
-                            break
-                        require_allowed(action)
+
+        def store_passed():
+            if replay_dirty:
+                return
+            steps = cached if used_replay else steps_from_history(agent.state["history"])
+            save_actions(cache_dir, task["goal"], start_page, steps)
+
+        if not used_replay:
+            with measured_model(journal, step):
+                for number in range(1, max_decisions + 1):
+                    step[0] = number
+                    try:
+                        if handoff:
+                            handoff.check_deadline()
+                        agent.command("predict")
+                        decision = agent.state["decisions"][-1]
+                        journal.write("decision", step=number, **decision)
+                        choice = decision["choice"]
+                        if choice not in {"DONE", "BLOCKED"}:
+                            action = next((a for a in agent.state["page"]["actions"] if a["id"] == choice), None)
+                            if action is None:
+                                journal.write("failure", step=number, category="wrong_decision",
+                                              cause="The selected target is absent from the observed actions.")
+                                break
+                            require_allowed(action)
+                            if task["kind"] == "selection":
+                                require_selection_action(action, agent.state["page"],
+                                                         read_events(journal.path), task["expected"])
+                        agent.command("act", {"fingerprint": agent.state["page"]["fingerprint"]})
+                        rejected = 0
                         if task["kind"] == "selection":
-                            require_selection_action(action, agent.state["page"],
-                                                     read_events(journal.path), task["expected"])
-                    agent.command("act", {"fingerprint": agent.state["page"]["fingerprint"]})
-                    rejected = 0
-                    if task["kind"] == "selection":
-                        result = verify_selection(agent.state["page"], read_events(journal.path), task["expected"])
-                        if result["passed"]:
-                            journal.write("outcome", step=number, result=result)
-                            return 0
-                    if handoff:
-                        handoff.after_step(agent, number, max_decisions, loaded_at)
-                except CoordinatorStop as error:
-                    journal.write("failure", step=number, category=error.category, cause=str(error))
-                    break
-                except StalePage as error:
-                    if (handoff and agent.state["history"]
-                            and agent.state["history"][-1].get("page_changed") is None):
-                        journal.write("failure", step=number, category="unresolved_observation",
-                                      cause="Input executed but its resulting observation failed. Stop without replay.")
+                            result = verify_selection(agent.state["page"], read_events(journal.path), task["expected"])
+                            if result["passed"]:
+                                journal.write("outcome", step=number, result=result)
+                                store_passed()
+                                return 0
+                        if handoff:
+                            handoff.after_step(agent, number, max_decisions, loaded_at)
+                    except CoordinatorStop as error:
+                        journal.write("failure", step=number, category=error.category, cause=str(error))
                         break
-                    rejected += 1
-                    journal.write("rejected", step=number, category="stale_decision", cause=str(error))
-                    if rejected >= 3:
-                        journal.write("failure", step=number, category="rejected_decisions",
-                                      cause="Three consecutive decisions did not finish.")
+                    except StalePage as error:
+                        if (handoff and agent.state["history"]
+                                and agent.state["history"][-1].get("page_changed") is None):
+                            journal.write("failure", step=number, category="unresolved_observation",
+                                          cause="Input executed but its resulting observation failed. "
+                                                "Stop without replay.")
+                            break
+                        rejected += 1
+                        journal.write("rejected", step=number, category="stale_decision", cause=str(error))
+                        if rejected >= 3:
+                            journal.write("failure", step=number, category="rejected_decisions",
+                                          cause="Three consecutive decisions did not finish.")
+                            break
+                        agent.state["decision"] = None
+                        agent.state["status"] = "ready"
+                        agent.state["page"] = agent.browser.observe(screenshot=False)
+                    print(f"Decision {number}: {agent.state['status']}", flush=True)
+                    if agent.state["status"] in {"done", "blocked"}:
+                        if agent.state["status"] == "blocked" and choice != "BLOCKED":
+                            journal.write("failure", step=number, category="no_progress",
+                                          cause="Three executed actions produced no observed page change.")
                         break
-                    agent.state["decision"] = None
-                    agent.state["status"] = "ready"
-                    agent.state["page"] = agent.browser.observe(screenshot=False)
-                print(f"Decision {number}: {agent.state['status']}", flush=True)
-                if agent.state["status"] in {"done", "blocked"}:
-                    if agent.state["status"] == "blocked" and choice != "BLOCKED":
-                        journal.write("failure", step=number, category="no_progress",
-                                      cause="Three executed actions produced no observed page change.")
-                    break
-            else:
-                journal.write("failure", step=step[0], category="decision_budget",
-                              cause="The fixed decision budget ended.")
+                else:
+                    journal.write("failure", step=step[0], category="decision_budget",
+                                  cause="The fixed decision budget ended.")
         # Read again independently. Never use the model's request or DONE as proof.
         if task["kind"] == "local":
             result = verify_local(agent.browser.evaluate(LOCAL_READ), task["expected"])
@@ -259,6 +291,8 @@ def run_task(task, url, journal, max_decisions, *, visible=False, coordinator=No
         else:
             result = verify_flights(agent.browser.observe(screenshot=False), task["expected"])
         journal.write("outcome", step=step[0], result=result)
+        if result["passed"]:
+            store_passed()
         return 0 if result["passed"] else 1
 
 

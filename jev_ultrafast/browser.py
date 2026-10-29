@@ -107,9 +107,19 @@ class Browser:
         return result
 
     def close(self):
-        if self.target:
-            cdp("Target.closeTarget", targetId=self.target)
-            self.target = None
+        if not self.target:
+            return
+        closing = self.target
+        self.target = None
+        # Chrome exits when its last page closes, and the debugging port goes with it.
+        try:
+            infos = cdp("Target.getTargets").get("targetInfos", [])
+            others = [t for t in infos if t.get("type") == "page" and t.get("targetId") != closing]
+        except Exception:
+            others = []
+        if not others:
+            cdp("Target.createTarget", url="about:blank", background=True)
+        cdp("Target.closeTarget", targetId=closing)
 
 
 def fingerprint(state):

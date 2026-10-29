@@ -86,7 +86,61 @@ def test_process_memory_reads_a_live_process():
     assert runtime_guard.process_memory(os.getpid()) > 0
 
 
+class _Worker:
+    def __init__(self, pid=1491437, code=None):
+        self.pid = pid
+        self.code = code
+
+    def poll(self):
+        return self.code
+
+
+def test_transient_memory_read_is_retried_for_a_live_worker():
+    calls = {"n": 0}
+
+    def read(_pid):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            raise OSError("Cannot read the worker memory footprint for 1491437")
+        return 8192
+
+    assert runtime_guard.read_live_footprint(_Worker(), read, pause=0) == 8192
+    assert calls["n"] == 2
+
+
+def test_memory_read_after_exit_is_not_a_parent_stop():
+    def read(_pid):
+        raise OSError("Cannot read the worker memory footprint for 1491437")
+
+    assert runtime_guard.read_live_footprint(_Worker(code=0), read, pause=0) is None
+
+
+def test_repeated_unreadable_memory_still_stops_a_live_worker():
+    def read(_pid):
+        raise OSError("Cannot read the worker memory footprint for 1491437")
+
+    with pytest.raises(OSError, match="1491437"):
+        runtime_guard.read_live_footprint(_Worker(), read, attempts=2, pause=0)
+
+
+def test_unreadable_memory_until_the_worker_exits_is_not_a_stop():
+    worker = _Worker(pid=2894023)
+    calls = {"n": 0}
+
+    def read(_pid):
+        calls["n"] += 1
+        if calls["n"] >= 3:
+            worker.code = 0
+        raise OSError("Cannot read the worker memory footprint for 2894023")
+
+    assert runtime_guard.read_live_footprint(
+        worker, read, attempts=2, pause=0, deadline=time.monotonic() + 5) is None
+    assert calls["n"] >= 3
+
+
 def test_low_memory_headroom_refuses_model_start(monkeypatch):
+    monkeypatch.setattr(runtime_guard.sys, "platform", "darwin")
+
     def output(command, **kwargs):
         return str(24 * 2**30) if "sysctl" in command[0] else "System-wide memory free percentage: 10%"
 
@@ -96,6 +150,8 @@ def test_low_memory_headroom_refuses_model_start(monkeypatch):
 
 
 def test_memory_budget_leaves_room_for_other_applications(monkeypatch):
+    monkeypatch.setattr(runtime_guard.sys, "platform", "darwin")
+
     def output(command, **kwargs):
         return str(16 * 2**30) if "sysctl" in command[0] else "System-wide memory free percentage: 40%"
 
