@@ -124,3 +124,33 @@ def test_pair_starts_one_process(monkeypatch, tmp_path):
     request = json.loads(Path(started[0][-1]).read_text())
     assert [case["name"] for case in request["cases"]] == names
     assert started[0][-2] == "--worker"
+    assert request["replay_cache"].endswith("artifacts/replay-cache")
+    started.clear()
+    chosen = tmp_path / "empty-cache"
+    chosen.mkdir()
+    assert main(["--pair", *names, "--replay-cache", str(chosen), "--output", str(tmp_path / "other.json")]) == 0
+    chosen_request = json.loads(Path(started[0][-1]).read_text())
+    assert chosen_request["replay_cache"] == str(chosen)
+
+
+def test_empty_replay_cache_misses_and_calls_the_model(tmp_path, monkeypatch):
+    page = city_page()
+    filled = tmp_path / "filled"
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    steps = [{"operation": "fill", "target": "City", "value": "Lima"}]
+    save_actions(filled, task()["outcome"], page, steps)
+    calls = []
+
+    def run_bounded(*_args, **_kwargs):
+        calls.append("model")
+        return {"status": "failure", "executed_actions": [], "unresolved_execution": False}
+
+    monkeypatch.setattr("jev_ultrafast.bounded_worker.run_bounded", run_bounded)
+    browser = SimpleNamespace(observe=lambda **_k: page, act=lambda *_a, **_k: None)
+    _page, replayed, result = execute_case(browser, task(), None, SimpleNamespace(write=lambda *_a, **_k: None),
+                                           empty)
+    assert replayed is None
+    assert calls == ["model"]
+    assert result["status"] == "failure"
+    assert load_actions(filled, task()["outcome"], page) == steps

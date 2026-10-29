@@ -112,7 +112,7 @@ def run_case(request):
 
     local_policy.score_decision = score
     try:
-        return _finish_case(case, journal, choose, counted)
+        return _finish_case(case, journal, choose, counted, request.get("replay_cache"))
     finally:
         local_policy.score_decision = original
 
@@ -140,8 +140,11 @@ def hotel_fixture():
         thread.join(timeout=2)
 
 
-def _finish_case(case, journal, choose, counted):
+def _finish_case(case, journal, choose, counted, replay_cache=None):
     from jev_ultrafast.browser import Browser
+    from scripts.milestone import REPLAY_CACHE
+
+    cache = replay_cache or REPLAY_CACHE
 
     supplied_request = "url" in case
     hotel = case.get("page") == "fixture.html"
@@ -158,9 +161,7 @@ def _finish_case(case, journal, choose, counted):
             show_task_tab(browser)
             read = PAGE_READ if case["task"]["kind"] == "click" else FIXTURE_READ
             before = None if supplied_request else browser.evaluate(read)
-            from scripts.milestone import REPLAY_CACHE
-
-            start_page, replayed, result = execute_case(browser, case["task"], choose, journal, REPLAY_CACHE)
+            start_page, replayed, result = execute_case(browser, case["task"], choose, journal, cache)
             if supplied_request:
                 assessment = {"passed": result["status"] == "success",
                               "scope": "Worker field predicate only. No independent site adapter was supplied."}
@@ -168,7 +169,7 @@ def _finish_case(case, journal, choose, counted):
                 after = browser.evaluate(read)
                 assessment = independent_outcome(case, before, after, result)
             journal.write("outcome", assessment=assessment, model_calls=counted["calls"])
-            remember_pass(REPLAY_CACHE, case["task"]["outcome"], start_page, replayed, result,
+            remember_pass(cache, case["task"]["outcome"], start_page, replayed, result,
                           assessment.get("passed"))
             code = 0 if assessment["passed"] else 1
             journal.write("case_exit", code=code)
@@ -182,7 +183,8 @@ def run_two(request):
     cases, journals = request.get("cases"), request.get("journals")
     if not isinstance(cases, list) or len(cases) != 2 or not isinstance(journals, list) or len(journals) != 2:
         raise ValueError("The shared process runs exactly two existing cases")
-    codes = [run_case({"case": case, "journal": journal, "method": request["method"]})
+    codes = [run_case({"case": case, "journal": journal, "method": request["method"],
+                       "replay_cache": request.get("replay_cache")})
              for case, journal in zip(cases, journals)]
     return 0 if codes == [0, 0] else 1
 
@@ -202,10 +204,15 @@ def main(argv=None):
                         help="Run two existing cases in one process. The model loads once.")
     parser.add_argument("--request", type=Path, help="JSON with url and one bounded task contract")
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--replay-cache", type=Path,
+                        help="Replay cache directory. Defaults to artifacts/replay-cache.")
     parser.add_argument("--worker", type=Path)
     args = parser.parse_args(argv)
     if args.worker:
         return worker(args.worker)
+    from scripts.milestone import REPLAY_CACHE
+
+    replay_cache = str(args.replay_cache) if args.replay_cache else str(REPLAY_CACHE)
     args.output = args.output or ROOT / "artifacts/worker-result.json"
     manifest = ROOT / "fixtures/worker_tasks.json"
     if args.pair and (args.case or args.request):
@@ -249,7 +256,8 @@ def main(argv=None):
         if args.pair:
             journals = [folder / f"{index}-{case['name']}.jsonl" for index, case in enumerate(cases)]
             request = folder / "pair-request.json"
-            save_json(request, {"cases": cases, "journals": [str(path) for path in journals], "method": args.method})
+            save_json(request, {"cases": cases, "journals": [str(path) for path in journals],
+                                "method": args.method, "replay_cache": replay_cache})
             started = time.monotonic()
             stats, error, code = {}, None, None
             try:
@@ -267,7 +275,8 @@ def main(argv=None):
         for case in cases:
             journal = folder / (case["name"] + ".jsonl")
             request = folder / (case["name"] + "-request.json")
-            save_json(request, {"case": case, "journal": str(journal), "method": args.method})
+            save_json(request, {"case": case, "journal": str(journal), "method": args.method,
+                                "replay_cache": replay_cache})
             started = time.monotonic()
             stats, error, code = {}, None, None
             try:
