@@ -684,3 +684,9 @@ After funding, JEV attempt 02 failed in 7,144.63 ms to its independent verdict a
 The adapter passed lint and all 184 existing tests before measurement. No new tests or review cycle ran. GitNexus discovery, query, context, and change detection used the existing stale index. The graph omitted the new untracked helper and does not establish complete impact coverage. Source inspection and existing tests supplied the delivery checks. No index refresh interrupted measurement. The earlier freeze remains unexplained. Existing responsiveness observations remain applicable.
 
 Final delivery checks passed: lint and all 184 existing tests in 4.55 seconds. Added evidence passed JSON, private-path, and credential-pattern checks. Runtime sources stayed frozen through measurement. No new responsiveness observation is needed.
+
+## Result: README cleanup, October 30, 2026
+
+Thomas scoped this follow-up to the README. Added platform, model, MLX, MCP, and license badges; concise setup and MCP instructions; and four examples linked to existing evidence. The 16-second GIF and MP4 summarize the actions and verification in `results/workflow-recovery-summary.json`. Both are labeled as an abridged animation, not a live screen recording. No runtime code changed or browser/model experiment ran. Unrelated work remains untouched.
+
+Verification: the required offline Ruff check and all 184 existing tests passed on the documentation-only candidate. Local README links resolve, and the MP4 is 16 seconds with H.264 video. No new live evaluation ran.

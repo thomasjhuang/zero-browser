@@ -148,3 +148,5 @@ Earlier implementation details and evidence remain in the numbered task files an
 - October 11: task 16 completed comparison preservation and separate Qwen recovery evidence. JEV remains blocked on account funding. All runtimes are idle. No further live tests ran.
 
 - October 11, 2026: Task 16 preserved isolated usage comparisons and the funded JEV failure. The direct-action helper passed one full flight search. Runtime slot idle.
+
+- October 30, 2026: Thomas narrowed repository cleanup to the README. Codex completed badges, evidence-linked examples, and a 16-second animated walkthrough of the saved Wikipedia run. The animation is labeled as evidence playback. Runtime code, existing local commits, and unfinished edits remain outside this change. No browser or model experiment ran.
