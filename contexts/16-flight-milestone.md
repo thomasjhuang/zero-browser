@@ -690,3 +690,11 @@ Final delivery checks passed: lint and all 184 existing tests in 4.55 seconds. A
 Thomas scoped this follow-up to the README. Added platform, model, MLX, MCP, and license badges; concise setup and MCP instructions; and four examples linked to existing evidence. The 16-second GIF and MP4 summarize the actions and verification in `results/workflow-recovery-summary.json`. Both are labeled as an abridged animation, not a live screen recording. No runtime code changed or browser/model experiment ran. Unrelated work remains untouched.
 
 Verification: the required offline Ruff check and all 184 existing tests passed on the documentation-only candidate. Local README links resolve, and the MP4 is 16 seconds with H.264 video. No new live evaluation ran.
+
+## Actual screen recording, October 30, 2026
+
+Thomas requested replacing the README animation with a real browser recording, preferably a flight search. Codex README recording coordinator owns one coordinator-assisted local-Qwen run. Preserve the existing 180-second limit, 60-request budget, single-run lock, action guards, and stops before selection, booking, identity, payment, login, or human verification. No hosted-model subprocess will run.
+
+Preparation source: `63bb244432b6fcbc43d4398827cb3ad24090179f`. Runtime sources are unchanged. Command: `.venv/bin/python artifacts/readme-flight-recording-20261030-01/record.py`. Raw evidence: `artifacts/readme-flight-recording-20261030-01/`; replay: that directory's `replay.jsonl`. The recorder uses an independent CDP connection and captures a final viewport before cleanup; it does not choose or repeat actions. Task: SFO–JFK, November 12–16, 2026, one adult, economy. Independent verification covers all nine existing round-trip checks.
+
+Recorder SHA256: `4f340547b33e0ec437203fefd82d610f2d48bf284f404b05d06614d931f5fcf9`. Request SHA256: `630456435800d022759f6f74a517ed140b4b79370d2b9c714193cf3c1eadf826`. Runtime hashes will be recorded before launch in `summary.json` and checked after cleanup. No run has started.
