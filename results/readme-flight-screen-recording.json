@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "recorded_date": "2026-10-30",
+  "scope": "One actual Google Flights screen recording with Codex coordinating the existing local-Qwen worker.",
+  "source_commit": "e1ef944749786b83b156598b06eb7fc6548056a7",
+  "source_sha256": {
+    "jev_ultrafast/questions.py": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422",
+    "jev_ultrafast/__init__.py": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63",
+    "jev_ultrafast/bounded_worker.py": "4c05624eca7ff114b50f49cecfec74fa44462aba3b3c0ce770069e6ed37f59db",
+    "jev_ultrafast/model.py": "0522b90825da2737ae61df4f145008bdb27b0f113d49bea061d308b864ac9c28",
+    "jev_ultrafast/browser.py": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee",
+    "jev_ultrafast/structured_policy.py": "008742becc08c3551caaee02dd37515f775f80ad338d534dc44176b68d6ea8a8",
+    "jev_ultrafast/workflow_worker.py": "d63cedf767c62bb18f61659d0e2343eb986a1a17c44d25105a3e423115326e11",
+    "jev_ultrafast/snapshot.js": "c5aaeeda776960d1dde856c382b6c7b07186f2dda3b5e27a11364c5bc4ab0385",
+    "jev_ultrafast/agent.py": "8bf45b61ba7efc21996ea44367960f1477cb6be7c2e941ed82c27724ee8767ad",
+    "jev_ultrafast/demo.py": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4",
+    "jev_ultrafast/local_model.py": "0c1e48f4ae1f436939d3be01b44590d5b7bd13afef24ae71f9fb547331506cfb",
+    "jev_ultrafast/local_policy.py": "645e7b1b05c6851de0d8dc0f2ef72cf7670651b0ce691313081309606c7c81b2",
+    "jev_ultrafast/static/app.js": "711e1cb2df44fff17e79bc9344d3e2aab1111107c6d169ec06b6a0d416fac9fb",
+    "scripts/paired_browser_benchmark.py": "d79ffdf7951d65ec1145b30ade6ea869bc956a4949a932a12b5c6289bddd9227",
+    "scripts/worker_benchmark.py": "742afe81edcfa88dabca9ba15a5ca973ae401a287f7826e7e58f187e12dc07a7",
+    "scripts/workflow_browser.py": "75624b1012340946221b0af6808f0da237d2f662752b48bdd3249140e74ace6a",
+    "scripts/download_local_model.py": "6a91da3313f18db09a95b448aa4b08fa54fad9a62bdd6d836953b33394738966",
+    "scripts/run_cli.py": "ce85eeccbfc634394d26337b9129f61be63cc24d9ae9ec7f46922ab2c8ef0150",
+    "scripts/worker_call.py": "c78eec9b4f5b8f1ce4fefc46be5b4806d2d47a25c491eea999ae4f14f9c2db4f",
+    "scripts/render_fixture.py": "a620580bd02c5fe94816010e10f3be6826ce56ed6ffffbef4bf874e17843dae2",
+    "scripts/runtime_guard.py": "c2d36c0d3a76627b7805886532fa10681b6c5e7d8bffa4a78b537fdf22963c02",
+    "scripts/summarize_decision_baselines.py": "786cda7789e8f467ddbb4e2143bccc184241ca5bc1a9ba5cc8504480b3188ff4",
+    "scripts/check_guards.py": "adbc0c76cfaa30d89d0e9117c6246f22b0bbc090a5c96514e8c62d4a02d1ed1c",
+    "scripts/decision_smoke.py": "a5b933e3e665591683f7e152ae2c9c26e046412889084f6e3fefea55fd6ba7d5",
+    "scripts/render_demo.py": "9730de48dd0d2406bcd85b3aa58e50fe087aa8a7f5b9c20381a086eb454f82a8",
+    "scripts/coordinator_handoff.py": "443f4108ca5932e44afce7e98819cae5fcfe35f0433bb2ccc32d3f638fe24d6f",
+    "scripts/record_flights.py": "f679e39cc5889a0f08a5a3ad2995bd5a18583101e66c8c94c126f14f25b0da25",
+    "scripts/replay.py": "f4552bc19eaff26b5880ba3c70bd59b37409ee08062aed0dee57e9b07e7f7b02",
+    "scripts/decision_diagnostics.py": "34933f274d9249ec344718dbcee4d877a097d6e28b3068204c68b1c33bf46924",
+    "scripts/record_demo.py": "b192be7830199785c7d912e6284985440ddc2e2769e81604f7569ca415a5703d",
+    "scripts/single_action_worker.py": "1cb5ba35ee988c45f6949c9cc95d23e62f29c9dc3b43f29827f2334ec65e299c",
+    "scripts/milestone_verify.py": "00e8cd05dfa6be59c15203ddd33a9199d5222ba5fc50e7ff6aea73edeb02d82d",
+    "scripts/decision_baselines.py": "e96cda0a68c4b32be124b79b223c1ddda5b6c355e49c5d86a8995932343b8e5f",
+    "scripts/milestone.py": "0e3db1d295dc96238aad00f96f06e1284e95bbde84a92e6bc4aeef6b57f076b1",
+    "scripts/milestone_record.py": "142de068dc5fa7512b0764b837ca01b7bb0de8741b48c63502598afc6915b559",
+    "scripts/paired_browser_server.py": "4afa3218449e07c8c1ede30757650f768f49e761b4a8ca5896b0963edd70369e",
+    "scripts/measure_flights.py": "7e129e2f04666ae0f219f1af67f7a1bdc8e3e95c076585ae745ef1606e2c14ae",
+    "scripts/codex_mcp_smoke.py": "53379435c037ebd39e228ab009d05467a9a75910a794873e92a91a5877a67ee0",
+    "scripts/workflow_session.py": "2718d19de433e904e0130195b673acfdb8d19b0dfff2176015250c9dfa7e7dd3",
+    "scripts/mcp_server.py": "b43567818a060d1d81688516210e2fd6f9e5f021944375df86fb127f5082e9e3",
+    "scripts/smoke.py": "62294200921b4007b1e4ac18837d850c9ed3b92d4ad4810061a9314571f9b82d",
+    "scripts/recorder/events.js": "b319cdc95b042c87248d195c13427617fca4733eb3f05ea5bc121dc3d9ddcaa3",
+    "model-lock.json": "e2a102b188195c341021f4592c9e14add74a0063d0f45f321745f80e6db9ebdb"
+  },
+  "source_unchanged": true,
+  "recorder_sha256": "4f340547b33e0ec437203fefd82d610f2d48bf284f404b05d06614d931f5fcf9",
+  "task": {
+    "url": "https://www.google.com/travel/flights?hl=en",
+    "goal": "Find matching SFO to JFK round-trip flight results for November 12 through November 16, 2026, one adult, economy. Stop when actual matching flight options appear. Do not select a flight, book, reserve, enter identity or payment, or log in. Codex supplies each bounded action.",
+    "expected": {
+      "origin": "SFO",
+      "destination": "JFK",
+      "origin_names": [
+        "San Francisco",
+        "SFO"
+      ],
+      "destination_names": [
+        "New York",
+        "JFK"
+      ],
+      "departure": "2026-11-12",
+      "return": "2026-11-16",
+      "adults": 1,
+      "cabin": "Economy"
+    }
+  },
+  "exit_code": 0,
+  "error": null,
+  "independent_verification": {
+    "passed": true,
+    "checks": {
+      "results_page": true,
+      "origin_SFO": true,
+      "destination_JFK": true,
+      "round_trip": true,
+      "departure_date_and_year": true,
+      "return_date_and_year": true,
+      "one_adult": true,
+      "economy": true,
+      "actual_flight_options": true
+    },
+    "visible_result_count": 3,
+    "flight_options": [
+      "From 517 US dollars round trip total. Nonstop flight with Alaska. Leaves San Francisco International Airport at 7:00 AM on Thursday, November 12 and arrives at John F. Kennedy International Airport at 3:35 PM on Thursday, November 12. Total duration 5 hr 35 min.   1 carry-on bag included. 0 checked bags included.  Select flight",
+      "From 552 US dollars round trip total. Nonstop flight with JetBlue. Leaves San Francisco International Airport at 6:00 AM on Thursday, November 12 and arrives at John F. Kennedy International Airport at 2:30 PM on Thursday, November 12. Total duration 5 hr 30 min.   1 carry-on bag included. 0 checked bags included.  Select flight",
+      "From 552 US dollars round trip total. Nonstop flight with Delta. Leaves San Francisco International Airport at 7:00 AM on Thursday, November 12 and arrives at John F. Kennedy International Airport at 3:31 PM on Thursday, November 12. Total duration 5 hr 31 min.   1 carry-on bag included. 0 checked bags included.  Select flight"
+    ],
+    "fields": {
+      "origin": {
+        "node": 92,
+        "role": "combobox",
+        "label": "Where from? San Francisco SFO",
+        "rect": {
+          "x": 48,
+          "y": 136,
+          "w": 314,
+          "h": 56
+        },
+        "expanded": "false",
+        "empty": "false",
+        "kind": "fill",
+        "value": "San Francisco",
+        "id": "e15"
+      },
+      "destination": {
+        "node": 94,
+        "role": "combobox",
+        "label": "Where to? New York JFK",
+        "rect": {
+          "x": 370,
+          "y": 136,
+          "w": 314,
+          "h": 56
+        },
+        "expanded": "false",
+        "empty": "false",
+        "kind": "fill",
+        "value": "New York",
+        "id": "e18"
+      },
+      "departure": {
+        "node": 95,
+        "role": "textbox",
+        "label": "Departure",
+        "rect": {
+          "x": 748,
+          "y": 137,
+          "w": 91.9921875,
+          "h": 54
+        },
+        "context": "Enter a date or use the arrow keys to change the current date.",
+        "empty": "false",
+        "placeholder": "Departure",
+        "kind": "fill",
+        "value": "Thu, Nov 12",
+        "id": "e20"
+      },
+      "return": {
+        "node": 96,
+        "role": "textbox",
+        "label": "Return",
+        "rect": {
+          "x": 917,
+          "y": 137,
+          "w": 91.9921875,
+          "h": 54
+        },
+        "context": "Enter a date or use the arrow keys to change the current date.",
+        "empty": "false",
+        "placeholder": "Return",
+        "kind": "fill",
+        "value": "Mon, Nov 16",
+        "id": "e22"
+      }
+    },
+    "adult_evidence": [
+      {
+        "step": 17,
+        "count": 1,
+        "text": "Adults\n1"
+      }
+    ],
+    "limitations": "Unknown provider output fails closed. URL date evidence supports the explicit year."
+  },
+  "total_including_startup_and_cleanup_ms": 89583.477,
+  "outcome_event_elapsed_ms": 84247,
+  "actions_executed": 11,
+  "local_model_calls": 9,
+  "stale_requests_rejected_before_input": 5,
+  "unresolved_execution": false,
+  "runtime": {
+    "peak_worker_bytes": 3340995368,
+    "memory_samples": 817,
+    "worker_stopped_ms": 84633
+  },
+  "recording": {
+    "capture": "Independent CDP screencast with real JPEG viewport frames and a final screenshot.",
+    "screencast_frames": 281,
+    "errors": [],
+    "capture_duration_ms": 81021.06575,
+    "playback_speed": 4,
+    "final_hold_seconds": 3,
+    "edits": "Frames are padded without cropping or redrawing browser content, displayed at 4x speed, and framed by a labeled border. The final screenshot is held for 3 seconds.",
+    "source_frame_dimensions": {
+      "1120x713": 279,
+      "1120x780": 1,
+      "1024x713": 1,
+      "final_screenshot": "1120x780"
+    }
+  },
+  "evidence_sha256": {
+    "events.jsonl": "4b9bca0e67a42b49904bbb16652c94b7f266a2df2350ecb726416b01abc5c703",
+    "frames.jsonl": "79a1e2b9d6423fe9d70d6e4d7a790383de27a3597f959a9603e94c00d4a85c13",
+    "conditions.json": "e62696bd2c9e17fe1f9594c9f77b807cc1463644b87c597d46e65b9759781a22",
+    "final-page.json": "88ccc8f226bb690b4f001204caa7ec94a1741a6c069dcf14a24a3e7cae6be759",
+    "final.jpg": "7dcc7ee9d49fc4d52d44fedd86fe4a0960c722adb39a0f9b700e39e0658a8fa2",
+    "summary.json": "e4b0cdb3ae1cda0fb00423b49d39561e3e3507fc22142a44dbcead675ce789b4"
+  },
+  "media": {
+    "docs/media/flight-search.gif": {
+      "sha256": "ab2517ff865257391a240ef306e5fd27668a9ddbc555ffc9862c7cd72f01f8e0",
+      "bytes": 754771,
+      "duration_seconds": 23.25,
+      "frames": 93
+    },
+    "docs/media/flight-search.mp4": {
+      "sha256": "bc89ecf481da4c5396183a6451c06ee33c69ced1fdd4db4953358d3699960d89",
+      "bytes": 427678,
+      "duration_seconds": 23.25,
+      "stream": {
+        "codec_name": "h264",
+        "width": 1120,
+        "height": 856,
+        "pix_fmt": "yuvj420p"
+      }
+    }
+  },
+  "limits": [
+    "One coordinator-assisted demonstration; general reliability and savings are unproven.",
+    "The coordinator selected candidate menus and supplied literal text; Qwen chose bounded click actions.",
+    "The recording covers the browser viewport from its first screencast frame through the final screenshot; startup and cleanup outside that interval are excluded.",
+    "Playback is 4x; all captured waits are retained and the final screenshot is held for 3 seconds.",
+    "Worker memory excludes Chrome and the coordinator."
+  ]
+}

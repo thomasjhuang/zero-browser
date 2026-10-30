@@ -16,13 +16,14 @@ speed gains, and cost savings remain unproven.
 
 ## See an example
 
-[![Animated walkthrough: search Wikipedia for Ada Lovelace, follow the Analytical Engine link, and verify its inventor](docs/media/workflow-walkthrough.gif)](docs/media/workflow-walkthrough.mp4)
+[![Screen recording: zero-browser searches Google Flights from SFO to JFK](docs/media/flight-search.gif)](docs/media/flight-search.mp4)
 
-[Watch the 16-second video](docs/media/workflow-walkthrough.mp4) · [Run evidence](results/workflow-recovery-summary.json)
+[Watch the flight search](docs/media/flight-search.mp4) · [Run evidence](results/readme-flight-screen-recording.json)
 
-An abridged animation of saved actions and verification, not a live screen
-recording. This workflow used a Codex coordinator, local Qwen, and exact supplied
-actions in one browser session.
+Actual Chrome footage at **4× playback**, including captured waits. Codex
+coordinates local Qwen and exact supplied actions to search SFO–JFK, November
+12–16, 2026, for one adult in economy. All nine independent checks passed, with
+matching flight options visible. The run stops before flight selection or booking.
 
 ## Demonstrated tasks
 

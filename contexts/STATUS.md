@@ -5,7 +5,7 @@
 > Codex task 16 owns runtime integration and the only benchmark slot. Claude provides observation support after an explicit handoff.
 > No two agents run local inference or browser experiments at the same time.
 >
-> **Current run state: RESERVED.** Codex README recording coordinator owns one user-requested local-Qwen flight screen recording. The runtime lock is available. No browser or model has started. Preserve existing runtime limits and stop before flight selection or booking.
+> **Current run state: IDLE.** Codex README recording coordinator completed the user-requested flight recording. All nine round-trip checks passed. The worker and isolated browser closed; the run lock is released. [Recording evidence](../results/readme-flight-screen-recording.json).
 > Task 16 completed the callable adapter and preserved every comparison. Final lint and all 184 existing tests passed. Publication follows the repository procedure.
 > Latest measured results: native PASS in 46.22 seconds, prior Qwen PASS in 140.80 seconds, direct-action Qwen PASS in 123.14 seconds. Context and timing boundaries differ. Funded JEV failed after 7.14 seconds.
 > [Evidence](../results/flights-sequential-comparison.json) contains usage, memory, source hashes, and failed-run records. No general reliability or savings claim follows.
@@ -152,3 +152,5 @@ Earlier implementation details and evidence remain in the numbered task files an
 - October 30, 2026: Thomas narrowed repository cleanup to the README. Codex completed badges, evidence-linked examples, and a 16-second animated walkthrough of the saved Wikipedia run. The animation is labeled as evidence playback. Runtime code, existing local commits, and unfinished edits remain outside this change. No browser or model experiment ran.
 
 - October 30, 2026: Thomas requested replacing the README animation with an actual screen recording. Codex README recording coordinator reserves the task 16 runtime slot for one coordinator-assisted local-Qwen flight search.
+
+- October 30, 2026: The actual local-Qwen flight recording passed all nine round-trip checks in one attempt. Replaced the README animation with 4× Chrome footage. The run used 9 local model calls and 11 executed actions. Runtime is idle; evidence is in `results/readme-flight-screen-recording.json`.
